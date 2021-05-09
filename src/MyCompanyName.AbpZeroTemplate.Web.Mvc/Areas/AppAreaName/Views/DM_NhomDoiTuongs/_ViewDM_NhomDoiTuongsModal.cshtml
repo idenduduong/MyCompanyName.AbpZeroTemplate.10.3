@@ -1,0 +1,70 @@
+﻿
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Models.Common.Modals
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Models.DM_NhomDoiTuongs
+@model DM_NhomDoiTuongsViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="DM_NhomDoiTuongsInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("LoaiDoiTuong") :</h6>
+                @Model.DM_NhomDoiTuongs.LoaiDoiTuong
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("MaNhom") :</h6>
+                @Model.DM_NhomDoiTuongs.MaNhom
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("TenNhom") :</h6>
+                @Model.DM_NhomDoiTuongs.TenNhom
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("MucDiem") :</h6>
+                @Model.DM_NhomDoiTuongs.MucDiem
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("GhiChu") :</h6>
+                @Model.DM_NhomDoiTuongs.GhiChu
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("UserTao") :</h6>
+                @Model.DM_NhomDoiTuongs.UserTao
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("NgayTao") :</h6>
+                @Model.DM_NhomDoiTuongs.NgayTao
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("UserSuaCuoi") :</h6>
+                @Model.DM_NhomDoiTuongs.UserSuaCuoi
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("NgaySuaCuoi") :</h6>
+                @Model.DM_NhomDoiTuongs.NgaySuaCuoi
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("CreationTime") :</h6>
+                @Model.DM_NhomDoiTuongs.CreationTime
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("LastModificationTime") :</h6>
+                @Model.DM_NhomDoiTuongs.LastModificationTime
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("IsDeleted") :</h6>
+                @Model.DM_NhomDoiTuongs.IsDeleted
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("DeletionTime") :</h6>
+                @Model.DM_NhomDoiTuongs.DeletionTime
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml")

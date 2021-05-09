@@ -21,6 +21,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Startup
                         icon: "flaticon-line-graph",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
                     )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppAreaNamePageNames.Common.Phones,
+                        L("Phones"),
+                        url: "AppAreaName/Phones",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Phones)
+                    )
                 ).AddItem(new MenuItemDefinition(
                     AppAreaNamePageNames.Host.Tenants,
                     L("Tenants"),

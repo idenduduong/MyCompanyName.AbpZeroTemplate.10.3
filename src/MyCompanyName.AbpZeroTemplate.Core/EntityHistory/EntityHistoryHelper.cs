@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
+using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
+using MyCompanyName.AbpZeroTemplate.Phones;
+using System;
 using System.Linq;
 using Abp.Organizations;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles;
@@ -12,11 +15,17 @@ namespace MyCompanyName.AbpZeroTemplate.EntityHistory
 
         public static readonly Type[] HostSideTrackedTypes =
         {
+            typeof(DM_DoiTuong),
+            typeof(DM_NhomDoiTuongs),
+            typeof(Phone),
             typeof(OrganizationUnit), typeof(Role), typeof(Tenant)
         };
 
         public static readonly Type[] TenantSideTrackedTypes =
         {
+            typeof(DM_DoiTuong),
+            typeof(DM_NhomDoiTuongs),
+            typeof(Phone),
             typeof(OrganizationUnit), typeof(Role)
         };
 

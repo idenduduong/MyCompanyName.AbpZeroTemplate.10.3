@@ -29,6 +29,22 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
             //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
+
+            var dM_DoiTuong = pages.CreateChildPermission(AppPermissions.Pages_DM_DoiTuong, L("DM_DoiTuong"));
+            dM_DoiTuong.CreateChildPermission(AppPermissions.Pages_DM_DoiTuong_Create, L("CreateNewDM_DoiTuong"));
+            dM_DoiTuong.CreateChildPermission(AppPermissions.Pages_DM_DoiTuong_Edit, L("EditDM_DoiTuong"));
+            dM_DoiTuong.CreateChildPermission(AppPermissions.Pages_DM_DoiTuong_Delete, L("DeleteDM_DoiTuong"));
+
+            var dM_NhomDoiTuongs = pages.CreateChildPermission(AppPermissions.Pages_DM_NhomDoiTuongs, L("DM_NhomDoiTuongs"));
+            dM_NhomDoiTuongs.CreateChildPermission(AppPermissions.Pages_DM_NhomDoiTuongs_Create, L("CreateNewDM_NhomDoiTuongs"));
+            dM_NhomDoiTuongs.CreateChildPermission(AppPermissions.Pages_DM_NhomDoiTuongs_Edit, L("EditDM_NhomDoiTuongs"));
+            dM_NhomDoiTuongs.CreateChildPermission(AppPermissions.Pages_DM_NhomDoiTuongs_Delete, L("DeleteDM_NhomDoiTuongs"));
+
+            var phones = pages.CreateChildPermission(AppPermissions.Pages_Phones, L("Phones"));
+            phones.CreateChildPermission(AppPermissions.Pages_Phones_Create, L("CreateNewPhone"));
+            phones.CreateChildPermission(AppPermissions.Pages_Phones_Edit, L("EditPhone"));
+            phones.CreateChildPermission(AppPermissions.Pages_Phones_Delete, L("DeletePhone"));
+
             pages.CreateChildPermission(AppPermissions.Pages_DemoUiComponents, L("DemoUiComponents"));
 
             var administration = pages.CreateChildPermission(AppPermissions.Pages_Administration, L("Administration"));

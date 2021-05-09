@@ -9,6 +9,6 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - ConnectionStrings__Default=Server=192.168.1.37,1433;Database=AbpZeroTemplateDb;User=sa;Password=123qwe
+      - ConnectionStrings__Default=Server=192.168.1.159,1433;Database=AbpZeroTemplateDb;User=sa;Password=123qwe
     ports:
       - "44303:443"
