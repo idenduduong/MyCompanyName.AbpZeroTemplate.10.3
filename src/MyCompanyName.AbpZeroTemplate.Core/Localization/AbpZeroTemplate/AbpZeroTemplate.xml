@@ -1,6 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="Phones">Phones</text>
+    <text name="Phone">Phone</text>
+    <text name="MyCompanyName.AbpZeroTemplate.Phones.Phone">Phone</text>
+    <text name="Id">Id</text>
+    <text name="isDelete">is delete</text>
+    <text name="NotisDelete">Notis delete</text>
+    <text name="PhonesHeaderInfo">Phones header info</text>
+    <text name="CreateNewPhone">Create new phone</text>
+    <text name="EditPhone">Edit phone</text>
+    <text name="DeletePhone">Delete phone</text>
+    <text name="{0}IsRequired">{0} is required.</text>
+    <text name="View">View</text>
+    <text name="Details">Details</text>
+    <text name="Pick">Pick</text>
+    <text name="True">True</text>
+    <text name="False">False</text>
+    <text name="MinValue">Min</text>
+    <text name="MaxValue">Max</text>
     <text name="HomePage">Home page</text>
     <text name="AboutUs">About us</text>
     <text name="Administration">Administration</text>

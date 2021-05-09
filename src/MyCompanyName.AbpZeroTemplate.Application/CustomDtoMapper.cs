@@ -1,3 +1,9 @@
+﻿using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs.Dtos;
+using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
+using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.Dtos;
+using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
+using MyCompanyName.AbpZeroTemplate.Phones.Dtos;
+using MyCompanyName.AbpZeroTemplate.Phones;
 using Abp.Application.Editions;
 using Abp.Application.Features;
 using Abp.Auditing;
@@ -48,6 +54,12 @@ namespace MyCompanyName.AbpZeroTemplate
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditDM_DoiTuongDto, DM_DoiTuong>().ReverseMap();
+            configuration.CreateMap<DM_DoiTuongDto, DM_DoiTuong>().ReverseMap();
+            configuration.CreateMap<CreateOrEditDM_NhomDoiTuongsDto, MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs>().ReverseMap();
+            configuration.CreateMap<DM_NhomDoiTuongsDto, MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs>().ReverseMap();
+            configuration.CreateMap<CreateOrEditPhoneDto, Phone>().ReverseMap();
+            configuration.CreateMap<PhoneDto, Phone>().ReverseMap();
             //Inputs
             configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
             configuration.CreateMap<SingleLineStringInputType, FeatureInputTypeDto>();
@@ -76,8 +88,6 @@ namespace MyCompanyName.AbpZeroTemplate
             configuration.CreateMap<Role, RoleListDto>();
             configuration.CreateMap<UserRole, UserListRoleDto>();
 
-            
-
             //Edition
             configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
             configuration.CreateMap<EditionCreateDto, SubscribableEdition>();
@@ -90,7 +100,6 @@ namespace MyCompanyName.AbpZeroTemplate
             configuration.CreateMap<Edition, EditionEditDto>();
             configuration.CreateMap<Edition, SubscribableEdition>();
             configuration.CreateMap<Edition, EditionSelectDto>();
-
 
             //Payment
             configuration.CreateMap<SubscriptionPaymentDto, SubscriptionPayment>().ReverseMap();
@@ -159,7 +168,7 @@ namespace MyCompanyName.AbpZeroTemplate
             configuration.CreateMap<DynamicEntityPropertyDto, DynamicEntityProperty>();
 
             configuration.CreateMap<DynamicEntityPropertyValue, DynamicEntityPropertyValueDto>().ReverseMap();
-            
+
             //User Delegations
             configuration.CreateMap<CreateUserDelegationDto, UserDelegation>();
 

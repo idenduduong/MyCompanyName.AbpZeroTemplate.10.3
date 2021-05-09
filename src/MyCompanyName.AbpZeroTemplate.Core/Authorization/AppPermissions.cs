@@ -6,6 +6,21 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_DM_DoiTuong = "Pages.DM_DoiTuong";
+        public const string Pages_DM_DoiTuong_Create = "Pages.DM_DoiTuong.Create";
+        public const string Pages_DM_DoiTuong_Edit = "Pages.DM_DoiTuong.Edit";
+        public const string Pages_DM_DoiTuong_Delete = "Pages.DM_DoiTuong.Delete";
+
+        public const string Pages_DM_NhomDoiTuongs = "Pages.DM_NhomDoiTuongs";
+        public const string Pages_DM_NhomDoiTuongs_Create = "Pages.DM_NhomDoiTuongs.Create";
+        public const string Pages_DM_NhomDoiTuongs_Edit = "Pages.DM_NhomDoiTuongs.Edit";
+        public const string Pages_DM_NhomDoiTuongs_Delete = "Pages.DM_NhomDoiTuongs.Delete";
+
+        public const string Pages_Phones = "Pages.Phones";
+        public const string Pages_Phones_Create = "Pages.Phones.Create";
+        public const string Pages_Phones_Edit = "Pages.Phones.Edit";
+        public const string Pages_Phones_Delete = "Pages.Phones.Delete";
+
         //COMMON PERMISSIONS (FOR BOTH OF TENANTS AND HOST)
 
         public const string Pages = "Pages";

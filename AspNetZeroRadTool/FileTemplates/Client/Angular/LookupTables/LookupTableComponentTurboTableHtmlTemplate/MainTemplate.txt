@@ -75,11 +75,11 @@
                                                      styleClass="{{nP_Foreign_Entity_Name_Here}}-lookup-table-paginator"
                                                      (onPageChange)="getAll($event)"
                                                      [totalRecords]="primengTableHelper.totalRecordsCount"
-                                                     [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+                                                     [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"
+                                                     [showCurrentPageReport]="true"
+                                                     [currentPageReportTemplate]="'TotalRecordsCount' | localize:primengTableHelper.totalRecordsCount"    
+                                        >
                                         </p-paginator>
-                                        <span class="total-records-count">
-                                            {{l('TotalRecordsCount', primengTableHelper.totalRecordsCount)}}
-                                        </span>
                                     </div>
                                 </div>
                             </div>

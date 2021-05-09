@@ -27,7 +27,7 @@
 			</div>
                 <div id="{{Master_Detail_Child_Prefix_Here}}AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
                     <div class="col-md-12">
-						<div class="kt-separator kt-separator--border-dashed"></div>
+						{{Seperator_Div_Here}}
 					</div>
 {{Property_Filter_Template_Here}}{{NP_Filter_Template_Here}}
                 </div>
