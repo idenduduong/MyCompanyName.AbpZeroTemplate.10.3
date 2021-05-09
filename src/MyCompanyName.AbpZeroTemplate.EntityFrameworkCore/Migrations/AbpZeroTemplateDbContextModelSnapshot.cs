@@ -16,7 +16,7 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Abp.Application.Editions.Edition", b =>
@@ -1703,6 +1703,192 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.ToTable("AppChatMessages");
                 });
 
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.DM_DoiTuongs.DM_DoiTuong", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Anh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CapTai_DKKD")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ChiaSe")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ChucVu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerManagementOrganizationCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerManagementOrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DiaChiKhac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("DiemKhoiTao")
+                        .HasColumnType("float");
+
+                    b.Property<string>("DienThoai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("DoanhSoKhoiTao")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fax")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileDinhKems")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("GioiHanCongNo")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("GioiTinhNam")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ID_DonViQuanLy")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("ID_Index")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ID_NguoiGioiThieu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ID_NhanVienPhuTrach")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("ID_NhomCu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsNewCustomer")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaCaNhan")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LinhVuc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LoaiDoiTuong")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Ma")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaDoiTuong")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaSoThue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NganHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgayCapCMTND_DKKD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayDoiNhom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayGiaoDichGanNhat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgaySinh_NgayTLap")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgaySuaTrangThai")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NoiCapCMTND_DKKD")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Profile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SDT_CoQuan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SDT_NhaRieng")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SoCMTND_DKKD")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaiKhoanNganHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenDoiTuong")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenKhac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenNguonKhach")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenNhom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("TheoDoi")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("TheoDoiVanTay")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ThuongTru")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TongDiem")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("XungHo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("DM_DoiTuongs");
+                });
+
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.Friendships.Friendship", b =>
                 {
                     b.Property<long>("Id")
@@ -1972,6 +2158,116 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.HasIndex("TenancyName");
 
                     b.ToTable("AbpTenants");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LoaiDoiTuong")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaNhom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("MucDiem")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenNhom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("DM_NhomDoiTuongs");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.Phones.Phone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Mobile")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("PhoneId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("Phones");
                 });
 
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.Storage.BinaryObject", b =>

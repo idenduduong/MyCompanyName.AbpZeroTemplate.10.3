@@ -1,4 +1,7 @@
-﻿using Abp.IdentityServer4vNext;
+﻿using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
+using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
+using MyCompanyName.AbpZeroTemplate.Phones;
+using Abp.IdentityServer4vNext;
 using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyCompanyName.AbpZeroTemplate.Authorization.Delegation;
@@ -16,6 +19,12 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<DM_DoiTuong> DM_DoiTuong { get; set; }
+
+        public virtual DbSet<MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs> DM_NhomDoiTuongs { get; set; }
+
+        public virtual DbSet<Phone> Phones { get; set; }
+
         /* Define an IDbSet for each entity of the application */
 
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
@@ -46,10 +55,22 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<BinaryObject>(b =>
+            modelBuilder.Entity<DM_DoiTuong>(d =>
             {
-                b.HasIndex(e => new { e.TenantId });
+                d.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<DM_NhomDoiTuongs>(d =>
+                       {
+                           d.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Phone>(p =>
+                       {
+                           p.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<BinaryObject>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
 
             modelBuilder.Entity<ChatMessage>(b =>
             {

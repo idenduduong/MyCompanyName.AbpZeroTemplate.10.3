@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace MyCompanyName.AbpZeroTemplate.Configuration
 {
+
     public static class AppConfigurations
     {
         private static readonly ConcurrentDictionary<string, IConfigurationRoot> ConfigurationCache;

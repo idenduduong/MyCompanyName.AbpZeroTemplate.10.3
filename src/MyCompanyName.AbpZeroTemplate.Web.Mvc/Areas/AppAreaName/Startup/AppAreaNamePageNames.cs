@@ -4,6 +4,9 @@
     {
         public static class Common
         {
+            public const string DM_DoiTuong = "DM_DoiTuongs.DM_DoiTuong";
+            public const string DM_NhomDoiTuongs = "DM_NhomDoiTuongs.DM_NhomDoiTuongs";
+            public const string Phones = "Phones.Phones";
             public const string Administration = "Administration";
             public const string Roles = "Administration.Roles";
             public const string Users = "Administration.Users";
