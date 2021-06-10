@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompanyName.AbpZeroTempla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompanyName.AbpZeroTemplate.Application.Client", "src\MyCompanyName.AbpZeroTemplate.Application.Client\MyCompanyName.AbpZeroTemplate.Application.Client.csproj", "{AF73A4C6-4DA0-41C6-927D-839B56D33F00}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompanyName.AbpZeroTemplate.EntityFrameworkCore", "src\MyCompanyName.AbpZeroTemplate.EntityFrameworkCore\MyCompanyName.AbpZeroTemplate.EntityFrameworkCore.csproj", "{58EEDE24-5514-4B6B-B195-A618F300793B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,10 @@ Global
 		{AF73A4C6-4DA0-41C6-927D-839B56D33F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF73A4C6-4DA0-41C6-927D-839B56D33F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF73A4C6-4DA0-41C6-927D-839B56D33F00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58EEDE24-5514-4B6B-B195-A618F300793B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58EEDE24-5514-4B6B-B195-A618F300793B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58EEDE24-5514-4B6B-B195-A618F300793B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58EEDE24-5514-4B6B-B195-A618F300793B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +134,7 @@ Global
 		{E09101B3-F77E-4C72-8465-7B430FA93AD1} = {F10AA149-2626-486E-85BB-9CD5365F3016}
 		{62EC592B-CC95-43C2-9736-0EC6E46B01FA} = {F10AA149-2626-486E-85BB-9CD5365F3016}
 		{AF73A4C6-4DA0-41C6-927D-839B56D33F00} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
+		{58EEDE24-5514-4B6B-B195-A618F300793B} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23CD4D4B-B131-473D-9ECB-5DD96E739671}
