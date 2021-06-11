@@ -15,15 +15,25 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <TypeScriptToolsVersion>4.0</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="App_Data\**" />
+    <Compile Remove="Services\**" />
     <Content Remove="App_Data\**" />
+    <Content Remove="Services\**" />
     <EmbeddedResource Remove="App_Data\**" />
+    <EmbeddedResource Remove="Services\**" />
     <None Remove="App_Data\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Domain.cs" />
+    <Compile Remove="UsersViewComponent.cs" />
   </ItemGroup>
 
   <ItemGroup>
