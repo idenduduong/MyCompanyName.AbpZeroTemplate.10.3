@@ -6,11 +6,11 @@
   </PropertyGroup>
  
   <ItemGroup>
-    <PackageReference Include="IdentityModel" Version="5.0.1" />
+    <PackageReference Include="IdentityModel" Version="5.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Abp.Web.Common" Version="6.3.0" />
+    <PackageReference Include="Abp.Web.Common" Version="6.3.1" />
   </ItemGroup>
 
   <ItemGroup>
