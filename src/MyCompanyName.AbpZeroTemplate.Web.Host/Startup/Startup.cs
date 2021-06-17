@@ -162,6 +162,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                         .AddInMemoryStorage();
                 }
             }
+            //  datdd
+            //services.AddApplicationInsightsTelemetry();
 
             //Configure Abp and Dependency Injection
             return services.AddAbp<AbpZeroTemplateWebHostModule>(options =>
@@ -176,7 +178,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                 options.PlugInSources.AddFolder(Path.Combine(_hostingEnvironment.WebRootPath, "Plugins"),
                     SearchOption.AllDirectories);
             });
-            services.AddApplicationInsightsTelemetry();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
