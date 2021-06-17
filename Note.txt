@@ -1,2 +1,24 @@
 Laptop: 	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
 Desktop: 	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
+
+install node.js
+
+cmd -> npm install -g yarn
+
+copy Abp.AspNetZeroCore.dll to %USERPROFILE%\.nuget\packages\abp.aspnetzerocore\3.0.0\lib\net5.0 
+
+open cmd in folder D:\YAKSON\ASP NET ZERO Core 10.1.0\aspnet-core\src\MyCompanyName.AbpZeroTemplate.Web.Mvc
+cmd -> npm run create-bundles
+
+package manager console - AbpZeroTemplate Entify FrameWork Core - Update-database
+
+Start Solution with MyCompanyName.AbpZeroTemplate.Web.Mvc defaul startup
+
+admin/123qwe
+
+Add-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
+
+Update-Database -Context 'AbpZeroTemplateDbContext'
+
+
+docker compose -f docker-compose.yml -f docker-compose.override.yml --network host up
