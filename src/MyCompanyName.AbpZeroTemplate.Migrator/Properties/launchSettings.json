@@ -7,7 +7,7 @@
       "commandName": "Docker",
       "environmentVariables": {
         "ASPNETCORE_Docker_Enabled": "true",
-        "ConnectionStrings__Default": "Server=localhost; Database=AbpZeroTemplateDb103;User=abp;Password=Abc1234"
+        "ConnectionStrings__Default": "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$"
       }
     }
   }
