@@ -17,6 +17,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Public.Startup
             return new WebHostBuilder()
                 .UseKestrel(opt => opt.AddServerHeader = false)
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                  //  datdd
                 .UseIIS()
                 .UseIISIntegration()
                 .UseStartup<Startup>();
