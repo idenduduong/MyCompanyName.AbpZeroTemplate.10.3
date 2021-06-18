@@ -298,6 +298,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
         {
             services.Configure<Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>(options =>
             {
+                //options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 5000));
+                //return;
                 options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 443),
                     listenOptions =>
                     {
