@@ -197,6 +197,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                 app.UseExceptionHandler("/Error");
             }
 
+            //  datdd
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
@@ -299,9 +300,12 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
         {
             services.Configure<Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>(options =>
             {
+                //options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 5000));
+                //return;
                 options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 443),
                     listenOptions =>
                     {
+                        //  datdd
                         var certPassword = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Password");
                         var certPath = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Path");
                         var cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(certPath,
