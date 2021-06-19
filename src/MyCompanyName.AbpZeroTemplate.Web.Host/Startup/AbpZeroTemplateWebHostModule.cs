@@ -42,7 +42,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
         public override void PreInitialize()
         {
             Configuration.Modules.AbpWebCommon().MultiTenancy.DomainFormat =
-                _appConfiguration["App:ServerRootAddress"] ?? "https://localhost:44301/";
+                _appConfiguration["App:ServerRootAddress"] ?? "http://localhost:44301/";
             Configuration.Modules.AspNetZero().LicenseCode = _appConfiguration["AbpZeroLicenseCode"];
         }
 

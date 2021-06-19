@@ -38,6 +38,10 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\swagger\ui\index.html" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.css" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.min.css" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,6 +79,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\view-resources\Areas\AppAreaName\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\" />
   </ItemGroup>
 
 </Project>

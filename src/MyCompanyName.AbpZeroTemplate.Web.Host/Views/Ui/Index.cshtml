@@ -8,8 +8,9 @@
     AbpAntiForgeryManager.SetCookie(Context, cookieOptions: new CookieOptions()
     {
         SameSite = SameSiteMode.Strict,
+        //SameSite = SameSiteMode.None,
         Secure = true
-    });
+    }); ;
 }
 <head>
     <title>AbpZeroTemplate</title>

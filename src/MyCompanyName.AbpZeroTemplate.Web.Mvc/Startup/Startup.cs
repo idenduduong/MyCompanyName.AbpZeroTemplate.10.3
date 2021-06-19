@@ -81,6 +81,15 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
             IdentityRegistrar.Register(services);
 
+            //  datdd
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                //options.Cookie.Name = "MyCustomCookieName";
+                options.Cookie.SameSite = SameSiteMode.None;
+            });
+
             //Identity server
             if (bool.Parse(_appConfiguration["IdentityServer:IsEnabled"]))
             {
@@ -198,12 +207,13 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
             }
 
             //  datdd
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthentication();
+
 
             if (bool.Parse(_appConfiguration["Authentication:JwtBearer:IsEnabled"]))
             {
@@ -300,20 +310,21 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
         {
             services.Configure<Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions>(options =>
             {
-                //options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 5000));
+                //options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 443));
                 //return;
+
                 options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 443),
                     listenOptions =>
                     {
                         //  datdd
                         var certPassword = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Password");
                         var certPath = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Path");
-                        var cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(certPath,
-                            certPassword);
-                        listenOptions.UseHttps(new HttpsConnectionAdapterOptions()
-                        {
-                            ServerCertificate = cert
-                        });
+                        //var cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(certPath, certPassword);
+                        //listenOptions.UseHttps(new HttpsConnectionAdapterOptions()
+                        //{
+                        //    ServerCertificate = cert
+                        //});
+
                     });
             });
         }
