@@ -132,11 +132,11 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Public.Startup
                     {
                         var certPassword = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Password");
                         var certPath = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Path");
-                        var cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(certPath, certPassword);
-                        listenOptions.UseHttps(new HttpsConnectionAdapterOptions()
-                        {
-                            ServerCertificate = cert
-                        });
+                        //var cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(certPath, certPassword);
+                        //listenOptions.UseHttps(new HttpsConnectionAdapterOptions()
+                        //{
+                        //    ServerCertificate = cert
+                        //});
                     });
             });
         }
