@@ -81,13 +81,16 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
             IdentityRegistrar.Register(services);
 
             //  datdd
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Cookie.HttpOnly = true;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                //options.Cookie.Name = "MyCustomCookieName";
-                options.Cookie.SameSite = SameSiteMode.None;
-            });
+            // cookie policy to deal with temporary browser incompatibilities
+            services.AddSameSiteCookiePolicy();
+
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            //    //options.Cookie.Name = "MyCustomCookieName";
+            //    options.Cookie.SameSite = SameSiteMode.None;
+            //});
 
             //Identity server
             if (bool.Parse(_appConfiguration["IdentityServer:IsEnabled"]))
@@ -206,6 +209,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
             //  datdd
             //app.UseHttpsRedirection();
+            app.UseCookiePolicy();
 
             app.UseStaticFiles();
             app.UseRouting();
