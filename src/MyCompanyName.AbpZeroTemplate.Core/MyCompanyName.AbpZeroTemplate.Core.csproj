@@ -28,7 +28,7 @@
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.4.0" />
     <PackageReference Include="PayPalHttp" Version="1.0.0" />
     <PackageReference Include="PayPalCheckoutSdk" Version="1.0.3" />
-    <PackageReference Include="Stripe.net" Version="39.53.0" />
+    <PackageReference Include="Stripe.net" Version="39.57.0" />
     <PackageReference Include="TimeZoneConverter" Version="3.5.0" />
     <PackageReference Include="Abp.AspNetZeroCore" Version="3.0.0 " />
   </ItemGroup>
@@ -38,7 +38,7 @@
     <PackageReference Include="Abp.AutoMapper" Version="6.3.1" />
     <PackageReference Include="Abp.MailKit" Version="6.3.1" />
     <PackageReference Include="Abp.Zero.Ldap" Version="6.3.1" />
-    <PackageReference Include="Twilio" Version="5.61.1" />
+    <PackageReference Include="Twilio" Version="5.63.0" />
   </ItemGroup>
 
   <ItemGroup>
