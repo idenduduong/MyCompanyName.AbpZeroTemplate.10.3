@@ -1,6 +1,38 @@
 Laptop: 	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
 Desktop: 	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
+--------------------------------------------------------
+.NET Bulk Operations - Bundle
+946;300-DUONGDUCDAT
+A3BAB50-2611CE3-F86CCB9-8F8F82A-A2DA
 
+.NET EF Extensions - Bundle
+306;100-DUONGDUCDAT
+5070301-2702152-A4025EE-EEEA46F-8689
+
+Compiler Expression.NET - Bundle
+346;400-DUONGDUCDAT
+A6A5360-9E1C2A1-1A9E609-E4E1A12-D57F
+
+Dapper Plus - Bundle
+278;700-DUONGDUCDAT
+5E4E412-1A051C3-391A1D0-6C239C0-AF6F
+
+EF Classic - Bundle
+476;900-DUONGDUCDAT
+B4B04B3-54D112F-2EB4949-3D42EFC-C5E2
+
+Eval Expression.NET
+313;500-DUONGDUCDAT
+532B2B2-4012D41-2624817-9E726C7-6902
+
+Eval SQL.NET
+693;600-DUONGDUCDAT
+1521510-559B131-0059E58-C38009A-7D4E
+
+LinqToSql - Bundle
+721;800-DUONGDUCDAT
+C35C15B-5021663-09B6D17-2A20966-3B8B
+--------------------------------------------------------
 install node.js
 
 cmd -> npm install -g yarn
@@ -22,3 +54,4 @@ Update-Database -Context 'AbpZeroTemplateDbContext'
 
 
 docker compose -f docker-compose.yml -f docker-compose.override.yml --network host up
+--------------------------------------------------------
