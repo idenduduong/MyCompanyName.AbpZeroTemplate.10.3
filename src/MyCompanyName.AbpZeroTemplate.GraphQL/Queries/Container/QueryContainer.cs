@@ -7,6 +7,7 @@ namespace MyCompanyName.AbpZeroTemplate.Queries.Container
     public sealed class QueryContainer : ObjectGraphType, ITransientDependency
     {
         public QueryContainer(RoleQuery roleQuery, UserQuery userQuery, OrganizationUnitQuery organizationUnitQuery, AuditLogQuery auditLogQuery)
+        //public QueryContainer(RoleQuery roleQuery, UserQuery userQuery, OrganizationUnitQuery organizationUnitQuery)
         {
             AddField(roleQuery.GetFieldType());
 
