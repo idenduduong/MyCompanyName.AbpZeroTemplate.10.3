@@ -45,13 +45,13 @@ using HealthChecksUISettings = HealthChecks.UI.Configuration.Settings;
 using System.Text;
 
 //  datdd
-using Z.Dapper.Plus;
-using Z.EntityFramework.Extensions;
-using Z.BulkOperations;
-using Z.Expressions;
+//using Z.Dapper.Plus;
+//using Z.EntityFramework.Extensions;
+//using Z.BulkOperations;
+//using Z.Expressions;
 //using Z.EntityFramework.Classic;
-using Z.EntityFramework.Plus;
-using Z.LinqToSql.Plus;
+//using Z.EntityFramework.Plus;
+//using Z.LinqToSql.Plus;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 {
