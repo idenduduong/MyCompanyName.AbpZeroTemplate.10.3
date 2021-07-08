@@ -44,6 +44,15 @@ using Owl.reCAPTCHA;
 using HealthChecksUISettings = HealthChecks.UI.Configuration.Settings;
 using System.Text;
 
+//  datdd
+using Z.Dapper.Plus;
+using Z.EntityFramework.Extensions;
+using Z.BulkOperations;
+using Z.Expressions;
+//using Z.EntityFramework.Classic;
+using Z.EntityFramework.Plus;
+using Z.LinqToSql.Plus;
+
 namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 {
     public class Startup
@@ -54,6 +63,62 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
         public Startup(IWebHostEnvironment env)
         {
+            //  datdd
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            ////sql driver only
+            //DapperPlusManager.AddLicense("304;701-DELTAFOX", "3F26240-F4C9C0B-D5C9F79-9D0D5AA-A907");
+            ////All driver all
+            //DapperPlusManager.AddLicense("816;700-DUONGDUCDAT", "51F1311-F20F0EB-74F0834-F27747F-B9E4");
+            // CHECK if the license is valid for the default provider (SQL Server)
+            //string licenseErrorMessage;
+            //string output = Z.Dapper.Plus.DapperPlusManager.ValidateLicense(DapperProviderType.SqlServer).ToString();
+            //if (!Z.Dapper.Plus.DapperPlusManager.ValidateLicense(out licenseErrorMessage))
+            //{
+            //    throw new Exception(licenseErrorMessage);
+            //}
+            //// CHECK if the license is valid for a specific provider
+            //if (!Z.Dapper.Plus.DapperPlusManager.ValidateLicense(out licenseErrorMessage, DapperProviderType.MySql))
+            //{
+            //    throw new Exception(licenseErrorMessage);
+            //}
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            ////sql driver only
+            //Z.EntityFramework.Extensions.LicenseManager.AddLicense("714;101-DUONGDUCDAT", "F16F035-6221C3E-352C831-FA3354E-2AB0");
+            ////All driver all
+            //Z.EntityFramework.Extensions.LicenseManager.AddLicense("261;100-DUONGDUCDAT", "5A7A301-2772174-EC722FD-558ECC6-11CD");
+            //EFCoreConfig.AddLicense("306;100-DUONGDUCDAT", "5070301-2702152-A4025EE-EEEA46F-8689");
+            //Z.EntityFramework.Extensions.EF6Config.AddLicense("476;900-DUONGDUCDAT", "B4B04B3-54D112F-2EB4949-3D42EFC-C5E2");
+            ////string licenseErrorMessage;
+            //if (!Z.EntityFramework.Extensions.EFCoreConfig.ValidateLicense(out licenseErrorMessage))
+            //{
+            //    throw new Exception(licenseErrorMessage);
+            //}
+            //// CHECK if the license is valid for a specific provider
+            //if (!Z.EntityFramework.Extensions.EFCoreConfig.ValidateLicense(out licenseErrorMessage))
+            //{
+            //    throw new Exception(licenseErrorMessage);
+            //}
+            //Z.LinqToSql.Plus.LinqToSqlManager.AddLicense("721;800-DUONGDUCDAT", "C35C15B-5021663-09B6D17-2A20966-3B8B");
+            ////string licenseErrorMessage;
+            //if (!Z.LinqToSql.Plus.LinqToSqlManager.ValidateLicense(out licenseErrorMessage))
+            //{
+            //    throw new Exception(licenseErrorMessage);
+            //}
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            //// CHECK for default provider (SQL Server)
+            //Z.BulkOperations.LicenseManager.AddLicense("", "");
+            //string licenseErrorMessage;
+            //if (!Z.BulkOperations.LicenseManager.ValidateLicense(out licenseErrorMessage))
+            //{
+            //    throw new Exception(licenseErrorMessage);
+            //}
+
+            //// CHECK for a specific provider
+            //if (!Z.BulkOperations.LicenseManager.ValidateLicense(out licenseErrorMessage, ProviderType.MySql))
+            //{
+            //    throw new Exception(licenseErrorMessage);
+            //}
+            //////////////////////////////////////////////////////////////////////////////////////////////////
             _appConfiguration = env.GetAppConfiguration();
             _hostingEnvironment = env;
         }
@@ -337,18 +402,18 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                 //return;
 
                 options.Listen(new System.Net.IPEndPoint(System.Net.IPAddress.Any, 443),
-                    listenOptions =>
-                    {
-                        //  datdd
-                        var certPassword = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Password");
-                        var certPath = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Path");
-                        //var cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(certPath, certPassword);
-                        //listenOptions.UseHttps(new HttpsConnectionAdapterOptions()
-                        //{
-                        //    ServerCertificate = cert
-                        //});
+                listenOptions =>
+                {
+                    //  datdd
+                    var certPassword = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Password");
+                    var certPath = _appConfiguration.GetValue<string>("Kestrel:Certificates:Default:Path");
+                    //var cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(certPath, certPassword);
+                    //listenOptions.UseHttps(new HttpsConnectionAdapterOptions()
+                    //{
+                    //    ServerCertificate = cert
+                    //});
 
-                    });
+                });
             });
         }
     }

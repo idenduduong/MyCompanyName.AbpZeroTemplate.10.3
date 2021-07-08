@@ -8,7 +8,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Common
         public const string HangfireDashboardEndPoint = "/hangfire";
 
         public static bool SwaggerUiEnabled = true;
-        public static bool HangfireDashboardEnabled = false;
+        public static bool HangfireDashboardEnabled = true;
 
         public static List<string> ReCaptchaIgnoreWhiteList = new List<string>
         {
@@ -20,8 +20,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Common
             public const string PlaygroundEndPoint = "/ui/playground";
             public const string EndPoint = "/graphql";
 
-            public static bool PlaygroundEnabled = false;
-            public static bool Enabled = false;
+            //  datdd
+            public static bool PlaygroundEnabled = true;
+            public static bool Enabled = true;
         }
     }
 }

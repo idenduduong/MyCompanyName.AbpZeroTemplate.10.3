@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Customers\**" />
+    <EmbeddedResource Remove="Customers\**" />
+    <None Remove="Customers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp.Web.Common" Version="6.3.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
