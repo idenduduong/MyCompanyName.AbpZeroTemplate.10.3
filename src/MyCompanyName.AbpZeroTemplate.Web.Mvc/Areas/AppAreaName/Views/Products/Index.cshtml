@@ -1,0 +1,93 @@
+﻿@using MyCompanyName.AbpZeroTemplate.Authorization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Models.Products
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Startup
+@model ProductsViewModel
+@{
+ViewBag.CurrentPageName = AppAreaNamePageNames.Common.Products;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/AppAreaName/Views/Products/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="@L(" Products")" description="@L(" ProductsHeaderInfo")">
+        <button id="ExportToExcelButton" class="btn btn-outline-success"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+        @if (IsGranted(AppPermissions.Pages_Products_Create))
+        {
+        <button id="CreateNewProductButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewProduct")</button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-xl-12">
+                            <div class="form-group align-items-center">
+                                <div class="input-group">
+                                    <input type="text" id="ProductsTableFilter" class="form-control m-input" placeholder="@L(" SearchWithThreeDot")" value="@Model.FilterText">
+                                    <span class="input-group-btn">
+                                        <button id="GetProductsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="separator separator-dashed"></div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="NameFilterId">@L("Name")</label>
+                            <input type="text" class="form-control" name="nameFilter" id="NameFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="TypeFilterId">@L("Type")</label>
+                        <select class="form-control" name="TypeFilter" id="TypeFilterId">
+                            <option value="-1">@L("All")</option>
+                            <option value="1">@L("Enum_ProductType_1")</option>
+
+                            <option value="2">@L("Enum_ProductType_2")</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="UserNameFilterId">(@L("User")) @L("Name")</label>
+                            <input type="text" class="form-control" name="userNameFilter" id="UserNameFilterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="ProductsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+
+                                <th>@L("Actions")</th>
+                                <th>@L("Name")</th>
+                                <th>@L("Type")</th>
+                                <th>@L("UserName")</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

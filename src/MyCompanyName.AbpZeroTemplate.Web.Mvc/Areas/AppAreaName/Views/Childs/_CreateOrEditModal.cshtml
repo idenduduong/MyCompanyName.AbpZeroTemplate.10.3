@@ -1,0 +1,71 @@
+﻿
+@using System.Globalization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Models.Common.Modals
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Models.Childs
+@model CreateOrEditChildModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditChild")) : L("CreateNewChild")))
+
+<div class="modal-body">
+    <div id="ChildInformationsTab">
+        <form name="ChildInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Child.Id" />
+            }
+
+            <div class="form-group m-form__group">
+                <label for="BaseEntityBaseProp1">@L("BaseEntity")</label>
+                <div class="input-group">
+                    <input class="form-control" id="BaseEntityBaseProp1" name="baseEntityBaseProp1" value="@Model.BaseEntityBaseProp1" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenBaseEntityLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger btn-icon" type="button" id="ClearBaseEntityBaseProp1Button"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+            <input class="form-control" id="Child_BaseEntityId" value="@Model.Child.BaseEntityId" type="text" name="baseEntityId" hidden />
+            }
+            else
+            {
+            <input class="form-control" id="Child_BaseEntityId" value="" type="text" name="baseEntityId" hidden />
+            }
+
+            <div class="form-group m-form__group">
+                <label for="UserName">@L("User")</label>
+                <div class="input-group">
+                    <input class="form-control" id="UserName" name="userName" value="@Model.UserName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenUserLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger btn-icon" type="button" id="ClearUserNameButton"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+            <input class="form-control" id="Child_UserId" value="@Model.Child.UserId" type="text" name="userId" hidden />
+            }
+            else
+            {
+            <input class="form-control" id="Child_UserId" value="" type="text" name="userId" hidden />
+            }
+
+            <div class="form-group">
+                <label for="Child_ChildProp1">@L("ChildProp1")</label>
+                <input class="form-control" id="Child_ChildProp1" value="@Model.Child.ChildProp1" type="text" name="childProp1" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

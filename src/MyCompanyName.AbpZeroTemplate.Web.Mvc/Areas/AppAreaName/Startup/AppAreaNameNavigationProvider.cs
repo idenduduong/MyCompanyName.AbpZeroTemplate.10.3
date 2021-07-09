@@ -23,6 +23,30 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Startup
                     )
                 )
                 .AddItem(new MenuItemDefinition(
+                        AppAreaNamePageNames.Common.BaseEntities,
+                        L("BaseEntities"),
+                        url: "AppAreaName/BaseEntities",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppAreaNamePageNames.Common.Childs,
+                        L("Childs"),
+                        url: "AppAreaName/Childs",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Childs)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppAreaNamePageNames.Common.Products,
+                        L("Products"),
+                        url: "AppAreaName/Products",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Products)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
                         AppAreaNamePageNames.Common.Phones,
                         L("Phones"),
                         url: "AppAreaName/Phones",

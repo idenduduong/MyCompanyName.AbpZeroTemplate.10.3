@@ -30,6 +30,21 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var baseEntities = pages.CreateChildPermission(AppPermissions.Pages_BaseEntities, L("BaseEntities"));
+            baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Create, L("CreateNewBaseEntity"));
+            baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Edit, L("EditBaseEntity"));
+            baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Delete, L("DeleteBaseEntity"));
+
+            var childs = pages.CreateChildPermission(AppPermissions.Pages_Childs, L("Childs"));
+            childs.CreateChildPermission(AppPermissions.Pages_Childs_Create, L("CreateNewChild"));
+            childs.CreateChildPermission(AppPermissions.Pages_Childs_Edit, L("EditChild"));
+            childs.CreateChildPermission(AppPermissions.Pages_Childs_Delete, L("DeleteChild"));
+
+            var products = pages.CreateChildPermission(AppPermissions.Pages_Products, L("Products"));
+            products.CreateChildPermission(AppPermissions.Pages_Products_Create, L("CreateNewProduct"));
+            products.CreateChildPermission(AppPermissions.Pages_Products_Edit, L("EditProduct"));
+            products.CreateChildPermission(AppPermissions.Pages_Products_Delete, L("DeleteProduct"));
+
             var dM_DoiTuong = pages.CreateChildPermission(AppPermissions.Pages_DM_DoiTuong, L("DM_DoiTuong"));
             dM_DoiTuong.CreateChildPermission(AppPermissions.Pages_DM_DoiTuong_Create, L("CreateNewDM_DoiTuong"));
             dM_DoiTuong.CreateChildPermission(AppPermissions.Pages_DM_DoiTuong_Edit, L("EditDM_DoiTuong"));

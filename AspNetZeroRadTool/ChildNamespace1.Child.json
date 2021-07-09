@@ -1,5 +1,5 @@
-{
-  "IsRegenerate": false,
+﻿{
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "ChildNamespace1",
   "EntityName": "Child",
@@ -7,7 +7,7 @@
   "TableName": "Childs",
   "PrimaryKeyType": "int",
   "BaseClass": "Entity",
-  "EntityHistory": false,
+  "EntityHistory": true,
   "AutoMigration": true,
   "UpdateDatabase": true,
   "CreateUserInterface": true,
@@ -40,7 +40,18 @@
       }
     }
   ],
-  "NavigationProperties": [
+  "NavigationProperties": [{
+      "Namespace": "MyCompanyName.AbpZeroTemplate.BaseNamespace",
+      "ForeignEntityName": "BaseEntity",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "BaseEntityId",
+      "DisplayPropertyName": "BaseProp1",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "LookupTable",
+      "IsGeneratedByMasterPage": true
+    },
     {
       "Namespace": "MyCompanyName.AbpZeroTemplate.Authorization.Users",
       "ForeignEntityName": "User",

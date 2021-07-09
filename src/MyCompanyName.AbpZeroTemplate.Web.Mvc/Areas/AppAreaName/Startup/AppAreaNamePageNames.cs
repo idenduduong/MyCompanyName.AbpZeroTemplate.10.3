@@ -4,6 +4,9 @@
     {
         public static class Common
         {
+            public const string BaseEntities = "BaseNamespace.BaseEntities";
+            public const string Childs = "ChildNamespace1.Childs";
+            public const string Products = "Products.Products";
             public const string DM_DoiTuong = "DM_DoiTuongs.DM_DoiTuong";
             public const string DM_NhomDoiTuongs = "DM_NhomDoiTuongs.DM_NhomDoiTuongs";
             public const string Phones = "Phones.Phones";

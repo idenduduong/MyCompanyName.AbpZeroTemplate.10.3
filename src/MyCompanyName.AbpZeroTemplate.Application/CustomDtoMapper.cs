@@ -1,4 +1,10 @@
-﻿using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs.Dtos;
+﻿using MyCompanyName.AbpZeroTemplate.BaseNamespace.Dtos;
+using MyCompanyName.AbpZeroTemplate.BaseNamespace;
+using MyCompanyName.AbpZeroTemplate.ChildNamespace1.Dtos;
+using MyCompanyName.AbpZeroTemplate.ChildNamespace1;
+using MyCompanyName.AbpZeroTemplate.Products.Dtos;
+using MyCompanyName.AbpZeroTemplate.Products;
+using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs.Dtos;
 using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
 using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.Dtos;
 using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
@@ -54,6 +60,12 @@ namespace MyCompanyName.AbpZeroTemplate
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditBaseEntityDto, BaseEntity>().ReverseMap();
+            configuration.CreateMap<BaseEntityDto, BaseEntity>().ReverseMap();
+            configuration.CreateMap<CreateOrEditChildDto, Child>().ReverseMap();
+            configuration.CreateMap<ChildDto, Child>().ReverseMap();
+            configuration.CreateMap<CreateOrEditProductDto, Product>().ReverseMap();
+            configuration.CreateMap<ProductDto, Product>().ReverseMap();
             configuration.CreateMap<CreateOrEditDM_DoiTuongDto, DM_DoiTuong>().ReverseMap();
             configuration.CreateMap<DM_DoiTuongDto, DM_DoiTuong>().ReverseMap();
             configuration.CreateMap<CreateOrEditDM_NhomDoiTuongsDto, MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs>().ReverseMap();

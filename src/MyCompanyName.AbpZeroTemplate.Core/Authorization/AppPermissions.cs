@@ -6,6 +6,21 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_BaseEntities = "Pages.BaseEntities";
+        public const string Pages_BaseEntities_Create = "Pages.BaseEntities.Create";
+        public const string Pages_BaseEntities_Edit = "Pages.BaseEntities.Edit";
+        public const string Pages_BaseEntities_Delete = "Pages.BaseEntities.Delete";
+
+        public const string Pages_Childs = "Pages.Childs";
+        public const string Pages_Childs_Create = "Pages.Childs.Create";
+        public const string Pages_Childs_Edit = "Pages.Childs.Edit";
+        public const string Pages_Childs_Delete = "Pages.Childs.Delete";
+
+        public const string Pages_Products = "Pages.Products";
+        public const string Pages_Products_Create = "Pages.Products.Create";
+        public const string Pages_Products_Edit = "Pages.Products.Edit";
+        public const string Pages_Products_Delete = "Pages.Products.Delete";
+
         public const string Pages_DM_DoiTuong = "Pages.DM_DoiTuong";
         public const string Pages_DM_DoiTuong_Create = "Pages.DM_DoiTuong.Create";
         public const string Pages_DM_DoiTuong_Edit = "Pages.DM_DoiTuong.Edit";

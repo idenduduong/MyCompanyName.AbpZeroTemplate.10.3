@@ -1,4 +1,7 @@
-﻿using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
+﻿using MyCompanyName.AbpZeroTemplate.BaseNamespace;
+using MyCompanyName.AbpZeroTemplate.ChildNamespace1;
+using MyCompanyName.AbpZeroTemplate.Products;
+using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
 using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
 using MyCompanyName.AbpZeroTemplate.Phones;
 using Abp.IdentityServer4vNext;
@@ -19,6 +22,12 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<BaseEntity> BaseEntities { get; set; }
+
+        public virtual DbSet<Child> Childs { get; set; }
+
+        public virtual DbSet<Product> Products { get; set; }
+
         public virtual DbSet<DM_DoiTuong> DM_DoiTuong { get; set; }
 
         public virtual DbSet<MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs> DM_NhomDoiTuongs { get; set; }
@@ -55,10 +64,62 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<DM_DoiTuong>(d =>
+            modelBuilder.Entity<Child>(c =>
             {
-                d.HasIndex(e => new { e.TenantId });
+                c.HasIndex(e => new { e.TenantId });
             });
+            modelBuilder.Entity<BaseEntity>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Child>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<BaseEntity>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Child>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<BaseEntity>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Child>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<BaseEntity>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Child>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<BaseEntity>(b =>
+                       {
+                           b.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Product>(p =>
+                       {
+                           p.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Child>(c =>
+                       {
+                           c.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<Product>(p =>
+                       {
+                           p.HasIndex(e => new { e.TenantId });
+                       });
+            modelBuilder.Entity<DM_DoiTuong>(d =>
+                       {
+                           d.HasIndex(e => new { e.TenantId });
+                       });
             modelBuilder.Entity<DM_NhomDoiTuongs>(d =>
                        {
                            d.HasIndex(e => new { e.TenantId });

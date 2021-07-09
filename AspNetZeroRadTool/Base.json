@@ -1,5 +1,5 @@
 {
-  "IsRegenerate": false,
+  "IsRegenerate": true,
   "MenuPosition": "main",
   "RelativeNamespace": "BaseNamespace",
   "EntityName": "BaseEntity",
@@ -7,7 +7,7 @@
   "TableName": "BaseEntities",
   "PrimaryKeyType": "int",
   "BaseClass": "Entity",
-  "EntityHistory": false,
+  "EntityHistory": true,
   "AutoMigration": true,
   "UpdateDatabase": true,
   "CreateUserInterface": true,
@@ -42,7 +42,7 @@
   ],
   "NavigationProperties": [
     {
-      "Namespace": "MyCompanyName.AbpZeroTemplate.Organizations",
+      "Namespace": "Abp.Organizations",
       "ForeignEntityName": "OrganizationUnit",
       "IdType": "long",
       "IsNullable": true,
