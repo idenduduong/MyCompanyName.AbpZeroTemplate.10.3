@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+	<text name="Childs">Childs</text>
+	<text name="BaseEntities">Base Entities</text>
     <text name="Phones">Phones</text>
     <text name="Phone">Phone</text>
     <text name="MyCompanyName.AbpZeroTemplate.Phones.Phone">Phone</text>

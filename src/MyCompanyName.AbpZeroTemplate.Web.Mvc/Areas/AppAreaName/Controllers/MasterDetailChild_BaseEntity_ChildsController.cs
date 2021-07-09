@@ -87,6 +87,5 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Controllers
 
             return PartialView("_ChildUserLookupTableModal", viewModel);
         }
-
     }
 }
