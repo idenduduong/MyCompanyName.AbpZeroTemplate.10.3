@@ -53,6 +53,7 @@ using MyCompanyName.AbpZeroTemplate.Notifications.Dto;
 using MyCompanyName.AbpZeroTemplate.Organizations.Dto;
 using MyCompanyName.AbpZeroTemplate.Sessions.Dto;
 using MyCompanyName.AbpZeroTemplate.WebHooks.Dto;
+using MyCompanyName.AbpZeroTemplate.Persons.Dtos;
 
 namespace MyCompanyName.AbpZeroTemplate
 {
@@ -60,6 +61,7 @@ namespace MyCompanyName.AbpZeroTemplate
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<PersonListDto, Person>().ReverseMap();
             configuration.CreateMap<CreateOrEditBaseEntityDto, BaseEntity>().ReverseMap();
             configuration.CreateMap<BaseEntityDto, BaseEntity>().ReverseMap();
             configuration.CreateMap<CreateOrEditChildDto, Child>().ReverseMap();

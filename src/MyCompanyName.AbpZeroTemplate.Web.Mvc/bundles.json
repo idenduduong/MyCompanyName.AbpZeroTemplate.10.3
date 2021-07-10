@@ -191,7 +191,7 @@
       "output": "view-resources/Areas/AppAreaName/Views/_Bundles/app-layout-libs.min.js",
       "input": [
         "node_modules/json2/lib/JSON2/static/json2.js",
-        "node_modules/jquery/dist/jquery.js",
+        //"node_modules/jquery/dist/jquery.js",
         "node_modules/jquery-validation/dist/jquery.validate.js",
         "node_modules/popper.js/dist/umd/popper.js",
         "node_modules/bootstrap/dist/js/bootstrap.js",

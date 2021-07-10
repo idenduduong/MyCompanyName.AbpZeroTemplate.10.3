@@ -8,6 +8,7 @@ namespace MyCompanyName.AbpZeroTemplate.Phones.Dtos
         public string Filter { get; set; }
 
         public int? MaxPhoneIdFilter { get; set; }
+
         public int? MinPhoneIdFilter { get; set; }
 
         public int? isDeleteFilter { get; set; }

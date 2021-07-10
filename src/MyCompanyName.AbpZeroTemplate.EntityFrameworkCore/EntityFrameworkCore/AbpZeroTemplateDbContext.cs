@@ -22,6 +22,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<Person> Persons { get; set; }
+
         public virtual DbSet<BaseEntity> BaseEntities { get; set; }
 
         public virtual DbSet<Child> Childs { get; set; }

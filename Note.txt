@@ -56,3 +56,9 @@ dotnet tool install -g dotnet-ef
 
 docker compose -f docker-compose.yml -f docker-compose.override.yml --network host up
 --------------------------------------------------------
+
+Add person class in .core
+Add person consts in .core.shared
+Add dbset<person> in dbcontext .entity.core
+Add-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
+Update-Database -Context 'AbpZeroTemplateDbContext'
