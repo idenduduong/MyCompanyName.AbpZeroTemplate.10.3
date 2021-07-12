@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "MyCompanyName",
+    "slug": "MyCompanyName",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#38003c"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.MyCompanyName",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.MyCompanyName",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/icon.png"
+    }
+  }
+}
