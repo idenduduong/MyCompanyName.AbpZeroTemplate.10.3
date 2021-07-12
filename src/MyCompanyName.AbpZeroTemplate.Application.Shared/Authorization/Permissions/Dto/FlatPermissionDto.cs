@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Authorization.Permissions.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Authorization.Permissions.Dto
 {
     public class FlatPermissionDto
     {

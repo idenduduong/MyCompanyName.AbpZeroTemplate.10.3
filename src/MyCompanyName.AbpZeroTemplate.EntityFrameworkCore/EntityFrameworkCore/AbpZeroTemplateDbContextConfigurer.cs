@@ -1,4 +1,4 @@
-using System.Data.Common;
+﻿using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore

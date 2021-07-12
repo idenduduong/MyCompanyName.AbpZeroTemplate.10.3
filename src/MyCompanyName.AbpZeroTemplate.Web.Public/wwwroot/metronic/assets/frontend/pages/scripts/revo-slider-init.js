@@ -1,4 +1,4 @@
-var RevosliderInit = function () {
+﻿var RevosliderInit = function () {
 
     return {
         initRevoSlider: function () {

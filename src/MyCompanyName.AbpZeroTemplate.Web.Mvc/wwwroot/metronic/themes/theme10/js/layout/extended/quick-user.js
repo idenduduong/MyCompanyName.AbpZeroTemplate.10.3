@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 var KTLayoutQuickUser = function() {
     // Private properties

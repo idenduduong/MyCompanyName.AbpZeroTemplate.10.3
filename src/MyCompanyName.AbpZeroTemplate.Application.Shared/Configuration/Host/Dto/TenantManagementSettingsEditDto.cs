@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Configuration.Host.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Configuration.Host.Dto
 {
     public class TenantManagementSettingsEditDto
     {

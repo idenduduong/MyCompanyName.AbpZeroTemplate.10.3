@@ -1,4 +1,4 @@
-export interface SwalState {
+﻿export interface SwalState {
     isOpen: boolean;
     promise: {
         resolve?(value: string): void;

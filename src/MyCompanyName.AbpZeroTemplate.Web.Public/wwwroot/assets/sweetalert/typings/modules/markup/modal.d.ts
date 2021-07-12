@@ -1,2 +1,2 @@
-export declare const modalMarkup: string;
+﻿export declare const modalMarkup: string;
 export default modalMarkup;

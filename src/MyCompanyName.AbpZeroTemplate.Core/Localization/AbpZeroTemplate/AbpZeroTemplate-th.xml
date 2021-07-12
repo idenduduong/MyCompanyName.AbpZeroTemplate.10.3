@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="th">
 	<texts>
 		<text name="{0}IsInvalid">{0} ไม่ถูกต้อง</text>

@@ -1,4 +1,4 @@
-import { ButtonList } from './buttons';
+﻿import { ButtonList } from './buttons';
 import { ContentOptions } from './content';
 export interface SwalOptions {
     title: string;

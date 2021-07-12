@@ -1,4 +1,4 @@
-var CurrentPage = function () {
+﻿var CurrentPage = function () {
 
     function setPayment() {
         var $periodType = $('input[name=PaymentPeriodType]:checked');

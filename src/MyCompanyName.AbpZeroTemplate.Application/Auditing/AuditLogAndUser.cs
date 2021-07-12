@@ -1,4 +1,4 @@
-using Abp.Auditing;
+﻿using Abp.Auditing;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 
 namespace MyCompanyName.AbpZeroTemplate.Auditing

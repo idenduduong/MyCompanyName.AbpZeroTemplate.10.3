@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Abp.Runtime.Validation;
 using MyCompanyName.AbpZeroTemplate.Common;
 using MyCompanyName.AbpZeroTemplate.Dto;

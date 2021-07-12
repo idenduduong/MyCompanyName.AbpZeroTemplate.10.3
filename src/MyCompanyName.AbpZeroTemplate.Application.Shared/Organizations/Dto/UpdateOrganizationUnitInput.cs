@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Abp.Organizations;
 
 namespace MyCompanyName.AbpZeroTemplate.Organizations.Dto

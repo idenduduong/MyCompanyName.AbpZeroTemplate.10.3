@@ -1,4 +1,4 @@
-using Abp.Auditing;
+﻿using Abp.Auditing;
 
 namespace MyCompanyName.AbpZeroTemplate.Configuration.Tenants.Dto
 {

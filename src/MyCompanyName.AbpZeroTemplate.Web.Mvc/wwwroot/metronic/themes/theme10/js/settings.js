@@ -1,4 +1,4 @@
-var KTAppSettings = {
+﻿var KTAppSettings = {
     "breakpoints": {
         "sm": 576,
         "md": 768,

@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Profile.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Profile.Dto
 {
     public class VerifySmsCodeInputDto
     {

@@ -1,4 +1,4 @@
-Flag icons - http://www.famfamfam.com
+﻿Flag icons - http://www.famfamfam.com
 
 These icons are public domain, and as such are free for any use (attribution appreciated but not required).
 

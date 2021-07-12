@@ -1,1 +1,1 @@
-export declare const contentMarkup: string;
+﻿export declare const contentMarkup: string;

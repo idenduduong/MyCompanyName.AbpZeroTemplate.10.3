@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 // DOCS: https://javascript.info/cookie
 
 // Component Definition 

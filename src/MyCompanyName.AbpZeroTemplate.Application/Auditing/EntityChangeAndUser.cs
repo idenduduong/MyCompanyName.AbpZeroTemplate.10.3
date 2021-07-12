@@ -1,4 +1,4 @@
-using Abp.EntityHistory;
+﻿using Abp.EntityHistory;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 
 namespace MyCompanyName.AbpZeroTemplate.Auditing

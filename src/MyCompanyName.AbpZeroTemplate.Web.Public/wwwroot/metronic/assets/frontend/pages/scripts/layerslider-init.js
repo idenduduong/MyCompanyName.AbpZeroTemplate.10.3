@@ -1,4 +1,4 @@
-var LayersliderInit = function () {
+﻿var LayersliderInit = function () {
 
     return {
         initLayerSlider: function () {

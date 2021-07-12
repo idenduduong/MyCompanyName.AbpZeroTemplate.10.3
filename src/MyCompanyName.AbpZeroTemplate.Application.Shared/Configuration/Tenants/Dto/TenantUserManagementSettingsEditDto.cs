@@ -1,4 +1,4 @@
-using MyCompanyName.AbpZeroTemplate.Configuration.Host.Dto;
+﻿using MyCompanyName.AbpZeroTemplate.Configuration.Host.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.Configuration.Tenants.Dto
 {

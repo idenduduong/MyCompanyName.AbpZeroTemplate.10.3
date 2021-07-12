@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Tenants.Dashboard.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Tenants.Dashboard.Dto
 {
     public class GetDashboardDataInput
     {

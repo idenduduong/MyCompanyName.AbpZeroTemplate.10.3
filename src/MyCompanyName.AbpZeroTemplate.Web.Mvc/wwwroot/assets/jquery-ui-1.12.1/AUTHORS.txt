@@ -1,4 +1,4 @@
-Authors ordered by first contribution
+﻿Authors ordered by first contribution
 A list of current team members is available at http://jqueryui.com/about
 
 Paul Bakaus <paul.bakaus@gmail.com>

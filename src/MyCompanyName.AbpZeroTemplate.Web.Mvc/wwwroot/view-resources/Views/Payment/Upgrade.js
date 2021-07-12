@@ -1,4 +1,4 @@
-var CurrentPage = function () {
+﻿var CurrentPage = function () {
 
     function init() {
         $('.checkout').click(function () {

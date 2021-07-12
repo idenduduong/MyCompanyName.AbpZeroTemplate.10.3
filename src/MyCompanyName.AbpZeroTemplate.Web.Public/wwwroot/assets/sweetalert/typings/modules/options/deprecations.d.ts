@@ -1,4 +1,4 @@
-export declare const logDeprecation: (name: string) => void;
+﻿export declare const logDeprecation: (name: string) => void;
 export interface OptionReplacement {
     replacement?: string;
     onlyRename?: boolean;

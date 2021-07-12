@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "abpzerotemplate",
   "scripts": {
     "create-bundles": "gulp buildDev",

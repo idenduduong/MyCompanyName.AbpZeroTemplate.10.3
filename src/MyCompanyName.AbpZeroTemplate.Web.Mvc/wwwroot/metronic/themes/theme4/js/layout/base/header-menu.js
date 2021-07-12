@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 var KTLayoutHeaderMenu = function() {
     // Private properties

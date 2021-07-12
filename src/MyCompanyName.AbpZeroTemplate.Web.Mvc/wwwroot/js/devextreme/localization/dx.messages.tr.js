@@ -1,4 +1,4 @@
-/*!
+﻿/*!
 * DevExtreme (dx.messages.tr.js)
 * Version: 21.1.4
 * Build date: Mon Jun 21 2021

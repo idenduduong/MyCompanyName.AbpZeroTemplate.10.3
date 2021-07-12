@@ -1,4 +1,4 @@
-
+﻿
 var app = app || {};
 (function () {
     abp.services.app.session.getCurrentLoginInformations({ async: false })

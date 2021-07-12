@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Dto
 {
     public class RegisterTenantOutput
     {

@@ -1,4 +1,4 @@
-import { ActionOptions, SwalState } from './modules/state';
+﻿import { ActionOptions, SwalState } from './modules/state';
 import { SwalOptions } from './modules/options';
 export declare type SwalParams = (string | Partial<SwalOptions>)[];
 export interface SweetAlert {

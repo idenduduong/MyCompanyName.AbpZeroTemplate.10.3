@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments.Stripe
+﻿namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments.Stripe
 {
     public class StripeIdResponse
     {

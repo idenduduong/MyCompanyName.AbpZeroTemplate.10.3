@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 var KTLayoutAside = function() {
     // Private properties

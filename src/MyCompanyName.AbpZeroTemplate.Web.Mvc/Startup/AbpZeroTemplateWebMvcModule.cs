@@ -10,7 +10,7 @@ using MyCompanyName.AbpZeroTemplate.Auditing;
 using MyCompanyName.AbpZeroTemplate.Configuration;
 using MyCompanyName.AbpZeroTemplate.EntityFrameworkCore;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy;
-using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Startup;
+using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 {
@@ -30,7 +30,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
         {
             Configuration.Modules.AbpWebCommon().MultiTenancy.DomainFormat = _appConfiguration["App:WebSiteRootAddress"] ?? "http://localhost:44302/";
             Configuration.Modules.AspNetZero().LicenseCode = _appConfiguration["AbpZeroLicenseCode"];
-            Configuration.Navigation.Providers.Add<AppAreaNameNavigationProvider>();
+            Configuration.Navigation.Providers.Add<qlnvNavigationProvider>();
             
             IocManager.Register<DashboardViewConfiguration>();
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.HostDashboard.Dto
 {

@@ -1,2 +1,2 @@
-declare const initOverlayOnce: () => void;
+﻿declare const initOverlayOnce: () => void;
 export default initOverlayOnce;

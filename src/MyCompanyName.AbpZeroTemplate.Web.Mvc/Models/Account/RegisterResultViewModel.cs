@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Web.Models.Account
+﻿namespace MyCompanyName.AbpZeroTemplate.Web.Models.Account
 {
     public class RegisterResultViewModel
     {

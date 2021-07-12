@@ -22,9 +22,9 @@
             function getUrl(userNotification) {
                 switch (userNotification.notification.notificationName) {
                     case 'App.NewUserRegistered':
-                        return '/AppAreaName/users?filterText=' + userNotification.notification.data.properties.emailAddress;
+                        return '/qlnv/users?filterText=' + userNotification.notification.data.properties.emailAddress;
                     case 'App.NewTenantRegistered':
-                        return '/AppAreaName/tenants?filterText=' + userNotification.notification.data.properties.tenancyName;
+                        return '/qlnv/tenants?filterText=' + userNotification.notification.data.properties.tenancyName;
                     case 'App.GdprDataPrepared':
                         return '/File/DownloadBinaryFile?id=' + userNotification.notification.data.properties.binaryObjectId + '&contentType=application/zip&fileName=collectedData.zip';
                     case 'App.DownloadInvalidImportUsers':
@@ -101,8 +101,8 @@
 
             var openSettingsModal = function () {
                 new app.ModalManager({
-                    viewUrl: abp.appPath + 'AppAreaName/Notifications/SettingsModal',
-                    scriptUrl: abp.appPath + 'view-resources/Areas/AppAreaName/Views/Notifications/_SettingsModal.js',
+                    viewUrl: abp.appPath + 'qlnv/Notifications/SettingsModal',
+                    scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/Notifications/_SettingsModal.js',
                     modalClass: 'NotificationSettingsModal'
                 }).open();
             };

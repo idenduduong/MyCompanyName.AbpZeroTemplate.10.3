@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 var KTLayoutHeaderTopbar = function() {
     // Private properties

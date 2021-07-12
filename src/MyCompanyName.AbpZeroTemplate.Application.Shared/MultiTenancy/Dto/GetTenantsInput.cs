@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Abp.Runtime.Validation;
 using MyCompanyName.AbpZeroTemplate.Common;
 using MyCompanyName.AbpZeroTemplate.Dto;

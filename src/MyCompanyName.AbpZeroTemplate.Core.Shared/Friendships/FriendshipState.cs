@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Friendships
+﻿namespace MyCompanyName.AbpZeroTemplate.Friendships
 {
     public enum FriendshipState
     {

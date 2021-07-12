@@ -1,4 +1,4 @@
-Jcrop Image Cropping Plugin
+﻿Jcrop Image Cropping Plugin
 ===========================
 
 Jcrop is the quick and easy way to add image cropping functionality to

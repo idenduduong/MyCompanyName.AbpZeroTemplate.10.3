@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Web.Chat.SignalR
+﻿namespace MyCompanyName.AbpZeroTemplate.Web.Chat.SignalR
 {
     public class SendFriendshipRequestInput
     {

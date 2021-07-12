@@ -1,2 +1,2 @@
-declare const overlay: string;
+﻿declare const overlay: string;
 export default overlay;

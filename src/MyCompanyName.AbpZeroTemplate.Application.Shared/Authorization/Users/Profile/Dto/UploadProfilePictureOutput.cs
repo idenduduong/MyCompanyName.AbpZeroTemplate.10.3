@@ -1,4 +1,4 @@
-using Abp.Web.Models;
+﻿using Abp.Web.Models;
 
 namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Profile.Dto
 {

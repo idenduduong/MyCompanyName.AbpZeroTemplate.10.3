@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments
+﻿namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments
 {
     public enum SubscriptionPaymentStatus
     {

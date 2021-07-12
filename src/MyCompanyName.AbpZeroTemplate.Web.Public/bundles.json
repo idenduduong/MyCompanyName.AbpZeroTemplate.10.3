@@ -1,4 +1,4 @@
-{
+﻿{
   "scripts": [
     {
       "output": "view-resources/Views/_Bundles/frontend-libs.min.js",

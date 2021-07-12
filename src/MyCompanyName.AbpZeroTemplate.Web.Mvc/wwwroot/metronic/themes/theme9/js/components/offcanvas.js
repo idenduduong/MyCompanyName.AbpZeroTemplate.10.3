@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 // Component Definition
 var KTOffcanvas = function(elementId, options) {

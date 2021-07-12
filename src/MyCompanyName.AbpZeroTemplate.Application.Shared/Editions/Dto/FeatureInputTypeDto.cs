@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Abp.Runtime.Validation;
 
 namespace MyCompanyName.AbpZeroTemplate.Editions.Dto

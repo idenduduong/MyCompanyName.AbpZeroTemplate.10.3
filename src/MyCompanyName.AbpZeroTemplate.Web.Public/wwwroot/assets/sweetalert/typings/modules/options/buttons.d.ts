@@ -1,4 +1,4 @@
-export interface ButtonOptions {
+﻿export interface ButtonOptions {
     visible: boolean;
     text: string;
     value: any;

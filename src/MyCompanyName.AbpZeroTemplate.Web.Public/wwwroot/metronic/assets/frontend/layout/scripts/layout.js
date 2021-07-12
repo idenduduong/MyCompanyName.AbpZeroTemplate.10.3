@@ -1,4 +1,4 @@
-var Layout = function () {
+﻿var Layout = function () {
 
      // IE mode
     var isRTL = false;

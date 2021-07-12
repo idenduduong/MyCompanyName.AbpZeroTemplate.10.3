@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments.Paypal
+﻿namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments.Paypal
 {
     public class PayPalCaptureOrderRequestInput
     {

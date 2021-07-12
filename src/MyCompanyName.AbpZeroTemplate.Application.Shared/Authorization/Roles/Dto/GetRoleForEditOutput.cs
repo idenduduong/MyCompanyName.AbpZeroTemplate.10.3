@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MyCompanyName.AbpZeroTemplate.Authorization.Permissions.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.Authorization.Roles.Dto

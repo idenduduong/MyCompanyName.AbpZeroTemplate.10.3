@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Localization.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Localization.Dto
 {
     public class LanguageTextListDto
     {

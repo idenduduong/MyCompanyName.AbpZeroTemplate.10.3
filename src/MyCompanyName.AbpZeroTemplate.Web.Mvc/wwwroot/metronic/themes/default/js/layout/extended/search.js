@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 //
 // Handle User Quick Search For Dropdown, Inline and Offcanvas Search Panels
 //

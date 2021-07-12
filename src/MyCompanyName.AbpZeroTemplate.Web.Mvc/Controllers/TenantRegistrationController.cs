@@ -125,7 +125,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 
                         SetTenantIdCookie(result.TenantId);
 
-                        return Redirect(Url.Action("Index", "Home", new { area = "AppAreaName" }));
+                        return Redirect(Url.Action("Index", "Home", new { area = "qlnv" }));
                     }
 
                     Logger.Warn("New registered user could not be login. This should not be normally. login result: " + loginResult.Result);

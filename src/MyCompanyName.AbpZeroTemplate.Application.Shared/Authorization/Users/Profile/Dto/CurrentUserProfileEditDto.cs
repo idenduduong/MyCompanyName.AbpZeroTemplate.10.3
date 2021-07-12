@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Abp.Authorization.Users;
 
 namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Profile.Dto

@@ -1,4 +1,4 @@
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.Sessions.Dto
 {

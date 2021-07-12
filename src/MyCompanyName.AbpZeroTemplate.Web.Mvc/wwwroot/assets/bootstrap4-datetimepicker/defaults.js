@@ -1,4 +1,4 @@
-$.fn.datetimepicker.defaults.icons = {
+﻿$.fn.datetimepicker.defaults.icons = {
     time: 'far fa-clock',
     date: 'far fa-calendar-alt',
     up: 'fa fa-chevron-up',

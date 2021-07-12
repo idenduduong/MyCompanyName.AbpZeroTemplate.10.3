@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Web.Models.TokenAuth
+﻿namespace MyCompanyName.AbpZeroTemplate.Web.Models.TokenAuth
 {
     public class ImpersonateResultModel
     {

@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Editions.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Editions.Dto
 {
     public class FlatFeatureDto
     {

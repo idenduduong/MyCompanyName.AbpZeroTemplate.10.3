@@ -1,4 +1,4 @@
-using Abp.Extensions;
+﻿using Abp.Extensions;
 using Abp.Runtime.Session;
 using Abp.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -103,7 +103,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
                         if (((SubscribableEdition)upgradeEdition).IsFree)
                         {
                             await _paymentAppService.SwitchBetweenFreeEditions(upgradeEditionId);
-                            return RedirectToAction("Index", "SubscriptionManagement", new { area = "AppAreaName" });
+                            return RedirectToAction("Index", "SubscriptionManagement", new { area = "qlnv" });
                         }
 
                         return RedirectToAction("Buy", "Payment", new
@@ -131,7 +131,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             if (paymentInfo.IsLessThanMinimumUpgradePaymentAmount())
             {
                 await _paymentAppService.UpgradeSubscriptionCostsLessThenMinAmount(upgradeEditionId);
-                return RedirectToAction("Index", "SubscriptionManagement", new { area = "AppAreaName" });
+                return RedirectToAction("Index", "SubscriptionManagement", new { area = "qlnv" });
             }
             var edition = await _tenantRegistrationAppService.GetEdition(upgradeEditionId);
 
@@ -218,7 +218,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         {
             await _paymentAppService.BuyNowSucceed(paymentId);
 
-            return RedirectToAction("Index", "SubscriptionManagement", new { area = "AppAreaName" });
+            return RedirectToAction("Index", "SubscriptionManagement", new { area = "qlnv" });
         }
 
         public async Task<IActionResult> NewRegistrationSucceed(long paymentId)
@@ -227,21 +227,21 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 
             await LoginAdminAsync();
 
-            return RedirectToAction("Index", "SubscriptionManagement", new { area = "AppAreaName" });
+            return RedirectToAction("Index", "SubscriptionManagement", new { area = "qlnv" });
         }
 
         public async Task<IActionResult> UpgradeSucceed(long paymentId)
         {
             await _paymentAppService.UpgradeSucceed(paymentId);
 
-            return RedirectToAction("Index", "SubscriptionManagement", new { area = "AppAreaName" });
+            return RedirectToAction("Index", "SubscriptionManagement", new { area = "qlnv" });
         }
 
         public async Task<IActionResult> ExtendSucceed(long paymentId)
         {
             await _paymentAppService.ExtendSucceed(paymentId);
 
-            return RedirectToAction("Index", "SubscriptionManagement", new { area = "AppAreaName" });
+            return RedirectToAction("Index", "SubscriptionManagement", new { area = "qlnv" });
         }
 
         public async Task<IActionResult> PaymentFailed(long paymentId)
@@ -250,10 +250,10 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 
             if (AbpSession.UserId.HasValue)
             {
-                return RedirectToAction("Index", "SubscriptionManagement", new { area = "AppAreaName" });
+                return RedirectToAction("Index", "SubscriptionManagement", new { area = "qlnv" });
             }
 
-            return RedirectToAction("Index", "Home", new { area = "AppAreaName" });
+            return RedirectToAction("Index", "Home", new { area = "qlnv" });
         }
 
         private async Task LoginAdminAsync()

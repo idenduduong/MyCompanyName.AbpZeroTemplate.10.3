@@ -1,4 +1,4 @@
-var ContactUs = function () {
+﻿var ContactUs = function () {
 
     return {
         //main function to initiate the module

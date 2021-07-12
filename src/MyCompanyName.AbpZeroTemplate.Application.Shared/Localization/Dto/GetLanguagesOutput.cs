@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Abp.Application.Services.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.Localization.Dto

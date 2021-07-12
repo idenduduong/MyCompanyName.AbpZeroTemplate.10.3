@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyCompanyName.AbpZeroTemplate.Web.Controllers;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Public.Controllers

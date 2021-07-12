@@ -1,4 +1,4 @@
-export interface ClassNameList {
+﻿export interface ClassNameList {
     [key: string]: string;
 }
 export declare const CLASS_NAMES: ClassNameList;

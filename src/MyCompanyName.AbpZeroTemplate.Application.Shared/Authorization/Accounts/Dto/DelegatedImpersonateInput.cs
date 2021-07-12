@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Authorization.Accounts.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Authorization.Accounts.Dto
 {
     public class DelegatedImpersonateInput
     {

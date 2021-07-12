@@ -955,12 +955,12 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 
         public ActionResult RedirectToAppHome()
         {
-            return RedirectToAction("Index", "Home", new { area = "AppAreaName" });
+            return RedirectToAction("Index", "Home", new { area = "qlnv" });
         }
 
         public string GetAppHomeUrl()
         {
-            return Url.Action("Index", "Home", new { area = "AppAreaName" });
+            return Url.Action("Index", "Home", new { area = "qlnv" });
         }
 
         private string NormalizeReturnUrl(string returnUrl, Func<string> defaultValueBuilder = null)

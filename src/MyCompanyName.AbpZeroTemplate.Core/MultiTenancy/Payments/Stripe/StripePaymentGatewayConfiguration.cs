@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Abp.Extensions;
 using Microsoft.Extensions.Configuration;
 using MyCompanyName.AbpZeroTemplate.Configuration;

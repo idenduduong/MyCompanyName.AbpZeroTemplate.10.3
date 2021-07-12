@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+﻿module.exports = function(grunt) {
 
   // These are the files used in order to build the Jcrop.js source
   // variable is used in initConfig concat rule below

@@ -1,4 +1,4 @@
-using Abp.Runtime.Caching;
+﻿using Abp.Runtime.Caching;
 
 namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Profile.Cache
 {

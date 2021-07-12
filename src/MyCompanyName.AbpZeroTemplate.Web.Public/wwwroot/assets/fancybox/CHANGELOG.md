@@ -1,4 +1,4 @@
-fancyBox - Changelog
+﻿fancyBox - Changelog
 =========
 
 ### Version 2.1.5 - June 14, 2013

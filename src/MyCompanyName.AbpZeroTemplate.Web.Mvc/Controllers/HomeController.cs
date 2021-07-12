@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyCompanyName.AbpZeroTemplate.Identity;
@@ -30,7 +30,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             }
 
             return AbpSession.UserId.HasValue ?
-                RedirectToAction("Index", "Home", new { area = "AppAreaName" }) :
+                RedirectToAction("Index", "Home", new { area = "qlnv" }) :
                 RedirectToAction("Login", "Account");
         }
 

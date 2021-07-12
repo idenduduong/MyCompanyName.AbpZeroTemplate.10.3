@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Authentication.TwoFactor.Google
+﻿namespace MyCompanyName.AbpZeroTemplate.Authentication.TwoFactor.Google
 {
     public class GoogleAuthenticatorSetupCode
     {

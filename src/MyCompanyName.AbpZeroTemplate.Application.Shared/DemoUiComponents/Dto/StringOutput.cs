@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.DemoUiComponents.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.DemoUiComponents.Dto
 {
     public class StringOutput
     {

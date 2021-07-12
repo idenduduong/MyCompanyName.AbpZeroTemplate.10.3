@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Notifications.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Notifications.Dto
 {
     public class NotificationSubscriptionWithDisplayNameDto : NotificationSubscriptionDto
     {

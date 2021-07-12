@@ -1,4 +1,4 @@
-export * from './modal';
+﻿export * from './modal';
 export { default as overlayMarkup } from './overlay';
 export * from './icons';
 export * from './content';

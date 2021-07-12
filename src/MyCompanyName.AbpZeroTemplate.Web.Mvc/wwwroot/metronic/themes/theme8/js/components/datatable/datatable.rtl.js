@@ -1,4 +1,4 @@
-var defaults = {
+﻿var defaults = {
 	layout: {
 		icons: {
 			pagination: {

@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.Configuration.Dto
+﻿namespace MyCompanyName.AbpZeroTemplate.Configuration.Dto
 {
     public class ThemeMenuSettingsDto
     {

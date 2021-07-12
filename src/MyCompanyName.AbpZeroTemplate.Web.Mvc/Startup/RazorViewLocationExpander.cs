@@ -30,8 +30,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
             var locations = viewLocations.ToList();
 
             //{0} is like "Components/{componentname}/{viewname}"
-            locations.Add("~/Areas/AppAreaName/Views/Shared/{0}.cshtml");
-            locations.Add("~/Areas/AppAreaName/Views/Shared/Themes/" + currentThemeName.ToPascalCase() +
+            locations.Add("~/Areas/qlnv/Views/Shared/{0}.cshtml");
+            locations.Add("~/Areas/qlnv/Views/Shared/Themes/" + currentThemeName.ToPascalCase() +
                           "/{0}.cshtml");
 
             return locations;

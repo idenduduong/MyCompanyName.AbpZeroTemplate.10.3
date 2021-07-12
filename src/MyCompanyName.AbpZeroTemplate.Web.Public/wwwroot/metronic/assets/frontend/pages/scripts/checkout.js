@@ -1,4 +1,4 @@
-var Checkout = function () {
+﻿var Checkout = function () {
 
     return {
         init: function () {

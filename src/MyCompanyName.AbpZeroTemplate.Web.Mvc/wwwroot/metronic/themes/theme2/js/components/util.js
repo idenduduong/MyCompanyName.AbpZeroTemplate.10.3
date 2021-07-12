@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 /**
  * @class KTUtil  base utilize class that privides helper functions

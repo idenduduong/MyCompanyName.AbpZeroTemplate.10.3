@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Abp.Application.Features;
 using Microsoft.EntityFrameworkCore;
 using MyCompanyName.AbpZeroTemplate.Editions;

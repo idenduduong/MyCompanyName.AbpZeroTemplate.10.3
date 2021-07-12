@@ -1,4 +1,4 @@
-namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
+﻿namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
 {
     public enum EndSubscriptionResult
     {

@@ -1,15 +1,15 @@
-{
+﻿{
   "scripts": [
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/customizable-dashboard-libs.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/customizable-dashboard-libs.min.js",
       "input": [
         "node_modules/gridstack/dist/gridstack.min.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/CustomizableDashboard/Widgets/WidgetBase.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/CustomizableDashboard/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/CustomizableDashboard/Widgets/WidgetBase.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/CustomizableDashboard/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/common-scripts.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/common-scripts.min.js",
       "input": [
         "wwwroot/Common/Scripts/_empty.js",
         "wwwroot/Common/Scripts/appSession.js",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/install-page-scripts.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/install-page-scripts.min.js",
       "input": [
         "wwwroot/Common/Scripts/_empty.js",
         "wwwroot/Common/Scripts/appUserNotificationHelper.js",
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/default-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/default-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/default/js/components/**/*.js",
         "wwwroot/metronic/themes/default/js/layout/**/*.js",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme2-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme2-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme2/js/components/**/*.js",
         "wwwroot/metronic/themes/theme2/js/layout/**/*.js",
@@ -74,7 +74,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme3-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme3-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme3/js/components/**/*.js",
         "wwwroot/metronic/themes/theme3/js/layout/**/*.js",
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme4-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme4-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme4/js/components/**/*.js",
         "wwwroot/metronic/themes/theme4/js/layout/**/*.js",
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme5-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme5-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme5/js/components/**/*.js",
         "wwwroot/metronic/themes/theme5/js/layout/**/*.js",
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme6-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme6-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme6/js/components/**/*.js",
         "wwwroot/metronic/themes/theme6/js/layout/**/*.js",
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme7-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme7-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme7/js/components/**/*.js",
         "wwwroot/metronic/themes/theme7/js/layout/**/*.js",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme8-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme8-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme8/js/components/**/*.js",
         "wwwroot/metronic/themes/theme8/js/layout/**/*.js",
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme9-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme9-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme9/js/components/**/*.js",
         "wwwroot/metronic/themes/theme9/js/layout/**/*.js",
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme10-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme10-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme10/js/components/**/*.js",
         "wwwroot/metronic/themes/theme10/js/layout/**/*.js",
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/theme11-scripts.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/theme11-scripts.bundle.min.js",
       "input": [
         "wwwroot/metronic/themes/theme11/js/components/**/*.js",
         "wwwroot/metronic/themes/theme11/js/layout/**/*.js",
@@ -155,14 +155,14 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/app-common-scripts.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/app-common-scripts.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/Modals/_LookupModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/Modals/_EntityTypeHistoryModal.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/Modals/_LookupModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/Modals/_EntityTypeHistoryModal.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/account-layout-libs.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/account-layout-libs.min.js",
       "input": [
         "node_modules/json2/lib/JSON2/static/json2.js",
         "node_modules/jquery/dist/jquery.js",
@@ -188,7 +188,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/app-layout-libs.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/app-layout-libs.min.js",
       "input": [
         "node_modules/json2/lib/JSON2/static/json2.js",
         "node_modules/jquery/dist/jquery.js",
@@ -257,19 +257,19 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/morris.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/morris.min.js",
       "input": [
         "node_modules/morris.js/morris.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/raphael.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/raphael.min.js",
       "input": [
         "node_modules/raphael/raphael.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/jquery.flot.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/jquery.flot.min.js",
       "input": [
         "node_modules/flot/jquery.flot.js",
         "node_modules/flot/jquery.flot.pie.js",
@@ -279,217 +279,217 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/jquery.waypoints.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/jquery.waypoints.min.js",
       "input": [
         "node_modules/waypoints/lib/jquery.waypoints.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/jquery.counterup.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/jquery.counterup.min.js",
       "input": [
         "node_modules/jquery.counterup/jquery.counterup.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/topojson.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/topojson.min.js",
       "input": [
         "node_modules/topojson/dist/topojson.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/jquery.easypiechart.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/jquery.easypiechart.min.js",
       "input": [
         "node_modules/easy-pie-chart/dist/jquery.easypiechart.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/chartist.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/chartist.min.js",
       "input": [
         "node_modules/chartist/dist/chartist.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/tenant-index-libs.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/tenant-index-libs.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_FeaturesTree.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Tenants/_CreateModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Tenants/_EditModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Tenants/_FeaturesModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Tenants/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_FeaturesTree.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Tenants/_CreateModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Tenants/_EditModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Tenants/_FeaturesModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Tenants/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/demo-ui-components.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/demo-ui-components.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/DateAndTimePickers/DemoDateAndTimePickers.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/FileUpload/FileUpload.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/Selections/Selections.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/InputMask/InputMask.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/Editor/Editor.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/DateAndTimePickers/DemoDateAndTimePickers.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/FileUpload/FileUpload.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/Selections/Selections.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/InputMask/InputMask.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/Editor/Editor.js",
         "node_modules/inputmask/dist/jquery.inputmask.bundle.js",
         "node_modules/summernote/dist/summernote.js",
         "node_modules/dropzone/dist/dropzone.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/edition-list.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/edition-list.min.js",
       "input": [
         "node_modules/inputmask/dist/jquery.inputmask.bundle.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_FeaturesTree.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Editions/_CreateModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Editions/_EditModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Editions/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_FeaturesTree.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Editions/_CreateModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Editions/_EditModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Editions/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/language-list.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/language-list.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Languages/_CreateOrEditModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Languages/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Languages/_CreateOrEditModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Languages/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/language-texts.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/language-texts.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Languages/_EditTextModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Languages/Texts.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Languages/_EditTextModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Languages/Texts.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/role-list.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/role-list.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_PermissionTree.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/Modals/_PermissionTreeModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Roles/_CreateOrEditModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Roles/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_PermissionTree.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/Modals/_PermissionTreeModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Roles/_CreateOrEditModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Roles/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/user-list.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/user-list.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_PermissionTree.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/Modals/_PermissionTreeModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_OrganizationTree.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Users/_CreateOrEditModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Users/_PermissionsModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Users/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_PermissionTree.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/Modals/_PermissionTreeModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_OrganizationTree.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Users/_CreateOrEditModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Users/_PermissionsModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Users/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/signalr.bundle.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/signalr.bundle.min.js",
       "input": [
         "node_modules/@microsoft/signalr/dist/browser/signalr.js",
         "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.signalr-client.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/InactivityController.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/InactivityController.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/Modals/_InactivityControllerNotifyModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/Modals/_InactivityControllerNotifyModal.js",
         "wwwroot/Common/Scripts/InactivityController.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/tenant-register.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/tenant-register.min.js",
       "input": [
         "node_modules/pwstrength-bootstrap/dist/pwstrength-bootstrap.js",
         "wwwroot/view-resources/Views/TenantRegistration/Register.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/account-register.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/account-register.min.js",
       "input": [
         "node_modules/pwstrength-bootstrap/dist/pwstrength-bootstrap.js",
         "wwwroot/view-resources/Views/Account/Register.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/webhook-subscription-list.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/webhook-subscription-list.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/WebhookSubscriptions/_CreateOrEditModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/WebhookSubscriptions/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/WebhookSubscriptions/_CreateOrEditModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/WebhookSubscriptions/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/webhook-subscription-detail.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/webhook-subscription-detail.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/WebhookSubscriptions/Detail.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/WebhookSubscriptions/Detail.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/webhook-event-detail.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/webhook-event-detail.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/WebhookSubscriptions/EventDetail.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/WebhookSubscriptions/EventDetail.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/dynamic-properties-index.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/dynamic-properties-index.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_PermissionTree.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/Modals/_PermissionTreeModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicProperties/_CreateOrEditModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicProperties/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_PermissionTree.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/Modals/_PermissionTreeModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicProperties/_CreateOrEditModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicProperties/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/dynamic-properties-manage-values.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/dynamic-properties-manage-values.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicProperties/_ManageValuesModal.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicProperties/_ManageValuesModal.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/IInputTypes.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/IInputTypes.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/IInputTypeProvider.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/SingleLineStringInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/ComboBoxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/CheckBoxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/MultiSelectComboboxInputType.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/IInputTypeProvider.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/SingleLineStringInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/ComboBoxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/CheckBoxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/MultiSelectComboboxInputType.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/dynamic-entity-properties-index.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/dynamic-entity-properties-index.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicEntityProperties/_CreateModal.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicEntityProperties/Index.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicEntityProperties/_CreateModal.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicEntityProperties/Index.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/dynamic-entity-property-value-manage-all.min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/dynamic-entity-property-value-manage-all.min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/IInputTypeProvider.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/SingleLineStringInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/ComboBoxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/CheckBoxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/MultiSelectComboboxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValueBase.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValuesViewPage.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/IInputTypeProvider.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/SingleLineStringInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/ComboBoxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/CheckBoxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/MultiSelectComboboxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValueBase.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValuesViewPage.js"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/manage-dynamic-entity-property-values-modal-min.js",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/manage-dynamic-entity-property-values-modal-min.js",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/IInputTypeProvider.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/SingleLineStringInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/ComboBoxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/CheckBoxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/IInputTypes/MultiSelectComboboxInputType.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValueBase.js",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValuesModal.js"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/IInputTypeProvider.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/SingleLineStringInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/ComboBoxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/CheckBoxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/IInputTypes/MultiSelectComboboxInputType.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValueBase.js",
+        "wwwroot/view-resources/Areas/qlnv/Views/DynamicEntityPropertyValues/ManageDynamicEntityPropertyValuesModal.js"
       ]
     }
   ],
   "styles": [
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/customizable-dashboard-libs.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/customizable-dashboard-libs.min.css",
       "input": [
         "node_modules/morris.js/morris.css",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/CustomizableDashboard/Index.css",
+        "wwwroot/view-resources/Areas/qlnv/Views/CustomizableDashboard/Index.css",
         "node_modules/gridstack/dist/gridstack.css"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/common-styles.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/common-styles.min.css",
       "input": [
         "wwwroot/Common/Styles/**/*.css",
         "wwwroot/Common/Styles/core.less",
@@ -502,7 +502,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/account-layout-libs.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/account-layout-libs.min.css",
       "input": [
         "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
         "node_modules/cookieconsent/build/cookieconsent.min.css",
@@ -512,7 +512,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/account-layout-libs-rtl.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/account-layout-libs-rtl.min.css",
       "input": [
         "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
         "node_modules/cookieconsent/build/cookieconsent.min.css",
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/app-layout-libs.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/app-layout-libs.min.css",
       "input": [
         "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
         "node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.css",
@@ -534,7 +534,7 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/vendors.bundle.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/vendors.bundle.min.css",
       "input": [
         "node_modules/tether/dist/css/tether.css",
         "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
@@ -560,29 +560,29 @@
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/demo-ui-components.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/demo-ui-components.min.css",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/DateAndTimePickers/DemoDateAndTimePickers.css",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/FileUpload/FileUpload.css",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/Selections/Selections.css",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/InputMask/InputMask.css",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/DemoUiComponents/Editor/Editor.css",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/DateAndTimePickers/DemoDateAndTimePickers.css",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/FileUpload/FileUpload.css",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/Selections/Selections.css",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/InputMask/InputMask.css",
+        "wwwroot/view-resources/Areas/qlnv/Views/DemoUiComponents/Editor/Editor.css",
         "node_modules/summernote/dist/summernote.css",
         "node_modules/dropzone/dist/dropzone.css",
         "node_modules/bootstrap-markdown/css/bootstrap-markdown.min.css"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/edition-list.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/edition-list.min.css",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_FeaturesTree.less"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_FeaturesTree.less"
       ]
     },
     {
-      "output": "view-resources/Areas/AppAreaName/Views/_Bundles/tenant-list.min.css",
+      "output": "view-resources/Areas/qlnv/Views/_Bundles/tenant-list.min.css",
       "input": [
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Common/_FeaturesTree.less",
-        "wwwroot/view-resources/Areas/AppAreaName/Views/Tenants/index.less"
+        "wwwroot/view-resources/Areas/qlnv/Views/Common/_FeaturesTree.less",
+        "wwwroot/view-resources/Areas/qlnv/Views/Tenants/index.less"
       ]
     },
     {

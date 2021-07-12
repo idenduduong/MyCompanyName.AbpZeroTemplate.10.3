@@ -1,4 +1,4 @@
-var CurrentPage = function () {
+﻿var CurrentPage = function () {
 
     jQuery.validator.addMethod("customUsername", function (value, element) {
         if (value === $('input[name="EmailAddress"]').val()) {

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * https://github.com/EPPlusSoftware/EPPlus
  * From version 5 EPPlus changes the licence model using a dual license, Polyform Non Commercial/Commercial license.
  * This applies to EPPlus version 5 and later.

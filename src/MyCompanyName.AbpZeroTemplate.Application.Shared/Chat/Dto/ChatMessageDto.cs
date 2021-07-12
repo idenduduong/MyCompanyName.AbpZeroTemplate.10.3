@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Abp.Application.Services.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.Chat.Dto

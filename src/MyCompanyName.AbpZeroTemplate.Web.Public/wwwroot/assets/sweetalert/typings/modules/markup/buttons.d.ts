@@ -1,1 +1,1 @@
-export declare const buttonMarkup: string;
+﻿export declare const buttonMarkup: string;

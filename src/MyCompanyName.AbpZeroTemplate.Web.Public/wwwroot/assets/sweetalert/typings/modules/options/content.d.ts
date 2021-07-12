@@ -1,4 +1,4 @@
-export interface ContentOptions {
+﻿export interface ContentOptions {
     element: string | Node;
     attributes?: object;
 }
