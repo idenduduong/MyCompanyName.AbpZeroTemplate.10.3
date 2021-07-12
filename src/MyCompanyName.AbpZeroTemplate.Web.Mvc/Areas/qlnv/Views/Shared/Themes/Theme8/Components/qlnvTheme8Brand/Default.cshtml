@@ -1,0 +1,11 @@
+﻿@using Abp.Runtime.Session
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Layout
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Views.Shared.Components.qlnvLogo
+@model HeaderViewModel
+@{
+    Layout = null;
+}
+
+<a href="@Url.Action("Index", "Home", new {area = string.Empty})" target="_blank" class="mr-20 brand-logo">
+    @await Component.InvokeAsync(typeof(qlnvLogoViewComponent), new {logoSkin="dark", logoClass = "klogo-default max-h-35px"})
+</a>

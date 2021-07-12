@@ -1,0 +1,49 @@
+﻿
+@using System.Globalization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Phones
+@model CreateOrEditPhoneModalViewModel
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditPhone")) : L("CreateNewPhone")))
+
+<div class="modal-body">
+        <div id="PhoneInformationsTab">
+            <form name="PhoneInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.Phone.Id" />
+                }
+
+				
+
+				
+								<div class="form-group">
+									<label for="Phone_PhoneId">@L("PhoneId")</label>
+									<input class="form-control m-input" id="Phone_PhoneId" value="@Model.Phone.PhoneId.ToString(CultureInfo.InvariantCulture)" type="number" name="phoneId"  />
+								</div>
+					
+								<div class="m-checkbox-list">
+									<label for="Phone_isDelete" class="kt-checkbox">
+										<input id="Phone_isDelete" type="checkbox" name="isDelete" value="true" @Html.Raw(Model.Phone.isDelete ?"checked=\"checked\"":"") />
+										@L("isDelete")
+										<span></span>
+									</label>
+								</div>
+					
+								<div class="form-group">
+									<label for="Phone_Name">@L("Name")</label>
+									<input class="form-control" id="Phone_Name" value="@Model.Phone.Name" type="text" name="name"  required  maxlength="@MyCompanyName.AbpZeroTemplate.Phones.PhoneConsts.MaxNameLength"  minlength="@MyCompanyName.AbpZeroTemplate.Phones.PhoneConsts.MinNameLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="Phone_Mobile">@L("Mobile")</label>
+									<input class="form-control" id="Phone_Mobile" value="@Model.Phone.Mobile" type="text" name="mobile"  required  maxlength="@MyCompanyName.AbpZeroTemplate.Phones.PhoneConsts.MaxMobileLength"  minlength="@MyCompanyName.AbpZeroTemplate.Phones.PhoneConsts.MinMobileLength"  />
+								</div>
+					
+
+            </form>
+        </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

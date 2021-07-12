@@ -1,0 +1,10 @@
+﻿@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Layout
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Views.Shared.Components.qlnvLogo
+@model HeaderViewModel
+@{
+    Layout = null;
+    var theme = await GetTheme();
+}
+<a href="@Url.Action("Index", "Home", new {area = string.Empty})" class="brand-logo">
+    @await Component.InvokeAsync(typeof(qlnvLogoViewComponent), new {LogoSkin = "light-sm"})
+</a>

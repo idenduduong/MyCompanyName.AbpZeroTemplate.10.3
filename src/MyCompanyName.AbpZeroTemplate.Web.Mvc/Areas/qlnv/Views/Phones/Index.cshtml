@@ -1,0 +1,101 @@
+﻿@using MyCompanyName.AbpZeroTemplate.Authorization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Phones
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
+@model PhonesViewModel
+@{
+    ViewBag.CurrentPageName = qlnvPageNames.Common.Phones;
+}
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/qlnv/Views/Phones/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+                <abp-page-subheader title="@L("Phones")" description="@L("PhonesHeaderInfo")">
+                     <button id="ExportToExcelButton" class="btn btn-outline-success"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+            
+                     @if (IsGranted(AppPermissions.Pages_Phones_Create))
+                     {
+                         <button id="CreateNewPhoneButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewPhone")</button>                
+                     }
+                </abp-page-subheader>
+            
+<div class="@(await GetContainerClass())">   
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">
+                        <div class="form-group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="PhonesTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetPhonesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+						<div class="kt-separator kt-separator--border-dashed"></div>
+					</div>
+
+                            <div class="col-md-3">
+                                 <div class="form-group">
+									<label  for="MinPhoneIdFilterId">@L("MinMax") @L("PhoneId")</label>
+									<div class="input-group">
+										<input type="number" class="form-control m-input" placeholder="@L("MinValue")" name="minPhoneIdFilter" id="MinPhoneIdFilterId"/>
+                                        <input type="number" class="form-control m-input" placeholder="@L("MaxValue")" name="maxPhoneIdFilter"  id="MaxPhoneIdFilterId"/>
+									</div>
+                                </div>
+                            </div>
+							<div class="col-md-3">
+								<label for="isDeleteFilterId">@L("isDelete")</label>
+								<select class="form-control" name="isDeleteFilter" id="isDeleteFilterId">
+									<option value="-1">@L("All")</option>
+									<option value="0">@L("False")</option>
+									<option value="1">@L("True")</option>
+								</select>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="NameFilterId">@L("Name")</label>
+									<input type="text" class="form-control" name="nameFilter" id="NameFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="MobileFilterId">@L("Mobile")</label>
+									<input type="text" class="form-control" name="mobileFilter" id="MobileFilterId">
+								</div>
+                            </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                    </div>
+                </div>
+            <div class="row align-items-center">
+                <table id="PhonesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            
+                            <th>@L("Actions")</th>
+								<th>@L("PhoneId")</th>
+								<th>@L("isDelete")</th>
+								<th>@L("Name")</th>
+								<th>@L("Mobile")</th>
+                            
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
