@@ -29,8 +29,15 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                         icon: "flaticon-more",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
                     ).AddItem(new MenuItemDefinition(
-                            qlnvPageNames.Common.OrganizationUnits,
-                            L("OrganizationUnits"),
+                            qlnvPageNames.Common.Persons,
+                            L("Persons"),
+                            url: "qlnv/Persons",
+                            icon: "flaticon-map",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+                        )
+                    ).AddItem(new MenuItemDefinition(
+                            qlnvPageNames.Common.Persons,
+                            L("RowEditingAndEditingEvents"),
                             url: "qlnv/RowEditingAndEditingEvents",
                             icon: "flaticon-map",
                             permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)

@@ -1,5 +1,4 @@
 ﻿@using MyCompanyName.AbpZeroTemplate.Authorization
-@*@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Phones*@
 @using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
 
 @using DevExtreme.AspNet.Mvc
@@ -13,8 +12,9 @@
         <div class="col-12">
             <div class="card card-custom gutter-b">
                 <div class="card-body">
-                    @*@(Html.DevExtreme()
-                        .DataGrid()
+
+                    @(Html.DevExtreme()
+                        .DataGrid<MyCompanyName.AbpZeroTemplate.Persons.Dtos.PersonListDto>()
                         .ID("gridContainer")
                         .ShowBorders(true)
                         .Editing(editing => {
@@ -33,19 +33,11 @@
                         )
                         .Columns(columns =>
                         {
-                            columns.AddFor(m => m.ToString);
+                            columns.AddFor(m => m.Surname); ;
 
-                            columns.Add()
-                                .DataField("name")
-                                .Caption(L("name"));
-                            
-                            columns.Add()
-                                .DataField("surname")
-                                .Caption(L("surname"));
-                            
-                            columns.Add()
-                                .DataField("emailAddress")
-                                .Caption(L("emailAddress"));                     
+                            columns.AddFor(m => m.Name); ;
+
+                            columns.AddFor(m => m.EmailAddress);
                         })
                     )*@
 

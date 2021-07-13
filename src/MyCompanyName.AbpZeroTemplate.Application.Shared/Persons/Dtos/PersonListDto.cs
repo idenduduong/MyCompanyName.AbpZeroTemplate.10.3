@@ -6,17 +6,17 @@ namespace MyCompanyName.AbpZeroTemplate.Persons.Dtos
 {
     public class PersonListDto : FullAuditedEntityDto
     {
-        //[JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "Id")]
-        //public override int Id { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "Id")]
+        public int Id { get; set; }
 
         //[Display(Name = "Name Of Person")]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "name")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "Name")]
         public string Name { get; set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "surname")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "Surname")]
         public string Surname { get; set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "emailAddress")]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "EmailAddress")]
         public string EmailAddress { get; set; }
     }
 }

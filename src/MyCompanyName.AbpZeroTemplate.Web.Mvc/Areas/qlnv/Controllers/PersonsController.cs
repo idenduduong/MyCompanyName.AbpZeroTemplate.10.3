@@ -45,7 +45,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 
         [HttpGet]
         [WrapResult(false, false)]
-        public object LoadPeople(GetPeopleInput input, DataSourceLoadOptions loadOptions)
+        public object Get(GetPeopleInput input, DataSourceLoadOptions loadOptions)
         {
             var output = _personAppService.GetPeople(input);
             return DataSourceLoader.Load(output.Items, loadOptions);
@@ -79,7 +79,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             var editPersonInput = new EditPersonInput { Id = key };
             JsonConvert.PopulateObject(values, editPersonInput);
 
-            await _personAppService.EditPerson(editPersonInput);
+            _personAppService.EditPerson(editPersonInput);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public void Delete(int key)
+        {
+            _personAppService.DeletePerson(new EntityDto(key));
         }
     }
 }
