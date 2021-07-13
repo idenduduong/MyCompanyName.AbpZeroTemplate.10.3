@@ -1,0 +1,81 @@
+﻿<div id="data-grid-demo">
+    @(Html.DevExtreme().DataGrid<DevExtreme.NETCore.Demos.Models.DataGrid.Employee>()
+        .ID("gridContainer")
+        .ShowBorders(true)
+        .Paging(paging => paging.Enabled(false))
+        .Editing(editing => {
+            editing.Mode(GridEditMode.Cell);
+            editing.AllowUpdating(true);
+            editing.AllowAdding(true);
+            editing.AllowDeleting(true);
+        })
+        .Selection(selection => selection.Mode(SelectionMode.Multiple))
+        .OnSelectionChanged("onSelectionChanged")
+        .Columns(columns => {
+            columns.AddFor(m => m.Prefix)
+                .Width(55);
+
+            columns.AddFor(m => m.FirstName);
+
+            columns.AddFor(m => m.LastName);
+
+            columns.AddFor(m => m.Position)
+                .Width(170);
+
+            columns.AddFor(m => m.StateID)
+                .Width(125)
+                .Lookup(lookup => lookup
+                    .DataSource(d => d.Mvc().Controller("DataGridStatesLookup").LoadAction("Get").Key("ID"))
+                    .DisplayExpr("Name")
+                    .ValueExpr("ID")
+                );
+
+            columns.AddFor(m => m.BirthDate);
+        })
+        .DataSource(d => d.Mvc()
+            .Controller("DataGridEmployees")
+            .LoadAction("Get")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("ID")
+        )
+        .OnToolbarPreparing("onToolbarPreparing")
+    )
+</div>
+
+<script>
+    let deleteButton;
+
+    function onToolbarPreparing(e) {
+        var dataGrid = e.component;
+
+        e.toolbarOptions.items[0].showText = 'always';
+
+        e.toolbarOptions.items.push({
+            location: "after",
+            widget: "dxButton",
+            options: {
+                text: "Delete Selected Records",
+                icon: "trash",
+                disabled: true,
+                onClick: onDeleteBtnClick,
+                onInitialized: function(e) {
+                    deleteButton = e.component;
+                }
+            }
+        });
+    }
+
+    function onDeleteBtnClick(){
+        let dataGrid = $("#gridContainer").dxDataGrid("instance");
+        $.when.apply($, dataGrid.getSelectedRowsData().map(function(data) {
+            return dataGrid.getDataSource().store().remove(data.ID);
+        })).done(function() {
+            dataGrid.refresh();
+        });
+    }
+
+    function onSelectionChanged(data){
+        deleteButton.option("disabled", !data.selectedRowsData.length);
+    }
+</script>

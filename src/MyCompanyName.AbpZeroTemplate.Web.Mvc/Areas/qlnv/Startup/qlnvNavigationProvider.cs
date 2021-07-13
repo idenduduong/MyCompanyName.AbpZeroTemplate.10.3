@@ -28,6 +28,13 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                         url: "qlnv/Persons",
                         icon: "flaticon-more",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+                    ).AddItem(new MenuItemDefinition(
+                            qlnvPageNames.Common.OrganizationUnits,
+                            L("OrganizationUnits"),
+                            url: "qlnv/RowEditingAndEditingEvents",
+                            icon: "flaticon-map",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+                        )
                     )
                 )
                 .AddItem(new MenuItemDefinition(
@@ -181,7 +188,16 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                         icon: "flaticon-shapes",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_DemoUiComponents)
                     )
-                );
+                )
+                //.AddItem(new MenuItemDefinition(
+                //        qlnvPageNames.Common.DemoUiComponents,
+                //        L("DevExpress"),
+                //        url: "devexpress/DataGrid/",
+                //        icon: "flaticon-shapes",
+                //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_DemoUiComponents)
+                //    )
+                //)
+                ;
         }
 
         private static ILocalizableString L(string name)
