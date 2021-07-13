@@ -67,19 +67,19 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 
         [HttpDelete]
         [WrapResult(false, false)]
-        public async Task DeletePerson(int key)
+        public async Task<IActionResult> DeletePerson(int key)
         {
             await _personAppService.DeletePerson(new EntityDto(key));
+            return Ok();
         }
 
         [HttpPut]
-        [WrapResult(false, false)]
-        public async Task UpdatePerson(int key, string values)
+        public async Task<IActionResult> UpdatePerson(int key, string values)
         {
             var editPersonInput = new EditPersonInput { Id = key };
             JsonConvert.PopulateObject(values, editPersonInput);
 
-            _personAppService.EditPerson(editPersonInput);
+            await _personAppService.EditPerson(editPersonInput);
             return Ok();
         }
 
