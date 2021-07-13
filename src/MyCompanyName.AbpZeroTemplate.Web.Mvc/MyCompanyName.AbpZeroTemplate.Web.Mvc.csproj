@@ -33,6 +33,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Domain.cs" />
+    <Compile Remove="Models\DevExtreme\FileManagement\AzureBlobFileProvider.cs" />
+    <Compile Remove="Models\DevExtreme\SignalRTickData\TickDataService.cs" />
+    <Compile Remove="Models\DevExtreme\SignalR\StockTicker.cs" />
     <Compile Remove="UsersViewComponent.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,19 +70,23 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.9.1" />
+    <PackageReference Include="CommonMark.NET" Version="0.15.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="5.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Z.Dapper.Plus" Version="4.0.7" />
     <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="21.1.4" />
-    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.2" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.5" />
   </ItemGroup>
 </Project>
