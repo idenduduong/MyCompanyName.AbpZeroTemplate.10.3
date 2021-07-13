@@ -18,6 +18,8 @@
     <PreserveCompilationReferences>true</PreserveCompilationReferences>
     <StartupObject>
     </StartupObject>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="App_Data\**" />

@@ -13,6 +13,8 @@
     <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
     <RootNamespace>MyCompanyName.AbpZeroTemplate.Web</RootNamespace>
     <OutputType>Library</OutputType>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <ItemGroup>

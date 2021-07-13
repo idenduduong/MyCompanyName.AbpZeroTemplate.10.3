@@ -13,6 +13,8 @@
         <RootNamespace>MyCompanyName.AbpZeroTemplate.Web</RootNamespace>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+        <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+        <EnableNETAnalyzers>false</EnableNETAnalyzers>
     </PropertyGroup>
 
     <ItemGroup>

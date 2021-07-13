@@ -14,6 +14,8 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <UserSecretsId>MyCompanyName-AbpZeroTemplate-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
     <RootNamespace>MyCompanyName.AbpZeroTemplate</RootNamespace>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
   </PropertyGroup>
 
   <ItemGroup>
