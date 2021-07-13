@@ -17,6 +17,7 @@ using MyCompanyName.AbpZeroTemplate.MultiTenancy;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy.Accounting;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments;
 using MyCompanyName.AbpZeroTemplate.Storage;
+using MyCompanyName.AbpZeroTemplate.Persons;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {

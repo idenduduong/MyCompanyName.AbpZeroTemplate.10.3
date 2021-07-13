@@ -28,6 +28,38 @@ namespace MyCompanyName.AbpZeroTemplate.Phones
             _personRepository = personRepository;
         }
 
+        public async Task CreatePerson(CreatePersonInput input)
+        {
+            var person = ObjectMapper.Map<Person>(input);
+            await _personRepository.InsertAsync(person);
+        }
+
+        public async Task DeletePerson(EntityDto input)
+        {
+            await _personRepository.DeleteAsync(input.Id);
+        }
+
+        public async Task EditPerson(EditPersonInput input)
+        {
+            var person = await _personRepository.GetAsync(input.Id);
+            if (input.Name != null)
+            {
+                person.Name = input.Name;
+            }
+
+            if (input.Surname != null)
+            {
+                person.Surname = input.Surname;
+            }
+
+            if (input.EmailAddress != null)
+            {
+                person.EmailAddress = input.EmailAddress;
+            }
+
+            await _personRepository.UpdateAsync(person);
+        }
+
         public ListResultDto<PersonListDto> GetPeople(GetPeopleInput input)
         {
             var persons = _personRepository
@@ -44,5 +76,6 @@ namespace MyCompanyName.AbpZeroTemplate.Phones
 
             return new ListResultDto<PersonListDto>(ObjectMapper.Map<List<PersonListDto>>(persons));
         }
+
     }
 }

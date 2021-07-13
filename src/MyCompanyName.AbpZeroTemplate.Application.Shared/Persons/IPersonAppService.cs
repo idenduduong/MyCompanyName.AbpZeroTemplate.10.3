@@ -10,5 +10,11 @@ namespace MyCompanyName.AbpZeroTemplate.Persons
     public interface IPersonsAppService : IApplicationService
     {
         ListResultDto<PersonListDto> GetPeople(GetPeopleInput input);
+
+        Task CreatePerson(CreatePersonInput input);
+
+        Task DeletePerson(EntityDto input);
+
+        Task EditPerson(EditPersonInput input);
     }
 }

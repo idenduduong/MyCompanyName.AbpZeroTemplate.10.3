@@ -14,25 +14,34 @@
             <div class="card card-custom gutter-b">
                 <div class="card-body">
                     @(Html.DevExtreme()
-                        .DataGrid()              
+                        .DataGrid()
+                        .Editing(editing => {
+                            editing.Mode(GridEditMode.Row);
+                            editing.AllowAdding(true);
+                            editing.AllowDeleting(true);
+                            editing.AllowUpdating(true);
+                        })
                         .DataSource(d => d.Mvc()
                             .Controller("Persons")
                             .LoadAction("LoadPeople")
+                            .InsertAction("CreatePerson")
+                            .UpdateAction("UpdatePerson")
+                            .DeleteAction("DeletePerson")
                             .Key("id")
                         )
                         .Columns(columns =>
                         {
                             columns.Add()
                                 .DataField("name")
-                                .Caption(L("Name"));
+                                .Caption(L("name"));
                             
                             columns.Add()
                                 .DataField("surname")
-                                .Caption(L("Surname"));
+                                .Caption(L("surname"));
                             
                             columns.Add()
                                 .DataField("emailAddress")
-                                .Caption(L("EmailAddress"));                       
+                                .Caption(L("emailAddress"));                     
                         })
                     )
                 </div>

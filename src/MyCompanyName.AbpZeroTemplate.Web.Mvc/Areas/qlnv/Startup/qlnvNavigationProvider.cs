@@ -24,6 +24,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                 )
                 .AddItem(new MenuItemDefinition(
                         qlnvPageNames.Common.BaseEntities,
+                        L("Persons"),
+                        url: "qlnv/Persons",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        qlnvPageNames.Common.BaseEntities,
                         L("BaseEntities"),
                         url: "qlnv/BaseEntities",
                         icon: "flaticon-more",
