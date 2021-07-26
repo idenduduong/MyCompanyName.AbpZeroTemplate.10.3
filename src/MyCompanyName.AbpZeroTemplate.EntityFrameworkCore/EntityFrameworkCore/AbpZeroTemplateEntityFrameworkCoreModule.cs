@@ -51,6 +51,10 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(typeof(AbpZeroTemplateEntityFrameworkCoreModule).GetAssembly());
+
+            //  datdd
+            //register filter with default value
+            Configuration.UnitOfWork.RegisterFilter("MayHaveOrganizationUnit", true);
         }
 
         public override void PostInitialize()

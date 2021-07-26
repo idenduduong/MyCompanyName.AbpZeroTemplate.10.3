@@ -5,12 +5,13 @@ using Abp.Domain.Entities.Auditing;
 using Abp.Domain.Entities;
 using Abp.Auditing;
 using Newtonsoft.Json;
+using Abp.Organizations;
 
 namespace MyCompanyName.AbpZeroTemplate.Persons
 {
     [Table("PbPersons")]
     [Audited]
-    public class Person : FullAuditedEntity
+    public class Person : FullAuditedEntity, IMayHaveTenant, IMayHaveOrganizationUnit
     {
         //[JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "Id")]
         //public override int Id { get; set; }
@@ -29,5 +30,9 @@ namespace MyCompanyName.AbpZeroTemplate.Persons
         //[JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "EmailAddress")]
         [MaxLength(PersonConsts.MaxEmailAddressLength)]
         public virtual string EmailAddress { get; set; }
+
+        public int? TenantId { get; set; }
+
+        public long? OrganizationUnitId { get; set; }
     }
 }

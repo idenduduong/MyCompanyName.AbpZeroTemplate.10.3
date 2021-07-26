@@ -32,6 +32,9 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
             IsTwoFactorEnabled = true;
         }
 
+        //  datdd
+        public int? OrganizationUnitId { get; set; }
+
         /// <summary>
         /// Creates admin <see cref="User"/> for a tenant.
         /// </summary>

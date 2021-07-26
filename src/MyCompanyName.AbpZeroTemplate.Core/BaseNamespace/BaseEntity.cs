@@ -10,7 +10,7 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
 {
     [Table("BaseEntities")]
     [Audited]
-    public class BaseEntity : FullAuditedEntity, IMayHaveTenant
+    public class BaseEntity : FullAuditedEntity, IMayHaveTenant, IMayHaveOrganizationUnit
     {
         public int? TenantId { get; set; }
 
@@ -20,6 +20,5 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
 
         [ForeignKey("OrganizationUnitId")]
         public OrganizationUnit OrganizationUnitFk { get; set; }
-
     }
 }

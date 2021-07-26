@@ -18,11 +18,57 @@ using MyCompanyName.AbpZeroTemplate.MultiTenancy.Accounting;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments;
 using MyCompanyName.AbpZeroTemplate.Storage;
 using MyCompanyName.AbpZeroTemplate.Persons;
+using System;
+using Abp.Runtime.Session;
+using System.Linq;
+using Abp.Organizations;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
+        //  datdd
+        public IPrincipalAccessor PrincipalAccessor { get; set; }
+
+        protected virtual int? CurrentOUId => GetCurrentUsersOuIdOrNull();
+
+        protected virtual bool IsOUFilterEnabled => CurrentUnitOfWorkProvider?.Current?.IsFilterEnabled("MayHaveOrganizationUnit") == true;
+
+        protected override bool ShouldFilterEntity<TEntity>(IMutableEntityType entityType)
+        {
+            if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
+            {
+                return true;
+            }
+            return base.ShouldFilterEntity<TEntity>(entityType);
+        }
+
+        protected override Expression<Func<TEntity, bool>> CreateFilterExpression<TEntity>()
+        {
+            var expression = base.CreateFilterExpression<TEntity>();
+            if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
+            {
+                Expression<Func<TEntity, bool>> mayHaveOUFilter = e => ((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId || (((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId) == IsOUFilterEnabled;
+                expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
+            }
+
+            return expression;
+        }
+
+        protected virtual int? GetCurrentUsersOuIdOrNull()
+        {
+            var userOuClaim = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == "Application_OrganizationUnitId");
+            if (string.IsNullOrEmpty(userOuClaim?.Value))
+            {
+                return null;
+            }
+
+            return Convert.ToInt32(userOuClaim.Value);
+        }
+        /// ///////////////////////////////////////////////////////////
+
         public virtual DbSet<Person> Persons { get; set; }
 
         public virtual DbSet<BaseEntity> BaseEntities { get; set; }

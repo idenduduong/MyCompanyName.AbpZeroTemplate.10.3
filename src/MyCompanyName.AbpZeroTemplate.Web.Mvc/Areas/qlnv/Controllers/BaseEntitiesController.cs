@@ -9,29 +9,51 @@ using MyCompanyName.AbpZeroTemplate.BaseNamespace;
 using MyCompanyName.AbpZeroTemplate.BaseNamespace.Dtos;
 using Abp.Application.Services.Dto;
 using Abp.Extensions;
+using Abp.Domain.Uow;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 {
     [Area("qlnv")]
     [AbpMvcAuthorize(AppPermissions.Pages_BaseEntities)]
-    public class BaseEntitiesController : AbpZeroTemplateControllerBase
+    public class BaseEntitiesController : AbpZeroTemplateControllerBase //AbpZeroTemplateControllerBase AbpZeroTemplateFilterControllerBase 
     {
         private readonly IBaseEntitiesAppService _baseEntitiesAppService;
+        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
-        public BaseEntitiesController(IBaseEntitiesAppService baseEntitiesAppService)
+        public BaseEntitiesController(IBaseEntitiesAppService baseEntitiesAppService, IUnitOfWorkManager unitOfWorkManager)
         {
             _baseEntitiesAppService = baseEntitiesAppService;
-
+            _unitOfWorkManager = unitOfWorkManager;
         }
 
         public ActionResult Index()
         {
-            var model = new BaseEntitiesViewModel
+            if (IsGranted("Disable.Filter.MayHaveOrganizationUnit"))
             {
-                FilterText = ""
-            };
+                _unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit");
+                bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+                //using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
+                //{
+                var model = new BaseEntitiesViewModel
+                    {
+                        FilterText = ""
+                    };
 
-            return View(model);
+                    return View(model);
+                //}
+            }
+            else
+            {
+                //using (_unitOfWorkManager.Current.EnableFilter("MayHaveOrganizationUnit"))
+                //{
+                    var model = new BaseEntitiesViewModel
+                    {
+                        FilterText = ""
+                    };
+
+                    return View(model);
+                //}
+            }
         }
 
         [AbpMvcAuthorize(AppPermissions.Pages_BaseEntities_Create, AppPermissions.Pages_BaseEntities_Edit)]
@@ -67,8 +89,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 
             var model = new BaseEntityViewModel()
             {
-                BaseEntity = getBaseEntityForViewDto.BaseEntity
-                ,
+                BaseEntity = getBaseEntityForViewDto.BaseEntity,
                 OrganizationUnitDisplayName = getBaseEntityForViewDto.OrganizationUnitDisplayName
 
             };

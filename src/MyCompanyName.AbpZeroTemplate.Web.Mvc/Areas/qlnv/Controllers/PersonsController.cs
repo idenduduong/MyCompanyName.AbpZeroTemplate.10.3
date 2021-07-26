@@ -53,7 +53,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 
         [HttpPost]
         [WrapResult(false, false)]
-        public async Task<IActionResult> CreatePerson(string values)
+        public async Task<IActionResult> Post(string values)
         {
             var input = new CreatePersonInput();
             JsonConvert.PopulateObject(values, input);
@@ -65,16 +65,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        [WrapResult(false, false)]
-        public async Task<IActionResult> DeletePerson(int key)
-        {
-            await _personAppService.DeletePerson(new EntityDto(key));
-            return Ok();
-        }
-
         [HttpPut]
-        public async Task<IActionResult> UpdatePerson(int key, string values)
+        public async Task<IActionResult> Put(int key, string values)
         {
             var editPersonInput = new EditPersonInput { Id = key };
             JsonConvert.PopulateObject(values, editPersonInput);
@@ -87,6 +79,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         public void Delete(int key)
         {
             _personAppService.DeletePerson(new EntityDto(key));
+        }
+
+        [HttpDelete]
+        [WrapResult(false, false)]
+        public async Task<IActionResult> DeletePerson(int key)
+        {
+            await _personAppService.DeletePerson(new EntityDto(key));
+            return Ok();
         }
     }
 }

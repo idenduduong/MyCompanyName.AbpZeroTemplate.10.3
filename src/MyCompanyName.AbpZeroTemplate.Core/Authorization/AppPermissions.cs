@@ -6,6 +6,12 @@
     /// </summary>
     public static class AppPermissions
     {
+        //  datdd PERMISSIONS
+
+        public const string Disable_Filters = "Disable.Filter";
+        public const string Disable_Filters_Tenant = "Disable.Filter.Tenant";
+        public const string Disable_Filters_MayHaveOrganizationUnit = "Disable.Filter.MayHaveOrganizationUnit";
+
         public const string Pages_BaseEntities = "Pages.BaseEntities";
         public const string Pages_BaseEntities_Create = "Pages.BaseEntities.Create";
         public const string Pages_BaseEntities_Edit = "Pages.BaseEntities.Edit";
@@ -100,12 +106,11 @@
         public const string Pages_Administration_DynamicEntityPropertyValue_Create = "Pages.Administration.DynamicEntityPropertyValue.Create";
         public const string Pages_Administration_DynamicEntityPropertyValue_Edit = "Pages.Administration.DynamicEntityPropertyValue.Edit";
         public const string Pages_Administration_DynamicEntityPropertyValue_Delete = "Pages.Administration.DynamicEntityPropertyValue.Delete";
+        
         //TENANT-SPECIFIC PERMISSIONS
 
         public const string Pages_Tenant_Dashboard = "Pages.Tenant.Dashboard";
-
         public const string Pages_Administration_Tenant_Settings = "Pages.Administration.Tenant.Settings";
-
         public const string Pages_Administration_Tenant_SubscriptionManagement = "Pages.Administration.Tenant.SubscriptionManagement";
 
         //HOST-SPECIFIC PERMISSIONS
