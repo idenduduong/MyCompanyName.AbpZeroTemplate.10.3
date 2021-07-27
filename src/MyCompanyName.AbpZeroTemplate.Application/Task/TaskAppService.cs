@@ -33,6 +33,7 @@ namespace MyCompanyName.AbpZeroTemplate.AppTasks
         {
             var tasks = await _taskRepository
                 .GetAll()
+                .Include(t=>t.AssignedPerson)
                 .WhereIf(input.State.HasValue, t => t.State == input.State.Value)
                 .OrderByDescending(t => t.CreationTime)
                 .ToListAsync();

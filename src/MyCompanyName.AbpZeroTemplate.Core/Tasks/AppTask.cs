@@ -6,6 +6,7 @@ using Abp.Domain.Entities.Auditing;
 using Abp.Domain.Entities;
 using Abp.Auditing;
 using Abp.Timing;
+using MyCompanyName.AbpZeroTemplate.Persons;
 
 namespace MyCompanyName.AbpZeroTemplate.AppTasks
 {
@@ -32,11 +33,17 @@ namespace MyCompanyName.AbpZeroTemplate.AppTasks
             State = TaskState.Open;
         }
 
-        public AppTask(string title, string description = null)
+        [ForeignKey(nameof(AssignedPersonId))]
+        public Person AssignedPerson { get; set; }
+        
+        public int? AssignedPersonId { get; set; }
+
+        public AppTask(string title, string description = null, int? assignedPersonId = null)
             : this()
         {
             Title = title;
             Description = description;
+            AssignedPersonId = assignedPersonId;
         }
     }
 }

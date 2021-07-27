@@ -16,5 +16,7 @@ namespace MyCompanyName.AbpZeroTemplate.AppTasks
         public DateTime CreationTime { get; set; }
 
         public TaskState State { get; set; }
+
+        public string AssignedPersonName { get; set; }
     }
 }

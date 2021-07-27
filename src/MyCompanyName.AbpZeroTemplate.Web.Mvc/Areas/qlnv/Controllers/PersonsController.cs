@@ -24,6 +24,7 @@ using Microsoft.Extensions.Caching.Memory;
 //using DevExtreme.NETCore.Demos.Models;
 //using DevExtreme.NETCore.Demos.Models.DataGrid;
 using DevExtreme.NETCore.Demos.Models.SampleData;
+using Abp.AutoMapper;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 {
@@ -48,6 +49,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         public object Get(GetPeopleInput input, DataSourceLoadOptions loadOptions)
         {
             var output = _personAppService.GetPeople(input);
+            //var model = ObjectMapper.MapTo<IndexViewModel>(output);
             return DataSourceLoader.Load(output.Items, loadOptions);
         }
 
