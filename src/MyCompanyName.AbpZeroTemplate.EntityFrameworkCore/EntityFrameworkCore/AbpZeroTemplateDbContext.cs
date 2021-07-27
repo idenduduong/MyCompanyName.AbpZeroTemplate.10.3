@@ -24,6 +24,7 @@ using System.Linq;
 using Abp.Organizations;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Metadata;
+using MyCompanyName.AbpZeroTemplate.AppTasks;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
@@ -68,6 +69,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             return Convert.ToInt32(userOuClaim.Value);
         }
         /// ///////////////////////////////////////////////////////////
+
+        public DbSet<AppTask> Tasks { get; set; }
 
         public virtual DbSet<Person> Persons { get; set; }
 

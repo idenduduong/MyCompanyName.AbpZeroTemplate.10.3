@@ -55,6 +55,8 @@ using MyCompanyName.AbpZeroTemplate.Sessions.Dto;
 using MyCompanyName.AbpZeroTemplate.WebHooks.Dto;
 using MyCompanyName.AbpZeroTemplate.Persons.Dtos;
 using MyCompanyName.AbpZeroTemplate.Persons;
+using MyCompanyName.AbpZeroTemplate.AppTasks.Dtos;
+using MyCompanyName.AbpZeroTemplate.AppTasks;
 
 namespace MyCompanyName.AbpZeroTemplate
 {
@@ -62,6 +64,10 @@ namespace MyCompanyName.AbpZeroTemplate
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            //  datdd
+            configuration.CreateMap<GetAllTasksInput, AppTask>().ReverseMap();
+            configuration.CreateMap<TaskListDto, AppTask>().ReverseMap();
+
             configuration.CreateMap<EditPersonInput, Person>().ReverseMap();
             configuration.CreateMap<CreatePersonInput, Person>().ReverseMap();
             configuration.CreateMap<PersonListDto, Person>().ReverseMap();
