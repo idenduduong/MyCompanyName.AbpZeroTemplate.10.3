@@ -196,14 +196,16 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                             permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Tenant_Settings)
                         )
                     )
-                ).AddItem(new MenuItemDefinition(
-                        qlnvPageNames.Common.DemoUiComponents,
-                        L("DemoUiComponents"),
-                        url: "qlnv/DemoUiComponents",
-                        icon: "flaticon-shapes",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_DemoUiComponents)
-                    )
                 )
+                //.AddItem(new MenuItemDefinition(
+                //        qlnvPageNames.Common.DemoUiComponents,
+                //        L("DemoUiComponents"),
+                //        url: "qlnv/DemoUiComponents",
+                //        icon: "flaticon-shapes",
+                //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_DemoUiComponents)
+                //    )
+                //)
+
                 //.AddItem(new MenuItemDefinition(
                 //        qlnvPageNames.Common.DemoUiComponents,
                 //        L("DevExpress"),

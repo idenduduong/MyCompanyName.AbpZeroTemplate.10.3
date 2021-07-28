@@ -146,6 +146,7 @@
   <ItemGroup>
     <Folder Include="Areas\devexpress\Controllers\ApiControllers\" />
     <Folder Include="Areas\devexpress\Models\" />
+    <Folder Include="wwwroot\metronic\my\" />
     <Folder Include="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="21.1.4" />
     <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.5" />

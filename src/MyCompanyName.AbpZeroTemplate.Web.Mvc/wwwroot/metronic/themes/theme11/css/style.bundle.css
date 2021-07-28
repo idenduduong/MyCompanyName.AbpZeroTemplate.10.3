@@ -62468,7 +62468,7 @@ body {
         padding-left: 0; }
       .header-menu .menu-nav > .menu-item > .menu-link {
         border-radius: 0.42rem;
-        padding: 0.85rem 1.35rem; }
+        /*padding: 0.85rem 1.35rem;*/ }
         .header-menu .menu-nav > .menu-item > .menu-link .menu-text {
           color: #7E8299;
           font-weight: 500;

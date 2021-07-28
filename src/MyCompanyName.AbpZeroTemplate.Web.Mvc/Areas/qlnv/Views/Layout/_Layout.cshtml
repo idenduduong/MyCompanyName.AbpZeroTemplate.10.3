@@ -59,7 +59,7 @@
     {
         <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/Layout/_ChatBar.css" asp-append-version="true" />
     }
-    
+
     <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/Layout/_Layout.css" asp-append-version="true" />
 
     @await RenderSectionAsync("Styles", false)
@@ -87,6 +87,8 @@
     <link href="~/css/devextreme/dx.common.css" rel="stylesheet" />
     <link href="~/css/devextreme/dx.light.css" rel="stylesheet" />
 
+    @*<link rel="stylesheet" href="@(ApplicationPath)metronic/themes/theme11/css/dx.material.material-blue-light-compact-scheme.css" asp-append-version="true" />*@
+
     @* Uncomment to use the Diagram control *@
     @*<script src="~/js/devextreme/dx-diagram.js"></script>*@
 
@@ -111,8 +113,9 @@
     @* Uncomment to provide geo-data for the VectorMap control *@
     @*<script src="~/js/devextreme/vectormap-data/world.js"></script>*@
 
-    <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script> 
+    <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>
     <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
+
 </head>
 <!-- END HEAD -->
 <!-- begin::Body -->
