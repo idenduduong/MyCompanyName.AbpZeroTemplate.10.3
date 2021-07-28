@@ -37,8 +37,7 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
 
         public async Task<PagedResultDto<GetBaseEntityForViewDto>> GetAll(GetAllBaseEntitiesInput input)
         {
-
-            var filteredBaseEntities = _baseEntityRepository.GetAll()
+                var filteredBaseEntities = _baseEntityRepository.GetAll()
                         .Include(e => e.OrganizationUnitFk)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.BaseProp1.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.BaseProp1Filter), e => e.BaseProp1 == input.BaseProp1Filter)

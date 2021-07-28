@@ -26,6 +26,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             _unitOfWorkManager = unitOfWorkManager;
         }
 
+        //[AbpMvcAuthorize(AppPermissions.Pages_BaseEntities_Create, AppPermissions.Pages_BaseEntities_Edit)]
         public ActionResult Index()
         {
             if (IsGranted("Disable.Filter.MayHaveOrganizationUnit"))
