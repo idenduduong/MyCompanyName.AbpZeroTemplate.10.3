@@ -22,7 +22,7 @@
 <!DOCTYPE html>
 <html lang="en" dir=@(CultureHelper.IsRtl ? "rtl" : "")>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>AbpZeroTemplate</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -67,13 +67,14 @@
             <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
                 <!--begin::Aside header-->
                 <a href="#" class="text-center mb-10">
-                    <vc:account-logo skin="dark"></vc:account-logo>
+                    @*<vc:account-logo skin="dark"></vc:account-logo>*@
+                    <img src="/Common/Images/vnpost-big-removebg.png" alt="" style="width:100%;">
                 </a>
                 <!--end::Aside header-->
                 <!--begin::Aside title-->
-                <h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg" style="color: #986923;">
+                @*<h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg" style="color: #986923;">
                     Base solution for your <br/> next web application.
-                </h3>
+                </h3>*@
                 <!--end::Aside title-->
             </div>
             <!--end::Aside Top-->
@@ -89,12 +90,12 @@
                 <!--begin::Signin-->
                 <div class="login-form login-signin">
                     <div class="pb-13 pt-lg-0 pt-5">
-                        @if (!(ViewBag.DisableTenantChange ?? false) && MultiTenancyConfig.IsEnabled && !WebUrlService.SupportsTenancyNameInUrl)
+                        @*@if (!(ViewBag.DisableTenantChange ?? false) && MultiTenancyConfig.IsEnabled && !WebUrlService.SupportsTenancyNameInUrl)
                         {
                             <div class="login__signup-label tenant-change-box">
                                 <vc:tenant-change></vc:tenant-change>
                             </div>
-                        }
+                        }*@
                     </div>
                     <!--begin::Form-->
                     @RenderBody()

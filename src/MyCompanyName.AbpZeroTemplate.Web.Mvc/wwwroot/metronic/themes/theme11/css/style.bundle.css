@@ -53,14 +53,14 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
-  margin: 0;
-  font-family: Poppins, Helvetica, "sans-serif";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #3F4254;
-  text-align: left;
-  background-color: #ffffff; }
+    margin: 0;
+    font-family: Poppins, Helvetica, "sans-serif";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #3F4254;
+    text-align: left;
+}
 
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important; }
@@ -506,12 +506,13 @@ pre {
     max-width: 960px; } }
 
 @media (min-width: 1200px) {
-  .container, .container-sm, .container-md, .container-lg, .container-xl {
-    max-width: 1140px; } }
+    .container, .container-sm, .container-md, .container-lg, .container-xl {
+        max-width: 100%;
+    } }
 
 @media (min-width: 1400px) {
   .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-    max-width: 1340px; } }
+    max-width: 100%; } }
 
 .row {
   display: -webkit-box;
@@ -60396,7 +60397,9 @@ canvas {
       display: none !important; } }
 
 body {
-  background: #F3F6F9; }
+    /*background: #F3F6F9;*/
+    background: #F3F6F9;
+}
 
 @media (min-width: 992px) {
   .container,
@@ -60406,7 +60409,7 @@ body {
   .container-lg,
   .container-xl,
   .container-xxl {
-    padding: 0 40px; }
+    /*padding: 0 40px;*/ }
   .header-fixed[data-header-scroll="on"] .wrapper {
     padding-top: 270px; } }
 
@@ -61334,12 +61337,14 @@ body {
     width: 932px; } }
 
 @media (min-width: 1200px) {
-  .header-menu .menu-nav > .menu-item .menu-submenu.menu-submenu-fixed-xl {
-    width: 1140px; } }
+    .header-menu .menu-nav > .menu-item .menu-submenu.menu-submenu-fixed-xl {
+        width: 100%;
+    } }
 
 @media (min-width: 1400px) {
-  .header-menu .menu-nav > .menu-item .menu-submenu.menu-submenu-fixed-xxl {
-    width: 1340px; } }
+    .header-menu .menu-nav > .menu-item .menu-submenu.menu-submenu-fixed-xxl {
+        width: 100%;
+    } }
 
 @-webkit-keyframes header-menu-submenu-fade-out {
   from {
@@ -62422,7 +62427,7 @@ body {
     flex-grow: 1;
     background-color: #ffffff;
     border-bottom: 1px solid #EBEDF3;
-    padding: 0 40px; }
+    /*padding: 0 40px;*/ }
     .header-navs .tab-content {
       display: -webkit-box;
       display: -ms-flexbox;
