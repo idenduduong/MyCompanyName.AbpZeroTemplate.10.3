@@ -2,7 +2,7 @@
 
 namespace MyCompanyName.AbpZeroTemplate.Storage
 {
-    public class FileUploadCacheOutput : ErrorInfo
+    public class FileUploadCacheOutput : Abp.Web.Models.ErrorInfo
     {
         public string FileToken { get; set; }
 

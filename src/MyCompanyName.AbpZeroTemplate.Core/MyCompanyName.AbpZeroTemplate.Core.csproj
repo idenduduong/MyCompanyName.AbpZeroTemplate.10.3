@@ -23,10 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Storage\FileUploadCacheOutput.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Abp.Web.Common" Version="6.3.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.17" />
