@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Storage\FileUploadCacheOutput.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.17" />
@@ -32,7 +36,6 @@
     <PackageReference Include="PayPalCheckoutSdk" Version="1.0.3" />
     <PackageReference Include="Stripe.net" Version="39.61.0" />
     <PackageReference Include="TimeZoneConverter" Version="3.5.0" />
-    <PackageReference Include="Abp.AspNetZeroCore" Version="3.0.0 " />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Abp.AspNetZeroCore\Abp.AspNetZeroCore.csproj" />
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Core.Shared\MyCompanyName.AbpZeroTemplate.Core.Shared.csproj" />
   </ItemGroup>
 
