@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Abp.AspNetZeroCore</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>Preview</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Abp" />
+    <Reference Include="Abp.Zero.Common" />
+    <Reference Include="Castle.Core" />
+    <Reference Include="Abp.Web.Common" />
+    <Reference Include="Newtonsoft.Json" />
+  </ItemGroup>
+</Project>
