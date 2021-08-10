@@ -18,6 +18,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DM_DoiTuongs\**" />
+    <EmbeddedResource Remove="DM_DoiTuongs\**" />
+    <None Remove="DM_DoiTuongs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore.EFPlus" Version="6.3.1" />
     <PackageReference Include="DevExpress.Xpo" Version="21.1.4" />
     <PackageReference Include="NPOI" Version="2.5.3" />

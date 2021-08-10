@@ -24,15 +24,31 @@
   <ItemGroup>
     <Compile Remove="App_Data\**" />
     <Compile Remove="Areas\devexpress\Views\NewFolder\**" />
+    <Compile Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <Compile Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <Compile Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
+    <Compile Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Compile Remove="Services\**" />
     <Content Remove="App_Data\**" />
     <Content Remove="Areas\devexpress\Views\NewFolder\**" />
+    <Content Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <Content Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <Content Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
+    <Content Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Content Remove="Services\**" />
     <EmbeddedResource Remove="App_Data\**" />
     <EmbeddedResource Remove="Areas\devexpress\Views\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <EmbeddedResource Remove="Services\**" />
     <None Remove="App_Data\**" />
     <None Remove="Areas\devexpress\Views\NewFolder\**" />
+    <None Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <None Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <None Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
+    <None Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <None Remove="Services\**" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +106,8 @@
     <Compile Remove="Areas\devexpress\Models\SignalR\StockTicker.cs" />
     <Compile Remove="Areas\devexpress\SignalRTickData\TickDataService.cs" />
     <Compile Remove="Areas\devexpress\SignalR\StockTicker.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_DoiTuongController.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_NhomDoiTuongsController.cs" />
     <Compile Remove="Domain.cs" />
     <Compile Remove="Models\DevExtreme\FileManagement\AzureBlobFileProvider.cs" />
     <Compile Remove="Models\DevExtreme\SignalRTickData\TickDataService.cs" />

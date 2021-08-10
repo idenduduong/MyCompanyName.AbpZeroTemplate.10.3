@@ -21,8 +21,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityHistory
             typeof(Child),
             typeof(BaseEntity),
             typeof(Product),
-            typeof(DM_DoiTuong),
-            typeof(DM_NhomDoiTuongs),
+            //typeof(DM_DoiTuong),
+            //typeof(DM_NhomDoiTuongs),
             typeof(Phone),
             typeof(OrganizationUnit), typeof(Role), typeof(Tenant)
         };
@@ -32,8 +32,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityHistory
             typeof(Child),
             typeof(BaseEntity),
             typeof(Product),
-            typeof(DM_DoiTuong),
-            typeof(DM_NhomDoiTuongs),
+            //typeof(DM_DoiTuong),
+            //typeof(DM_NhomDoiTuongs),
             typeof(Phone),
             typeof(OrganizationUnit), typeof(Role)
         };
