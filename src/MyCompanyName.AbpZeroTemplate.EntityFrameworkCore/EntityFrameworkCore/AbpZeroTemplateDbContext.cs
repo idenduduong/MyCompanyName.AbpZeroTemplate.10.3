@@ -2,7 +2,7 @@
 using MyCompanyName.AbpZeroTemplate.ChildNamespace1;
 using MyCompanyName.AbpZeroTemplate.Products;
 using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
-using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
+//using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
 using MyCompanyName.AbpZeroTemplate.Phones;
 using Abp.IdentityServer4vNext;
 using Abp.Zero.EntityFrameworkCore;
@@ -358,10 +358,10 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                        {
                            d.HasIndex(e => new { e.TenantId });
                        });
-            modelBuilder.Entity<DM_NhomDoiTuongs>(d =>
-                       {
-                           d.HasIndex(e => new { e.TenantId });
-                       });
+            //modelBuilder.Entity<DM_NhomDoiTuongs>(d =>
+            //           {
+            //               d.HasIndex(e => new { e.TenantId });
+            //           });
             modelBuilder.Entity<Phone>(p =>
                        {
                            p.HasIndex(e => new { e.TenantId });

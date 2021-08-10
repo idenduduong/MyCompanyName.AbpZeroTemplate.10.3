@@ -2,7 +2,7 @@
 using MyCompanyName.AbpZeroTemplate.BaseNamespace;
 using MyCompanyName.AbpZeroTemplate.Products;
 using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
-using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
+//using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
 using MyCompanyName.AbpZeroTemplate.Phones;
 using System;
 using System.Linq;

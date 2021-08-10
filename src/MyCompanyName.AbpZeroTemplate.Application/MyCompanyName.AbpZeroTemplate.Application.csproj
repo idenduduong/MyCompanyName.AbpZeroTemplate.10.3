@@ -19,8 +19,11 @@
 
   <ItemGroup>
     <Compile Remove="DM_DoiTuongs\**" />
+    <Compile Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
     <EmbeddedResource Remove="DM_DoiTuongs\**" />
+    <EmbeddedResource Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
     <None Remove="DM_DoiTuongs\**" />
+    <None Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +36,10 @@
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Application.Shared\MyCompanyName.AbpZeroTemplate.Application.Shared.csproj" />
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Core\MyCompanyName.AbpZeroTemplate.Core.csproj" />
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.EntityFrameworkCore\MyCompanyName.AbpZeroTemplate.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MyCompanyName\AbpZeroTemplate\" />
   </ItemGroup>
 
 </Project>

@@ -23,11 +23,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
+    <EmbeddedResource Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
+    <None Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="DM_DoiTuongs\DM_DoiTuong.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Abp.Web.Common" Version="6.3.1" />
+    <PackageReference Include="DevExpress.Xpo" Version="21.1.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.17" />
@@ -54,6 +61,7 @@
 
   <ItemGroup>
     <Folder Include="DM_DoiTuongs\" />
+    <Folder Include="MyCompanyName\AbpZeroTemplate\" />
   </ItemGroup>
 
 </Project>

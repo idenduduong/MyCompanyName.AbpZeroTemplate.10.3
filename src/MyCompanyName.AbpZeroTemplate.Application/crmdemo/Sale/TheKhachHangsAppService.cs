@@ -48,12 +48,13 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Organizations.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
 {
-	[AbpAuthorize(new string[] { "Pages.TheKhachHangs" })]
-	public class TheKhachHangsAppService : AbpZeroTemplateAppServiceBase, ITheKhachHangsAppService, IApplicationService, ITransientDependency
+	//[AbpAuthorize(new string[] { "Pages.TheKhachHangs" })]
+	public class TheKhachHangsAppService : AbpZeroTemplateAppServiceBase, ITheKhachHangsAppService
+        //, IApplicationService, ITransientDependency
 	{
         private readonly IRepository<TheKhachHang, Guid> _theKhachHangRepository;
 
-        private readonly ITheKhachHangsExcelExporter _theKhachHangsExcelExporter;
+        //private readonly ITheKhachHangsExcelExporter _theKhachHangsExcelExporter;
 
         private readonly IRepository<DM_NhomThe, Guid> _dM_NhomTheRepository;
 
@@ -97,7 +98,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
 
         private readonly IRepository<NhanVienThucHien, Guid> _nhanVienThucHienRepository;
 
-        private readonly ICommonLookupAppService _commonLookupAppService;
+        //private readonly ICrmDemoCommonLookupAppService _commonLookupAppService;
 
         private new readonly IAbpSession AbpSession;
 
@@ -107,10 +108,36 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
 
         private readonly IRepository<HoaDonBanLeChiTiet, Guid> _invoiceDetailRepository;
 
-        public TheKhachHangsAppService(IRepository<TheKhachHang, Guid> theKhachHangRepository, ITheKhachHangsExcelExporter theKhachHangsExcelExporter, IRepository<DM_NhomThe, Guid> dM_NhomTheRepository, IRepository<DM_DoiTuong, Guid> dM_DoiTuongRepository, IRepository<DM_TienTe, Guid> dM_TienTeRepository, IRepository<User, long> userRepository, IRepository<CustomOrganizationUnit, long> organizationUnitRepository, IRepository<DM_DacDiemKhachHang, Guid> dM_DacDiemKhachHangRepository, IRepository<DM_LienHe, Guid> dM_LienHeRepository, IRepository<DM_HangHoa, Guid> dM_HangHoaRepository, IRepository<TheKhachHangChiTiet, Guid> dM_TheKhachHangChiTietRepository, IRepository<DM_KhuyenMai, Guid> dM_KhuyenMaiRepository, IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository, IRepository<EntityOrder, Guid> entityOrderRepository, UserManager userManager, IRepository<DM_NhomDoiTuong, Guid> nhomDoiTuongRepository, IRepository<EntityChange, long> entityChangeRepository, IRepository<EntityChangeSet, long> entityChangeSetSetRepository, IRepository<EntityPropertyChange, long> entityPropertyChangeRepository, IRepository<TheKhachHangChiTiet, Guid> theKhachHangChiTietRepository, IRepository<PhieuThuChiTiet, Guid> phieuThuChiTietRepository, IRepository<NhatKySuDungThe, Guid> nhatKySuDungTheRepository, IRepository<NhanVienThucHien, Guid> nhanVienThucHienRepository, ICommonLookupAppService commonLookupAppService, IAbpSession abpSession, IRepository<Voucher, Guid> voucherRepository, IRepository<HoaDonBanLe, Guid> invoiceRepository, IRepository<HoaDonBanLeChiTiet, Guid> invoiceDetailRepository)
+        public TheKhachHangsAppService(
+            IRepository<TheKhachHang, Guid> theKhachHangRepository
+            //, ITheKhachHangsExcelExporter theKhachHangsExcelExporter
+            , IRepository<DM_NhomThe, Guid> dM_NhomTheRepository
+            , IRepository<DM_DoiTuong, Guid> dM_DoiTuongRepository
+            , IRepository<DM_TienTe, Guid> dM_TienTeRepository
+            , IRepository<User, long> userRepository
+            , IRepository<CustomOrganizationUnit, long> organizationUnitRepository
+            , IRepository<DM_DacDiemKhachHang, Guid> dM_DacDiemKhachHangRepository
+            , IRepository<DM_LienHe, Guid> dM_LienHeRepository
+            , IRepository<DM_HangHoa, Guid> dM_HangHoaRepository
+            , IRepository<TheKhachHangChiTiet, Guid> dM_TheKhachHangChiTietRepository
+            , IRepository<DM_KhuyenMai, Guid> dM_KhuyenMaiRepository
+            , IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository
+            , IRepository<EntityOrder, Guid> entityOrderRepository
+            , UserManager userManager, IRepository<DM_NhomDoiTuong, Guid> nhomDoiTuongRepository
+            , IRepository<EntityChange, long> entityChangeRepository
+            , IRepository<EntityChangeSet, long> entityChangeSetSetRepository
+            , IRepository<EntityPropertyChange, long> entityPropertyChangeRepository
+            , IRepository<TheKhachHangChiTiet, Guid> theKhachHangChiTietRepository
+            , IRepository<PhieuThuChiTiet, Guid> phieuThuChiTietRepository
+            , IRepository<NhatKySuDungThe, Guid> nhatKySuDungTheRepository
+            , IRepository<NhanVienThucHien, Guid> nhanVienThucHienRepository
+            //, ICrmDemoCommonLookupAppService commonLookupAppService
+            , IAbpSession abpSession, IRepository<Voucher, Guid> voucherRepository
+            , IRepository<HoaDonBanLe, Guid> invoiceRepository
+            , IRepository<HoaDonBanLeChiTiet, Guid> invoiceDetailRepository)
         {
             _theKhachHangRepository = theKhachHangRepository;
-            _theKhachHangsExcelExporter = theKhachHangsExcelExporter;
+            //_theKhachHangsExcelExporter = theKhachHangsExcelExporter;
             _dM_NhomTheRepository = dM_NhomTheRepository;
             _dM_DoiTuongRepository = dM_DoiTuongRepository;
             _dM_TienTeRepository = dM_TienTeRepository;
@@ -132,7 +159,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             _phieuThuChiTietRepository = phieuThuChiTietRepository;
             _nhatKySuDungTheRepository = nhatKySuDungTheRepository;
             _nhanVienThucHienRepository = nhanVienThucHienRepository;
-            _commonLookupAppService = commonLookupAppService;
+            //_commonLookupAppService = commonLookupAppService;
             AbpSession = abpSession;
             _voucherRepository = voucherRepository;
             _invoiceRepository = invoiceRepository;
@@ -159,7 +186,8 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             bool hasLoadFull = base.PermissionChecker.IsGranted("Pages.TheKhachHang.LoadFull");
             IQueryable<TheKhachHang> filteredTheKhachHangs = _theKhachHangRepository.GetAll().WhereIf(loaiThe.HasValue, (TheKhachHang x) => x.TheGiaTri_SoLan_GiamGia == loaiThe.Value);
             User currentUser = await _userRepository.FirstOrDefaultAsync((User x) => x.Id == AbpSession.GetUserId());
-            CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
+            //CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
+            CustomOrganizationUnitDto currentUserOrg = null;
             if (currentUser == null || currentUserOrg == null)
             {
                 throw new UserFriendlyException("Thao tác không hợp lệ");
