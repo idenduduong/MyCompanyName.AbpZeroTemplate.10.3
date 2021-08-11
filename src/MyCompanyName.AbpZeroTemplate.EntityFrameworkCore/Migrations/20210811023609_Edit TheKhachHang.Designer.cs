@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyCompanyName.AbpZeroTemplate.EntityFrameworkCore;
 
 namespace MyCompanyName.AbpZeroTemplate.Migrations
 {
     [DbContext(typeof(AbpZeroTemplateDbContext))]
-    partial class AbpZeroTemplateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210811023609_Edit TheKhachHang")]
+    partial class EditTheKhachHang
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3351,53 +3353,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.ToTable("DM_LienHes");
                 });
 
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NgheNghiep", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DM_NgheNghieps");
-                });
-
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NhomDoiTuong", b =>
                 {
                     b.Property<Guid>("Id")
@@ -3459,94 +3414,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DM_NhomDoiTuongs");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NhomHangHoa", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("HienThi_BanThe")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HienThi_Chinh")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("HienThi_Phu")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ID_DonVis")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ID_Kho")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ID_Parent")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LaNhomHangHoa")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("MaNhom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MauHienThi")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MayIn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("NgaySuaCuoi")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayTao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TenDonVis")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenNhom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserSuaCuoi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserTao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DM_NhomHangHoas");
                 });
 
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NhomThe", b =>
@@ -3668,246 +3535,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DM_TienTes");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DataSource", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DataSources");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Config.ChangeStatusFlow", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Days")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("FromStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsEndFlow")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("ToStatusId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FromStatusId");
-
-                    b.HasIndex("ToStatusId");
-
-                    b.ToTable("ChangeStatusFlows");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Config.DataProcessStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("FullCustomer")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsBeginProcess")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsCallRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsEndProcess")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsFileRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPhoneCommunicationRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsReasonRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsScheduleRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("OrderNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalDaysLimit")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("TrialCustomer")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DataProcessStatuses");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.ImportData", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid?>("DataSourceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("DataType")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DeleterUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImportCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ImportTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("ImportedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("ImportedId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("InputFile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("OutputFile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TotalDupplicate")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalIgnored")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalInValid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalProcessedData")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalSuccess")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DataSourceId");
-
-                    b.HasIndex("ImportedId");
-
-                    b.ToTable("ImportDatas");
                 });
 
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.NhanVienThucHien", b =>
@@ -4844,36 +4471,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.Navigation("HangHoa");
 
                     b.Navigation("HoaDon");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Config.ChangeStatusFlow", b =>
-                {
-                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Config.DataProcessStatus", "FromStatus")
-                        .WithMany()
-                        .HasForeignKey("FromStatusId");
-
-                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Config.DataProcessStatus", "ToStatus")
-                        .WithMany()
-                        .HasForeignKey("ToStatusId");
-
-                    b.Navigation("FromStatus");
-
-                    b.Navigation("ToStatus");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.ImportData", b =>
-                {
-                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DataSource", "DataSource")
-                        .WithMany()
-                        .HasForeignKey("DataSourceId");
-
-                    b.HasOne("MyCompanyName.AbpZeroTemplate.Authorization.Users.User", "Imported")
-                        .WithMany()
-                        .HasForeignKey("ImportedId");
-
-                    b.Navigation("DataSource");
-
-                    b.Navigation("Imported");
                 });
 
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.NhatKySuDungThe", b =>

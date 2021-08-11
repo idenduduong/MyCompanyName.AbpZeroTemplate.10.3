@@ -31,6 +31,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Categories;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Accounting;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs;
 using MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits;
+using MyCompanyName.AbpZeroTemplate.crmdemo.Config;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
@@ -57,15 +58,15 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<CustomerData> CustomerDatas { get; set; }
 
-        //public virtual DbSet<ChangeStatusFlow> ChangeStatusFlows { get; set; }
+        public virtual DbSet<ChangeStatusFlow> ChangeStatusFlows { get; set; }
 
         //public virtual DbSet<Reason> Reasons { get; set; }
 
-        //public virtual DbSet<DataProcessStatus> DataProcessStatuses { get; set; }
+        public virtual DbSet<DataProcessStatus> DataProcessStatuses { get; set; }
 
-        //public virtual DbSet<DataSource> DataSources { get; set; }
+        public virtual DbSet<DataSource> DataSources { get; set; }
 
-        //public virtual DbSet<ImportData> ImportDatas { get; set; }
+        public virtual DbSet<ImportData> ImportDatas { get; set; }
 
         //public virtual DbSet<ReportData> ReportDatas { get; set; }
 
@@ -79,7 +80,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<Voucher> Vouchers { get; set; }
 
-        //public virtual DbSet<DM_NgheNghiep> DM_NgheNghieps { get; set; }
+        public virtual DbSet<DM_NgheNghiep> DM_NgheNghieps { get; set; }
 
         //public virtual DbSet<QuanLyKhieuNai> QuanLyKhieuNais { get; set; }
 
@@ -175,7 +176,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<DM_NhomThe> DM_NhomThes { get; set; }
 
-        //public virtual DbSet<DM_NhomHangHoa> DM_NhomHangHoas { get; set; }
+        public virtual DbSet<DM_NhomHangHoa> DM_NhomHangHoas { get; set; }
 
         public virtual DbSet<DM_NhomDoiTuong> DM_NhomDoiTuongs { get; set; }
 
