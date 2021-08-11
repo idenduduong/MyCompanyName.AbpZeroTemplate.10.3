@@ -5,6 +5,8 @@ using Abp.Authorization.Users;
 using Abp.Extensions;
 using Abp.Timing;
 
+using MyCompanyName.AbpZeroTemplate.Authorization.Users;
+
 namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
 {
     /// <summary>
@@ -12,6 +14,37 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
     /// </summary>
     public class User : AbpUser<User>
     {
+        //  crmdemo
+        public string? MaNhanVien { get; set; }
+
+        public DateTime? NgaySinh { get; set; }
+
+        public bool? GioiTinh { get; set; }
+
+        public string? DiaChi { get; set; }
+
+        public string? CMT { get; set; }
+
+        public string? DiaChiTamTru { get; set; }
+
+        public string? SoBHXH { get; set; }
+
+        public string? GhiChu { get; set; }
+
+        public int? EmployeeStatus { get; set; }
+
+        public DateTime? NgayCap { get; set; }
+
+        public string? NoiCap { get; set; }
+
+        public double? PTCKBanThe { get; set; }
+
+        public string? NoiSinh { get; set; }
+
+        public string? UserType { get; set; }
+        /// //////////////////////////////////////////////////////////////
+
+
         public virtual Guid? ProfilePictureId { get; set; }
 
         public virtual bool ShouldChangePasswordOnNextLogin { get; set; }

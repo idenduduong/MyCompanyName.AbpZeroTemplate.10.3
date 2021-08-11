@@ -98,7 +98,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
 
         private readonly IRepository<NhanVienThucHien, Guid> _nhanVienThucHienRepository;
 
-        //private readonly ICrmDemoCommonLookupAppService _commonLookupAppService;
+        private readonly ICrmDemoCommonLookupAppService _commonLookupAppService;
 
         private new readonly IAbpSession AbpSession;
 
@@ -186,8 +186,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             bool hasLoadFull = base.PermissionChecker.IsGranted("Pages.TheKhachHang.LoadFull");
             IQueryable<TheKhachHang> filteredTheKhachHangs = _theKhachHangRepository.GetAll().WhereIf(loaiThe.HasValue, (TheKhachHang x) => x.TheGiaTri_SoLan_GiamGia == loaiThe.Value);
             User currentUser = await _userRepository.FirstOrDefaultAsync((User x) => x.Id == AbpSession.GetUserId());
-            //CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
-            CustomOrganizationUnitDto currentUserOrg = null;
+            CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
+            //  datdd
+            //CustomOrganizationUnitDto currentUserOrg = null;
             if (currentUser == null || currentUserOrg == null)
             {
                 throw new UserFriendlyException("Thao tác không hợp lệ");

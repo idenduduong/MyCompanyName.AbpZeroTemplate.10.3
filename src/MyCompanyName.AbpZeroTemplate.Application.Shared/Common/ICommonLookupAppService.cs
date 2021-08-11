@@ -21,36 +21,36 @@ namespace MyCompanyName.AbpZeroTemplate.Common
 
         GetDefaultEditionNameOutput GetDefaultEditionName();
 
-		//////////  crmdemo
+        //  crmdemo
 
-		//////////Task<ListResultDto<SubscribableEditionComboboxItemDto>> GetEditionsForCombobox(bool onlyFreeItems = false);
+        //Task<ListResultDto<SubscribableEditionComboboxItemDto>> GetEditionsForCombobox(bool onlyFreeItems = false);
 
-		//////////Task<PagedResultDto<NameValueDto>> FindUsers(FindUsersInput input);
+        //Task<PagedResultDto<NameValueDto>> FindUsers(FindUsersInput input);
 
-		////////Task<PagedResultDto<DM_DoiTuongLookupTableDto>> GetAllDM_DoiTuongForLookupTable(GetAllKhachHangForLookupTableInput input);
+        Task<PagedResultDto<DM_DoiTuongLookupTableDto>> GetAllDM_DoiTuongForLookupTable(GetAllKhachHangForLookupTableInput input);
 
-		//////////GetDefaultEditionNameOutput GetDefaultEditionName();
+        //GetDefaultEditionNameOutput GetDefaultEditionName();
 
-		////////Task<PagedResultDto<EmployeeLookupTableDto>> GetAllSalesForLookupTable(GetAllEmployeeForLookupTableInput input);
+        Task<PagedResultDto<EmployeeLookupTableDto>> GetAllSalesForLookupTable(GetAllEmployeeForLookupTableInput input);
 
-		////////Task<PagedResultDto<EmployeeLookupTableDto>> GetAllKTVForLookupTable(GetAllEmployeeForLookupTableInput input);
+        Task<PagedResultDto<EmployeeLookupTableDto>> GetAllKTVForLookupTable(GetAllEmployeeForLookupTableInput input);
 
-		////////Task<CustomOrganizationUnitDto> GetCurrentUserOrganization();
+        Task<CustomOrganizationUnitDto> GetCurrentUserOrganization();
 
-		////////Task<UserEditDto> GetCurrentUser();
+        Task<UserEditDto> GetCurrentUser();
 
-		////////Task<string> GetCurrentUserOrganizationsString();
+        Task<string> GetCurrentUserOrganizationsString();
 
-		////////Task<List<CustomOrganizationUnitDto>> GetCurrentUserOrganizations();
+        Task<List<CustomOrganizationUnitDto>> GetCurrentUserOrganizations();
 
-		////////Task<List<CustomOrganizationUnitDto>> GetAvailableOrganizations();
+        Task<List<CustomOrganizationUnitDto>> GetAvailableOrganizations();
 
-		////////Task<List<DataSourceDto>> GetAvailableDataSources();
+        Task<List<DataSourceDto>> GetAvailableDataSources();
 
-		////////Task<List<ProcessStatusDto>> GetStatusesInFlow(int statusId);
+        Task<List<ProcessStatusDto>> GetStatusesInFlow(int statusId);
 
-		////////Task<PagedResultDto<ImportDataForLookupTableDto>> GetAllImportDataListForLookupTable(GetAllImportDataListForLookupTableInput input);
+        Task<PagedResultDto<ImportDataForLookupTableDto>> GetAllImportDataListForLookupTable(GetAllImportDataListForLookupTableInput input);
 
-		////////Task<PagedResultDto<EmployeeLookupTableDto>> GetAllSalesForLookupTableByOrganization(GetAllEmployeeForLookupTableInput input);
-	}
+        Task<PagedResultDto<EmployeeLookupTableDto>> GetAllSalesForLookupTableByOrganization(GetAllEmployeeForLookupTableInput input);
+    }
 }
