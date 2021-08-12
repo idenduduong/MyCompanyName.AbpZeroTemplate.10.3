@@ -2084,203 +2084,201 @@ var ChiTietHangHoaDichVu = function (_modalManager) {
                 style: 'single'
             }
         });
-        var lstChitietTheTable = _$theKhachHangChiTietsTable.DataTable({
-            paging: true,
-            serverSide: true,
-            processing: true,
-            listAction: {
-                ajaxFunction: _theKhachHangChiTietsService.getAll,
-                inputFilter: function () {
+        //var lstChitietTheTable = _$theKhachHangChiTietsTable.DataTable({
+        //    paging: true,
+        //    serverSide: true,
+        //    processing: true,
+        //    listAction: {
+        //        ajaxFunction: _theKhachHangChiTietsService.getAll,
+        //        inputFilter: function () {
 
-                    return {
-                        iD_TheKhachHang: getCurrentTheKhachHangId()
-                    };
-                }
-            },
-            columnDefs: [
-                {
-                    width: 20,
-                    targets: 0,
-                    data: null,
-                    orderable: false,
-                    defaultContent: '',
-                    rowAction: [
-                        {
-                            visible: function () {
-                                return _permissions.suDungThe;
-                            },
-                            element: $('<button class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="' + app.localize('SuDung') + '"><i class="la la-play"></i></button>')
-                                .click(function () {
-                                    var data = $(this).data();
+        //            return {
+        //                iD_TheKhachHang: getCurrentTheKhachHangId()
+        //            };
+        //        }
+        //    },
+        //    columnDefs: [
+        //        {
+        //            width: 20,
+        //            targets: 0,
+        //            data: null,
+        //            orderable: false,
+        //            defaultContent: '',
+        //            rowAction: [
+        //                {
+        //                    visible: function () {
+        //                        return _permissions.suDungThe;
+        //                    },
+        //                    element: $('<button class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="' + app.localize('SuDung') + '"><i class="la la-play"></i></button>')
+        //                        .click(function () {
+        //                            var data = $(this).data();
                                     
-                                    var theKhachHang = getCurrentTheKhachHang();
-                                    var ngayMua = new Date(theKhachHang.theKhachHang.ngayMua);
-                                    var ngayMuaString = ngayMua.getFullYear().toString() + ngayMua.getMonth().pad() + ngayMua.getDate().pad();
-                                    var currentDate = new Date();
-                                    var currentDateString = currentDate.getFullYear().toString() + currentDate.getMonth().pad() + currentDate.getDate().pad();
-                                    if (new Date(theKhachHang.theKhachHang.ngayHetHan) < new Date()) {
-                                        abp.notify.info(app.localize('TheDaHetHanSuDung'));
-                                        return;
-                                    }
-                                    if (data.theKhachHangChiTiet.traLaiHHDV) {
-                                        abp.notify.info(app.localize('DichVuDaTraLai'));
-                                        return;
-                                    }
-                                    //if(theKhachHang.theKhachHang.createdDate ==)
-                                    //if (theKhachHang.theKhachHang.soDu) {
+        //                            var theKhachHang = getCurrentTheKhachHang();
+        //                            var ngayMua = new Date(theKhachHang.theKhachHang.ngayMua);
+        //                            var ngayMuaString = ngayMua.getFullYear().toString() + ngayMua.getMonth().pad() + ngayMua.getDate().pad();
+        //                            var currentDate = new Date();
+        //                            var currentDateString = currentDate.getFullYear().toString() + currentDate.getMonth().pad() + currentDate.getDate().pad();
+        //                            if (new Date(theKhachHang.theKhachHang.ngayHetHan) < new Date()) {
+        //                                abp.notify.info(app.localize('TheDaHetHanSuDung'));
+        //                                return;
+        //                            }
+        //                            if (data.theKhachHangChiTiet.traLaiHHDV) {
+        //                                abp.notify.info(app.localize('DichVuDaTraLai'));
+        //                                return;
+        //                            }
+        //                            //if(theKhachHang.theKhachHang.createdDate ==)
+        //                            //if (theKhachHang.theKhachHang.soDu) {
 
-                                    //}
-                                    // todo
-                                    if (!theKhachHang.laDonViThucHien) {
-                                        abp.notify.success(app.localize('KhongPhaiDonViThucHien'));
-                                        return;
-                                    }
+        //                            //}
+        //                            // todo
+        //                            if (!theKhachHang.laDonViThucHien) {
+        //                                abp.notify.success(app.localize('KhongPhaiDonViThucHien'));
+        //                                return;
+        //                            }
                                     
-                                    if (data.theKhachHangChiTiet.soLuongDaSuDung === (data.theKhachHangChiTiet.soLuong + data.theKhachHangChiTiet.soLuongTang)) {
-                                        abp.notify.info(app.localize('HetSoLanSuDung'));
-                                        return;
-                                    }
-                                    if (new Date(theKhachHang.theKhachHang.ngayApDung) > new Date()) {
-                                        abp.notify.info(app.localize('TheChuaDenThoiGianApDung'));
-                                        return;
-                                    }
-                                    debugger;
-                                    if (ngayMuaString !== currentDateString) {
-                                        if (!(data.theKhachHangChiTiet.soLuongTang>0) && !data.theKhachHangChiTiet.laSoLuongDuocTang) {
-                                            var minPrice = data.theKhachHangChiTiet.thanhToan / data.theKhachHangChiTiet.soLuong;
-                                            if (theKhachHang.theKhachHang.soDu < minPrice && theKhachHang.theKhachHang.phaiThanhToan > theKhachHang.theKhachHang.daThanhToan) {
-                                                abp.notify.success(app.localize('BanCanNapTienDeSuDung'));
-                                                return;
-                                            }
-                                        }
-                                    }
-                                    if (isActive()) {
-                                        _suDungTheModal.open({ theId: data.theKhachHangChiTiet.iD_TheKhachHang, chiTietTheId: data.theKhachHangChiTiet.id });
-                                    }
-                                    else {
-                                        abp.notify.info(app.localize('TheCanKichHoatDeSuDung'));
-                                        return;
-                                    }
-                                })
-                        }
-                    ]
+        //                            if (data.theKhachHangChiTiet.soLuongDaSuDung === (data.theKhachHangChiTiet.soLuong + data.theKhachHangChiTiet.soLuongTang)) {
+        //                                abp.notify.info(app.localize('HetSoLanSuDung'));
+        //                                return;
+        //                            }
+        //                            if (new Date(theKhachHang.theKhachHang.ngayApDung) > new Date()) {
+        //                                abp.notify.info(app.localize('TheChuaDenThoiGianApDung'));
+        //                                return;
+        //                            }
+        //                            debugger;
+        //                            if (ngayMuaString !== currentDateString) {
+        //                                if (!(data.theKhachHangChiTiet.soLuongTang>0) && !data.theKhachHangChiTiet.laSoLuongDuocTang) {
+        //                                    var minPrice = data.theKhachHangChiTiet.thanhToan / data.theKhachHangChiTiet.soLuong;
+        //                                    if (theKhachHang.theKhachHang.soDu < minPrice && theKhachHang.theKhachHang.phaiThanhToan > theKhachHang.theKhachHang.daThanhToan) {
+        //                                        abp.notify.success(app.localize('BanCanNapTienDeSuDung'));
+        //                                        return;
+        //                                    }
+        //                                }
+        //                            }
+        //                            if (isActive()) {
+        //                                _suDungTheModal.open({ theId: data.theKhachHangChiTiet.iD_TheKhachHang, chiTietTheId: data.theKhachHangChiTiet.id });
+        //                            }
+        //                            else {
+        //                                abp.notify.info(app.localize('TheCanKichHoatDeSuDung'));
+        //                                return;
+        //                            }
+        //                        })
+        //                }
+        //            ]
 
-                },
-                {
-                    targets: 1,
-                    data: "dM_HangHoaTenHangHoa"
-                },
-                {
-                    targets: 2,
-                    data: "theKhachHangChiTiet.donGia",
-                    render: function (donGia) {
-                        return $.number(donGia, 0);
-                    }
-                },
-                {
-                    targets: 3,
-                    data: "theKhachHangChiTiet.laTangKem",
-                    render: function (laTangKem) {
-                        if (laTangKem) {
-                            return '<i class="la la-check-square m--font-success" title="True"></i>';
-                        }
-                        return '<i class="la la-times-circle" title="False"></i>';
-                    }
+        //        },
+        //        {
+        //            targets: 1,
+        //            data: "dM_HangHoaTenHangHoa"
+        //        },
+        //        {
+        //            targets: 2,
+        //            data: "theKhachHangChiTiet.donGia",
+        //            render: function (donGia) {
+        //                return $.number(donGia, 0);
+        //            }
+        //        },
+        //        {
+        //            targets: 3,
+        //            data: "theKhachHangChiTiet.laTangKem",
+        //            render: function (laTangKem) {
+        //                if (laTangKem) {
+        //                    return '<i class="la la-check-square m--font-success" title="True"></i>';
+        //                }
+        //                return '<i class="la la-times-circle" title="False"></i>';
+        //            }
 
-                },
-                {
-                    targets: 4,
-                    data: "theKhachHangChiTiet.soLuong",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 5,
-                    data: "theKhachHangChiTiet.soLuongTang",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
+        //        },
+        //        {
+        //            targets: 4,
+        //            data: "theKhachHangChiTiet.soLuong",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 5,
+        //            data: "theKhachHangChiTiet.soLuongTang",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
 
                 
-                {
-                    targets: 6,
-                    data: "theKhachHangChiTiet.soLuongDaSuDung",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 7,
-                    data: "theKhachHangChiTiet.ptChietKhau",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 8,
-                    data: "theKhachHangChiTiet.tienChietKhau",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 9,
-                    data: "theKhachHangChiTiet.thanhToan",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 10,
-                    data: "theKhachHangChiTiet.tienDaSuDung",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 11,
-                    data: "theKhachHangChiTiet.soLuongTraLai",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 12,
-                    data: "theKhachHangChiTiet.ngayTraLai",
-                    render: function (ngayTraLai) {
-                        if (ngayTraLai) {
-                            return moment(ngayTraLai).format('L');
-                        }
-                        return "";
-                    }
+        //        {
+        //            targets: 6,
+        //            data: "theKhachHangChiTiet.soLuongDaSuDung",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 7,
+        //            data: "theKhachHangChiTiet.ptChietKhau",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 8,
+        //            data: "theKhachHangChiTiet.tienChietKhau",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 9,
+        //            data: "theKhachHangChiTiet.thanhToan",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 10,
+        //            data: "theKhachHangChiTiet.tienDaSuDung",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 11,
+        //            data: "theKhachHangChiTiet.soLuongTraLai",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 12,
+        //            data: "theKhachHangChiTiet.ngayTraLai",
+        //            render: function (ngayTraLai) {
+        //                if (ngayTraLai) {
+        //                    return moment(ngayTraLai).format('L');
+        //                }
+        //                return "";
+        //            }
 
-                },
-                {
-                    targets: 13,
-                    data: "theKhachHangChiTiet.ghiChu"
-                },
+        //        },
+        //        {
+        //            targets: 13,
+        //            data: "theKhachHangChiTiet.ghiChu"
+        //        },
 
-            ],
-            createdRow: function (row, data, dataIndex) {
+        //    ],
+        //    createdRow: function (row, data, dataIndex) {
 
-                if (data.theKhachHangChiTiet.traLaiHHDV) {
-                    $(row).addClass('returned-service');
-                    return;
-                }
-                if (data.theKhachHangChiTiet.soLuongDaSuDung == (data.theKhachHangChiTiet.soLuong + data.theKhachHangChiTiet.soLuongTang)) {
-                    $(row).addClass('limited-service');
-                    return;
-                }
-                
+        //        if (data.theKhachHangChiTiet.traLaiHHDV) {
+        //            $(row).addClass('returned-service');
+        //            return;
+        //        }
+        //        if (data.theKhachHangChiTiet.soLuongDaSuDung == (data.theKhachHangChiTiet.soLuong + data.theKhachHangChiTiet.soLuongTang)) {
+        //            $(row).addClass('limited-service');
+        //            return;
+        //        }
+        //    },
+        //    select: {
+        //        style: 'single'
+        //    }
+        //});
 
-
-            },
-            select: {
-                style: 'single'
-            }
-        });
         //function updateDataTableSelectAllCtrl(table) {
         //    var $table = table.table().node();
         //    var $chkbox_all = $('tbody input[type="checkbox"]', $table);
@@ -2312,244 +2310,244 @@ var ChiTietHangHoaDichVu = function (_modalManager) {
 
         //var rows_selected = [];
 
-        var nhatKySuDungDT = _$nhatKySuDungThesTable.DataTable({
-            paging: true,
-            serverSide: true,
-            processing: true,
-            listAction: {
-                ajaxFunction: _nhatKySuDungThesService.getAll,
-                inputFilter: function () {
-                    return {
-                        iD_TheKhachHang: getCurrentTheKhachHangId(),
-                    };
-                }
-            },
-            //'rowCallback': function (row, data, dataIndex) {
-            //    // Get row ID
-            //    var rowId = data[0];
+        //var nhatKySuDungDT = _$nhatKySuDungThesTable.DataTable({
+        //    paging: true,
+        //    serverSide: true,
+        //    processing: true,
+        //    listAction: {
+        //        ajaxFunction: _nhatKySuDungThesService.getAll,
+        //        inputFilter: function () {
+        //            return {
+        //                iD_TheKhachHang: getCurrentTheKhachHangId(),
+        //            };
+        //        }
+        //    },
+        //    //'rowCallback': function (row, data, dataIndex) {
+        //    //    // Get row ID
+        //    //    var rowId = data[0];
 
-            //    // If row ID is in the list of selected row IDs
-            //    if ($.inArray(rowId, rows_selected) !== -1) {
-            //        $(row).find('input[type="checkbox"]').prop('checked', true);
-            //        $(row).addClass('selected');
-            //    }
-            //},
-            columnDefs: [
+        //    //    // If row ID is in the list of selected row IDs
+        //    //    if ($.inArray(rowId, rows_selected) !== -1) {
+        //    //        $(row).find('input[type="checkbox"]').prop('checked', true);
+        //    //        $(row).addClass('selected');
+        //    //    }
+        //    //},
+        //    columnDefs: [
                 
-                {
-                    width: 120,
-                    targets: 0,
-                    visible: true,
-                    data: null,
-                    orderable: false,
-                    autoWidth: false,
-                    defaultContent: '',
-                    rowAction: {
-                        cssClass: 'btn btn-brand dropdown-toggle',
-                        text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
-                        items: [
-                            {
-                                text: app.localize('Edit'),
-                                visible: function (data) {
+        //        {
+        //            width: 120,
+        //            targets: 0,
+        //            visible: true,
+        //            data: null,
+        //            orderable: false,
+        //            autoWidth: false,
+        //            defaultContent: '',
+        //            rowAction: {
+        //                cssClass: 'btn btn-brand dropdown-toggle',
+        //                text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
+        //                items: [
+        //                    {
+        //                        text: app.localize('Edit'),
+        //                        visible: function (data) {
                                     
-                                    return (_permissions.edit && ((new moment(data.record.nhatKySuDungThe.ngay)).add(1, 'days').format("YYYYMMDD") > (new moment()).format("YYYYMMDD") || ((new moment(data.record.nhatKySuDungThe.ngay)).add(1, 'days').format("YYYYMMDD") == (new moment()).format("YYYYMMDD") && (new moment()).format("HHmm") <= "1100")))
-                                        || (_permissions.editLaterNhatKy);
-                                },
-                                action: function (data) {
-                                    _suDungTheModal.open({ id: data.record.nhatKySuDungThe.iD_ChungTu });
-                                }
-                            },
-                            {
-                                text: app.localize('Delete'),
-                                visible: function (data) {
-                                    return (_permissions.delete && (new moment(data.record.nhatKySuDungThe.ngay)).format("YYYYMMDD") == (new moment()).format("YYYYMMDD"))
-                                        || (_permissions.delete && _permissions.editLaterNhatKy);
-                                },
-                                action: function (data) {
-                                    deleteNhatKySuDung(data.record.nhatKySuDungThe);
-                                }
-                            }]
-                    }
-                },
+        //                            return (_permissions.edit && ((new moment(data.record.nhatKySuDungThe.ngay)).add(1, 'days').format("YYYYMMDD") > (new moment()).format("YYYYMMDD") || ((new moment(data.record.nhatKySuDungThe.ngay)).add(1, 'days').format("YYYYMMDD") == (new moment()).format("YYYYMMDD") && (new moment()).format("HHmm") <= "1100")))
+        //                                || (_permissions.editLaterNhatKy);
+        //                        },
+        //                        action: function (data) {
+        //                            _suDungTheModal.open({ id: data.record.nhatKySuDungThe.iD_ChungTu });
+        //                        }
+        //                    },
+        //                    {
+        //                        text: app.localize('Delete'),
+        //                        visible: function (data) {
+        //                            return (_permissions.delete && (new moment(data.record.nhatKySuDungThe.ngay)).format("YYYYMMDD") == (new moment()).format("YYYYMMDD"))
+        //                                || (_permissions.delete && _permissions.editLaterNhatKy);
+        //                        },
+        //                        action: function (data) {
+        //                            deleteNhatKySuDung(data.record.nhatKySuDungThe);
+        //                        }
+        //                    }]
+        //            }
+        //        },
                 
-                {
-                    targets: 1,
-                    data: "orderNumber"
+        //        {
+        //            targets: 1,
+        //            data: "orderNumber"
 
-                },
-                {
-                    targets: 2,
-                    data: "ngayLapHoaDon",
-                    render: function (ngay) {
-                        if (ngay) {
-                            return moment(ngay).format('L');
-                        }
-                        return "";
-                    }
+        //        },
+        //        {
+        //            targets: 2,
+        //            data: "ngayLapHoaDon",
+        //            render: function (ngay) {
+        //                if (ngay) {
+        //                    return moment(ngay).format('L');
+        //                }
+        //                return "";
+        //            }
 
-                },
-                {
-                    targets: 3,
-                    data: "nhatKySuDungThe.ngay",
-                    render: function (ngay) {
-                        if (ngay) {
-                            return moment(ngay).format('L');
-                        }
-                        return "";
-                    }
+        //        },
+        //        {
+        //            targets: 3,
+        //            data: "nhatKySuDungThe.ngay",
+        //            render: function (ngay) {
+        //                if (ngay) {
+        //                    return moment(ngay).format('L');
+        //                }
+        //                return "";
+        //            }
 
-                },
+        //        },
                 
-                {
-                    targets: 4,
-                    data: "dM_HangHoaTenHangHoa"
-                },
-                {
-                    targets: 5,
-                    data: "nhatKySuDungThe.soLuong"
-                },
-                {
-                    targets: 6,
-                    data: "nhatKySuDungThe.soTien",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 7,
-                    data: "nhatKySuDungThe.laSoLuongDuocTang",
-                    render: function (laSoLuongDuocTang) {
-                        if (laSoLuongDuocTang) {
-                            return '<i class="la la-check-square m--font-success" title="True"></i>';
-                        }
-                        return '<i class="la la-times-circle" title="False"></i>';
-                    }
+        //        {
+        //            targets: 4,
+        //            data: "dM_HangHoaTenHangHoa"
+        //        },
+        //        {
+        //            targets: 5,
+        //            data: "nhatKySuDungThe.soLuong"
+        //        },
+        //        {
+        //            targets: 6,
+        //            data: "nhatKySuDungThe.soTien",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 7,
+        //            data: "nhatKySuDungThe.laSoLuongDuocTang",
+        //            render: function (laSoLuongDuocTang) {
+        //                if (laSoLuongDuocTang) {
+        //                    return '<i class="la la-check-square m--font-success" title="True"></i>';
+        //                }
+        //                return '<i class="la la-times-circle" title="False"></i>';
+        //            }
 
-                },
-                {
-                    targets: 8,
-                    data: "performedOrganizationName"
-                },
-                {
-                    targets: 9,
-                    data: "invoiceCode"
-                },
+        //        },
+        //        {
+        //            targets: 8,
+        //            data: "performedOrganizationName"
+        //        },
+        //        {
+        //            targets: 9,
+        //            data: "invoiceCode"
+        //        },
 
 
-            ]
-        });
+        //    ]
+        //});
         
-        var lichSuTheDT = _$theKhachHangHistorysTable.DataTable({
-            paging: true,
-            serverSide: true,
-            processing: true,
-            listAction: {
-                ajaxFunction: _theKhachHangsService.getAllHistory,
-                inputFilter: function () {
-                    return {
-                        iD_TheKhachHang: getCurrentTheKhachHangId()
-                    };
-                }
-            },
-            columnDefs: [
-                {
-                    targets: 0,
-                    data: "name"
-                },
-                {
-                    targets: 1,
-                    data: "content"
-                },
-                {
-                    targets: 2,
-                    data: "ngayDate"
-                }
-            ]
-        });
-        var lichSuThanhToanDT = _$lichSuThanhToansTable.DataTable({
-            paging: true,
-            serverSide: true,
-            processing: true,
-            listAction: {
-                ajaxFunction: _phieuThusService.getAllByIDTheKhachHang,
-                inputFilter: function () {
-                    return {
-                        iD_TheKhachHang: getCurrentTheKhachHangId()
-                    };
-                }
-            },
-            columnDefs: [
-                {
-                    width: 120,
-                    targets: 0,
-                    data: null,
-                    orderable: false,
-                    autoWidth: false,
-                    defaultContent: '',
-                    rowAction: {
-                        cssClass: 'btn btn-brand dropdown-toggle',
-                        text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
-                        items: [
-                            {
-                                text: app.localize('Edit'),
-                                visible: function (data) {
-                                    return (_permissions.editPhieuThu && ((new moment(data.record.phieuThu.ngayLapPhieu)).add(1, 'days').format("YYYYMMDD") > (new moment()).format("YYYYMMDD") || ((new moment(data.record.phieuThu.ngayLapPhieu)).add(1, 'days').format("YYYYMMDD") == (new moment()).format("YYYYMMDD") && (new moment()).format("HHmm") <= "1100")))
-                                        || (_permissions.editLaterPhieuThu);
-                                },
-                                action: function (data) {
-                                    _thanhToanTheModal.open({ id: data.record.phieuThu.id });
-                                }
-                            },
-                            {
-                                text: app.localize('Delete'),
-                                visible: function () {
-                                    return _permissions.deletePhieuThu;
-                                },
-                                action: function (data) {
-                                    deletePhieuThu(data.record.phieuThu);
-                                }
-                            }]
-                    }
-                },
-                {
-                    targets: 1,
-                    data: "phieuThu.maPhieuThu"
-                },
-                {
-                    targets: 2,
-                    data: "phieuThu.ngayLapPhieu",
-                    render: function (ngayLapPhieu) {
-                        if (ngayLapPhieu) {
-                            return moment(ngayLapPhieu).format('L');
-                        }
-                        return "";
-                    }
+        //var lichSuTheDT = _$theKhachHangHistorysTable.DataTable({
+        //    paging: true,
+        //    serverSide: true,
+        //    processing: true,
+        //    listAction: {
+        //        ajaxFunction: _theKhachHangsService.getAllHistory,
+        //        inputFilter: function () {
+        //            return {
+        //                iD_TheKhachHang: getCurrentTheKhachHangId()
+        //            };
+        //        }
+        //    },
+        //    columnDefs: [
+        //        {
+        //            targets: 0,
+        //            data: "name"
+        //        },
+        //        {
+        //            targets: 1,
+        //            data: "content"
+        //        },
+        //        {
+        //            targets: 2,
+        //            data: "ngayDate"
+        //        }
+        //    ]
+        //});
+        //var lichSuThanhToanDT = _$lichSuThanhToansTable.DataTable({
+        //    paging: true,
+        //    serverSide: true,
+        //    processing: true,
+        //    listAction: {
+        //        ajaxFunction: _phieuThusService.getAllByIDTheKhachHang,
+        //        inputFilter: function () {
+        //            return {
+        //                iD_TheKhachHang: getCurrentTheKhachHangId()
+        //            };
+        //        }
+        //    },
+        //    columnDefs: [
+        //        {
+        //            width: 120,
+        //            targets: 0,
+        //            data: null,
+        //            orderable: false,
+        //            autoWidth: false,
+        //            defaultContent: '',
+        //            rowAction: {
+        //                cssClass: 'btn btn-brand dropdown-toggle',
+        //                text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
+        //                items: [
+        //                    {
+        //                        text: app.localize('Edit'),
+        //                        visible: function (data) {
+        //                            return (_permissions.editPhieuThu && ((new moment(data.record.phieuThu.ngayLapPhieu)).add(1, 'days').format("YYYYMMDD") > (new moment()).format("YYYYMMDD") || ((new moment(data.record.phieuThu.ngayLapPhieu)).add(1, 'days').format("YYYYMMDD") == (new moment()).format("YYYYMMDD") && (new moment()).format("HHmm") <= "1100")))
+        //                                || (_permissions.editLaterPhieuThu);
+        //                        },
+        //                        action: function (data) {
+        //                            _thanhToanTheModal.open({ id: data.record.phieuThu.id });
+        //                        }
+        //                    },
+        //                    {
+        //                        text: app.localize('Delete'),
+        //                        visible: function () {
+        //                            return _permissions.deletePhieuThu;
+        //                        },
+        //                        action: function (data) {
+        //                            deletePhieuThu(data.record.phieuThu);
+        //                        }
+        //                    }]
+        //            }
+        //        },
+        //        {
+        //            targets: 1,
+        //            data: "phieuThu.maPhieuThu"
+        //        },
+        //        {
+        //            targets: 2,
+        //            data: "phieuThu.ngayLapPhieu",
+        //            render: function (ngayLapPhieu) {
+        //                if (ngayLapPhieu) {
+        //                    return moment(ngayLapPhieu).format('L');
+        //                }
+        //                return "";
+        //            }
 
-                },
-                {
-                    targets: 3,
-                    data: "phieuThu.tongTienThu",
-                    render: function (data) {
-                        return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
-                    }
-                },
-                {
-                    targets: 4,
-                    data: "phieuThu.noiDungThu"
-                },
+        //        },
+        //        {
+        //            targets: 3,
+        //            data: "phieuThu.tongTienThu",
+        //            render: function (data) {
+        //                return '<span class="numeric-cell">' + $.number(data, 0) + '</span>';
+        //            }
+        //        },
+        //        {
+        //            targets: 4,
+        //            data: "phieuThu.noiDungThu"
+        //        },
 
-                {
-                    targets: 5,
-                    data: "userName"
-                },
-                {
-                    targets: 6,
-                    data: "organizationUnitDisplayName"
-                }
-            ]
-        });
+        //        {
+        //            targets: 5,
+        //            data: "userName"
+        //        },
+        //        {
+        //            targets: 6,
+        //            data: "organizationUnitDisplayName"
+        //        }
+        //    ]
+        //});
 
-        // function
+        //// function
 
         function getCurrentTheKhachHangId() {
             var currentThe = getCurrentTheKhachHang();
@@ -2589,15 +2587,15 @@ var ChiTietHangHoaDichVu = function (_modalManager) {
             return false
         }
         function getNhatKySuDungThes() {
-            nhatKySuDungDT.ajax.reload();
+            //nhatKySuDungDT.ajax.reload();
         }
 
         function getlichSuThes() {
-            lichSuTheDT.ajax.reload();
+            //lichSuTheDT.ajax.reload();
         }
 
         function getLichSuThanhToans() {
-            lichSuThanhToanDT.ajax.reload();
+            //lichSuThanhToanDT.ajax.reload();
         }
 
 
@@ -2606,7 +2604,7 @@ var ChiTietHangHoaDichVu = function (_modalManager) {
         }
 
         function getTheKhachHangChiTiets() {
-            lstChitietTheTable.ajax.reload();
+            //lstChitietTheTable.ajax.reload();
 
         }
         function deleteTheKhachHang(theKhachHang) {

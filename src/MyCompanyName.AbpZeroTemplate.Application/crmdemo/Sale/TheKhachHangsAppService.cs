@@ -172,9 +172,12 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             _invoiceDetailRepository = invoiceDetailRepository;
         }
 
-        [HttpPost]
-        public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input)
+        [HttpGet]
+        //[httpPost]
+        public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll()
+        //public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input)
         {
+            var input = new GetAllTheKhachHangsInput();
             int? loaiThe = null;
             if (input.IsTheLan.HasValue)
             {
@@ -195,20 +198,25 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
              */
             bool hasSearchFull  = true;
             bool hasLoadFull    = true;
-            IQueryable <TheKhachHang> filteredTheKhachHangs = _theKhachHangRepository.GetAll().WhereIf(loaiThe.HasValue, (TheKhachHang x) => x.TheGiaTri_SoLan_GiamGia == loaiThe.Value);
+            var listTheKhachHangRepository = _theKhachHangRepository.GetAll();
+            IQueryable <TheKhachHang> filteredTheKhachHangs = listTheKhachHangRepository
+                .WhereIf(loaiThe.HasValue, (TheKhachHang x) => x.TheGiaTri_SoLan_GiamGia == loaiThe.Value);
             User currentUser = await _userRepository.FirstOrDefaultAsync((User x) => x.Id == AbpSession.GetUserId());
             CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
-            //  datdd
-            //CustomOrganizationUnitDto currentUserOrg = null;
+            
             if (currentUser == null || currentUserOrg == null)
             {
                 throw new UserFriendlyException("Thao tác không hợp lệ");
             }
-            filteredTheKhachHangs = filteredTheKhachHangs.WhereIf(!string.IsNullOrWhiteSpace(input.MaTheFilter), (TheKhachHang e) => e.MaThe.ToLower() == input.MaTheFilter.ToLower().Trim());
+            //filteredTheKhachHangs = filteredTheKhachHangs.WhereIf(!string.IsNullOrWhiteSpace(input.MaTheFilter), (TheKhachHang e) => e.MaThe.ToLower() == input.MaTheFilter.ToLower().Trim());
+
+            var dM_NhomTheRepository = _dM_NhomTheRepository.GetAll();
+            var dM_DoiTuongRepository = _dM_DoiTuongRepository.GetAll();
+
             IQueryable<GetTheKhachHangForView> query = (from o in filteredTheKhachHangs
-                                                        join o1 in _dM_NhomTheRepository.GetAll() on o.ID_NhomThe equals o1.Id into j1
+                                                        join o1 in dM_NhomTheRepository on o.ID_NhomThe equals o1.Id into j1
                                                         from s1 in j1.DefaultIfEmpty()
-                                                        join o2 in _dM_DoiTuongRepository.GetAll().WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongTenDoiTuongFilter), (DM_DoiTuong e) => e.TenDoiTuong.ToLower().Contains(input.DM_DoiTuongTenDoiTuongFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongCMTFilter), (DM_DoiTuong e) => e.SoCMTND_DKKD.ToLower().Contains(input.DM_DoiTuongCMTFilter.ToLower().Trim()))
+                                                        join o2 in dM_DoiTuongRepository.WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongTenDoiTuongFilter), (DM_DoiTuong e) => e.TenDoiTuong.ToLower().Contains(input.DM_DoiTuongTenDoiTuongFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongCMTFilter), (DM_DoiTuong e) => e.SoCMTND_DKKD.ToLower().Contains(input.DM_DoiTuongCMTFilter.ToLower().Trim()))
                                                             .WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongPhoneFilter), (DM_DoiTuong e) => e.DienThoai.ToLower().Contains(input.DM_DoiTuongPhoneFilter.ToLower().Trim()))
                                                             .WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongDiaChiFilter), (DM_DoiTuong e) => e.DiaChi.ToLower().Contains(input.DM_DoiTuongDiaChiFilter.ToLower().Trim()))
                                                             .WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongMaFilter), (DM_DoiTuong e) => e.MaDoiTuong.ToLower() == input.DM_DoiTuongMaFilter.ToLower().Trim()) on o.ID_KhachHang equals o2.Id into j2
@@ -227,6 +235,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
                                                             DaThanhToan = o.DaThanhToan,
                                                             LaDonViThucHien = (o.ID_DonViThucHien == (long?)currentUserOrg.Id)
                                                         }).WhereIf(!string.IsNullOrWhiteSpace(input.Filter), (GetTheKhachHangForView e) => e.DM_DoiTuongCMT.ToLower().Contains(input.Filter.ToLower().Trim()) || e.DM_DoiTuongPhone.ToLower().Contains(input.Filter.ToLower().Trim()) || e.DM_DoiTuongDiaChi.ToLower().Contains(input.Filter.ToLower().Trim()) || e.TheKhachHang.MaThe.ToLower().Contains(input.Filter.ToLower().Trim()));
+            
             return new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(input).ToListAsync());
         }
 

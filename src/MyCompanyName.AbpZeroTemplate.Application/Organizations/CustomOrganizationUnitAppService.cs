@@ -62,7 +62,6 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 			_roleManager = roleManager;
 		}
 
-		//public async Task<ListResultDto<OrganizationUnitDto>> GetOrganizationUnits()
 		public async Task<ListResultDto<CustomOrganizationUnitDto>> GetOrganizationUnits()
 		{
 			var customOrganizationUnits = await _customOrganizationUnitRepository.GetAllListAsync();
@@ -126,55 +125,81 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 						join user in base.UserManager.Users on uou.UserId equals user.Id
 						where uou.OrganizationUnitId == input.Id
 						select new { uou, user };
-			return new PagedResultDto<OrganizationUnitUserListDto>(await query.CountAsync(), (await query.OrderBy(input.Sorting).PageBy(input).ToListAsync()).Select(item =>
+			var listOrganizationUnitUserListDto = new PagedResultDto<OrganizationUnitUserListDto>(await query.CountAsync(), (await query.OrderBy(input.Sorting).PageBy(input).ToListAsync()).Select(item =>
 			{
 				OrganizationUnitUserListDto organizationUnitUserListDto = base.ObjectMapper.Map<OrganizationUnitUserListDto>(item.user);
 				organizationUnitUserListDto.AddedTime = item.uou.CreationTime;
 				return organizationUnitUserListDto;
 			}).ToList());
+
+			return listOrganizationUnitUserListDto;
+
+			#region crmdemo
+			//try
+			//{
+			//	return new ListResultDto<CustomOrganizationUnitDto>((await (from ou in _customOrganizationUnitRepository.GetAll()
+			//																join uou in _userOrganizationUnitRepository.GetAll() on ou.Id equals uou.OrganizationUnitId into g
+			//																orderby ou.UnitCode
+			//																select new
+			//																{
+			//																	ou = ou,
+			//																	memberCount = g.Count()
+			//																}).ToListAsync()).Select(item =>
+			//																{
+			//																	CustomOrganizationUnitDto customOrganizationUnitDto = base.ObjectMapper.Map<CustomOrganizationUnitDto>(item.ou);
+			//																	customOrganizationUnitDto.MemberCount = item.memberCount;
+			//																	return customOrganizationUnitDto;
+			//																}).ToList());
+			//}
+			//catch (Exception)
+			//{
+			//	return new ListResultDto<CustomOrganizationUnitDto>();
+			//}
+			#endregion
+
 		}
 
-		//[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
-		//public async Task<CustomOrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input)
-		//{
-		//	string parentIds = string.Empty;
-		//	int parentLevel = -1;
-		//	new CustomOrganizationUnit();
-		//	if (input.ParentId.HasValue)
-		//	{
-		//		_customOrganizationUnitRepository.Get(input.ParentId.Value);
-		//	}
-		//	CustomOrganizationUnit organizationUnit = new CustomOrganizationUnit(base.AbpSession.TenantId, input.DisplayName, input.ParentId, parentIds, parentLevel, input.UnitCode, input.Website, input.Phone, input.TaxCode, input.Address, input.AccountNumber, input.MarkupCharacters, input.IsShowPrimary, input.IsShowSecondary);
-		//	CustomOrganizationUnit customOrganizationUnit = organizationUnit;
-		//	customOrganizationUnit.Code = await _organizationUnitManager.GetNextChildCodeAsync(organizationUnit.ParentId);
-		//	await _customOrganizationUnitRepository.InsertAsync(organizationUnit);
-		//	await base.CurrentUnitOfWork.SaveChangesAsync();
-		//	return base.ObjectMapper.Map<CustomOrganizationUnitDto>(organizationUnit);
-		//}
+        //[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
+        //public async Task<CustomOrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input)
+        //{
+        //	string parentIds = string.Empty;
+        //	int parentLevel = -1;
+        //	new CustomOrganizationUnit();
+        //	if (input.ParentId.HasValue)
+        //	{
+        //		_customOrganizationUnitRepository.Get(input.ParentId.Value);
+        //	}
+        //	CustomOrganizationUnit organizationUnit = new CustomOrganizationUnit(base.AbpSession.TenantId, input.DisplayName, input.ParentId, parentIds, parentLevel, input.UnitCode, input.Website, input.Phone, input.TaxCode, input.Address, input.AccountNumber, input.MarkupCharacters, input.IsShowPrimary, input.IsShowSecondary);
+        //	CustomOrganizationUnit customOrganizationUnit = organizationUnit;
+        //	customOrganizationUnit.Code = await _organizationUnitManager.GetNextChildCodeAsync(organizationUnit.ParentId);
+        //	await _customOrganizationUnitRepository.InsertAsync(organizationUnit);
+        //	await base.CurrentUnitOfWork.SaveChangesAsync();
+        //	return base.ObjectMapper.Map<CustomOrganizationUnitDto>(organizationUnit);
+        //}
 
-		//[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
-		//public async Task<CustomOrganizationUnitDto> UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
-		//{
-		//	CustomOrganizationUnit organizationUnit = await _customOrganizationUnitRepository.GetAsync(input.Id);
-		//	organizationUnit.DisplayName = input.DisplayName;
-		//	organizationUnit.UnitCode = input.UnitCode;
-		//	organizationUnit.Website = input.Website;
-		//	organizationUnit.Phone = input.Phone;
-		//	organizationUnit.Address = input.Address;
-		//	organizationUnit.TaxCode = input.TaxCode;
-		//	organizationUnit.AccountNumber = input.AccountNumber;
-		//	await _organizationUnitManager.UpdateAsync(organizationUnit);
-		//	CustomOrganizationUnitDto result = await CreateOrganizationUnitDto(organizationUnit);
-		//	EventBus.Default.Trigger(new OrganizationUnitUpdateEvent
-		//	{
-		//		OrganizationId = organizationUnit.Id,
-		//		OrganizationCode = organizationUnit.UnitCode,
-		//		OrganizationName = organizationUnit.DisplayName
-		//	});
-		//	return result;
-		//}
+        //[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
+        //public async Task<CustomOrganizationUnitDto> UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
+        //{
+        //	CustomOrganizationUnit organizationUnit = await _customOrganizationUnitRepository.GetAsync(input.Id);
+        //	organizationUnit.DisplayName = input.DisplayName;
+        //	organizationUnit.UnitCode = input.UnitCode;
+        //	organizationUnit.Website = input.Website;
+        //	organizationUnit.Phone = input.Phone;
+        //	organizationUnit.Address = input.Address;
+        //	organizationUnit.TaxCode = input.TaxCode;
+        //	organizationUnit.AccountNumber = input.AccountNumber;
+        //	await _organizationUnitManager.UpdateAsync(organizationUnit);
+        //	CustomOrganizationUnitDto result = await CreateOrganizationUnitDto(organizationUnit);
+        //	EventBus.Default.Trigger(new OrganizationUnitUpdateEvent
+        //	{
+        //		OrganizationId = organizationUnit.Id,
+        //		OrganizationCode = organizationUnit.UnitCode,
+        //		OrganizationName = organizationUnit.DisplayName
+        //	});
+        //	return result;
+        //}
 
-		[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
+        [AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
 		public async Task<CustomOrganizationUnitDto> MoveOrganizationUnit(MoveOrganizationUnitInput input)
 		{
 			await _organizationUnitManager.MoveAsync(input.Id, input.NewParentId);
