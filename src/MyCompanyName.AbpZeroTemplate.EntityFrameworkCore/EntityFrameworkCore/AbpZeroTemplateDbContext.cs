@@ -17,11 +17,14 @@ using MyCompanyName.AbpZeroTemplate.MultiTenancy;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy.Accounting;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments;
 using MyCompanyName.AbpZeroTemplate.Storage;
+using MyCompanyName.AbpZeroTemplate.CustomUnits;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
+        public virtual DbSet<CustomUnit> CustomUnits { get; set; }
+
         public virtual DbSet<Person> Persons { get; set; }
 
         public virtual DbSet<BaseEntity> BaseEntities { get; set; }
