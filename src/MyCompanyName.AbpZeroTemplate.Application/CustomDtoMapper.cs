@@ -128,7 +128,7 @@ namespace MyCompanyName.AbpZeroTemplate
 			//});
 			//configuration.CreateMap<HappyCall, HappyCallDto>();
 			//configuration.CreateMap<CreateOrEditDM_KhuyenMaiDto, DM_KhuyenMai>();
-			//configuration.CreateMap<DM_KhuyenMai, DM_KhuyenMaiDto>();
+			configuration.CreateMap<DM_KhuyenMai, DM_KhuyenMaiDto>();
 			//configuration.CreateMap<CreateOrEditDichVuCongDoanDto, DichVuCongDoan>();
 			//configuration.CreateMap<DichVuCongDoan, DichVuCongDoanDto>();
 			//configuration.CreateMap<CreateOrEditCongDoanDto, CongDoan>();
@@ -164,32 +164,33 @@ namespace MyCompanyName.AbpZeroTemplate
 			//configuration.CreateMap<TuVanKhachHang, TuVanKhachHangDto>();
 			//configuration.CreateMap<CreateOrEditTheKhachHang_DonViSuDungDto, TheKhachHang_DonViSuDung>();
 			//configuration.CreateMap<TheKhachHang_DonViSuDung, TheKhachHang_DonViSuDungDto>();
-			//configuration.CreateMap<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet>().ForMember((TheKhachHangChiTiet x) => x.SoLuongDaSuDung, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet, int> opt)
-			//{
-			//	opt.Ignore();
-			//}).ForMember((TheKhachHangChiTiet x) => x.TienDaSuDung, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet, decimal> opt)
-			//{
-			//	opt.Ignore();
-			//});
-			//configuration.CreateMap<TheKhachHangChiTiet, TheKhachHangChiTietDto>();
+			configuration.CreateMap<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet>().ForMember((TheKhachHangChiTiet x) => x.SoLuongDaSuDung, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet, int> opt)
+            {
+                opt.Ignore();
+            }).ForMember((TheKhachHangChiTiet x) => x.TienDaSuDung, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet, decimal> opt)
+            {
+                opt.Ignore();
+            });
+			configuration.CreateMap<TheKhachHangChiTiet, TheKhachHangChiTietDto>();
 			//configuration.CreateMap<CreateOrEditDM_LienHeDto, DM_LienHe>();
-			//configuration.CreateMap<DM_LienHe, DM_LienHeDto>();
-			//configuration.CreateMap<CreateOrEditTheKhachHangDto, TheKhachHang>().ForMember((TheKhachHang /x) /=> x.DaChuyenThe, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, //TheKhachHang, bool> opt)
-			//{
-			//	opt.Ignore();
-			//}).ForMember((TheKhachHang x) => x.SoDu, delegate //(IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
-			//{
-			//	opt.Ignore();
-			//})
-			//	.ForMember((TheKhachHang x) => x.DaThanhToan, delegate //(IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
-			//	{
-			//		opt.Ignore();
-			//	})
-			//	.ForMember((TheKhachHang x) => x.SoDu, delegate //(IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
-			//	{
-			//		opt.Ignore();
-			//	});
-			//configuration.CreateMap<TheKhachHang, CreateOrEditTheKhachHangDto>().ForMember//((CreateOrEditTheKhachHangDto x) => x.TempId, delegate //(IMemberConfigurationExpression<TheKhachHang, CreateOrEditTheKhachHangDto, Guid?> option)
+			configuration.CreateMap<DM_LienHe, DM_LienHeDto>();
+			configuration.CreateMap<CreateOrEditTheKhachHangDto, TheKhachHang>().ForMember((TheKhachHang x) => x.DaChuyenThe, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, bool> opt)
+			{
+				opt.Ignore();
+			}).ForMember((TheKhachHang x) => x.SoDu, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
+			{
+				opt.Ignore();
+			})
+				.ForMember((TheKhachHang x) => x.DaThanhToan, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
+				{
+					opt.Ignore();
+				})
+				.ForMember((TheKhachHang x) => x.SoDu, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
+				{
+					opt.Ignore();
+				});
+			//	datdd:error
+			//configuration.CreateMap<TheKhachHang, CreateOrEditTheKhachHangDto>().ForMember((CreateOrEditTheKhachHangDto x) => x.TempId, delegate (IMemberConfigurationExpression<TheKhachHang, CreateOrEditTheKhachHangDto, Guid?> option)
 			//{
 			//	option.Ignore();
 			//});
@@ -312,48 +313,48 @@ namespace MyCompanyName.AbpZeroTemplate
 			//configuration.CreateMap<CreateOrEditDM_QuocGiaDto, DM_QuocGia>();
 			//configuration.CreateMap<DM_QuocGia, DM_QuocGiaDto>();
 			//configuration.CreateMap<CreateOrEditDM_NganHangDto, DM_NganHang>();
-            //configuration.CreateMap<DM_NganHang, DM_NganHangDto>();
-            ////configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
-            ////configuration.CreateMap<SingleLineStringInputType, FeatureInputTypeDto>();
-            ////configuration.CreateMap<ComboboxInputType, FeatureInputTypeDto>();
-            ////configuration.CreateMap<IInputType, FeatureInputTypeDto>().Include<CheckboxInputType, FeatureInputTypeDto>().Include<SingleLineStringInputType, FeatureInputTypeDto>()
-            ////	.Include<ComboboxInputType, FeatureInputTypeDto>();
-            ////configuration.CreateMap<StaticLocalizableComboboxItemSource, LocalizableComboboxItemSourceDto>();
-            ////configuration.CreateMap<ILocalizableComboboxItemSource, LocalizableComboboxItemSourceDto>().Include<StaticLocalizableComboboxItemSource, LocalizableComboboxItemSourceDto>();
-            ////configuration.CreateMap<LocalizableComboboxItem, LocalizableComboboxItemDto>();
-            ////configuration.CreateMap<ILocalizableComboboxItem, LocalizableComboboxItemDto>().Include<LocalizableComboboxItem, LocalizableComboboxItemDto>();
-            ////configuration.CreateMap<ChatMessage, ChatMessageDto>();
-            ////configuration.CreateMap<FlatFeatureSelectDto, Feature>().ReverseMap();
-            ////configuration.CreateMap<Feature, FlatFeatureDto>();
-            ////configuration.CreateMap<RoleEditDto, Role>().ReverseMap();
-            ////configuration.CreateMap<Role, RoleListDto>();
-            ////configuration.CreateMap<UserRole, UserListRoleDto>();
-            ////configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
-            ////configuration.CreateMap<EditionSelectDto, SubscribableEdition>().ReverseMap();
-            ////configuration.CreateMap<SubscribableEdition, EditionInfoDto>();
-            ////configuration.CreateMap<Edition, EditionInfoDto>().Include<SubscribableEdition, EditionInfoDto>();
-            ////configuration.CreateMap<Edition, EditionListDto>();
-            ////configuration.CreateMap<Edition, EditionEditDto>();
-            ////configuration.CreateMap<Edition, SubscribableEdition>();
-            ////configuration.CreateMap<Edition, EditionSelectDto>();
-            ////configuration.CreateMap<SubscriptionPaymentDto, SubscriptionPayment>().ReverseMap();
-            ////configuration.CreateMap<SubscriptionPaymentListDto, SubscriptionPayment>().ReverseMap();
-            ////configuration.CreateMap<SubscriptionPayment, SubscriptionPaymentInfoDto>();
-            ////configuration.CreateMap<Permission, FlatPermissionDto>();
-            ////configuration.CreateMap<Permission, FlatPermissionWithLevelDto>();
-            ////configuration.CreateMap<ApplicationLanguage, ApplicationLanguageEditDto>();
-            ////configuration.CreateMap<ApplicationLanguage, ApplicationLanguageListDto>();
-            ////configuration.CreateMap<NotificationDefinition, NotificationSubscriptionWithDisplayNameDto>();
-            ////configuration.CreateMap<ApplicationLanguage, ApplicationLanguageEditDto>().ForMember((ApplicationLanguageEditDto ldto) => ldto.IsEnabled, delegate (IMemberConfigurationExpression<ApplicationLanguage, ApplicationLanguageEditDto, bool> options)
-            ////{
-            ////	options.MapFrom((ApplicationLanguage l) => !l.IsDisabled);
-            ////});
-            ////configuration.CreateMap<Tenant, RecentTenant>();
-            ////configuration.CreateMap<Tenant, TenantLoginInfoDto>();
-            ////configuration.CreateMap<Tenant, TenantListDto>();
-            ////configuration.CreateMap<TenantEditDto, Tenant>().ReverseMap();
-            ////configuration.CreateMap<CurrentTenantInfoDto, Tenant>().ReverseMap();
-            configuration.CreateMap<User, UserEditDto>().ForMember((UserEditDto dto) => dto.Password, delegate (IMemberConfigurationExpression<User, UserEditDto, string> options)
+			//configuration.CreateMap<DM_NganHang, DM_NganHangDto>();
+			////configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
+			////configuration.CreateMap<SingleLineStringInputType, FeatureInputTypeDto>();
+			////configuration.CreateMap<ComboboxInputType, FeatureInputTypeDto>();
+			////configuration.CreateMap<IInputType, FeatureInputTypeDto>().Include<CheckboxInputType, FeatureInputTypeDto>().Include<SingleLineStringInputType, FeatureInputTypeDto>()
+			////	.Include<ComboboxInputType, FeatureInputTypeDto>();
+			////configuration.CreateMap<StaticLocalizableComboboxItemSource, LocalizableComboboxItemSourceDto>();
+			////configuration.CreateMap<ILocalizableComboboxItemSource, LocalizableComboboxItemSourceDto>().Include<StaticLocalizableComboboxItemSource, LocalizableComboboxItemSourceDto>();
+			////configuration.CreateMap<LocalizableComboboxItem, LocalizableComboboxItemDto>();
+			////configuration.CreateMap<ILocalizableComboboxItem, LocalizableComboboxItemDto>().Include<LocalizableComboboxItem, LocalizableComboboxItemDto>();
+			////configuration.CreateMap<ChatMessage, ChatMessageDto>();
+			////configuration.CreateMap<FlatFeatureSelectDto, Feature>().ReverseMap();
+			////configuration.CreateMap<Feature, FlatFeatureDto>();
+			////configuration.CreateMap<RoleEditDto, Role>().ReverseMap();
+			////configuration.CreateMap<Role, RoleListDto>();
+			////configuration.CreateMap<UserRole, UserListRoleDto>();
+			////configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
+			////configuration.CreateMap<EditionSelectDto, SubscribableEdition>().ReverseMap();
+			////configuration.CreateMap<SubscribableEdition, EditionInfoDto>();
+			////configuration.CreateMap<Edition, EditionInfoDto>().Include<SubscribableEdition, EditionInfoDto>();
+			////configuration.CreateMap<Edition, EditionListDto>();
+			////configuration.CreateMap<Edition, EditionEditDto>();
+			////configuration.CreateMap<Edition, SubscribableEdition>();
+			////configuration.CreateMap<Edition, EditionSelectDto>();
+			////configuration.CreateMap<SubscriptionPaymentDto, SubscriptionPayment>().ReverseMap();
+			////configuration.CreateMap<SubscriptionPaymentListDto, SubscriptionPayment>().ReverseMap();
+			////configuration.CreateMap<SubscriptionPayment, SubscriptionPaymentInfoDto>();
+			////configuration.CreateMap<Permission, FlatPermissionDto>();
+			////configuration.CreateMap<Permission, FlatPermissionWithLevelDto>();
+			////configuration.CreateMap<ApplicationLanguage, ApplicationLanguageEditDto>();
+			////configuration.CreateMap<ApplicationLanguage, ApplicationLanguageListDto>();
+			////configuration.CreateMap<NotificationDefinition, NotificationSubscriptionWithDisplayNameDto>();
+			////configuration.CreateMap<ApplicationLanguage, ApplicationLanguageEditDto>().ForMember((ApplicationLanguageEditDto ldto) => ldto.IsEnabled, delegate (IMemberConfigurationExpression<ApplicationLanguage, ApplicationLanguageEditDto, bool> options)
+			////{
+			////	options.MapFrom((ApplicationLanguage l) => !l.IsDisabled);
+			////});
+			////configuration.CreateMap<Tenant, RecentTenant>();
+			////configuration.CreateMap<Tenant, TenantLoginInfoDto>();
+			////configuration.CreateMap<Tenant, TenantListDto>();
+			////configuration.CreateMap<TenantEditDto, Tenant>().ReverseMap();
+			////configuration.CreateMap<CurrentTenantInfoDto, Tenant>().ReverseMap();
+			configuration.CreateMap<User, UserEditDto>().ForMember((UserEditDto dto) => dto.Password, delegate (IMemberConfigurationExpression<User, UserEditDto, string> options)
             {
                 options.Ignore();
             }).ReverseMap()
@@ -373,7 +374,7 @@ namespace MyCompanyName.AbpZeroTemplate
             ////configuration.CreateMap<FriendCacheItem, FriendDto>();
             configuration.CreateMap<OrganizationUnit, CustomOrganizationUnitDto>();
 
-			//////////////////////////////////////////////////////
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			//  datdd
 			configuration.CreateMap<GetAllTasksInput, AppTask>().ReverseMap();

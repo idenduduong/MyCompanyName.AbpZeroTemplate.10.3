@@ -3,6 +3,9 @@
   <Import Project="..\..\common.props"></Import>
 
   <PropertyGroup>
+	<LangVersion>8.0</LangVersion>
+	<NullableContextOptions>enable</NullableContextOptions>
+	  
     <TargetFramework>net5.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AssemblyName>MyCompanyName.AbpZeroTemplate.Application</AssemblyName>
@@ -29,6 +32,7 @@
   <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore.EFPlus" Version="6.3.1" />
     <PackageReference Include="DevExpress.Xpo" Version="21.1.4" />
+    <PackageReference Include="EPPlus" Version="5.7.3" />
     <PackageReference Include="NPOI" Version="2.5.3" />
   </ItemGroup>
 

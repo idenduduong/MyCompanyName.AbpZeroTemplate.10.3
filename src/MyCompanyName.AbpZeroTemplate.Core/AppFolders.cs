@@ -7,5 +7,13 @@ namespace MyCompanyName.AbpZeroTemplate
         public string SampleProfileImagesFolder { get; set; }
 
         public string WebLogsFolder { get; set; }
+
+        public string TempFileDownloadFolder { get; set; }
+
+        //  crmdemo
+
+        public string TemplateFolder { get; set; }
+
+        public string ImportDataFolder { get; set; }
     }
 }

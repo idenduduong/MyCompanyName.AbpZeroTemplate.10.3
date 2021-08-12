@@ -1,0 +1,60 @@
+{
+  "_args": [
+    [
+      "jquery-resizable@1.0.6",
+      "D:\\projects\\tech\\dev\\spa\\SourceCode\\src\\crmdemo.Web.Mvc"
+    ]
+  ],
+  "_from": "jquery-resizable@1.0.6",
+  "_id": "jquery-resizable@1.0.6",
+  "_inBundle": false,
+  "_integrity": "sha1-4vW/xHGgi7+Pvu7qFWqOfJdU5nw=",
+  "_location": "/jquery-resizable",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "jquery-resizable@1.0.6",
+    "name": "jquery-resizable",
+    "escapedName": "jquery-resizable",
+    "rawSpec": "1.0.6",
+    "saveSpec": null,
+    "fetchSpec": "1.0.6"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/jquery-resizable/-/jquery-resizable-1.0.6.tgz",
+  "_spec": "1.0.6",
+  "_where": "D:\\projects\\tech\\dev\\spa\\SourceCode\\src\\crmdemo.Web.Mvc",
+  "author": {
+    "name": "Tanner",
+    "url": "http://tanner.zone"
+  },
+  "bugs": {
+    "url": "https://github.com/tannernetwork/resizable/issues"
+  },
+  "description": "jQuery plugin for resizable elements",
+  "files": [
+    "resizable.js",
+    "resizable.css",
+    "LICENSE",
+    "README.md"
+  ],
+  "homepage": "https://github.com/tannernetwork/resizable",
+  "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery"
+  ],
+  "license": "MIT",
+  "main": "resizable.js",
+  "name": "jquery-resizable",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tannernetwork/resizable.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.6"
+}

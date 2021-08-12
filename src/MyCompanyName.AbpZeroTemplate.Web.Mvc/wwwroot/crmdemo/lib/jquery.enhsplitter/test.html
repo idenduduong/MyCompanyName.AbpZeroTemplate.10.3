@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>jQuery Splitter Features Test</title>
+    <meta name="Description" content="jQuery Splitter Demo"/>
+    <link rel="shortcut icon" href=""/>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.enhsplitter.js"></script>
+    <link href="css/jquery.enhsplitter.css" rel="stylesheet"/>
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            font: normal 13px Arial, Helvetica, sans-serif;
+            margin: 1em;
+        }
+
+        hr {
+            border-top: 4px solid black;
+            height: 0;
+        }
+
+        .splitter_panel > div {
+            padding: 0 1em;
+        }
+
+        .box {
+            margin-top: 2em;
+            border-top: 4px solid black;
+            padding: 1em;
+        }
+
+        .box .panel {
+            width: 50%;
+            border: 4px solid slateblue;
+        }
+
+        .box .info {
+            width: 40%;
+            float: right;
+            margin-right: 5%;
+        }
+
+        .box .info code {
+            display: block;
+            font-size: 90%;
+            margin-bottom: 0.5em;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>jquery.enhsplitter Features Tests</h1>
+
+<div class="box">
+    <div class="info">
+        <code>.enhsplitter();</code>
+        Basic splitter, default options.
+    </div>
+    <div id="test1" class="panel" style="background-color: #e7e3ff; width: 300px;">
+        <div style="">One</div>
+        <div style="">Two</div>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('#test1').enhsplitter();
+    });
+</script>
+
+<div class="box">
+    <div class="info">
+        <code>.enhsplitter({height: '4em', handle: 'none'});</code>
+    </div>
+    <div id="test2" class="panel" style="background-color: #e7e3ff;; width: 400px;">
+        <div style="">One</div>
+        <div style="">Two</div>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('#test2').enhsplitter({height: '4em', handle: 'none'});
+    });
+</script>
+
+<div class="box">
+    <div class="info">
+        <code>.enhsplitter({limit: 0, handle: 'block'});</code>
+        Bar should be able to go all the way to either side, but should not overlap borders.
+    </div>
+    <div id="test3" class="panel" style="background-color: #e7e3ff;; width: 300px;">
+        <div style="">One</div>
+        <div style="">Two</div>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('#test3').enhsplitter({limit: 0, handle: 'block'});
+    });
+</script>
+
+<div class="box">
+    <div class="info">
+        <code>.enhsplitter({orientation: 'horizontal', height: 300, position: '5%', limit: 30});</code>
+        Attempt to make the starting position smaller than the defined limit. The splitter should override this,
+        leaving the text in the first panel visible.
+
+    </div>
+    <div id="test4" class="panel" style="background-color: #e7e3ff;; width: 100px;">
+        <div style="">One</div>
+        <div style="">Two</div>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('#test4').enhsplitter({orientation: 'horizontal', height: 300, position: '3%', limit: 30});
+    });
+</script>
+
+<div class="box">
+    <div class="info">
+        <code>.enhsplitter({limit: -10, position: '120%'});</code>
+        Attempt to break limit and position settings. Splitter should start within the container and remain unable to
+        go beyond its limits.
+    </div>
+    <div id="test5" class="panel" style="background-color: #e7e3ff;; width: 550px;">
+        <div style="">One</div>
+        <div style="">Two</div>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('#test5').enhsplitter({limit: -10, position: '120%'});
+    });
+</script>
+
+<div class="box">
+    <div class="info">
+        <code>.enhsplitter({handle: 'bar'});</code>
+        Bar style handle.
+    </div>
+    <div id="test6" class="panel" style="background-color: #e7e3ff;; width: 486px;">
+        <div style="">One</div>
+        <div style="">Two</div>
+    </div>
+</div>
+<script>
+    jQuery(function ($) {
+        $('#test6').enhsplitter({handle: 'bar'});
+    });
+</script>
+
+
+</body>
+</html>

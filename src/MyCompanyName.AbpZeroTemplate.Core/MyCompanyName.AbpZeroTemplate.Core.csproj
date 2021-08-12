@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Authorization\Users\OrganizationUnit.cs" />
     <Compile Remove="DM_DoiTuongs\DM_DoiTuong.cs" />
   </ItemGroup>
 

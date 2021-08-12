@@ -1,0 +1,36 @@
+{
+  "name": "hiltonjanfield/jquery.enhsplitter",
+  "title": "jQuery Enhanced Splitter",
+  "description": "Creates a movable splitter to separate content and let the user resize at will, with optional quick-hide handles.",
+  "keywords": [
+    "splitter",
+    "ui",
+    "widget",
+    "resize"
+  ],
+  "authors": [
+    {
+      "name": "Hilton Janfield",
+      "email": "hilton@janfield.ca"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "LGPLv3",
+      "url": "http://www.gnu.org/licenses/lgpl.html"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hiltonjanfield/jquery.enhsplitter.git"
+  },
+  "homepage": "https://github.com/hiltonjanfield/jquery.enhsplitter",
+  "bugs": "https://github.com/hiltonjanfield/jquery.enhsplitter/issues",
+  "dependencies": {
+    "jquery": ">=2.1"
+  },
+  "main": [
+    "js/jquery.enhsplitter.js",
+    "css/jquery.enhsplitter.css"
+  ]
+}

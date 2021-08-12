@@ -38,6 +38,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
         //  crmdemo
+
         //public virtual DbSet<Release> Releases { get; set; }
 
         //public virtual DbSet<RoleProcessStatus> RoleProcessStatuses { get; set; }
@@ -267,8 +268,9 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<Product> Products { get; set; }
 
-        public virtual DbSet<DM_DoiTuong> DM_DoiTuong { get; set; }
 
+        public virtual DbSet<DM_DoiTuong> DM_DoiTuong { get; set; }
+        public virtual DbSet<CustomOrganizationUnit> CustomOrganizationUnit { get; set; }
         //public virtual DbSet<MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs> DM_NhomDoiTuongs { get; set; }
 
         public virtual DbSet<Phone> Phones { get; set; }
@@ -359,6 +361,10 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                        {
                            d.HasIndex(e => new { e.TenantId });
                        });
+            //modelBuilder.Entity<CustomOrganizationUnit>(d =>
+            //           {
+            //               d.HasIndex(e => new { e.TenantId });
+            //           });
             //modelBuilder.Entity<DM_NhomDoiTuongs>(d =>
             //           {
             //               d.HasIndex(e => new { e.TenantId });
