@@ -118,7 +118,8 @@ namespace MyCompanyName.AbpZeroTemplate
 			//configuration.CreateMap<Voucher, VoucherDto>();
 			//configuration.CreateMap<CreateOrEditDM_NgheNghiepDto, DM_NgheNghiep>();
 			//configuration.CreateMap<DM_NgheNghiep, DM_NgheNghiepDto>();
-			configuration.CreateMap<CustomOrganizationUnit, CustomOrganizationUnitDto>();
+			configuration.CreateMap<CustomOrganizationUnitDto, CustomOrganizationUnit>().ReverseMap();
+			configuration.CreateMap<CustomOrganizationUnit, OrganizationUnitDto>().ReverseMap();
 			//configuration.CreateMap<CreateOrEditQuanLyKhieuNaiDto, QuanLyKhieuNai>();
 			//configuration.CreateMap<QuanLyKhieuNai, QuanLyKhieuNaiDto>();
 			//configuration.CreateMap<CreateOrEditHappyCallDto, HappyCall>();

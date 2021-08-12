@@ -62,10 +62,10 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 			_roleManager = roleManager;
 		}
 
-		public async Task<ListResultDto<OrganizationUnitDto>> GetOrganizationUnits()
-		//public async Task<ListResultDto<CustomOrganizationUnitDto>> GetOrganizationUnits()
+		//public async Task<ListResultDto<OrganizationUnitDto>> GetOrganizationUnits()
+		public async Task<ListResultDto<CustomOrganizationUnitDto>> GetOrganizationUnits()
 		{
-			var organizationUnits = await _customOrganizationUnitRepository.GetAllListAsync();
+			var customOrganizationUnits = await _customOrganizationUnitRepository.GetAllListAsync();
 
 			var organizationUnitMemberCounts = await _userOrganizationUnitRepository.GetAll()
 				.GroupBy(x => x.OrganizationUnitId)
@@ -83,67 +83,40 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 					count = groupedRoles.Count()
 				}).ToDictionaryAsync(x => x.organizationUnitId, y => y.count);
 
-			var listOrganizationUnitDto = new ListResultDto<OrganizationUnitDto>(
-				organizationUnits.Select(ou =>
+			var listCustomOrganizationUnitDto = new ListResultDto<CustomOrganizationUnitDto>(
+				customOrganizationUnits.Select(ou =>
 				{
-					var organizationUnitDto = ObjectMapper.Map<OrganizationUnitDto>(ou);
-					organizationUnitDto.MemberCount = organizationUnitMemberCounts.ContainsKey(ou.Id) ? organizationUnitMemberCounts[ou.Id] : 0;
-					organizationUnitDto.RoleCount = organizationUnitRoleCounts.ContainsKey(ou.Id) ? organizationUnitRoleCounts[ou.Id] : 0;
-					return organizationUnitDto;
+					var customOrganizationUnitDto = ObjectMapper.Map<CustomOrganizationUnitDto>(ou);
+					customOrganizationUnitDto.MemberCount = organizationUnitMemberCounts.ContainsKey(ou.Id) ? organizationUnitMemberCounts[ou.Id] : 0;
+					customOrganizationUnitDto.RoleCount = organizationUnitRoleCounts.ContainsKey(ou.Id) ? organizationUnitRoleCounts[ou.Id] : 0;
+					return customOrganizationUnitDto;
 				}).ToList());
 
-			return listOrganizationUnitDto;
+			return listCustomOrganizationUnitDto;
 
-			//try
-			//{
-			//	////	ou
-			//	////var customOrganizationUnit = _customOrganizationUnitRepository.GetAll();
-			//	//var customOrganizationUnit = _organizationUnitRepository.GetAllListAsync();
+			#region crm error
+			//try { 
+			//    return new ListResultDto<CustomOrganizationUnitDto>((await (from ou in _customOrganizationUnitRepository.GetAll()
+			//                                                                join uou in _userOrganizationUnitRepository.GetAll() on ou.Id equals uou.OrganizationUnitId into g
+			//                                                                orderby ou.UnitCode
+			//                                                                select new
+			//                                                                {
+			//                                                                    ou = ou,
+			//                                                                    memberCount = g.Count()
+			//                                                                }).ToListAsync()).Select(item =>
+			//                                                                {
+			//                                                                    CustomOrganizationUnitDto customOrganizationUnitDto = base.ObjectMapper.Map<CustomOrganizationUnitDto>(item.ou);
+			//                                                                    customOrganizationUnitDto.MemberCount = item.memberCount;
+			//                                                                    return customOrganizationUnitDto;
+			//                                                                }).ToList());
 
-			//	////	uou
-			//	//var userOrganizationUnitRepository = await _userOrganizationUnitRepository.GetAll()
-			//	//	.GroupBy(x => x.OrganizationUnitId)
-			//	//	.Select(groupedUsers => new
-			//	//	{
-			//	//		organizationUnitId = groupedUsers.Key,
-			//	//		count = groupedUsers.Count()
-			//	//	}).ToDictionaryAsync(x => x.organizationUnitId, y => y.count);
-
-			//	//var listCustomOrganizationUnitDto = ( 
-			//	//										(
-			//	//											from ou in customOrganizationUnit
-			//	//											join uou in userOrganizationUnitRepository
-			//	//											on ou.Id equals uou.Key into g
-			//	//											orderby ou.Id
-			//	//											select new
-			//	//											{
-			//	//												ou = ou,
-			//	//												memberCount = g.Count()
-			//	//											}
-			//	//										)	
-			//	//									);
-
-			//	//error//////////////////////////////////////////////////////////////
-
-			//	return new ListResultDto<CustomOrganizationUnitDto>((await (from ou in _customOrganizationUnitRepository.GetAll()
-			//																join uou in _userOrganizationUnitRepository.GetAll() on ou.Id equals uou.OrganizationUnitId into g
-			//																orderby ou.UnitCode
-			//																select new
-			//																{
-			//																	ou = ou,
-			//																	memberCount = g.Count()
-			//																}).ToListAsync()).Select(item =>
-			//																{
-			//																	CustomOrganizationUnitDto customOrganizationUnitDto = base.ObjectMapper.Map<CustomOrganizationUnitDto>(item.ou);
-			//																	customOrganizationUnitDto.MemberCount = item.memberCount;
-			//																	return customOrganizationUnitDto;
-			//																}).ToList());
-				
 			//}
 			//catch (Exception ex)
 			//{
-			//	return new ListResultDto<CustomOrganizationUnitDto>();
+			//    return new ListResultDto<CustomOrganizationUnitDto>();
 			//}
+			#endregion
+
 		}
 
 		public async Task<PagedResultDto<OrganizationUnitUserListDto>> GetOrganizationUnitUsers(GetOrganizationUnitUsersInput input)
