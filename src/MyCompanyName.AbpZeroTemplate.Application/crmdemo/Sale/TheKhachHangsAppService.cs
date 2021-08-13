@@ -51,6 +51,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Dto;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Common.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Event;
+using MyCompanyName.AbpZeroTemplate.Authorization;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
 {
@@ -178,6 +179,10 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
         //public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input)
         {
             var input = new GetAllTheKhachHangsInput();
+            input.Sorting = "theKhachHang.creationTime desc";
+            input.SkipCount = 0;
+            input.MaxResultCount = 10;
+
             int? loaiThe = null;
             if (input.IsTheLan.HasValue)
             {
@@ -191,13 +196,10 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
                 }
             }
             bool withoutFilter = string.IsNullOrWhiteSpace(input.MaTheFilter) && string.IsNullOrWhiteSpace(input.DM_DoiTuongMaFilter) && string.IsNullOrWhiteSpace(input.DM_DoiTuongPhoneFilter) && string.IsNullOrWhiteSpace(input.DM_DoiTuongCMTFilter) && string.IsNullOrWhiteSpace(input.DM_DoiTuongDiaChiFilter) && string.IsNullOrWhiteSpace(input.DM_DoiTuongTenDoiTuongFilter);
-
-            /* datdd
-             bool hasSearchFull = base.PermissionChecker.IsGranted("Pages.TheKhachHang.SearchFull");
-             bool hasLoadFull = base.PermissionChecker.IsGranted("Pages.TheKhachHang.LoadFull");
-             */
-            bool hasSearchFull  = true;
-            bool hasLoadFull    = true;
+            //await PermissionChecker.IsGrantedAsync(AppPermissions.Pages_Administration_UiCustomization)
+            bool hasSearchFull = PermissionChecker.IsGranted(AppPermissions.Pages_TheKhachHangs_SearchFull);
+            bool hasLoadFull = PermissionChecker.IsGranted(AppPermissions.Pages_TheKhachHangs_LoadFull);
+             
             var listTheKhachHangRepository = _theKhachHangRepository.GetAll();
             IQueryable <TheKhachHang> filteredTheKhachHangs = listTheKhachHangRepository
                 .WhereIf(loaiThe.HasValue, (TheKhachHang x) => x.TheGiaTri_SoLan_GiamGia == loaiThe.Value);
@@ -208,9 +210,10 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             {
                 throw new UserFriendlyException("Thao tác không hợp lệ");
             }
-            //filteredTheKhachHangs = filteredTheKhachHangs.WhereIf(!string.IsNullOrWhiteSpace(input.MaTheFilter), (TheKhachHang e) => e.MaThe.ToLower() == input.MaTheFilter.ToLower().Trim());
+            filteredTheKhachHangs = filteredTheKhachHangs.WhereIf(!string.IsNullOrWhiteSpace(input.MaTheFilter), (TheKhachHang e) => e.MaThe.ToLower() == input.MaTheFilter.ToLower().Trim());
 
             var dM_NhomTheRepository = _dM_NhomTheRepository.GetAll();
+
             var dM_DoiTuongRepository = _dM_DoiTuongRepository.GetAll();
 
             IQueryable<GetTheKhachHangForView> query = (from o in filteredTheKhachHangs
@@ -235,8 +238,21 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
                                                             DaThanhToan = o.DaThanhToan,
                                                             LaDonViThucHien = (o.ID_DonViThucHien == (long?)currentUserOrg.Id)
                                                         }).WhereIf(!string.IsNullOrWhiteSpace(input.Filter), (GetTheKhachHangForView e) => e.DM_DoiTuongCMT.ToLower().Contains(input.Filter.ToLower().Trim()) || e.DM_DoiTuongPhone.ToLower().Contains(input.Filter.ToLower().Trim()) || e.DM_DoiTuongDiaChi.ToLower().Contains(input.Filter.ToLower().Trim()) || e.TheKhachHang.MaThe.ToLower().Contains(input.Filter.ToLower().Trim()));
-            
-            return new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(input).ToListAsync());
+
+            //var Testquery = query.ToQueryString();
+
+            //var countAsync = await query.CountAsync();
+
+            //var orderBy = await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(input).ToListAsync();
+
+            var result = new PagedResultDto<GetTheKhachHangForView>();
+
+            if (query.Any())
+            {
+               result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(input).ToListAsync());
+            }
+
+            return result;
         }
 
         public static T DeepClone<T>(T obj)

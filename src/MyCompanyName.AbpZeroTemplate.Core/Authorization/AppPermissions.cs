@@ -12,6 +12,13 @@
         public const string Disable_Filters_Tenant = "Disable.Filter.Tenant";
         public const string Disable_Filters_MayHaveOrganizationUnit = "Disable.Filter.MayHaveOrganizationUnit";
 
+        public const string Pages_TheKhachHangs = "Pages.TheKhachHangs";
+        public const string Pages_TheKhachHangs_Create = "Pages.TheKhachHangs.Create";
+        public const string Pages_TheKhachHangs_Edit = "Pages.TheKhachHangs.Edit";
+        public const string Pages_TheKhachHangs_Delete = "Pages.TheKhachHangs.Delete";
+        public const string Pages_TheKhachHangs_SearchFull = "Pages.TheKhachHang.SearchFull";
+        public const string Pages_TheKhachHangs_LoadFull = "Pages.TheKhachHang.LoadFull";
+
         public const string Pages_BaseEntities = "Pages.BaseEntities";
         public const string Pages_BaseEntities_Create = "Pages.BaseEntities.Create";
         public const string Pages_BaseEntities_Edit = "Pages.BaseEntities.Edit";

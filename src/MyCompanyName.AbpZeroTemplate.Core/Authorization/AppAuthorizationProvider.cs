@@ -30,6 +30,13 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var theKhachHangs = pages.CreateChildPermission(AppPermissions.Pages_TheKhachHangs, L("TheKhachHangs"));
+            theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_Create, L("CreateTheKhachHang"));
+            theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_Edit, L("EditTheKhachHang"));
+            theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_Delete, L("DeleteTheKhachHang"));
+            theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_SearchFull, L("SearchFullTheKhachHang"));
+            theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_LoadFull, L("LoadFullTheKhachHang"));
+
             var baseEntities = pages.CreateChildPermission(AppPermissions.Pages_BaseEntities, L("BaseEntities"));
             baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Create, L("CreateNewBaseEntity"));
             baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Edit, L("EditBaseEntity"));
