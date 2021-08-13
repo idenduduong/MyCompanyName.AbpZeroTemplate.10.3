@@ -57,7 +57,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<CustomerDataRaw> CustomerDataRaws { get; set; }
 
-        //public virtual DbSet<CustomerData> CustomerDatas { get; set; }
+        public virtual DbSet<CustomerData> CustomerDatas { get; set; }
 
         public virtual DbSet<ChangeStatusFlow> ChangeStatusFlows { get; set; }
 
@@ -161,17 +161,17 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<DM_ViTri> DM_ViTris { get; set; }
 
-        //public virtual DbSet<NguonKhachHang> NguonKhachHangs { get; set; }
+        public virtual DbSet<NguonKhachHang> NguonKhachHangs { get; set; }
 
         //public virtual DbSet<DM_TyGia> DM_TyGias { get; set; }
 
-        //public virtual DbSet<DM_TrangThai> DM_TrangThais { get; set; }
+        public virtual DbSet<DM_TrangThai> DM_TrangThais { get; set; }
 
         public virtual DbSet<DM_TienTe> DM_TienTes { get; set; }
 
         //public virtual DbSet<DM_ThueSuat> DM_ThueSuats { get; set; }
 
-        //public virtual DbSet<DM_QuanHuyen> DM_QuanHuyens { get; set; }
+        public virtual DbSet<DM_QuanHuyen> DM_QuanHuyens { get; set; }
 
         //public virtual DbSet<DM_PhanLoaiHangHoaDichVu> DM_PhanLoaiHangHoaDichVus { get; set; }
 
@@ -189,7 +189,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<DM_DonVi> DM_DonVis { get; set; }
 
-        //public virtual DbSet<DM_TinhThanh> DM_TinhThanhs { get; set; }
+        public virtual DbSet<DM_TinhThanh> DM_TinhThanhs { get; set; }
 
         //public virtual DbSet<DM_VungMien> DM_VungMiens { get; set; }
 
@@ -197,7 +197,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<DM_LoaiPhong> DM_LoaiPhongs { get; set; }
 
-        //public virtual DbSet<DM_QuocGia> DM_QuocGias { get; set; }
+        public virtual DbSet<DM_QuocGia> DM_QuocGias { get; set; }
 
         //public virtual DbSet<DM_NganHang> DM_NganHangs { get; set; }
         
