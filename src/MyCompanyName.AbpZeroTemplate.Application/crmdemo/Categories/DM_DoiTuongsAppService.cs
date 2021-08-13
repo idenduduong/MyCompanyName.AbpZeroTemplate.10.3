@@ -54,7 +54,7 @@ using MyCompanyName.AbpZeroTemplate.Storage;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 {
-	[AbpAuthorize(new string[] { "Pages.DM_DoiTuongs" })]
+	//[AbpAuthorize(new string[] { "Pages.DM_DoiTuongs" })]
 	public class DM_DoiTuongsAppService : AbpZeroTemplateAppServiceBase, IDM_DoiTuongsAppService, IApplicationService, ITransientDependency, IEventHandler<OrganizationUnitUpdateEvent>, IEventHandler
 	{
 		private const int MaxDoiTuongImageBytes = 1048576;
@@ -117,13 +117,20 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			_customerDatasRepository = customerDatasRepository;
 		}
 
-		[HttpPost]
-		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll(GetAllDM_DoiTuongsInput input)
+		[HttpGet]
+		//[HttpPost]
+		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll()
 		{
+			var input = new GetAllDM_DoiTuongsInput();
 			CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
-			bool withoutFilter = string.IsNullOrWhiteSpace(input.MaDoiTuongFilter) && string.IsNullOrWhiteSpace(input.TenDoiTuongFilter) && string.IsNullOrWhiteSpace(input.DienThoaiFilter) && string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter);
-			bool hasSearchFull = base.PermissionChecker.IsGranted("Pages.DM_DoiTuongs.SearchFull");
-			bool hasLoadFull = base.PermissionChecker.IsGranted("Pages.DM_DoiTuongs.LoadFull");
+			//bool withoutFilter = string.IsNullOrWhiteSpace(input.MaDoiTuongFilter) && string.IsNullOrWhiteSpace(input.TenDoiTuongFilter) && string.IsNullOrWhiteSpace(input.DienThoaiFilter) && string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter);
+			//bool hasSearchFull = base.PermissionChecker.IsGranted("Pages.DM_DoiTuongs.SearchFull");
+			//bool hasLoadFull = base.PermissionChecker.IsGranted("Pages.DM_DoiTuongs.LoadFull");
+			
+			bool withoutFilter = true;
+			bool hasSearchFull = true;
+			bool hasLoadFull = true;
+
 			if (await _userRepository.FirstOrDefaultAsync((User x) => x.Id == AbpSession.GetUserId()) == null || currentUserOrg == null)
 			{
 				throw new UserFriendlyException("Thao tác không hợp lệ");

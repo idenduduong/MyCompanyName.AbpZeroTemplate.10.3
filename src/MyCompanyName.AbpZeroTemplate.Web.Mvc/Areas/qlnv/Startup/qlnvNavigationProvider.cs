@@ -24,8 +24,16 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                 )
                 .AddItem(new MenuItemDefinition(
                         qlnvPageNames.Host.Dashboard,
-                        L("AppTasks"),
+                        L("TheKhachHangs"),
                         url: "qlnv/TheKhachHangs",
+                        icon: "flaticon-line-graph",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        qlnvPageNames.Host.Dashboard,
+                        L("DM_DoiTuongs"),
+                        url: "qlnv/DM_DoiTuongs",
                         icon: "flaticon-line-graph",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
                     )

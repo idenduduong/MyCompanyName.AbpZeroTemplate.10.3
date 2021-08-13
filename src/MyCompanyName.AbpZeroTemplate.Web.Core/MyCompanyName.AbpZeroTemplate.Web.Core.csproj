@@ -18,6 +18,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="crmdemo\Web\Helpers\FilesHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
 	<ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.GraphQL\MyCompanyName.AbpZeroTemplate.GraphQL.csproj" />																													
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Application\MyCompanyName.AbpZeroTemplate.Application.csproj" />
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.EntityFrameworkCore\MyCompanyName.AbpZeroTemplate.EntityFrameworkCore.csproj" />
@@ -50,6 +54,11 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.Abstractions" Version="5.0.8" />
     
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="crmdemo\Web\Helpers\" />
   </ItemGroup>
 
 </Project>
