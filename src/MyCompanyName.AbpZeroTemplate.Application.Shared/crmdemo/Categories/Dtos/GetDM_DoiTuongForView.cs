@@ -1,10 +1,15 @@
 ﻿// crmdemo.Categories.Dtos.GetDM_DoiTuongForView
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
+using System;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos
 {
 	public class GetDM_DoiTuongForView
 	{
+		public DateTime? CreateTime { get; set; }
+
+		public DateTime? LastModificationTime { get; set; }
+
 		public DM_DoiTuongDto DM_DoiTuong { get; set; }
 
 		public string DM_NhomDoiTuongTenNhom { get; set; }

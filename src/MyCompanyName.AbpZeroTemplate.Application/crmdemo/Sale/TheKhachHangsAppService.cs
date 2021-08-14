@@ -248,8 +248,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             var Testquery = query.OrderByDescending(q=>q.NgayMua).ToQueryString();
             //debug
             //Task<int> countAsync = query.CountAsync();
-            int countAsync = query.Count();
-
+            int count = query.Count();
 
             //Task<List<GetTheKhachHangForView>> list = query.ToListAsync();
 
@@ -270,7 +269,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             if (query.Any())
             {
                 //debug
-                result = new PagedResultDto<GetTheKhachHangForView>(countAsync, list);
+                result = new PagedResultDto<GetTheKhachHangForView>(count, list);
                 //result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.ToListAsync());
             }
 

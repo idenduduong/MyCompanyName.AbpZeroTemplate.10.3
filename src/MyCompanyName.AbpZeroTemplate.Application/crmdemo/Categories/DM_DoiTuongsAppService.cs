@@ -36,6 +36,7 @@ using Abp.UI;
 //using crmdemo.Temp;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 using MyCompanyName.AbpZeroTemplate.Common;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
@@ -117,25 +118,25 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			_customerDatasRepository = customerDatasRepository;
 		}
 
-		[HttpGet]
-		//[HttpPost]
-		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll()
+		//[HttpGet]
+		[HttpPost]
+		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll(GetAllDM_DoiTuongsInput input)
 		{
-			var input = new GetAllDM_DoiTuongsInput();
-			input.SkipCount = 0;
-			input.MaxResultCount = 100;
+			//var input = new GetAllDM_DoiTuongsInput();
+			//input.SkipCount = 0;
+			//input.MaxResultCount = 100;
 			//input.Sorting = "creationTime";
 
 			CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
-			//bool withoutFilter = string.IsNullOrWhiteSpace(input.MaDoiTuongFilter) && string.IsNullOrWhiteSpace(input.TenDoiTuongFilter) && string.IsNullOrWhiteSpace(input.DienThoaiFilter) && string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter);
-			//bool hasSearchFull = base.PermissionChecker.IsGranted("Pages.DM_DoiTuongs.SearchFull");
-			//bool hasLoadFull = base.PermissionChecker.IsGranted("Pages.DM_DoiTuongs.LoadFull");
-			
-			bool withoutFilter = true;
-			bool hasSearchFull = true;
-			bool hasLoadFull = true;
+            bool withoutFilter = string.IsNullOrWhiteSpace(input.MaDoiTuongFilter) && string.IsNullOrWhiteSpace(input.TenDoiTuongFilter) && string.IsNullOrWhiteSpace(input.DienThoaiFilter) && string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter);
+            bool hasSearchFull = base.PermissionChecker.IsGranted(AppPermissions.Pages_Dm_DoiTuongs_SearchFull);
+            bool hasLoadFull = base.PermissionChecker.IsGranted(AppPermissions.Pages_Dm_DoiTuongs_LoadFull);
 
-			if (await _userRepository.FirstOrDefaultAsync((User x) => x.Id == AbpSession.GetUserId()) == null || currentUserOrg == null)
+            //bool withoutFilter = true;
+            //bool hasSearchFull = true;
+            //bool hasLoadFull = true;
+
+            if (await _userRepository.FirstOrDefaultAsync((User x) => x.Id == AbpSession.GetUserId()) == null || currentUserOrg == null)
 			{
 				throw new UserFriendlyException("Thao tác không hợp lệ");
 			}
@@ -165,6 +166,8 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 													   where (!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)) && s9.Lineage.Contains(currentUserOrg.Lineage)) || !(!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)))
 													   select new GetDM_DoiTuongForView
 													   {
+														   CreateTime = o.CreationTime,
+														   LastModificationTime = o.CreationTime,
 														   DM_DoiTuong = ObjectMapper.Map<DM_DoiTuongDto>(o),
 														   DM_NhomDoiTuongTenNhom = ((s1 == null) ? "" : s1.TenNhom.ToString()),
 														   DM_TinhThanhTenTinhThanh = ((s2 == null) ? "" : s2.TenTinhThanh.ToString()),
@@ -182,18 +185,34 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 			//return new PagedResultDto<GetDM_DoiTuongForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "dM_DoiTuong.creationTime desc").PageBy(input).ToListAsync());
 
-			var strQuery = query.ToQueryString();
+			var strquery = query.ToQueryString();
+
+			int count = query.Count();
+			List<GetDM_DoiTuongForView> list;
+
+			if (input.Sorting == null)
+			{
+				list = query.OrderByDescending(q => q.CreateTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+				//list = query.PageBy(10, 10).ToList();
+			}
+			else
+			{
+				list = query.OrderBy(q => q.LastModificationTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+			}
 
 			var result = new PagedResultDto<GetDM_DoiTuongForView>();
 
-			var count = await query.CountAsync();
-			
-			List<GetDM_DoiTuongForView> listExecutor = query.ToList();
-
 			if (query.Any())
 			{
-				result = new PagedResultDto<GetDM_DoiTuongForView>(count, listExecutor);
+				//debug
+				result = new PagedResultDto<GetDM_DoiTuongForView>(count, list);
+				//result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.ToListAsync());
 			}
+
+			//if (query.Any())
+			//{
+			//    result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(1, 100).ToListAsync());
+			//}
 
 			return result;
 		}

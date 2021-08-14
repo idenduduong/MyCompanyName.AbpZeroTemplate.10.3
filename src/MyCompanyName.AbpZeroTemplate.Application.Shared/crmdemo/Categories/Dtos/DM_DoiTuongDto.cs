@@ -1,6 +1,7 @@
 ﻿// crmdemo.Categories.Dtos.DM_DoiTuongDto
 using System;
 using Abp.Application.Services.Dto;
+using AutoMapper;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos
 {
@@ -100,6 +101,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos
 
 		public Guid? NguonKhachHangId { get; set; }
 
+		[IgnoreMap]
 		public Guid? DM_QuocGiaId { get; set; }
 
 		public int? DM_TrangThaiId { get; set; }

@@ -30,7 +30,14 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
-            var theKhachHangs = pages.CreateChildPermission(AppPermissions.Pages_TheKhachHangs, L("TheKhachHangs"));
+            var dm_DoiTuongs = pages.CreateChildPermission(AppPermissions.Pages_Dm_DoiTuongs, L("DmDoiTuong"));
+            dm_DoiTuongs.CreateChildPermission(AppPermissions.Pages_Dm_DoiTuongs_Create, L("CreateDmDoiTuong"));
+            dm_DoiTuongs.CreateChildPermission(AppPermissions.Pages_Dm_DoiTuongs_Edit, L("EditDmDoiTuongs"));
+            dm_DoiTuongs.CreateChildPermission(AppPermissions.Pages_Dm_DoiTuongs_Delete, L("DeleteDmDoiTuong"));
+            dm_DoiTuongs.CreateChildPermission(AppPermissions.Pages_Dm_DoiTuongs_SearchFull, L("SearchFullDmDoiTuong"));
+            dm_DoiTuongs.CreateChildPermission(AppPermissions.Pages_Dm_DoiTuongs_LoadFull, L("LoadFullDmDoiTuong"));
+
+            var theKhachHangs = pages.CreateChildPermission(AppPermissions.Pages_TheKhachHangs, L("TheKhachHang"));
             theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_Create, L("CreateTheKhachHang"));
             theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_Edit, L("EditTheKhachHang"));
             theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_Delete, L("DeleteTheKhachHang"));
