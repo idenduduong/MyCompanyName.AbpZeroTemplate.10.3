@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
+using System.Transactions;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Auditing;
@@ -185,14 +186,23 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 			//return new PagedResultDto<GetDM_DoiTuongForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "dM_DoiTuong.creationTime desc").PageBy(input).ToListAsync());
 
-			var strquery = query.ToQueryString();
-
-			int count = query.Count();
+			//var strquery = query.ToQueryString();
+			//.AsNoTracking()
+			//this.Database.ExecuteSqlCommand("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;");
+			//SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+			int count = query.AsNoTracking().Count();
 			List<GetDM_DoiTuongForView> list;
-
+			
 			if (input.Sorting == null)
 			{
-				list = query.OrderByDescending(q => q.CreateTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+				//using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
+				//		{
+				//			IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted
+				//		})
+				//)
+				//{
+					list = query.AsNoTracking().OrderByDescending(q => q.CreateTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+				//}
 				//list = query.PageBy(10, 10).ToList();
 			}
 			else
