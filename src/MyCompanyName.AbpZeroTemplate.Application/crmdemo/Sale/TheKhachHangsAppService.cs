@@ -17,6 +17,10 @@ using Abp.EntityHistory;
 using Abp.Events.Bus;
 using Abp.Linq.Extensions;
 using Abp.Runtime.Session;
+
+using System.Linq.Dynamic;
+using System.Linq.Dynamic.Core;
+
 using Abp.UI;
 using MyCompanyName.AbpZeroTemplate.crmdemo;
 //using crmdemo.Accounting;
@@ -173,15 +177,15 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             _invoiceDetailRepository = invoiceDetailRepository;
         }
 
-        [HttpGet]
-        //[httpPost]
-        public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll()
-        //public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input)
+        //[HttpGet]
+        [HttpPost]
+        //public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll()
+        public async Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input)
         {
-            var input = new GetAllTheKhachHangsInput();
-            input.Sorting = "theKhachHang.creationTime desc";
-            input.SkipCount = 0;
-            input.MaxResultCount = 10;
+            //var input = new GetAllTheKhachHangsInput();
+            //input.Sorting = null;
+            //input.SkipCount = 1;
+            //input.MaxResultCount = 100;
 
             int? loaiThe = null;
             if (input.IsTheLan.HasValue)
@@ -223,10 +227,12 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
                                                             .WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongPhoneFilter), (DM_DoiTuong e) => e.DienThoai.ToLower().Contains(input.DM_DoiTuongPhoneFilter.ToLower().Trim()))
                                                             .WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongDiaChiFilter), (DM_DoiTuong e) => e.DiaChi.ToLower().Contains(input.DM_DoiTuongDiaChiFilter.ToLower().Trim()))
                                                             .WhereIf(!string.IsNullOrWhiteSpace(input.DM_DoiTuongMaFilter), (DM_DoiTuong e) => e.MaDoiTuong.ToLower() == input.DM_DoiTuongMaFilter.ToLower().Trim()) on o.ID_KhachHang equals o2.Id into j2
-                                                        from s2 in j2
+                                                        from s2 in j2.DefaultIfEmpty()
                                                         where (!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)) && (currentUserOrg.Lineage.Contains(string.Concat("/" + ((object)o.ID_DonVi).ToString(), "/")) || currentUserOrg.Lineage.Contains(string.Concat("/" + ((object)o.ID_DonViThucHien).ToString(), "/")) || currentUserOrg.Lineage.Contains(string.Concat("/" + ((object)o.ID_DonViThuHuong).ToString(), "/")))) || !(!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)))
                                                         select new GetTheKhachHangForView
                                                         {
+                                                            NgayMua = o.NgayMua,
+                                                            LastModificationTime = o.LastModificationTime,
                                                             TheKhachHang = ObjectMapper.Map<TheKhachHangDto>(o),
                                                             DM_NhomTheTenNhomThe = ((s1 == null) ? "" : s1.TenNhomThe.ToString()),
                                                             DM_DoiTuongTenDoiTuong = ((s2 == null) ? "" : s2.TenDoiTuong.ToString()),
@@ -238,19 +244,40 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
                                                             DaThanhToan = o.DaThanhToan,
                                                             LaDonViThucHien = (o.ID_DonViThucHien == (long?)currentUserOrg.Id)
                                                         }).WhereIf(!string.IsNullOrWhiteSpace(input.Filter), (GetTheKhachHangForView e) => e.DM_DoiTuongCMT.ToLower().Contains(input.Filter.ToLower().Trim()) || e.DM_DoiTuongPhone.ToLower().Contains(input.Filter.ToLower().Trim()) || e.DM_DoiTuongDiaChi.ToLower().Contains(input.Filter.ToLower().Trim()) || e.TheKhachHang.MaThe.ToLower().Contains(input.Filter.ToLower().Trim()));
+            //debug
+            var Testquery = query.OrderByDescending(q=>q.NgayMua).ToQueryString();
+            //debug
+            //Task<int> countAsync = query.CountAsync();
+            int countAsync = query.Count();
 
-            //var Testquery = query.ToQueryString();
 
-            //var countAsync = await query.CountAsync();
+            //Task<List<GetTheKhachHangForView>> list = query.ToListAsync();
 
-            //var orderBy = await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(input).ToListAsync();
+            List<GetTheKhachHangForView> list;
+            if (input.Sorting == null)
+            {
+                list = query.OrderByDescending(q => q.NgayMua).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+            }
+            else
+            {
+                list = query.OrderBy(q => q.LastModificationTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+            }
+
+            //var orderBy = query.OrderBy("creationTime desc").ToQueryString();
 
             var result = new PagedResultDto<GetTheKhachHangForView>();
 
             if (query.Any())
             {
-               result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(input).ToListAsync());
+                //debug
+                result = new PagedResultDto<GetTheKhachHangForView>(countAsync, list);
+                //result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.ToListAsync());
             }
+
+            //if (query.Any())
+            //{
+            //    result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(1, 100).ToListAsync());
+            //}
 
             return result;
         }

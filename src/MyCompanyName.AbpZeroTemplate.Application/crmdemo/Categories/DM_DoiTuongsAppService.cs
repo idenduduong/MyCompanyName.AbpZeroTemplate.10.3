@@ -122,6 +122,10 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll()
 		{
 			var input = new GetAllDM_DoiTuongsInput();
+			input.SkipCount = 0;
+			input.MaxResultCount = 100;
+			//input.Sorting = "creationTime";
+
 			CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
 			//bool withoutFilter = string.IsNullOrWhiteSpace(input.MaDoiTuongFilter) && string.IsNullOrWhiteSpace(input.TenDoiTuongFilter) && string.IsNullOrWhiteSpace(input.DienThoaiFilter) && string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter);
 			//bool hasSearchFull = base.PermissionChecker.IsGranted("Pages.DM_DoiTuongs.SearchFull");
@@ -157,7 +161,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 													   join o8 in _dM_DoiTuongRepository.GetAll() on o.ID_NguoiGioiThieu equals o8.Id into j8
 													   from s8 in j8.DefaultIfEmpty()
 													   join o9 in _organizationUnitRepository.GetAll() on o.ID_DonViQuanLy equals o9.Id into j9
-													   from s9 in j9
+													   from s9 in j9.DefaultIfEmpty()
 													   where (!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)) && s9.Lineage.Contains(currentUserOrg.Lineage)) || !(!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)))
 													   select new GetDM_DoiTuongForView
 													   {
@@ -175,7 +179,23 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 				.WhereIf(!string.IsNullOrWhiteSpace(input.NguonKhachHangTenNguonKhachFilter), (GetDM_DoiTuongForView e) => e.NguonKhachHangTenNguonKhach.ToLower() == input.NguonKhachHangTenNguonKhachFilter.ToLower().Trim())
 				.WhereIf(!string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter), (GetDM_DoiTuongForView e) => e.DM_QuocGiaTenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
 				.WhereIf(!string.IsNullOrWhiteSpace(input.DM_TrangThaiTenTrangThaiFilter), (GetDM_DoiTuongForView e) => e.DM_TrangThaiTenTrangThai.ToLower() == input.DM_TrangThaiTenTrangThaiFilter.ToLower().Trim());
-			return new PagedResultDto<GetDM_DoiTuongForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "dM_DoiTuong.creationTime desc").PageBy(input).ToListAsync());
+
+			//return new PagedResultDto<GetDM_DoiTuongForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "dM_DoiTuong.creationTime desc").PageBy(input).ToListAsync());
+
+			var strQuery = query.ToQueryString();
+
+			var result = new PagedResultDto<GetDM_DoiTuongForView>();
+
+			var count = await query.CountAsync();
+			
+			List<GetDM_DoiTuongForView> listExecutor = query.ToList();
+
+			if (query.Any())
+			{
+				result = new PagedResultDto<GetDM_DoiTuongForView>(count, listExecutor);
+			}
+
+			return result;
 		}
 
 		[AbpAuthorize(new string[] { "Pages.DM_DoiTuongs.Edit" })]

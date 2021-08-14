@@ -63,3 +63,9 @@ Add person consts in .core.shared
 Add dbset<person> in dbcontext .entity.core
 Add-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
 Update-Database -Context 'AbpZeroTemplateDbContext'
+
+https://support.aspnetzero.com/QA/Questions/4973/Extending-Organization-Unit
+
+https://www.creative-tim.com/product/muse-vue-ant-design-dashboard
+
+https://www.jianshu.com/p/a6e9ace79345

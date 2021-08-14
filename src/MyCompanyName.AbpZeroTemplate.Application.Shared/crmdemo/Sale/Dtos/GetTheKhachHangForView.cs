@@ -1,9 +1,14 @@
 ﻿using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Dtos;
+using System;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Dtos
 {
 	public class GetTheKhachHangForView
 	{
+		public DateTime? NgayMua { get; set; }
+
+		public DateTime? LastModificationTime { get; set; }
+
 		public TheKhachHangDto TheKhachHang { get; set; }
 
 		public string DM_NhomTheTenNhomThe { get; set; }

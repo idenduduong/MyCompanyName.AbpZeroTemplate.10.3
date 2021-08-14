@@ -14,9 +14,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale
 {
 	public interface ITheKhachHangsAppService : IApplicationService, ITransientDependency
 	{
-        //Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input);
+        Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input);
 
-        Task<PagedResultDto<GetTheKhachHangForView>> GetAll();
+        //Task<PagedResultDto<GetTheKhachHangForView>> GetAll();
 
         //Task<GetTheKhachHangForEditOutput> GetTheKhachHangForEdit(EntityDto<Guid> input);
 
