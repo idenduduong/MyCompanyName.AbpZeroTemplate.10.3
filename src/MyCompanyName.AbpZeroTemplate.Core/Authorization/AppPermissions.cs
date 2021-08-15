@@ -81,6 +81,7 @@
         public const string Pages_Administration_Languages_Edit = "Pages.Administration.Languages.Edit";
         public const string Pages_Administration_Languages_Delete = "Pages.Administration.Languages.Delete";
         public const string Pages_Administration_Languages_ChangeTexts = "Pages.Administration.Languages.ChangeTexts";
+        public const string Pages_Administration_Languages_ChangeDefaultLanguage = "Pages.Administration.Languages.ChangeDefaultLanguage";
 
         public const string Pages_Administration_AuditLogs = "Pages.Administration.AuditLogs";
 

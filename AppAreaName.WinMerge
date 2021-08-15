@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<paths>
+		<left>D:\AspNetZero Core 10.4.0\aspnet-zero-core\aspnet-core\src\MyCompanyName.AbpZeroTemplate.Web.Mvc\Areas\AppAreaName\</left>
+		<right>D:\BDHN\MyCompanyName.AbpZeroTemplate.10.3\src\MyCompanyName.AbpZeroTemplate.Web.Mvc\Areas\qlnv\</right>
+		<filter>*.*</filter>
+		<subfolders>1</subfolders>
+		<left-readonly>0</left-readonly>
+		<right-readonly>0</right-readonly>
+	</paths>
+</project>

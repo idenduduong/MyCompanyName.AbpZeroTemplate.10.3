@@ -102,6 +102,7 @@ namespace MyCompanyName.AbpZeroTemplate.Localization
             await _applicationLanguageManager.RemoveAsync(AbpSession.TenantId, language.Name);
         }
 
+        [AbpAuthorize(AppPermissions.Pages_Administration_Languages_ChangeDefaultLanguage)]
         public async Task SetDefaultLanguage(SetDefaultLanguageInput input)
         {
             await _applicationLanguageManager.SetDefaultLanguageAsync(

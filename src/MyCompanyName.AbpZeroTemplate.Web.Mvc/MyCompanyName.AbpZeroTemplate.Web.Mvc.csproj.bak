@@ -1,0 +1,178 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <Import Project="..\..\common.props">
+  </Import>
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>MyCompanyName.AbpZeroTemplate.Web.Mvc</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>MyCompanyName.AbpZeroTemplate.Web.Mvc</PackageId>
+    <UserSecretsId>MyCompanyName-AbpZeroTemplate-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
+    <RootNamespace>MyCompanyName.AbpZeroTemplate.Web</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <StartupObject>
+    </StartupObject>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="App_Data\**" />
+    <Compile Remove="Areas\devexpress\Views\NewFolder\**" />
+    <Compile Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <Compile Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <Compile Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+    <Compile Remove="Services\**" />
+    <Compile Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+    <Content Remove="App_Data\**" />
+    <Content Remove="Areas\devexpress\Views\NewFolder\**" />
+    <Content Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <Content Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <Content Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+    <Content Remove="Services\**" />
+    <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+    <EmbeddedResource Remove="App_Data\**" />
+    <EmbeddedResource Remove="Areas\devexpress\Views\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+    <None Remove="App_Data\**" />
+    <None Remove="Areas\devexpress\Views\NewFolder\**" />
+    <None Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <None Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <None Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+    <None Remove="Services\**" />
+    <None Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\ActionsOverviewController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridAdvancedMasterDetailViewController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridBatchUpdateWebApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridCitiesByStateController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridCollaborativeEditingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridColumnsController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridCustomEditorsController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridCustomersController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridCustomSummariesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridEmployeesByStateController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridEmployeesValidationController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridFilteringController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridHorizontalScrollingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridMasterDetailAPIController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridMasterDetailViewController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridMultipleSortingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridRowReorderingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridSalesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridScrollingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridStatesWithCitiesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridSummariesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DataGridWebApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DiagramEmployeesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\DnDBetweenGridsController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\EmployeesTasksController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\FileManagerAzureAccessApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\FileManagerAzureProviderApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\FileManagerDBProviderApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\FileManagerImagesApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\FileManagerScriptsApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\FileUploaderAzureAccessApiController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\GeoNamesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\ListDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\ListEditingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\ListItemDraggingEditingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\PivotGridDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\SalesDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\SchedulerDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\SchedulerSignalRController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\SelectBoxEditingController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\TemperatureDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\TreeListDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\TreeListEditingEmployeesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\TreeListEmployeesController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\TreeListTasksController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\TreeViewDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\TreeViewPlainDataController.cs" />
+    <Compile Remove="Areas\devexpress\Controllers\ApiControllers\WorldPopulationDataController.cs" />
+    <Compile Remove="Areas\devexpress\FileManagement\AzureBlobFileProvider.cs" />
+    <Compile Remove="Areas\devexpress\Models\FileManagement\AzureBlobFileProvider.cs" />
+    <Compile Remove="Areas\devexpress\Models\SignalRTickData\TickDataService.cs" />
+    <Compile Remove="Areas\devexpress\Models\SignalR\StockTicker.cs" />
+    <Compile Remove="Areas\devexpress\SignalRTickData\TickDataService.cs" />
+    <Compile Remove="Areas\devexpress\SignalR\StockTicker.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_DoiTuongController.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_DoiTuongController_delete.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_NhomDoiTuongsController.cs" />
+    <Compile Remove="Domain.cs" />
+    <Compile Remove="Models\DevExtreme\FileManagement\AzureBlobFileProvider.cs" />
+    <Compile Remove="Models\DevExtreme\SignalRTickData\TickDataService.cs" />
+    <Compile Remove="Models\DevExtreme\SignalR\StockTicker.cs" />
+    <Compile Remove="UsersViewComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Areas\qlnv\Views\Persons\Index1.cshtml" />
+    <Content Remove="wwwroot\swagger\ui\index.html" />
+    <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.css" />
+    <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.js" />
+    <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.min.css" />
+    <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Areas\qlnv\Views\DM_DoiTuongs\Index.cshtml.del" />
+    <None Remove="Areas\qlnv\Views\DM_DoiTuongs\_CreateOrEditModal.del" />
+    <None Remove="Areas\qlnv\Views\DM_DoiTuongs\_ViewDM_DoiTuongModal.cshtml.del" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="wwwroot\Plugins\.gitkeep" />
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="wwwroot\**\*;Areas\**\*;Views\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Web.Core\MyCompanyName.AbpZeroTemplate.Web.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Abp.Castle.Log4Net" Version="6.3.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.9.1" />
+    <PackageReference Include="CommonMark.NET" Version="0.15.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="5.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Z.Dapper.Plus" Version="4.0.7" />
+    <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="5.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\devexpress\Controllers\ApiControllers\" />
+    <Folder Include="Areas\devexpress\Models\" />
+    <Folder Include="wwwroot\metronic\my\" />
+    <Folder Include="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\" />
+    <PackageReference Include="DevExtreme.AspNet.Core" Version="21.1.4" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.5" />
+  </ItemGroup>
+</Project>

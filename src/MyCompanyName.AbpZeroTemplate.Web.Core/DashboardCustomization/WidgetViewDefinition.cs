@@ -12,7 +12,8 @@
             string javascriptFile = null,
             string cssFile = null,
             byte defaultWidth = 12,
-            byte defaultHeight = 10) : base(id, viewFile, javascriptFile, cssFile)
+            byte defaultHeight = 10,
+            string javascriptClassName = null) : base(id, viewFile, javascriptFile, cssFile, javascriptClassName)
         {
             DefaultWidth = defaultWidth;
             DefaultHeight = defaultHeight;

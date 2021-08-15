@@ -53,6 +53,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
         public override void PostInitialize()
         {
+            return;
             using (var scope = IocManager.CreateScope())
             {
                 if (!scope.Resolve<DatabaseCheckHelper>().Exist(_appConfiguration["ConnectionStrings:Default"]))
@@ -60,12 +61,13 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                     return;
                 }
             }
-
+            //Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
             var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
             if (IocManager.Resolve<IMultiTenancyConfig>().IsEnabled)
             {
-                workManager.Add(IocManager.Resolve<SubscriptionExpirationCheckWorker>());
-                workManager.Add(IocManager.Resolve<SubscriptionExpireEmailNotifierWorker>());
+                //  datdd:error
+                //workManager.Add(IocManager.Resolve<SubscriptionExpirationCheckWorker>());
+                //workManager.Add(IocManager.Resolve<SubscriptionExpireEmailNotifierWorker>());
             }
 
             if (Configuration.Auditing.IsEnabled && ExpiredAuditLogDeleterWorker.IsEnabled)

@@ -22,12 +22,12 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments
 
         public async Task<SubscriptionPayment> GetLastCompletedPaymentOrDefaultAsync(int tenantId, SubscriptionPaymentGatewayType? gateway, bool? isRecurring)
         {
-            return (await GetAll()
+            var query = await GetAllAsync();
+            return (await query
                     .Where(p => p.TenantId == tenantId)
                     .Where(p => p.Status == SubscriptionPaymentStatus.Completed)
-                    //datdd
-                    //.WhereIf(gateway.HasValue, p => p.Gateway == gateway.Value)
-                    //.WhereIf(isRecurring.HasValue, p => p.IsRecurring == isRecurring.Value)
+                    .WhereIf(gateway.HasValue, p => p.Gateway == gateway.Value)
+                    .WhereIf(isRecurring.HasValue, p => p.IsRecurring == isRecurring.Value)
                     .ToListAsync()
                 )
                 .OrderByDescending(x => x.Id)
@@ -36,7 +36,8 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments
 
         public async Task<SubscriptionPayment> GetLastPaymentOrDefaultAsync(int tenantId, SubscriptionPaymentGatewayType? gateway, bool? isRecurring)
         {
-            return (await GetAll()
+            var query = await GetAllAsync();
+            return (await query 
                     .Where(p => p.TenantId == tenantId)
                     //datdd
                     //.WhereIf(gateway.HasValue, p => p.Gateway == gateway.Value)

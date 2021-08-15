@@ -34,6 +34,7 @@ using GraphQL.Server.Ui.Playground;
 using HealthChecks.UI.Client;
 using IdentityServer4.Configuration;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MyCompanyName.AbpZeroTemplate.Configure;
@@ -109,10 +110,18 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                         ErrorUrl = "/Error"
                     });
             }
+            else
+            {
+                services.Configure<SecurityStampValidatorOptions>(opts =>
+                {
+                    opts.OnRefreshingPrincipal = SecurityStampValidatorCallback.UpdatePrincipal;
+                });
+            }
 
             if (WebConsts.SwaggerUiEnabled)
             {
                 //Swagger - Enable this line and the related lines in Configure method to enable swagger UI
+                //ConfigureSwagger(services);
                 services.AddSwaggerGen(options =>
                 {
                     options.SwaggerDoc("v1", new OpenApiInfo() {Title = "AbpZeroTemplate API", Version = "v1"});
@@ -313,6 +322,37 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                         //});
                     });
             });
+        }
+        
+        private void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo() {Title = "AbpZeroTemplate API", Version = "v1"});
+                options.DocInclusionPredicate((docName, description) => true);
+                options.ParameterFilter<SwaggerEnumParameterFilter>();
+                options.SchemaFilter<SwaggerEnumSchemaFilter>();
+                options.OperationFilter<SwaggerOperationIdFilter>();
+                options.OperationFilter<SwaggerOperationFilter>();
+                options.CustomDefaultSchemaIdSelector();
+                    
+                //add summaries to swagger
+                bool canShowSummaries = _appConfiguration.GetValue<bool>("Swagger:ShowSummaries");
+                if (canShowSummaries)
+                {
+                    var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
+                    options.IncludeXmlComments(hostXmlPath);
+
+                    var applicationXml = $"MyCompanyName.AbpZeroTemplate.Application.xml";
+                    var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
+                    options.IncludeXmlComments(applicationXmlPath);
+
+                    var webCoreXmlFile = $"MyCompanyName.AbpZeroTemplate.Web.Core.xml";
+                    var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
+                    options.IncludeXmlComments(webCoreXmlPath);
+                }
+            }).AddSwaggerGenNewtonsoftSupport();
         }
     }
 }

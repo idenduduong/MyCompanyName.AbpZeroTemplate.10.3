@@ -14,6 +14,12 @@ namespace MyCompanyName.AbpZeroTemplate.DataExporting.Excel.NPOI
     public abstract class NpoiExcelExporterBase : AbpZeroTemplateServiceBase, ITransientDependency
     {
         private readonly ITempFileCacheManager _tempFileCacheManager;
+        private ICellStyle _dateCellStyle;
+        
+        private ICellStyle GetDateCellStyle(ICell cell)
+        {
+            return _dateCellStyle ??= cell.Sheet.Workbook.CreateCellStyle();
+        }
 
         protected NpoiExcelExporterBase(ITempFileCacheManager tempFileCacheManager)
         {
