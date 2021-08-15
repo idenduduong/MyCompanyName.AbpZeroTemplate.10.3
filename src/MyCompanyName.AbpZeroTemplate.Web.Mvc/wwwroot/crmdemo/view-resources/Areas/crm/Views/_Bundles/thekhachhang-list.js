@@ -489,7 +489,7 @@ var DichVuController = function (_modalManager) {
 
 
     function getHoaDonBanLeChiTiets() {
-        dataTable.ajax.reload();
+        //dataTable.ajax.reload();
     }
 
     function deleteHoaDonBanLeChiTiet(hoaDonBanLeChiTiet) {
@@ -1968,9 +1968,11 @@ var ChiTietHangHoaDichVu = function (_modalManager) {
         });
 
         // datatable
+        $.fn.DataTable.ext.pager.number_length = 15;
         var lstTheKhachHangTable = _$theKhachHangsTable.DataTable({
             orderCellsTop: true,
             fixedHeader: true,
+            //"dom": '<"top"iflp<"pagination">>rt<"bottomabc"iflp<"clear">>',
             "scrollY": "200px",
             "scrollCollapse": false,
             "initComplete": function (settings, json) {
@@ -1980,7 +1982,6 @@ var ChiTietHangHoaDichVu = function (_modalManager) {
             serverSide: true,
             processing: true,
             drawCallback: function (settings) {
-                
                 lstTheKhachHangTable.row(':eq(0)', { page: 'current' }).select();
             },
             listAction: {
