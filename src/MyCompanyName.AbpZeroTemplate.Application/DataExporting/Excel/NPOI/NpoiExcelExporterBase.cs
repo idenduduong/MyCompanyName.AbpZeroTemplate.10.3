@@ -64,6 +64,29 @@ namespace MyCompanyName.AbpZeroTemplate.DataExporting.Excel.NPOI
             cellStyle.SetFont(font);
             cell.CellStyle = cellStyle;
         }
+        
+        protected void AddObjects<T>(ISheet sheet, IList<T> items, params Func<T, object>[] propertySelectors)
+        {
+            if (items.IsNullOrEmpty() || propertySelectors.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            for (var i = 1; i <= items.Count; i++)
+            {
+                var row = sheet.CreateRow(i);
+
+                for (var j = 0; j < propertySelectors.Length; j++)
+                {
+                    var cell = row.CreateCell(j);
+                    var value = propertySelectors[j](items[i - 1]);
+                    if (value != null)
+                    {
+                        cell.SetCellValue(value.ToString());
+                    }
+                }
+            }
+        }
 
         protected void AddObjects<T>(ISheet sheet, int startRowIndex, IList<T> items, params Func<T, object>[] propertySelectors)
         {

@@ -39,7 +39,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
             return new ListResultDto<UserLoginAttemptDto>(ObjectMapper.Map<List<UserLoginAttemptDto>>(loginAttempts));
         }
 
-
+		[DisableAuditing]
         public async Task<PagedResultDto<UserLoginAttemptDto>> GetUserLoginAttempts(GetLoginAttemptsInput input)
         {
             var userId = AbpSession.GetUserId();
