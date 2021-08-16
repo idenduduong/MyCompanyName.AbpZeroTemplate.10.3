@@ -25,7 +25,7 @@
         <label for="webhookUri">@L("WebhookEvents")</label>
         @Html.DropDownList(
             "Webhooks",
-            Model.AvailableWebhookEvents.Items.Select(e => new SelectListItem(e.DisplayName ?? e.Name, e.Name, Model.WebhookSubscription.Webhooks.Contains(e.Name)))
+            Model.AvailableWebhookEvents.Items.Select(e => new SelectListItem(e.Name, e.Description, Model.WebhookSubscription.Webhooks.Contains(e.Name)))
             , new { @class = "form-control select2 col-12", multiple = "multiple", style = "width: 100%;" }
             )
     </div>

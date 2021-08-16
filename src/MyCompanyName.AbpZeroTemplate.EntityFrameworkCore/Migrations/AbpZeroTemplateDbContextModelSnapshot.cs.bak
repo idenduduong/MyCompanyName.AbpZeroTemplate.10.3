@@ -374,10 +374,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("ProviderKey", "TenantId")
-                        .IsUnique()
-                        .HasFilter("[TenantId] IS NOT NULL");
-
                     b.HasIndex("TenantId", "UserId");
 
                     b.HasIndex("TenantId", "LoginProvider", "ProviderKey");

@@ -63,7 +63,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                     .Where(w => DashboardViewConfiguration.WidgetViewDefinitions.ContainsKey(w.WidgetId)).ToList();
             }
 
-            dashboardDefinition.Widgets = dashboardDefinition.Widgets.Where(dw => userDashboard.Pages.Any(p => p.Widgets.Select(w => w.WidgetId).Contains(dw.Id))).ToList();
+            dashboardDefinition.Widgets = dashboardDefinition.Widgets.Where(dw =>
+                userDashboard.Pages.Any(p => p.Widgets.Select(w => w.WidgetId).Contains(dw.Id))).ToList();
 
             return View("~/Areas/qlnv/Views/Shared/Components/CustomizableDashboard/Index.cshtml",
                 new CustomizableDashboardViewModel(

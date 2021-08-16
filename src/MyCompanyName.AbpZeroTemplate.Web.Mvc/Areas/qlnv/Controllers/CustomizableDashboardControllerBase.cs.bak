@@ -24,23 +24,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 
         public async Task<PartialViewResult> AddWidgetModal(string dashboardName, string pageId)
         {
-            var userDashboard = await DashboardCustomizationAppService.GetUserDashboard(
-                new GetDashboardInput
+            var availableWidgets = DashboardCustomizationAppService.GetAllWidgetDefinitions(new GetDashboardInput
                 {
-                    DashboardName = dashboardName,
-                    Application = AbpZeroTemplateDashboardCustomizationConsts.Applications.Mvc
-                }
-            );
-
-            var page = userDashboard.Pages.Single(p => p.Id == pageId);
-
-            var filteredWidgetsByPermission = DashboardCustomizationAppService.GetAllWidgetDefinitions(new GetDashboardInput() { DashboardName = dashboardName })
-                .Where(widgetDef => page.Widgets.All(widgetOnPage => widgetOnPage.WidgetId != widgetDef.Id))
-                .ToList();
+                DashboardName = dashboardName
+            });
 
             var viewModel = new AddWidgetViewModel
             {
-                Widgets = filteredWidgetsByPermission,
+                Widgets = availableWidgets,
                 DashboardName = dashboardName,
                 PageId = pageId
             };
