@@ -48,8 +48,19 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         [WrapResult(false, false)]
         public object Get(GetPeopleInput input, DataSourceLoadOptions loadOptions)
         {
+            return GetAllPeopleByDapper(input, loadOptions);
             var output = _personAppService.GetPeople(input);
             //var model = ObjectMapper.MapTo<IndexViewModel>(output);
+            return DataSourceLoader.Load(output.Items, loadOptions);
+        }
+
+        [HttpGet]
+        [WrapResult(false, false)]
+        public object GetAllPeopleByDapper(GetPeopleInput input, DataSourceLoadOptions loadOptions)
+        {
+            var output = _personAppService.GetAllPeoplePagedByDapper(1, 2);
+            //var model = ObjectMapper.MapTo<IndexViewModel>(output);
+            //return DataSourceLoader.Load(output, loadOptions);
             return DataSourceLoader.Load(output.Items, loadOptions);
         }
 

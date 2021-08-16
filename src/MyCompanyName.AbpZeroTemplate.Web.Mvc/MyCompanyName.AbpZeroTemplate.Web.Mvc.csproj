@@ -150,7 +150,7 @@
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Web.Core\MyCompanyName.AbpZeroTemplate.Web.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.Castle.Log4Net" Version="6.4.0" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="6.3.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />

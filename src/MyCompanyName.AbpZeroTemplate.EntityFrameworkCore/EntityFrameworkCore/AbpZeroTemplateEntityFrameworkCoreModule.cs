@@ -1,4 +1,5 @@
 ﻿using Abp;
+using Abp.Dapper;
 using Abp.Dependency;
 using Abp.EntityFrameworkCore.Configuration;
 using Abp.IdentityServer4vNext;
@@ -8,13 +9,16 @@ using Abp.Zero.EntityFrameworkCore;
 using MyCompanyName.AbpZeroTemplate.Configuration;
 using MyCompanyName.AbpZeroTemplate.EntityHistory;
 using MyCompanyName.AbpZeroTemplate.Migrations.Seed;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     [DependsOn(
         typeof(AbpZeroCoreEntityFrameworkCoreModule),
         typeof(AbpZeroTemplateCoreModule),
-        typeof(AbpZeroCoreIdentityServervNextEntityFrameworkCoreModule)
+        typeof(AbpZeroCoreIdentityServervNextEntityFrameworkCoreModule),
+        typeof(AbpDapperModule)
         )]
     public class AbpZeroTemplateEntityFrameworkCoreModule : AbpModule
     {
@@ -53,8 +57,13 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             IocManager.RegisterAssemblyByConvention(typeof(AbpZeroTemplateEntityFrameworkCoreModule).GetAssembly());
 
             //  datdd
+
             //register filter with default value
             Configuration.UnitOfWork.RegisterFilter("MayHaveOrganizationUnit", true);
+
+            //dapper
+            DapperExtensions.DapperExtensions.SetMappingAssemblies(new List<Assembly> { typeof(AbpZeroTemplateEntityFrameworkCoreModule).GetAssembly() });
+            //DapperExtensions.DapperExtensions.SqlDialect = new MySqlDialect ();
         }
 
         public override void PostInitialize()

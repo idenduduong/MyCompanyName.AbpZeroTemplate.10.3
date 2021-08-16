@@ -32,6 +32,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Accounting;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs;
 using MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Config;
+//using Volo.Abp.Data;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
