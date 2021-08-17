@@ -12,6 +12,7 @@ using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Authorization.Users;
+using Abp.Dapper.Repositories;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
@@ -63,6 +64,8 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		private readonly IRepository<DM_DoiTuong, Guid> _dM_DoiTuongRepository;
 
+		private readonly IDapperRepository<DM_DoiTuong, Guid> _dM_DoiTuong_DapperRepository;
+
 		private readonly IDM_DoiTuongsExcelExporter _dM_DoiTuongsExcelExporter;
 
 		private readonly IRepository<DM_NhomDoiTuong, Guid> _dM_NhomDoiTuongRepository;
@@ -97,9 +100,30 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		private readonly IRepository<CustomerData, Guid> _customerDatasRepository;
 
-        public DM_DoiTuongsAppService(IRepository<DM_DoiTuong, Guid> dM_DoiTuongRepository, IDM_DoiTuongsExcelExporter dM_DoiTuongsExcelExporter, IRepository<DM_NhomDoiTuong, Guid> dM_NhomDoiTuongRepository, IRepository<DM_TinhThanh, Guid> dM_TinhThanhRepository, IRepository<DM_QuanHuyen, Guid> dM_QuanHuyenRepository, IRepository<User, long> userRepository, IRepository<NguonKhachHang, Guid> nguonKhachHangRepository, IRepository<DM_QuocGia, Guid> dM_QuocGiaRepository, IRepository<DM_TrangThai, int> dM_TrangThaiRepository, IBinaryObjectManager binaryObjectManager, IAppFolders appFolders, IRepository<EntityOrder, Guid> entityOrderRepository, IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository, IRepository<CustomOrganizationUnit, long> organizationUnitRepository, ICommonLookupAppService commonLookupAppService, IRepository<DM_NgheNghiep> ngheNghiepRepository, IRepository<TheKhachHang, Guid> theKhachHangsRepository, IRepository<CustomerData, Guid> customerDatasRepository)
+        public DM_DoiTuongsAppService(
+			IRepository<DM_DoiTuong, Guid> dM_DoiTuongRepository,
+			IDapperRepository<DM_DoiTuong, Guid> dM_DoiTuong_DapperRepository,
+			IDM_DoiTuongsExcelExporter dM_DoiTuongsExcelExporter, 
+			IRepository<DM_NhomDoiTuong, Guid> dM_NhomDoiTuongRepository, 
+			IRepository<DM_TinhThanh, Guid> dM_TinhThanhRepository, 
+			IRepository<DM_QuanHuyen, Guid> dM_QuanHuyenRepository, 
+			IRepository<User, long> userRepository, 
+			IRepository<NguonKhachHang, Guid> nguonKhachHangRepository, 
+			IRepository<DM_QuocGia, Guid> dM_QuocGiaRepository, 
+			IRepository<DM_TrangThai, int> dM_TrangThaiRepository, 
+			IBinaryObjectManager binaryObjectManager, 
+			IAppFolders appFolders, 
+			IRepository<EntityOrder, 
+				Guid> entityOrderRepository, 
+			IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository, 
+			IRepository<CustomOrganizationUnit, long> organizationUnitRepository, 
+			ICommonLookupAppService commonLookupAppService, 
+			IRepository<DM_NgheNghiep> ngheNghiepRepository, 
+			IRepository<TheKhachHang, Guid> theKhachHangsRepository, 
+			IRepository<CustomerData, Guid> customerDatasRepository)
 		{
 			_dM_DoiTuongRepository = dM_DoiTuongRepository;
+			_dM_DoiTuong_DapperRepository = dM_DoiTuong_DapperRepository;
 			_dM_DoiTuongsExcelExporter = dM_DoiTuongsExcelExporter;
 			_dM_NhomDoiTuongRepository = dM_NhomDoiTuongRepository;
 			_dM_TinhThanhRepository = dM_TinhThanhRepository;
@@ -121,8 +145,10 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		//[HttpGet]
 		[HttpPost]
-		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll(GetAllDM_DoiTuongsInput input)
+		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAll(GetAllDM_DoiTuongsInput input)
 		{
+			return await GetAllByDapper(input);
+
 			//var input = new GetAllDM_DoiTuongsInput();
 			//input.SkipCount = 0;
 			//input.MaxResultCount = 100;
@@ -227,7 +253,350 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			//    result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(1, 100).ToListAsync());
 			//}
 
+			//return result;
+		}
+
+		[HttpPost]
+		//[AbpAuthorize(AppPermissions.Pages_Dm_DoiTuongs)]
+		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper(GetAllDM_DoiTuongsInput input)
+		{
+			/*
+			 [d].[CreationTime], [d].[Id], [d].[Anh], [d].[CapTai_DKKD], [d].[ChiaSe], [d].[ChucVu], [d].[CreatorUserId], [d].[CustomerDataId], [d].[CustomerManagementOrganizationCode], [d].[CustomerManagementOrganizationName], [d].[DM_NhomDoiTuongId], [d].[DM_QuanHuyenId], [d].[DM_QuocGiaId], [d].[DM_TinhThanhId], [d].[DM_TrangThaiId], [d].[DeleterUserId], [d].[DeletionTime], [d].[DiaChi], [d].[DiaChiKhac], [d].[DiemKhoiTao], [d].[DienThoai], [d].[DoanhSoKhoiTao], [d].[Email], [d].[Fax], [d].[FileDinhKems], [d].[GhiChu], [d].[GioiHanCongNo], [d].[GioiTinhNam], [d].[ID_DonViQuanLy], [d].[ID_Index], [d].[ID_NguoiGioiThieu], [d].[ID_NhanVienPhuTrach], [d].[ID_NhomCu], [d].[IsDeleted], [d].[IsNewCustomer], [d].[LaCaNhan], [d].[LastModificationTime], [d].[LastModifierUserId], [d].[LinhVuc], [d].[LoaiDoiTuong], [d].[Ma], [d].[MaDoiTuong], [d].[MaSoThue], [d].[NganHang], [d].[NgayCapCMTND_DKKD], [d].[NgayDoiNhom], [d].[NgayGiaoDichGanNhat], [d].[NgaySinh_NgayTLap], [d].[NgaySuaTrangThai], [d].[NgheNghiepId], [d].[NguonKhachHangId], [d].[NoiCapCMTND_DKKD], [d].[Order], [d].[Profile], [d].[SDT_CoQuan], [d].[SDT_NhaRieng], [d].[SoCMTND_DKKD], [d].[TaiKhoanNganHang], [d].[TenDoiTuong], [d].[TenKhac], [d].[TenNguonKhach], [d].[TenNhom], [d].[TenantId], [d].[TheoDoi], [d].[TheoDoiVanTay], [d].[ThuongTru], [d].[TongDiem], [d].[Website], [d].[XungHo], CASE
+					WHEN [t].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t].[TenNhom], CASE
+					WHEN [t0].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t0].[TenTinhThanh], CASE
+					WHEN [t1].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t1].[TenQuanHuyen], CASE
+					WHEN [t2].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t2].[Name], CASE
+					WHEN [t3].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t3].[TenNguonKhach], CASE
+					WHEN [t4].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t4].[TenTrangThai], CASE
+					WHEN [t5].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t5].[TenDoiTuong], CASE
+					WHEN [t6].[Id] IS NULL THEN CAST(1 AS bit)
+					ELSE CAST(0 AS bit)
+				END, [t6].[DisplayName]
+			 */
+			//string strSql = $@"
+			//	DECLARE @__ef_filter__p_3 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_4 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_6 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_7 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_9 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_10 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_12 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_13 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_15 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_16 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_18 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_19 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_0 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_1 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_21 bit = CAST(0 AS bit);
+			//	DECLARE @__ef_filter__p_22 bit = CAST(0 AS bit);
+
+			//	SELECT 
+			//		[d].[CreationTime] AS CreationTime,
+			//		[d].[CreationTime] AS LastModificationTime,
+			//		[t].[TenNhom] AS DM_NhomDoiTuongTenNhom,
+			//		[t3].[TenNguonKhach] AS NguonKhachHangTenNguonKhach, 
+			//		[t5].[TenDoiTuong]
+			//	FROM [DM_DoiTuongs] AS [d]
+			//	LEFT JOIN (
+			//		SELECT [d0].[Id], [d0].[TenNhom]
+			//		FROM [DM_NhomDoiTuongs] AS [d0]
+			//		WHERE ((@__ef_filter__p_3 = CAST(1 AS bit)) OR ([d0].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_4 = CAST(1 AS bit)) OR [d0].[TenantId] IS NULL)
+			//	) AS [t] ON [d].[DM_NhomDoiTuongId] = [t].[Id]
+			//	LEFT JOIN (
+			//		SELECT [d1].[Id], [d1].[TenTinhThanh]
+			//		FROM [DM_TinhThanhs] AS [d1]
+			//		WHERE ((@__ef_filter__p_6 = CAST(1 AS bit)) OR ([d1].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_7 = CAST(1 AS bit)) OR [d1].[TenantId] IS NULL)
+			//	) AS [t0] ON [d].[DM_TinhThanhId] = [t0].[Id]
+			//	LEFT JOIN (
+			//		SELECT [d2].[Id], [d2].[TenQuanHuyen]
+			//		FROM [DM_QuanHuyens] AS [d2]
+			//		WHERE ((@__ef_filter__p_9 = CAST(1 AS bit)) OR ([d2].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_10 = CAST(1 AS bit)) OR [d2].[TenantId] IS NULL)
+			//	) AS [t1] ON [d].[DM_QuanHuyenId] = [t1].[Id]
+			//	LEFT JOIN (
+			//		SELECT [a].[Id], [a].[Name]
+			//		FROM [AbpUsers] AS [a]
+			//		WHERE ((@__ef_filter__p_12 = CAST(1 AS bit)) OR ([a].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_13 = CAST(1 AS bit)) OR [a].[TenantId] IS NULL)
+			//	) AS [t2] ON [d].[ID_NhanVienPhuTrach] = [t2].[Id]
+			//	LEFT JOIN (
+			//		SELECT [n].[Id], [n].[TenNguonKhach]
+			//		FROM [NguonKhachHangs] AS [n]
+			//		WHERE ((@__ef_filter__p_15 = CAST(1 AS bit)) OR ([n].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_16 = CAST(1 AS bit)) OR [n].[TenantId] IS NULL)
+			//	) AS [t3] ON [d].[NguonKhachHangId] = [t3].[Id]
+			//	LEFT JOIN (
+			//		SELECT [d3].[Id], [d3].[TenTrangThai]
+			//		FROM [DM_TrangThais] AS [d3]
+			//		WHERE ((@__ef_filter__p_18 = CAST(1 AS bit)) OR ([d3].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_19 = CAST(1 AS bit)) OR [d3].[TenantId] IS NULL)
+			//	) AS [t4] ON [d].[DM_TrangThaiId] = [t4].[Id]
+			//	LEFT JOIN (
+			//		SELECT [d4].[Id], [d4].[TenDoiTuong]
+			//		FROM [DM_DoiTuongs] AS [d4]
+			//		WHERE ((@__ef_filter__p_0 = CAST(1 AS bit)) OR ([d4].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_1 = CAST(1 AS bit)) OR [d4].[TenantId] IS NULL)
+			//	) AS [t5] ON [d].[ID_NguoiGioiThieu] = [t5].[Id]
+			//	LEFT JOIN (
+			//		SELECT [a0].[Id], [a0].[DisplayName]
+			//		FROM [AbpOrganizationUnits] AS [a0]
+			//		WHERE ([a0].[Discriminator] = N'CustomOrganizationUnit') AND (((@__ef_filter__p_21 = CAST(1 AS bit)) OR ([a0].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_22 = CAST(1 AS bit)) OR [a0].[TenantId] IS NULL))
+			//	) AS [t6] ON [d].[ID_DonViQuanLy] = [t6].[Id]
+			//	WHERE (((@__ef_filter__p_0 = CAST(1 AS bit)) OR ([d].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_1 = CAST(1 AS bit)) OR [d].[TenantId] IS NULL)) AND ([d].[LaCaNhan] = CAST(1 AS bit))
+			//	ORDER BY (SELECT 1)
+			//";
+			//--OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY
+			//var query = _dM_DoiTuong_DapperRepository.Query(strSql);
+			//IQueryable<GetDM_DoiTuongForView> listQuery 
+			var strSQL = $@"
+					DECLARE @__ef_filter__p_3 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_4 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_6 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_7 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_9 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_10 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_12 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_13 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_15 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_16 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_18 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_19 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_0 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_1 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_21 bit = CAST(0 AS bit);
+					DECLARE @__ef_filter__p_22 bit = CAST(0 AS bit);
+
+					SELECT [d].[CreationTime], [d].[Id], [d].[Anh], [d].[CapTai_DKKD], [d].[ChiaSe], [d].[ChucVu], [d].[CreatorUserId], [d].[CustomerDataId], [d].[CustomerManagementOrganizationCode], [d].[CustomerManagementOrganizationName], [d].[DM_NhomDoiTuongId], [d].[DM_QuanHuyenId], [d].[DM_QuocGiaId], [d].[DM_TinhThanhId], [d].[DM_TrangThaiId], [d].[DeleterUserId], [d].[DeletionTime], [d].[DiaChi], [d].[DiaChiKhac], [d].[DiemKhoiTao], [d].[DienThoai], [d].[DoanhSoKhoiTao], [d].[Email], [d].[Fax], [d].[FileDinhKems], [d].[GhiChu], [d].[GioiHanCongNo], [d].[GioiTinhNam], [d].[ID_DonViQuanLy], [d].[ID_Index], [d].[ID_NguoiGioiThieu], [d].[ID_NhanVienPhuTrach], [d].[ID_NhomCu], [d].[IsDeleted], [d].[IsNewCustomer], [d].[LaCaNhan], [d].[LastModificationTime], [d].[LastModifierUserId], [d].[LinhVuc], [d].[LoaiDoiTuong], [d].[Ma], [d].[MaDoiTuong], [d].[MaSoThue], [d].[NganHang], [d].[NgayCapCMTND_DKKD], [d].[NgayDoiNhom], [d].[NgayGiaoDichGanNhat], [d].[NgaySinh_NgayTLap], [d].[NgaySuaTrangThai], [d].[NgheNghiepId], [d].[NguonKhachHangId], [d].[NoiCapCMTND_DKKD], [d].[Order], [d].[Profile], [d].[SDT_CoQuan], [d].[SDT_NhaRieng], [d].[SoCMTND_DKKD], [d].[TaiKhoanNganHang], [d].[TenDoiTuong], [d].[TenKhac], [d].[TenNguonKhach], [d].[TenNhom], [d].[TenantId], [d].[TheoDoi], [d].[TheoDoiVanTay], [d].[ThuongTru], [d].[TongDiem], [d].[Website], [d].[XungHo], CASE
+						WHEN [t].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t].[TenNhom], CASE
+						WHEN [t0].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t0].[TenTinhThanh], CASE
+						WHEN [t1].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t1].[TenQuanHuyen], CASE
+						WHEN [t2].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t2].[Name], CASE
+						WHEN [t3].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t3].[TenNguonKhach], CASE
+						WHEN [t4].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t4].[TenTrangThai], CASE
+						WHEN [t5].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t5].[TenDoiTuong], CASE
+						WHEN [t6].[Id] IS NULL THEN CAST(1 AS bit)
+						ELSE CAST(0 AS bit)
+					END, [t6].[DisplayName]
+					FROM [DM_DoiTuongs] AS [d]
+					LEFT JOIN (
+						SELECT [d0].[Id], [d0].[TenNhom]
+						FROM [DM_NhomDoiTuongs] AS [d0]
+						WHERE ((@__ef_filter__p_3 = CAST(1 AS bit)) OR ([d0].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_4 = CAST(1 AS bit)) OR [d0].[TenantId] IS NULL)
+					) AS [t] ON [d].[DM_NhomDoiTuongId] = [t].[Id]
+					LEFT JOIN (
+						SELECT [d1].[Id], [d1].[TenTinhThanh]
+						FROM [DM_TinhThanhs] AS [d1]
+						WHERE ((@__ef_filter__p_6 = CAST(1 AS bit)) OR ([d1].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_7 = CAST(1 AS bit)) OR [d1].[TenantId] IS NULL)
+					) AS [t0] ON [d].[DM_TinhThanhId] = [t0].[Id]
+					LEFT JOIN (
+						SELECT [d2].[Id], [d2].[TenQuanHuyen]
+						FROM [DM_QuanHuyens] AS [d2]
+						WHERE ((@__ef_filter__p_9 = CAST(1 AS bit)) OR ([d2].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_10 = CAST(1 AS bit)) OR [d2].[TenantId] IS NULL)
+					) AS [t1] ON [d].[DM_QuanHuyenId] = [t1].[Id]
+					LEFT JOIN (
+						SELECT [a].[Id], [a].[Name]
+						FROM [AbpUsers] AS [a]
+						WHERE ((@__ef_filter__p_12 = CAST(1 AS bit)) OR ([a].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_13 = CAST(1 AS bit)) OR [a].[TenantId] IS NULL)
+					) AS [t2] ON [d].[ID_NhanVienPhuTrach] = [t2].[Id]
+					LEFT JOIN (
+						SELECT [n].[Id], [n].[TenNguonKhach]
+						FROM [NguonKhachHangs] AS [n]
+						WHERE ((@__ef_filter__p_15 = CAST(1 AS bit)) OR ([n].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_16 = CAST(1 AS bit)) OR [n].[TenantId] IS NULL)
+					) AS [t3] ON [d].[NguonKhachHangId] = [t3].[Id]
+					LEFT JOIN (
+						SELECT [d3].[Id], [d3].[TenTrangThai]
+						FROM [DM_TrangThais] AS [d3]
+						WHERE ((@__ef_filter__p_18 = CAST(1 AS bit)) OR ([d3].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_19 = CAST(1 AS bit)) OR [d3].[TenantId] IS NULL)
+					) AS [t4] ON [d].[DM_TrangThaiId] = [t4].[Id]
+					LEFT JOIN (
+						SELECT [d4].[Id], [d4].[TenDoiTuong]
+						FROM [DM_DoiTuongs] AS [d4]
+						WHERE ((@__ef_filter__p_0 = CAST(1 AS bit)) OR ([d4].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_1 = CAST(1 AS bit)) OR [d4].[TenantId] IS NULL)
+					) AS [t5] ON [d].[ID_NguoiGioiThieu] = [t5].[Id]
+					LEFT JOIN (
+						SELECT [a0].[Id], [a0].[DisplayName]
+						FROM [AbpOrganizationUnits] AS [a0]
+						WHERE ([a0].[Discriminator] = N'CustomOrganizationUnit') AND (((@__ef_filter__p_21 = CAST(1 AS bit)) OR ([a0].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_22 = CAST(1 AS bit)) OR [a0].[TenantId] IS NULL))
+					) AS [t6] ON [d].[ID_DonViQuanLy] = [t6].[Id]
+					WHERE (((@__ef_filter__p_0 = CAST(1 AS bit)) OR ([d].[IsDeleted] <> CAST(1 AS bit))) AND ((@__ef_filter__p_1 = CAST(1 AS bit)) OR [d].[TenantId] IS NULL)) AND ([d].[LaCaNhan] = CAST(1 AS bit))
+					ORDER BY (SELECT 1)
+			";
+
+			var listGetDM_DoiTuongForView = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>(strSQL).AsQueryable()
+				.OrderBy(p => p.LastModificationTime)
+				.PageBy(input.SkipCount, input.MaxResultCount).ToList();
+
+			//var listGetDM_DoiTuongForView = _dM_DoiTuong_DapperRepository.Query(strSQL).AsQueryable().Select(o => new GetDM_DoiTuongForView2
+			//{
+			//	CreateTime					= o.CreationTime,
+			//	LastModificationTime		= o.CreationTime,
+			//	//DM_DoiTuong					= ObjectMapper.Map<DM_DoiTuongDto>(o),
+			//	DM_NhomDoiTuongTenNhom		= o.TenNhom ?? "",
+			//	DM_TinhThanhTenTinhThanh	= o.TenTinhThanh.ToString(),
+			//	DM_QuanHuyenTenQuanHuyen	= o.TenQuanHuyen.ToString(),
+			//	UserName					= o.Name.ToString(),
+			//	NguonKhachHangTenNguonKhach = o.TenNguonKhach ?? "",
+			//	DM_TrangThaiTenTrangThai	= o.TenTrangThai.ToString(),
+			//	NguoiGioiThieu				= o.TenDoiTuong ?? "",
+			//	,DonViQuanLy					= o.DisplayName.ToString()
+			//})
+			//.OrderBy(p => p.LastModificationTime)
+			//.PageBy(input.SkipCount, input.MaxResultCount).ToList();
+
+			//int count = _dM_DoiTuong_DapperRepository.Query(strSql).Count();
+			int count = listGetDM_DoiTuongForView.ToList().Count();
+			List<GetDM_DoiTuongForView2> list;
+			strSql = "dat_store";
+			var temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>(strSql).ToList();
+
+			//if (input.Sorting == null)
+			//{
+			//	//using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
+			//	//		{
+			//	//			IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted
+			//	//		})
+			//	//)
+			//	//{
+			//	//.OrderBy(q => q.CreateTime)
+			//	//.PageBy(input.SkipCount, input.MaxResultCount)
+			//	//list = listQuery.ToList();
+			//	//}
+			//	//list = query.PageBy(10, 10).ToList();
+			//}
+			//else
+			//{
+			//	list = listQuery.OrderBy(q => q.LastModificationTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+			//}
+
+			var result = new PagedResultDto<GetDM_DoiTuongForView2>();
+			if (listGetDM_DoiTuongForView.Any())
+			{
+				//debug
+				result = new PagedResultDto<GetDM_DoiTuongForView2>(count, listGetDM_DoiTuongForView);
+				//result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.ToListAsync());
+			}
 			return result;
+
+			#region
+			//CustomOrganizationUnitDto currentUserOrg = await _commonLookupAppService.GetCurrentUserOrganization();
+			//bool withoutFilter = string.IsNullOrWhiteSpace(input.MaDoiTuongFilter) && string.IsNullOrWhiteSpace(input.TenDoiTuongFilter) && string.IsNullOrWhiteSpace(input.DienThoaiFilter) && string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter);
+			//bool hasSearchFull = base.PermissionChecker.IsGranted(AppPermissions.Pages_Dm_DoiTuongs_SearchFull);
+			//bool hasLoadFull = base.PermissionChecker.IsGranted(AppPermissions.Pages_Dm_DoiTuongs_LoadFull);
+
+			//if (await _userRepository.FirstOrDefaultAsync((User x) => x.Id == AbpSession.GetUserId()) == null || currentUserOrg == null)
+			//{
+			//	throw new UserFriendlyException("Thao tác không hợp lệ");
+			//}
+			//IQueryable<DM_DoiTuong> filteredDM_DoiTuongs = from x in _dM_DoiTuongRepository.GetAll()
+			//											   where x.LaCaNhan == true
+			//											   select x;
+			//filteredDM_DoiTuongs = filteredDM_DoiTuongs.AsNoTracking().WhereIf(!string.IsNullOrWhiteSpace(input.TenDoiTuongFilter), (DM_DoiTuong e) => e.TenDoiTuong.ToLower().Contains(input.TenDoiTuongFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.DienThoaiFilter), (DM_DoiTuong e) => e.DienThoai.ToLower().Contains(input.DienThoaiFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter), (DM_DoiTuong e) => e.SoCMTND_DKKD.ToLower().Contains(input.SoCMTND_DKKDFilter.ToLower().Trim()))
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.TenKhacFilter), (DM_DoiTuong e) => e.TenKhac.ToLower().Contains(input.TenKhacFilter.ToLower().Trim()))
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.MaDoiTuongFilter), (DM_DoiTuong e) => e.MaDoiTuong.ToLower() == input.MaDoiTuongFilter.ToLower().Trim());
+			//IQueryable<GetDM_DoiTuongForView> query = (from o in filteredDM_DoiTuongs
+			//										   join o1 in _dM_NhomDoiTuongRepository.GetAll().AsNoTracking() on o.DM_NhomDoiTuongId equals o1.Id into j1
+			//										   from s1 in j1.DefaultIfEmpty()
+			//										   join o2 in _dM_TinhThanhRepository.GetAll().AsNoTracking() on o.DM_TinhThanhId equals o2.Id into j2
+			//										   from s2 in j2.DefaultIfEmpty()
+			//										   join o3 in _dM_QuanHuyenRepository.GetAll().AsNoTracking() on o.DM_QuanHuyenId equals o3.Id into j3
+			//										   from s3 in j3.DefaultIfEmpty()
+			//										   join o4 in _userRepository.GetAll().AsNoTracking() on o.ID_NhanVienPhuTrach equals o4.Id into j4
+			//										   from s4 in j4.DefaultIfEmpty()
+			//										   join o5 in _nguonKhachHangRepository.GetAll().AsNoTracking() on o.NguonKhachHangId equals o5.Id into j5
+			//										   from s5 in j5.DefaultIfEmpty()
+			//										   join o7 in _dM_TrangThaiRepository.GetAll().AsNoTracking() on o.DM_TrangThaiId equals o7.Id into j7
+			//										   from s7 in j7.DefaultIfEmpty()
+			//										   join o8 in _dM_DoiTuongRepository.GetAll().AsNoTracking() on o.ID_NguoiGioiThieu equals o8.Id into j8
+			//										   from s8 in j8.DefaultIfEmpty()
+			//										   join o9 in _organizationUnitRepository.GetAll().AsNoTracking() on o.ID_DonViQuanLy equals o9.Id into j9
+			//										   from s9 in j9.DefaultIfEmpty()
+			//										   where (!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)) && s9.Lineage.Contains(currentUserOrg.Lineage)) || !(!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)))
+			//										   select new GetDM_DoiTuongForView
+			//										   {
+			//											   CreateTime = o.CreationTime,
+			//											   LastModificationTime = o.CreationTime,
+			//											   DM_DoiTuong = ObjectMapper.Map<DM_DoiTuongDto>(o),
+			//											   DM_NhomDoiTuongTenNhom = ((s1 == null) ? "" : s1.TenNhom.ToString()),
+			//											   DM_TinhThanhTenTinhThanh = ((s2 == null) ? "" : s2.TenTinhThanh.ToString()),
+			//											   DM_QuanHuyenTenQuanHuyen = ((s3 == null) ? "" : s3.TenQuanHuyen.ToString()),
+			//											   UserName = ((s4 == null) ? "" : s4.Name.ToString()),
+			//											   NguonKhachHangTenNguonKhach = ((s5 == null) ? "" : s5.TenNguonKhach.ToString()),
+			//											   DM_TrangThaiTenTrangThai = ((s7 == null) ? "" : s7.TenTrangThai.ToString()),
+			//											   NguoiGioiThieu = ((s8 == null) ? "" : s8.TenDoiTuong.ToString()),
+			//											   DonViQuanLy = ((s9 == null) ? "" : s9.DisplayName.ToString())
+			//										   }).AsNoTracking()
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.DM_NhomDoiTuongTenNhomFilter), (GetDM_DoiTuongForView e) => e.DM_NhomDoiTuongTenNhom.ToLower() == input.DM_NhomDoiTuongTenNhomFilter.ToLower().Trim())
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.DM_TinhThanhTenTinhThanhFilter), (GetDM_DoiTuongForView e) => e.DM_TinhThanhTenTinhThanh.ToLower() == input.DM_TinhThanhTenTinhThanhFilter.ToLower().Trim())
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.DM_QuanHuyenTenQuanHuyenFilter), (GetDM_DoiTuongForView e) => e.DM_QuanHuyenTenQuanHuyen.ToLower() == input.DM_QuanHuyenTenQuanHuyenFilter.ToLower().Trim())
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.UserNameFilter), (GetDM_DoiTuongForView e) => e.UserName.ToLower() == input.UserNameFilter.ToLower().Trim())
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.NguonKhachHangTenNguonKhachFilter), (GetDM_DoiTuongForView e) => e.NguonKhachHangTenNguonKhach.ToLower() == input.NguonKhachHangTenNguonKhachFilter.ToLower().Trim())
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter), (GetDM_DoiTuongForView e) => e.DM_QuocGiaTenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
+			//	.WhereIf(!string.IsNullOrWhiteSpace(input.DM_TrangThaiTenTrangThaiFilter), (GetDM_DoiTuongForView e) => e.DM_TrangThaiTenTrangThai.ToLower() == input.DM_TrangThaiTenTrangThaiFilter.ToLower().Trim());
+
+			////return new PagedResultDto<GetDM_DoiTuongForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "dM_DoiTuong.creationTime desc").PageBy(input).ToListAsync());
+
+			////var strquery = query.ToQueryString();
+			////.AsNoTracking()
+			////this.Database.ExecuteSqlCommand("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;");
+			////SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+			//int count = query.AsNoTracking().Count();
+			//List<GetDM_DoiTuongForView> list;
+
+			//if (input.Sorting == null)
+			//{
+			//	//using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
+			//	//		{
+			//	//			IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted
+			//	//		})
+			//	//)
+			//	//{
+			//	list = query.AsNoTracking().OrderByDescending(q => q.CreateTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+			//	//}
+			//	//list = query.PageBy(10, 10).ToList();
+			//}
+			//else
+			//{
+			//	list = query.AsNoTracking().OrderBy(q => q.LastModificationTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+			//}
+
+			//var result = new PagedResultDto<GetDM_DoiTuongForView>();
+
+			//if (query.Any())
+			//{
+			//	//debug
+			//	result = new PagedResultDto<GetDM_DoiTuongForView>(count, list);
+			//	//result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.ToListAsync());
+			//}
+
+			////if (query.Any())
+			////{
+			////    result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(1, 100).ToListAsync());
+			////}
+			#endregion
 		}
 
 		[AbpAuthorize(new string[] { "Pages.DM_DoiTuongs.Edit" })]
