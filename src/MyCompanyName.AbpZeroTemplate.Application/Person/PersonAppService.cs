@@ -95,7 +95,8 @@ namespace MyCompanyName.AbpZeroTemplate.Phones
         //  dapper demo
         public PagedResultDto<PersonListDto> GetAllPeopleByDapper()
         {
-            var query = _personDapperRepository.Query("Select * From PbPersons;");
+            var strSql = $@"Select * From PbPersons;";
+            var query = _personDapperRepository.Query(strSql);
             var list = query.ToList();
             //IEnumerable<PersonListDto> list = (IEnumerable<PersonListDto>)people;
             var result = new PagedResultDto<PersonListDto>();

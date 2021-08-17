@@ -446,26 +446,24 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 					ORDER BY (SELECT 1)
 			";
 
-			var listGetDM_DoiTuongForView = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>(strSQL).AsQueryable()
-				.OrderBy(p => p.LastModificationTime)
-				.PageBy(input.SkipCount, input.MaxResultCount).ToList();
+			var listGetDM_DoiTuongForView = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>(strSQL);
 
-			//var listGetDM_DoiTuongForView = _dM_DoiTuong_DapperRepository.Query(strSQL).AsQueryable().Select(o => new GetDM_DoiTuongForView2
-			//{
-			//	CreateTime					= o.CreationTime,
-			//	LastModificationTime		= o.CreationTime,
-			//	//DM_DoiTuong					= ObjectMapper.Map<DM_DoiTuongDto>(o),
-			//	DM_NhomDoiTuongTenNhom		= o.TenNhom ?? "",
-			//	DM_TinhThanhTenTinhThanh	= o.TenTinhThanh.ToString(),
-			//	DM_QuanHuyenTenQuanHuyen	= o.TenQuanHuyen.ToString(),
-			//	UserName					= o.Name.ToString(),
-			//	NguonKhachHangTenNguonKhach = o.TenNguonKhach ?? "",
-			//	DM_TrangThaiTenTrangThai	= o.TenTrangThai.ToString(),
-			//	NguoiGioiThieu				= o.TenDoiTuong ?? "",
-			//	,DonViQuanLy					= o.DisplayName.ToString()
-			//})
-			//.OrderBy(p => p.LastModificationTime)
-			//.PageBy(input.SkipCount, input.MaxResultCount).ToList();
+			var listGetDM_DoiTuongForView = _dM_DoiTuong_DapperRepository.Query(strSQL).AsQueryable().Select(o => new GetDM_DoiTuongForView2
+			{
+				CreateTime					= o.CreationTime,
+				LastModificationTime		= o.CreationTime,
+				//DM_DoiTuong					= ObjectMapper.Map<DM_DoiTuongDto>(o),
+				DM_NhomDoiTuongTenNhom		= o.TenNhom ?? "",
+				DM_TinhThanhTenTinhThanh	= o.TenTinhThanh.ToString(),
+				DM_QuanHuyenTenQuanHuyen	= o.TenQuanHuyen.ToString(),
+				UserName					= o.Name.ToString(),
+				NguonKhachHangTenNguonKhach = o.TenNguonKhach ?? "",
+				DM_TrangThaiTenTrangThai	= o.TenTrangThai.ToString(),
+				NguoiGioiThieu				= o.TenDoiTuong ?? "",
+				,DonViQuanLy					= o.DisplayName.ToString()
+			})
+			.OrderBy(p => p.LastModificationTime)
+			.PageBy(input.SkipCount, input.MaxResultCount).ToList();
 
 			//int count = _dM_DoiTuong_DapperRepository.Query(strSql).Count();
 			int count = listGetDM_DoiTuongForView.ToList().Count();

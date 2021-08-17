@@ -35,6 +35,7 @@
             processing: true,
             listAction: {
                 ajaxFunction: _dM_DoiTuongsService.getAll,
+				//ajaxFunction: _dM_DoiTuongsService.GetAllByDapper,
                 inputFilter: function () {
                     return {
                         filter: $('#DM_DoiTuongsTableFilter').val(),
@@ -46,6 +47,156 @@
                     };
                 }
             },
+            //columnDefs: [
+            //    {
+            //        width: 120,
+            //        targets: 0,
+            //        data: null,
+            //        orderable: false,
+            //        autoWidth: false,
+            //        defaultContent: '',
+            //        rowAction: {
+            //            cssClass: 'btn btn-brand dropdown-toggle',
+            //            text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
+            //            items: [
+            //                {
+            //                    text: app.localize('Edit'),
+            //                    visible: function (data) {
+            //                        return (_permissions.edit && (new moment(data.record.dM_DoiTuong.creationTime)).format("DDMMYYYY") == (new moment()).format("DDMMYYYY"))
+            //                            || (_permissions.editLater && (new moment(data.record.dM_DoiTuong.creationTime)).format("DDMMYYYY") != (new moment()).format("DDMMYYYY"));
+            //                    },
+            //                    action: function (data) {
+            //                        _createOrEditModal.open({ id: data.record.dM_DoiTuong.id });
+            //                    }
+            //                },
+            //                {
+            //                    text: app.localize('Delete'),
+            //                    visible: function (data) {
+            //                        return (_permissions.delete && (new moment(data.record.dM_DoiTuong.creationTime)).format("DDMMYYYY") == (new moment()).format("DDMMYYYY"))
+            //                            || (_permissions.delete && _permissions.editLater && (new moment(data.record.dM_DoiTuong.creationTime)).format("DDMMYYYY") != (new moment()).format("DDMMYYYY"));
+            //                    },
+            //                    action: function (data) {
+            //                        deleteDM_DoiTuong(data.record.dM_DoiTuong);
+            //                    }
+            //                }]
+            //        }
+            //    },
+            //    {
+            //        targets: 1,
+            //        data: "dM_NhomDoiTuongTenNhom"
+            //    },
+            //    {
+            //        targets: 2,
+            //        data: "donViQuanLy"
+            //    },
+            //    {
+            //        targets: 3,
+            //        data: "dM_DoiTuong.maDoiTuong"
+            //    },
+            //    {
+            //        targets: 4,
+            //        data: "dM_DoiTuong.tenDoiTuong"
+            //    },
+            //    {
+            //        targets: 5,
+            //        data: "dM_DoiTuong.dienThoai"
+            //    },
+            //    {
+            //        targets: 6,
+            //        data: "dM_DoiTuong.soCMTND_DKKD"
+            //    },
+            //    {
+            //        targets: 7,
+            //        data: "dM_DoiTuong.ngaySinh_NgayTLap",
+            //        render: function (ngaySinh_NgayTLap) {
+            //            if (ngaySinh_NgayTLap) {
+            //                return moment(ngaySinh_NgayTLap).format('L');
+            //            }
+            //            return "";
+            //        }
+
+            //    },
+            //    {
+            //        targets: 8,
+            //        data: "dM_DoiTuong.gioiTinhNam",
+            //        render: function (gioiTinhNam) {
+            //            if (gioiTinhNam) {
+            //                return app.localize("Nam");
+            //            }
+            //            return app.localize("Nu");
+            //        }
+
+            //    },
+            //    {
+            //        targets: 9,
+            //        data: "dM_DoiTuong.diaChi"
+            //    },
+            //    {
+            //        targets: 10,
+            //        data: "dM_DoiTuong.ngheNghiep"
+            //    },
+            //    {
+            //        targets: 11,
+            //        data: "dM_QuanHuyenTenQuanHuyen",
+
+            //    },
+            //    {
+            //        targets: 12,
+            //        data: "dM_TinhThanhTenTinhThanh"
+            //    },
+            //    {
+            //        targets: 13,
+            //        data: "dM_QuocGiaTenNuoc",
+
+            //    },
+            //    {
+            //        targets: 14,
+            //        data: "dM_DoiTuong.email"
+            //    },
+            //    {
+            //        targets: 15,
+            //        data: "nguonKhachHangTenNguonKhach"
+            //    },
+            //    //{
+            //    //    targets: 13,
+            //    //    data: "dM_DoiTuong.ngayGiaoDichGanNhat",
+            //    //    render: function (ngayGiaoDichGanNhat) {
+            //    //        if (ngayGiaoDichGanNhat) {
+            //    //            return moment(ngayGiaoDichGanNhat).format('L');
+            //    //        }
+            //    //        return "";
+            //    //    }
+
+            //    //},
+
+            //    //{
+            //    //    targets: 14,
+            //    //    data: "nguonKhachHangTenNguonKhach"
+            //    //},
+
+
+            //    //{
+            //    //    targets: 15,
+            //    //    data: "dM_TinhThanhTenTinhThanh"
+            //    //},
+            //    //{
+            //    //    targets: 16,
+            //    //    data: "dM_QuanHuyenTenQuanHuyen"
+            //    //},
+            //    //{
+            //    //    targets: 17,
+            //    //    data: "dM_QuocGiaTenNuoc"
+            //    //},
+            //    //{
+            //    //    targets: 18,
+            //    //    data: "userName"
+            //    //},
+
+            //    //{
+            //    //    targets: 19,
+            //    //    data: "dM_DoiTuong.ghiChu"
+            //    //}
+            //]
             columnDefs: [
                 {
                     width: 120,
@@ -90,23 +241,23 @@
                 },
                 {
                     targets: 3,
-                    data: "dM_DoiTuong.maDoiTuong"
+                    data: "maDoiTuong"
                 },
                 {
                     targets: 4,
-                    data: "dM_DoiTuong.tenDoiTuong"
+                    data: "tenDoiTuong"
                 },
                 {
                     targets: 5,
-                    data: "dM_DoiTuong.dienThoai"
+                    data: "dienThoai"
                 },
                 {
                     targets: 6,
-                    data: "dM_DoiTuong.soCMTND_DKKD"
+                    data: "soCMTND_DKKD"
                 },
                 {
                     targets: 7,
-                    data: "dM_DoiTuong.ngaySinh_NgayTLap",
+                    data: "ngaySinh_NgayTLap",
                     render: function (ngaySinh_NgayTLap) {
                         if (ngaySinh_NgayTLap) {
                             return moment(ngaySinh_NgayTLap).format('L');
@@ -117,7 +268,7 @@
                 },
                 {
                     targets: 8,
-                    data: "dM_DoiTuong.gioiTinhNam",
+                    data: "gioiTinhNam",
                     render: function (gioiTinhNam) {
                         if (gioiTinhNam) {
                             return app.localize("Nam");
@@ -128,11 +279,11 @@
                 },
                 {
                     targets: 9,
-                    data: "dM_DoiTuong.diaChi"
+                    data: "diaChi"
                 },
                 {
                     targets: 10,
-                    data: "dM_DoiTuong.ngheNghiep"
+                    data: "ngheNghiep"
                 },
                 {
                     targets: 11,
@@ -150,7 +301,7 @@
                 },
                 {
                     targets: 14,
-                    data: "dM_DoiTuong.email"
+                    data: "email"
                 },
                 {
                     targets: 15,

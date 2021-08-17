@@ -15,8 +15,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 {
 	public interface IDM_DoiTuongsAppService : IApplicationService, ITransientDependency
 	{
-		Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll(GetAllDM_DoiTuongsInput input);
-		//Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll();
+		Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAll(GetAllDM_DoiTuongsInput input);
+
+		Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper(GetAllDM_DoiTuongsInput input);
 
 		Task<GetDM_DoiTuongForEditOutput> GetDM_DoiTuongForEdit(EntityDto<Guid> input);
 
