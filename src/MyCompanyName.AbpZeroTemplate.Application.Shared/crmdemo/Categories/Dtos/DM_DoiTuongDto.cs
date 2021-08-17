@@ -102,7 +102,8 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos
 		public Guid? NguonKhachHangId { get; set; }
 
 		[IgnoreMap]
-		public Guid? DM_QuocGiaId { get; set; }
+		public int DM_QuocGiaId { get; set; }
+		//public Guid? DM_QuocGiaId { get; set; }
 
 		public int? DM_TrangThaiId { get; set; }
 
