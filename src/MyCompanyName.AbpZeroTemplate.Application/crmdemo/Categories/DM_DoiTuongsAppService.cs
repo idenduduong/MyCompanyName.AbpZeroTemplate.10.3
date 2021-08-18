@@ -300,7 +300,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 				using (IDbConnection db = new SqlConnection(str))
 				{
 
-					temp_abc = db.Query<GetDM_DoiTuongForView2>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
+					temp_abc = db.Query<GetDM_DoiTuongForView2>("dat_store", parameter, commandType: CommandType.StoredProcedure).ToList();
 					count = parameter.Get<int>("@RowCount");
 
 				}
