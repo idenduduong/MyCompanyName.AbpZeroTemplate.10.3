@@ -28,14 +28,14 @@
             viewUrl: abp.appPath + 'crm/DM_DoiTuongs/ViewdM_DoiTuongModal',
             modalClass: 'ViewDM_DoiTuongModal'
         });
-
+        debugger
         var dataTable = _$dM_DoiTuongsTable.DataTable({
             paging: true,
             serverSide: true,
             processing: true,
             listAction: {
-                ajaxFunction: _dM_DoiTuongsService.getAll,
-				//ajaxFunction: _dM_DoiTuongsService.GetAllByDapper,
+				//ajaxFunction: _dM_DoiTuongsService.GetAll,
+                ajaxFunction: _dM_DoiTuongsService.getAllByDapper2,
                 inputFilter: function () {
                     return {
                         filter: $('#DM_DoiTuongsTableFilter').val(),

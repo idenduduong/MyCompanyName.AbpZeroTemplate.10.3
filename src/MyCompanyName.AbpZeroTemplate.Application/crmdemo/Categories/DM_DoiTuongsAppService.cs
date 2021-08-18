@@ -149,9 +149,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		//[HttpGet]
 		[HttpPost]
-		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAll(GetAllDM_DoiTuongsInput input)
+		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll(GetAllDM_DoiTuongsInput input)
 		{
-			return await GetAllByDapper(input);
+			//return await GetAllByDapper(input);
 
 			//var input = new GetAllDM_DoiTuongsInput();
 			//input.SkipCount = 0;
@@ -251,65 +251,50 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 				result = new PagedResultDto<GetDM_DoiTuongForView>(count, list);
 				//result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.ToListAsync());
 			}
-
 			//if (query.Any())
 			//{
 			//    result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(1, 100).ToListAsync());
 			//}
-
-			//return result;
+			return result;
 		}
-
-		
 
 		[HttpPost]
 		//[AbpAuthorize(AppPermissions.Pages_Dm_DoiTuongs)]
-
 		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper(GetAllDM_DoiTuongsInput input)
 		{
-
 			//var connectionString = _appConfiguration[$"ConnectionStrings:{AbpZeroTemplateConsts.ConnectionStringName}"];
 			string str = "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
 			List<GetDM_DoiTuongForView2> temp_abc = new List<GetDM_DoiTuongForView2>();
-			/*
-			 using (IDbConnection conn = new SqlConnection(str))
-		{
-			conn.Open();
-			DynamicParameters parameter = new DynamicParameters();
-
-			parameter.Add("@Offset", input.SkipCount);
-			parameter.Add("@limit", input.MaxResultCount);
-			parameter.Add("@RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
-			string sql = "EXEC [dbo].[dat_store]";
-			conn.Execute<GetDM_DoiTuongForView2>(sql, parameter);
-
-
-		}
-			 */
+			//using (IDbConnection conn = new SqlConnection(str))
+			//{
+			//	conn.Open();
+			//	DynamicParameters parameter = new DynamicParameters();
+			//	parameter.Add("@Offset", input.SkipCount);
+			//	parameter.Add("@limit", input.MaxResultCount);
+			//	parameter.Add("@RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+			//	string sql = "EXEC [dbo].[dat_store]";
+			//	conn.Execute<GetDM_DoiTuongForView2>(sql, parameter);
+			//}
 
 			DynamicParameters parameter = new DynamicParameters();
 
             parameter.Add("@Offset", input.SkipCount);
             parameter.Add("@limit", input.MaxResultCount);
             parameter.Add("@RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
-            string sql = "EXEC [dbo].[dat_store]";
+            string sqlStoreProcedure = "[dat_store]";
 			int count = 0;
 
             try
             {
 				using (IDbConnection db = new SqlConnection(str))
 				{
-
-					temp_abc = db.Query<GetDM_DoiTuongForView2>("dat_store", parameter, commandType: CommandType.StoredProcedure).ToList();
+					temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure).ToList();
 					count = parameter.Get<int>("@RowCount");
-
 				}
 			}catch(Exception ex)
             {
-				
+				Console.WriteLine(ex.ToString());
             }
-
-
 
             //int count = listGetDM_DoiTuongForView.Count();
             //         List<GetDM_DoiTuongForView2> list;
@@ -317,22 +302,74 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
             //
             //try
             //{
-
             //	temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store]", parameter, CommandType: CommandType.StoredProcedure).ToList();
             //	//temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store] 0,10,0 ").ToList();
             //	count = parameter.Get<int>("@RowCount");
             //}
-   //         catch (Exception ex)
+			//catch (Exception ex)
 			//{
 			//	Console.WriteLine(ex.Message);
 			//}
 
-			
-			return new PagedResultDto<GetDM_DoiTuongForView2>(count, temp_abc); ;
-
-			
+			return new PagedResultDto<GetDM_DoiTuongForView2>(count, temp_abc);
 		}
 
+		[HttpPost]
+		//[AbpAuthorize(AppPermissions.Pages_Dm_DoiTuongs)]
+		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper2(GetAllDM_DoiTuongsInput input)
+		{
+			//var connectionString = _appConfiguration[$"ConnectionStrings:{AbpZeroTemplateConsts.ConnectionStringName}"];
+			string str = "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
+			List<GetDM_DoiTuongForView2> temp_abc = new List<GetDM_DoiTuongForView2>();
+			//using (IDbConnection conn = new SqlConnection(str))
+			//{
+			//	conn.Open();
+			//	DynamicParameters parameter = new DynamicParameters();
+			//	parameter.Add("@Offset", input.SkipCount);
+			//	parameter.Add("@limit", input.MaxResultCount);
+			//	parameter.Add("@RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+			//	string sql = "EXEC [dbo].[dat_store]";
+			//	conn.Execute<GetDM_DoiTuongForView2>(sql, parameter);
+			//}
+
+			DynamicParameters parameter = new DynamicParameters();
+
+			parameter.Add("@Offset", input.SkipCount);
+			parameter.Add("@limit", input.MaxResultCount);
+			parameter.Add("@RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+			string sqlStoreProcedure = "[dat_store]";
+			int count = 0;
+
+			try
+			{
+				using (IDbConnection db = new SqlConnection(str))
+				{
+					temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure).ToList();
+					count = parameter.Get<int>("@RowCount");
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.ToString());
+			}
+
+			//int count = listGetDM_DoiTuongForView.Count();
+			//         List<GetDM_DoiTuongForView2> list;
+			//
+			//
+			//try
+			//{
+			//	temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store]", parameter, CommandType: CommandType.StoredProcedure).ToList();
+			//	//temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store] 0,10,0 ").ToList();
+			//	count = parameter.Get<int>("@RowCount");
+			//}
+			//catch (Exception ex)
+			//{
+			//	Console.WriteLine(ex.Message);
+			//}
+
+			return new PagedResultDto<GetDM_DoiTuongForView2>(count, temp_abc);
+		}
 
 		//public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper(GetAllDM_DoiTuongsInput input)
 		//{
