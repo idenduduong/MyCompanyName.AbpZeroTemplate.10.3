@@ -31,6 +31,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Public.Startup
             Configuration.Modules.AbpWebCommon().AntiForgery.TokenCookieName = "Public-XSRF-TOKEN";
             Configuration.Modules.AbpWebCommon().AntiForgery.TokenHeaderName = "Public-X-XSRF-TOKEN";
 
+            //  datdd:disable BackgroundJobs
             Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
 
             Configuration.Navigation.Providers.Add<FrontEndNavigationProvider>();

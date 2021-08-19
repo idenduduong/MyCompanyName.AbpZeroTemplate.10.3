@@ -11,6 +11,7 @@ using Abp.Timing.Timezone;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.DataExporting.Excel.EpPlus;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Dto;
+using MyCompanyName.AbpZeroTemplate.Dto;
 using OfficeOpenXml;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Exporting

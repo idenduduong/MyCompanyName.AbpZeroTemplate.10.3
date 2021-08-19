@@ -143,7 +143,8 @@ namespace MyCompanyName.AbpZeroTemplate
             IocManager.RegisterIfNot<IChatCommunicator, NullChatCommunicator>();
             IocManager.Register<IUserDelegationConfiguration, UserDelegationConfiguration>();
 
-            IocManager.Resolve<ChatUserStateWatcher>().Initialize();
+            //  datdd:remove chat
+            //IocManager.Resolve<ChatUserStateWatcher>().Initialize();
             IocManager.Resolve<AppTimes>().StartupTime = Clock.Now;
         }
     }

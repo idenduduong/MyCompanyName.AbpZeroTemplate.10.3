@@ -56,6 +56,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Common.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Event;
 using MyCompanyName.AbpZeroTemplate.Authorization;
+using MyCompanyName.AbpZeroTemplate.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
 {

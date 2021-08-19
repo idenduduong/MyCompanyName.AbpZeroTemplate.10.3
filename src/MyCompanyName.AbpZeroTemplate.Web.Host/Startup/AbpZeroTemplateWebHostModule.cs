@@ -61,7 +61,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                     return;
                 }
             }
-            //Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
+            //  datdd:disable BackgroundJobs
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
             var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
             if (IocManager.Resolve<IMultiTenancyConfig>().IsEnabled)
             {

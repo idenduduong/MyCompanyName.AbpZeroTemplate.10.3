@@ -32,6 +32,7 @@ namespace MyCompanyName.AbpZeroTemplate.Migrator
                 );
             Configuration.Modules.AspNetZero().LicenseCode = _appConfiguration["AbpZeroLicenseCode"];
 
+            //  datdd:disable BackgroundJobs
             Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
             Configuration.ReplaceService(typeof(IEventBus), () =>
             {

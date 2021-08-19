@@ -6,6 +6,7 @@ using Abp.Collections.Extensions;
 using Abp.Dependency;
 using MyCompanyName.AbpZeroTemplate.crmdemo;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Dto;
+using MyCompanyName.AbpZeroTemplate.Dto;
 using OfficeOpenXml;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.DataExporting.Excel.EpPlus

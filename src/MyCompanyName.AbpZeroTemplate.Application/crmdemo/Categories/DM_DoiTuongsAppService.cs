@@ -25,6 +25,7 @@ using Abp.Linq.Extensions;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Dapper;
+using Microsoft.AspNetCore.Hosting;
 //using crmdemo;
 //using crmdemo.Authorization.Users;
 //using crmdemo.Categories;
@@ -42,9 +43,11 @@ using Dapper;
 //using crmdemo.Temp;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 using MyCompanyName.AbpZeroTemplate.Common;
+using MyCompanyName.AbpZeroTemplate.Configuration;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Exporting;
 using MyCompanyName.AbpZeroTemplate.crmdemo.CodeGenerateHelper;
@@ -57,12 +60,13 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Sale;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs;
 //using MyCompanyName.AbpZeroTemplate.crmdemo.Storage;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Temp;
+using MyCompanyName.AbpZeroTemplate.Dto;
 using MyCompanyName.AbpZeroTemplate.Storage;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 {
 	//[AbpAuthorize(new string[] { "Pages.DM_DoiTuongs" })]
-	public class DM_DoiTuongsAppService : AbpZeroTemplateAppServiceBase, IDM_DoiTuongsAppService, IApplicationService, ITransientDependency, IEventHandler<OrganizationUnitUpdateEvent>, IEventHandler
+	public class DM_DoiTuongsAppService : AbpZeroTemplateAppServiceBase, IDM_DoiTuongsAppService, IApplicationService, IEventHandler<OrganizationUnitUpdateEvent>, IEventHandler
 	{
 		private const int MaxDoiTuongImageBytes = 1048576;
 
@@ -104,7 +108,11 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		private readonly IRepository<CustomerData, Guid> _customerDatasRepository;
 
-        public DM_DoiTuongsAppService(
+		private readonly IConfigurationRoot _appConfiguration;
+
+		private readonly IWebHostEnvironment _hostingEnvironment;
+
+		public DM_DoiTuongsAppService(
 			IRepository<DM_DoiTuong, Guid> dM_DoiTuongRepository,
 			IDapperRepository<DM_DoiTuong, Guid> dM_DoiTuong_DapperRepository,
 			IDM_DoiTuongsExcelExporter dM_DoiTuongsExcelExporter, 
@@ -124,7 +132,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			ICommonLookupAppService commonLookupAppService, 
 			IRepository<DM_NgheNghiep> ngheNghiepRepository, 
 			IRepository<TheKhachHang, Guid> theKhachHangsRepository, 
-			IRepository<CustomerData, Guid> customerDatasRepository)
+			IRepository<CustomerData, Guid> customerDatasRepository,
+			IWebHostEnvironment hostingEnvironment
+			)
 		{
 			_dM_DoiTuongRepository = dM_DoiTuongRepository;
 			_dM_DoiTuong_DapperRepository = dM_DoiTuong_DapperRepository;
@@ -145,6 +155,8 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			_ngheNghiepRepository = ngheNghiepRepository;
 			_theKhachHangsRepository = theKhachHangsRepository;
 			_customerDatasRepository = customerDatasRepository;
+			_hostingEnvironment = hostingEnvironment;
+			_appConfiguration = _hostingEnvironment.GetAppConfiguration();
 		}
 
 		//[HttpGet]
@@ -319,7 +331,8 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper2(GetAllDM_DoiTuongsInput input)
 		{
 			//var connectionString = _appConfiguration[$"ConnectionStrings:{AbpZeroTemplateConsts.ConnectionStringName}"];
-			string str = "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
+			//string str = "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
+			string connectionString = _appConfiguration["ConnectionStrings:Default"];
 			List<GetDM_DoiTuongForView2> temp_abc = new List<GetDM_DoiTuongForView2>();
 			//using (IDbConnection conn = new SqlConnection(str))
 			//{
@@ -337,12 +350,13 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			parameter.Add("@Offset", input.SkipCount);
 			parameter.Add("@limit", input.MaxResultCount);
 			parameter.Add("@RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
-			string sqlStoreProcedure = "[dat_store]";
+			//string sqlStoreProcedure = "[dat_store]";
+			string sqlStoreProcedure = "[DM_DoiTuongs_Paging]";
 			int count = 0;
 
 			try
 			{
-				using (IDbConnection db = new SqlConnection(str))
+				using (IDbConnection db = new SqlConnection(connectionString))
 				{
 					temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure).ToList();
 					count = parameter.Get<int>("@RowCount");

@@ -7,6 +7,7 @@ using Abp.Dependency;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Common.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Dto;
+using MyCompanyName.AbpZeroTemplate.Dto;
 //using crmdemo.Categories.Dtos;
 //using crmdemo.Common.Dtos;
 //using crmdemo.Dto;

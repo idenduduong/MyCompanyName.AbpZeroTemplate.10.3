@@ -41,6 +41,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Swagger
             var enumNames = new OpenApiArray();
             enumNames.AddRange(Enum.GetNames(type).Select(_ => new OpenApiString(_)));
 
+            //  datdd:upgrade to 10.4
+            //schema.Extensions.Add("x-enumNames", enumNames);
+
             if (schema.Extensions.ContainsKey("x-enumNames"))
             {
                 var existingEnums = schema.Extensions["x-enumNames"] as OpenApiArray;
@@ -53,7 +56,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Swagger
             }
             else
             {
-            schema.Extensions.Add("x-enumNames", enumNames);
+                schema.Extensions.Add("x-enumNames", enumNames);
             }
         }
 

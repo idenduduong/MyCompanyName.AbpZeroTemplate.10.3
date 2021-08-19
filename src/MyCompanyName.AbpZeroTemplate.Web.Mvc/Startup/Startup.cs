@@ -191,18 +191,18 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
             {
                 //Swagger - Enable this line and the related lines in Configure method to enable swagger UI
 
-                //ConfigureSwagger(services);
+                ConfigureSwagger(services);
 
-                services.AddSwaggerGen(options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo() {Title = "AbpZeroTemplate API", Version = "v1"});
-                    options.DocInclusionPredicate((docName, description) => true);
-                    options.ParameterFilter<SwaggerEnumParameterFilter>();
-                    options.SchemaFilter<SwaggerEnumSchemaFilter>();
-                    options.OperationFilter<SwaggerOperationIdFilter>();
-                    options.OperationFilter<SwaggerOperationFilter>();
-                    options.CustomDefaultSchemaIdSelector();
-                }).AddSwaggerGenNewtonsoftSupport();
+                //services.AddSwaggerGen(options =>
+                //{
+                //    options.SwaggerDoc("v1", new OpenApiInfo() {Title = "AbpZeroTemplate API", Version = "v1"});
+                //    options.DocInclusionPredicate((docName, description) => true);
+                //    options.ParameterFilter<SwaggerEnumParameterFilter>();
+                //    options.SchemaFilter<SwaggerEnumSchemaFilter>();
+                //    options.OperationFilter<SwaggerOperationIdFilter>();
+                //    options.OperationFilter<SwaggerOperationFilter>();
+                //    options.CustomDefaultSchemaIdSelector();
+                //}).AddSwaggerGenNewtonsoftSupport();
             }
 
             //Recaptcha
@@ -223,7 +223,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
             services.AddScoped<IWebResourceManager, WebResourceManager>();
 
-            services.AddSignalR();
+            //  datdd:remove chat
+            //services.AddSignalR();
 
             if (WebConsts.GraphQL.Enabled)
             {
@@ -353,8 +354,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<AbpCommonHub>("/signalr");
-                endpoints.MapHub<ChatHub>("/signalr-chat");
+                //  datdd:remove chat
+                //endpoints.MapHub<AbpCommonHub>("/signalr");
+                //endpoints.MapHub<ChatHub>("/signalr-chat");
 
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");

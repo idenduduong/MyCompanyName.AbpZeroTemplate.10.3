@@ -56,8 +56,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                 }
             }
 
-            //  datdd:error
-            //Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
+            //  datdd:disable BackgroundJobs
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
             var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
             workManager.Add(IocManager.Resolve<SubscriptionExpirationCheckWorker>());
             workManager.Add(IocManager.Resolve<SubscriptionExpireEmailNotifierWorker>());

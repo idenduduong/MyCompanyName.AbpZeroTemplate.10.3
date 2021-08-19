@@ -25,6 +25,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Exporting;
+using MyCompanyName.AbpZeroTemplate.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale
 {
