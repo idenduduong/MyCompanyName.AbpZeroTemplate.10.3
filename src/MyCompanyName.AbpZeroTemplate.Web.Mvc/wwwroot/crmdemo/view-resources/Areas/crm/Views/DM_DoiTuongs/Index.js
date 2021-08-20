@@ -28,7 +28,6 @@
             viewUrl: abp.appPath + 'crm/DM_DoiTuongs/ViewdM_DoiTuongModal',
             modalClass: 'ViewDM_DoiTuongModal'
         });
-        debugger
         var dataTable = _$dM_DoiTuongsTable.DataTable({
             paging: true,
             serverSide: true,
@@ -233,7 +232,7 @@
                 },
                 {
                     targets: 1,
-                    data: "dM_NhomDoiTuongTenNhom"
+                    data: "tenNhom"
                 },
                 {
                     targets: 2,

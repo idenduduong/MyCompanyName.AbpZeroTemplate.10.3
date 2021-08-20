@@ -326,6 +326,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			//var connectionString = _appConfiguration[$"ConnectionStrings:{AbpZeroTemplateConsts.ConnectionStringName}"];
 			//string str = "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
 			string connectionString = _appConfiguration["ConnectionStrings:Default"];
+			
 			List<GetDM_DoiTuongForView2> temp_abc = new List<GetDM_DoiTuongForView2>();
 			//using (IDbConnection conn = new SqlConnection(str))
 			//{
@@ -352,7 +353,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			{
 				//using (IDbConnection db = new SqlConnection(connectionString))
 				//{
-				temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure, commandTimeout: 9999).ToList();
+				temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure, commandTimeout: Int32.Parse(_appConfiguration["Abp.Dapper:TimeOut"].ToString())).ToList();
 				count = parameter.Get<int>("@RowCount");
 				//}
 			}
