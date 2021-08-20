@@ -347,38 +347,40 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			string sqlStoreProcedure = "[DM_DoiTuongs_Paging]";
 			int count = 0;
 
+			IDbConnection db = new SqlConnection(connectionString);
 			try
 			{
-				IDbConnection db = new SqlConnection(connectionString);
 				//using (IDbConnection db = new SqlConnection(connectionString))
 				//{
-					temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure, commandTimeout:9999).ToList();
-					count = parameter.Get<int>("@RowCount");
-					db.Close();
-					db = null;
+				temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure, commandTimeout: 9999).ToList();
+				count = parameter.Get<int>("@RowCount");
 				//}
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex.ToString());
 			}
+			finally
+			{
+				db.Close();
+            }
 
-			//int count = listGetDM_DoiTuongForView.Count();
-			//         List<GetDM_DoiTuongForView2> list;
-			//
-			//
-			//try
-			//{
-			//	temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store]", parameter, CommandType: CommandType.StoredProcedure).ToList();
-			//	//temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store] 0,10,0 ").ToList();
-			//	count = parameter.Get<int>("@RowCount");
-			//}
-			//catch (Exception ex)
-			//{
-			//	Console.WriteLine(ex.Message);
-			//}
+            //int count = listGetDM_DoiTuongForView.Count();
+            //         List<GetDM_DoiTuongForView2> list;
+            //
+            //
+            //try
+            //{
+            //	temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store]", parameter, CommandType: CommandType.StoredProcedure).ToList();
+            //	//temp_abc = _dM_DoiTuong_DapperRepository.Query<GetDM_DoiTuongForView2>("EXEC [dbo].[dat_store] 0,10,0 ").ToList();
+            //	count = parameter.Get<int>("@RowCount");
+            //}
+            //catch (Exception ex)
+            //{
+            //	Console.WriteLine(ex.Message);
+            //}
 
-			return new PagedResultDto<GetDM_DoiTuongForView2>(count, temp_abc);
+            return new PagedResultDto<GetDM_DoiTuongForView2>(count, temp_abc);
 		}
 
 		//public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper(GetAllDM_DoiTuongsInput input)
