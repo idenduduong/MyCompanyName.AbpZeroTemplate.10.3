@@ -89,10 +89,10 @@ namespace MyCompanyName.AbpZeroTemplate.Web
             //Uncomment this line to use Hangfire instead of default background job manager (remember also to uncomment related lines in Startup.cs file(s)).
             //Configuration.BackgroundJobs.UseHangfire();
 
-            //if (WebConsts.HangfireDashboardEnabled)
-            //{
-            //    Configuration.BackgroundJobs.UseHangfire();   
-            //}
+            if (WebConsts.HangfireDashboardEnabled)
+            {
+                Configuration.BackgroundJobs.UseHangfire();
+            }
 
             //Uncomment this line to use Redis cache instead of in-memory cache.
             //See app.config for Redis configuration and connection string

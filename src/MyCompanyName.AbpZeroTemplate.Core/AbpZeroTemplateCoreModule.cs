@@ -48,6 +48,7 @@ using MyCompanyName.AbpZeroTemplate.Net.Emailing;
 using MyCompanyName.AbpZeroTemplate.Notifications;
 using MyCompanyName.AbpZeroTemplate.WebHooks;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MyCompanyName.AbpZeroTemplate
 {
@@ -266,7 +267,10 @@ namespace MyCompanyName.AbpZeroTemplate
 
         protected override async Task DoWorkAsync()
         {
-            var waitingJobs = await _store.GetWaitingJobsAsync(1000);
+            //  datdd:remove background job
+            //var waitingJobs = await _store.GetWaitingJobsAsync(1000);
+
+            var waitingJobs = new List<BackgroundJobInfo>();
 
             foreach (var job in waitingJobs)
             {

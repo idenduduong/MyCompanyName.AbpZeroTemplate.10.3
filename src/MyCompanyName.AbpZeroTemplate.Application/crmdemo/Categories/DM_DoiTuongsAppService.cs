@@ -161,7 +161,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		//[HttpGet]
 		[HttpPost]
-		public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll(GetAllDM_DoiTuongsInput input)
+        public async Task<PagedResultDto<GetDM_DoiTuongForView>> GetAll(GetAllDM_DoiTuongsInput input)
 		{
 			//return await GetAllByDapper(input);
 
@@ -186,25 +186,25 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			IQueryable<DM_DoiTuong> filteredDM_DoiTuongs = from x in _dM_DoiTuongRepository.GetAll()
 														   where x.LaCaNhan == true
 														   select x;
-			filteredDM_DoiTuongs = filteredDM_DoiTuongs.AsNoTracking().WhereIf(!string.IsNullOrWhiteSpace(input.TenDoiTuongFilter), (DM_DoiTuong e) => e.TenDoiTuong.ToLower().Contains(input.TenDoiTuongFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.DienThoaiFilter), (DM_DoiTuong e) => e.DienThoai.ToLower().Contains(input.DienThoaiFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter), (DM_DoiTuong e) => e.SoCMTND_DKKD.ToLower().Contains(input.SoCMTND_DKKDFilter.ToLower().Trim()))
+			filteredDM_DoiTuongs = filteredDM_DoiTuongs.WhereIf(!string.IsNullOrWhiteSpace(input.TenDoiTuongFilter), (DM_DoiTuong e) => e.TenDoiTuong.ToLower().Contains(input.TenDoiTuongFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.DienThoaiFilter), (DM_DoiTuong e) => e.DienThoai.ToLower().Contains(input.DienThoaiFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter), (DM_DoiTuong e) => e.SoCMTND_DKKD.ToLower().Contains(input.SoCMTND_DKKDFilter.ToLower().Trim()))
 				.WhereIf(!string.IsNullOrWhiteSpace(input.TenKhacFilter), (DM_DoiTuong e) => e.TenKhac.ToLower().Contains(input.TenKhacFilter.ToLower().Trim()))
 				.WhereIf(!string.IsNullOrWhiteSpace(input.MaDoiTuongFilter), (DM_DoiTuong e) => e.MaDoiTuong.ToLower() == input.MaDoiTuongFilter.ToLower().Trim());
 			IQueryable<GetDM_DoiTuongForView> query = (from o in filteredDM_DoiTuongs
-													   join o1 in _dM_NhomDoiTuongRepository.GetAll().AsNoTracking() on o.DM_NhomDoiTuongId equals o1.Id into j1
+													   join o1 in _dM_NhomDoiTuongRepository.GetAll() on o.DM_NhomDoiTuongId equals o1.Id into j1
 													   from s1 in j1.DefaultIfEmpty()
-													   join o2 in _dM_TinhThanhRepository.GetAll().AsNoTracking() on o.DM_TinhThanhId equals o2.Id into j2
+													   join o2 in _dM_TinhThanhRepository.GetAll() on o.DM_TinhThanhId equals o2.Id into j2
 													   from s2 in j2.DefaultIfEmpty()
-													   join o3 in _dM_QuanHuyenRepository.GetAll().AsNoTracking() on o.DM_QuanHuyenId equals o3.Id into j3
+													   join o3 in _dM_QuanHuyenRepository.GetAll() on o.DM_QuanHuyenId equals o3.Id into j3
 													   from s3 in j3.DefaultIfEmpty()
-													   join o4 in _userRepository.GetAll().AsNoTracking() on o.ID_NhanVienPhuTrach equals o4.Id into j4
+													   join o4 in _userRepository.GetAll() on o.ID_NhanVienPhuTrach equals o4.Id into j4
 													   from s4 in j4.DefaultIfEmpty()
-													   join o5 in _nguonKhachHangRepository.GetAll().AsNoTracking() on o.NguonKhachHangId equals o5.Id into j5
+													   join o5 in _nguonKhachHangRepository.GetAll() on o.NguonKhachHangId equals o5.Id into j5
 													   from s5 in j5.DefaultIfEmpty()
-													   join o7 in _dM_TrangThaiRepository.GetAll().AsNoTracking() on o.DM_TrangThaiId equals o7.Id into j7
+													   join o7 in _dM_TrangThaiRepository.GetAll() on o.DM_TrangThaiId equals o7.Id into j7
 													   from s7 in j7.DefaultIfEmpty()
-													   join o8 in _dM_DoiTuongRepository.GetAll().AsNoTracking() on o.ID_NguoiGioiThieu equals o8.Id into j8
+													   join o8 in _dM_DoiTuongRepository.GetAll() on o.ID_NguoiGioiThieu equals o8.Id into j8
 													   from s8 in j8.DefaultIfEmpty()
-													   join o9 in _organizationUnitRepository.GetAll().AsNoTracking() on o.ID_DonViQuanLy equals o9.Id into j9
+													   join o9 in _organizationUnitRepository.GetAll() on o.ID_DonViQuanLy equals o9.Id into j9
 													   from s9 in j9.DefaultIfEmpty()
 													   where (!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)) && s9.Lineage.Contains(currentUserOrg.Lineage)) || !(!hasLoadFull && (!hasSearchFull || (hasSearchFull && withoutFilter)))
 													   select new GetDM_DoiTuongForView
@@ -220,7 +220,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 														   DM_TrangThaiTenTrangThai = ((s7 == null) ? "" : s7.TenTrangThai.ToString()),
 														   NguoiGioiThieu = ((s8 == null) ? "" : s8.TenDoiTuong.ToString()),
 														   DonViQuanLy = ((s9 == null) ? "" : s9.DisplayName.ToString())
-													   }).AsNoTracking()
+													   })
 				.WhereIf(!string.IsNullOrWhiteSpace(input.DM_NhomDoiTuongTenNhomFilter), (GetDM_DoiTuongForView e) => e.DM_NhomDoiTuongTenNhom.ToLower() == input.DM_NhomDoiTuongTenNhomFilter.ToLower().Trim())
 				.WhereIf(!string.IsNullOrWhiteSpace(input.DM_TinhThanhTenTinhThanhFilter), (GetDM_DoiTuongForView e) => e.DM_TinhThanhTenTinhThanh.ToLower() == input.DM_TinhThanhTenTinhThanhFilter.ToLower().Trim())
 				.WhereIf(!string.IsNullOrWhiteSpace(input.DM_QuanHuyenTenQuanHuyenFilter), (GetDM_DoiTuongForView e) => e.DM_QuanHuyenTenQuanHuyen.ToLower() == input.DM_QuanHuyenTenQuanHuyenFilter.ToLower().Trim())
@@ -231,28 +231,19 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 			//return new PagedResultDto<GetDM_DoiTuongForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "dM_DoiTuong.creationTime desc").PageBy(input).ToListAsync());
 
-			//var strquery = query.ToQueryString();
-			//.AsNoTracking()
-			//this.Database.ExecuteSqlCommand("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;");
-			//SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-			int count = query.AsNoTracking().Count();
+			var strquery = query.ToQueryString();
+
+			int count = query.Count();
 			List<GetDM_DoiTuongForView> list;
-			
+
 			if (input.Sorting == null)
 			{
-				//using (var t = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions
-				//		{
-				//			IsolationLevel = System.Transactions.IsolationLevel.ReadUncommitted
-				//		})
-				//)
-				//{
-					list = query.AsNoTracking().OrderByDescending(q => q.CreateTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
-				//}
+				list = query.OrderByDescending(q => q.CreateTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
 				//list = query.PageBy(10, 10).ToList();
 			}
 			else
 			{
-				list = query.AsNoTracking().OrderBy(q => q.LastModificationTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+				list = query.OrderBy(q => q.LastModificationTime).PageBy(input.SkipCount, input.MaxResultCount).ToList();
 			}
 
 			var result = new PagedResultDto<GetDM_DoiTuongForView>();
@@ -263,10 +254,12 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 				result = new PagedResultDto<GetDM_DoiTuongForView>(count, list);
 				//result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.ToListAsync());
 			}
+
 			//if (query.Any())
 			//{
 			//    result = new PagedResultDto<GetTheKhachHangForView>(await query.CountAsync(), await query.OrderBy(input.Sorting ?? "theKhachHang.creationTime desc").PageBy(1, 100).ToListAsync());
 			//}
+
 			return result;
 		}
 
@@ -356,11 +349,14 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 			try
 			{
-				using (IDbConnection db = new SqlConnection(connectionString))
-				{
-					temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure).ToList();
+				IDbConnection db = new SqlConnection(connectionString);
+				//using (IDbConnection db = new SqlConnection(connectionString))
+				//{
+					temp_abc = db.Query<GetDM_DoiTuongForView2>(sqlStoreProcedure, parameter, commandType: CommandType.StoredProcedure, commandTimeout:9999).ToList();
 					count = parameter.Get<int>("@RowCount");
-				}
+					db.Close();
+					db = null;
+				//}
 			}
 			catch (Exception ex)
 			{
