@@ -1255,7 +1255,8 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 
                     b.ToTable("AbpOrganizationUnits");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("OrganizationUnit");
+                    //  datdd:remove HasDiscriminator
+                    //b.HasDiscriminator<string>("Discriminator").HasValue("OrganizationUnit");
                 });
 
             modelBuilder.Entity("Abp.Organizations.OrganizationUnitRole", b =>
@@ -2589,7 +2590,8 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 
                     b.ToTable("AbpOrganizationUnits");
 
-                    b.HasDiscriminator().HasValue("CustomUnit");
+                    //  datdd:remove HasDiscriminator
+                    //b.HasDiscriminator().HasValue("CustomUnit");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
