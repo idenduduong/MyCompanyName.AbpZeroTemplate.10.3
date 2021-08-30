@@ -1,0 +1,9 @@
+{
+  "name": "jquery.enhsplitter",
+  "main": [
+    "js/jquery.enhsplitter.js",
+    "css/jquery.enhsplitter.css"
+  ],
+  "description": "jQuery Enhanced Splitter is a plugin to generate sliding splitters on your page. Useful for separating content, emulating the look of frames, and more.",
+  "license": "GNU Lesser General Public License"
+}

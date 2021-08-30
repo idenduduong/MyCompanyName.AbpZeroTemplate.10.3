@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props"></Import>
+
+  <PropertyGroup>
+	<LangVersion>8.0</LangVersion>
+	<NullableContextOptions>enable</NullableContextOptions>
+	  
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>MyCompanyName.AbpZeroTemplate</RootNamespace>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Customers\**" />
+    <Compile Remove="DM_DoiTuongs\**" />
+    <EmbeddedResource Remove="Customers\**" />
+    <EmbeddedResource Remove="DM_DoiTuongs\**" />
+    <None Remove="Customers\**" />
+    <None Remove="DM_DoiTuongs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="crmdemo\Categories\Dtos\GetAllForLookupTableInput.cs" />
+    <Compile Remove="crmdemo\Common\Class1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.AutoMapper" Version="6.3.1" />
+    <PackageReference Include="Abp.Web.Common" Version="6.3.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Core.Shared\MyCompanyName.AbpZeroTemplate.Core.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

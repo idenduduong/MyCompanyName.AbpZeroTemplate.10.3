@@ -12,6 +12,20 @@
         public const string Disable_Filters_Tenant = "Disable.Filter.Tenant";
         public const string Disable_Filters_MayHaveOrganizationUnit = "Disable.Filter.MayHaveOrganizationUnit";
 
+        public const string Pages_Dm_DoiTuongs = "Pages.Dm_DoiTuongs";
+        public const string Pages_Dm_DoiTuongs_Create = "Pages.Dm_DoiTuongs.Create";
+        public const string Pages_Dm_DoiTuongs_Edit = "Pages.Dm_DoiTuongs.Edit";
+        public const string Pages_Dm_DoiTuongs_Delete = "Pages.Dm_DoiTuongs.Delete";
+        public const string Pages_Dm_DoiTuongs_SearchFull = "Pages.Dm_DoiTuongs.SearchFull";
+        public const string Pages_Dm_DoiTuongs_LoadFull = "Pages.Dm_DoiTuongs.LoadFull";
+
+        public const string Pages_TheKhachHangs = "Pages.TheKhachHangs";
+        public const string Pages_TheKhachHangs_Create = "Pages.TheKhachHangs.Create";
+        public const string Pages_TheKhachHangs_Edit = "Pages.TheKhachHangs.Edit";
+        public const string Pages_TheKhachHangs_Delete = "Pages.TheKhachHangs.Delete";
+        public const string Pages_TheKhachHangs_SearchFull = "Pages.TheKhachHang.SearchFull";
+        public const string Pages_TheKhachHangs_LoadFull = "Pages.TheKhachHang.LoadFull";
+
         public const string Pages_BaseEntities = "Pages.BaseEntities";
         public const string Pages_BaseEntities_Create = "Pages.BaseEntities.Create";
         public const string Pages_BaseEntities_Edit = "Pages.BaseEntities.Edit";
@@ -67,6 +81,7 @@
         public const string Pages_Administration_Languages_Edit = "Pages.Administration.Languages.Edit";
         public const string Pages_Administration_Languages_Delete = "Pages.Administration.Languages.Delete";
         public const string Pages_Administration_Languages_ChangeTexts = "Pages.Administration.Languages.ChangeTexts";
+        public const string Pages_Administration_Languages_ChangeDefaultLanguage = "Pages.Administration.Languages.ChangeDefaultLanguage";
 
         public const string Pages_Administration_AuditLogs = "Pages.Administration.AuditLogs";
 
@@ -106,7 +121,7 @@
         public const string Pages_Administration_DynamicEntityPropertyValue_Create = "Pages.Administration.DynamicEntityPropertyValue.Create";
         public const string Pages_Administration_DynamicEntityPropertyValue_Edit = "Pages.Administration.DynamicEntityPropertyValue.Edit";
         public const string Pages_Administration_DynamicEntityPropertyValue_Delete = "Pages.Administration.DynamicEntityPropertyValue.Delete";
-        
+
         //TENANT-SPECIFIC PERMISSIONS
 
         public const string Pages_Tenant_Dashboard = "Pages.Tenant.Dashboard";

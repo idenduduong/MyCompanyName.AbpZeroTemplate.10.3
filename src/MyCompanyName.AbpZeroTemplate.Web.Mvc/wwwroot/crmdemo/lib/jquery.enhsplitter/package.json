@@ -1,0 +1,57 @@
+{
+  "_args": [
+    [
+      "jquery.enhsplitter@1.1.0",
+      "D:\\projects\\tech\\dev\\spa\\SourceCode\\src\\crmdemo.Web.Mvc"
+    ]
+  ],
+  "_from": "jquery.enhsplitter@1.1.0",
+  "_id": "jquery.enhsplitter@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-+VNDl1a04uE6h7P/J72TqOps1io=",
+  "_location": "/jquery.enhsplitter",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "jquery.enhsplitter@1.1.0",
+    "name": "jquery.enhsplitter",
+    "escapedName": "jquery.enhsplitter",
+    "rawSpec": "1.1.0",
+    "saveSpec": null,
+    "fetchSpec": "1.1.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/jquery.enhsplitter/-/jquery.enhsplitter-1.1.0.tgz",
+  "_spec": "1.1.0",
+  "_where": "D:\\projects\\tech\\dev\\spa\\SourceCode\\src\\crmdemo.Web.Mvc",
+  "author": {
+    "name": "Hilton Janfield"
+  },
+  "bugs": {
+    "url": "https://github.com/hiltonjanfield/jquery.enhsplitter/issues"
+  },
+  "description": "Enhanced splitter bar for separation of content, tool bars, frame emulation, and more.",
+  "homepage": "https://github.com/hiltonjanfield/jquery.enhsplitter#readme",
+  "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "splitter",
+    "frames",
+    "frameset",
+    "divider"
+  ],
+  "license": "GPL-3.0",
+  "main": "js/jquery.enhsplitter.js",
+  "name": "jquery.enhsplitter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiltonjanfield/jquery.enhsplitter.git"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "version": "1.1.0"
+}
