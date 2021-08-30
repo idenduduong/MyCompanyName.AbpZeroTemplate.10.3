@@ -1,6 +1,5 @@
 ﻿// crmdemo.Organizations.Dto.CustomOrganizationUnitDto
 using Abp.Application.Services.Dto;
-
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Organizations.Dto
 {
 	public class CustomOrganizationUnitDto : AuditedEntityDto<long>
@@ -13,9 +12,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Organizations.Dto
 
 		public int MemberCount { get; set; }
 
-		public int RoleCount { get; set; }
-
-		public int? Level { get; set; }
+		public int Level { get; set; }
 
 		public string Lineage { get; set; }
 
@@ -33,9 +30,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Organizations.Dto
 
 		public string MarkupCharacters { get; set; }
 
-		public bool? IsShowPrimary { get; set; }
+		public bool IsShowPrimary { get; set; }
 
-		public bool? IsShowSecondary { get; set; }
+		public bool IsShowSecondary { get; set; }
 	}
 
 }

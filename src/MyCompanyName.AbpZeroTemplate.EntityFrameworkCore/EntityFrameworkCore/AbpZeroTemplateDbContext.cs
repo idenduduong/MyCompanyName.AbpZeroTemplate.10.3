@@ -2,7 +2,7 @@
 using MyCompanyName.AbpZeroTemplate.ChildNamespace1;
 using MyCompanyName.AbpZeroTemplate.Products;
 using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
-using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
+//using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
 using MyCompanyName.AbpZeroTemplate.Phones;
 using Abp.IdentityServer4vNext;
 using Abp.Zero.EntityFrameworkCore;
@@ -31,16 +31,15 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Categories;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Accounting;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs;
 using MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits;
-<<<<<<< HEAD
 using MyCompanyName.AbpZeroTemplate.crmdemo.Config;
-=======
->>>>>>> ad6e616... crmdemo/TheKhachHang add
+//using Volo.Abp.Data;
 
 namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
         //  crmdemo
+
         //public virtual DbSet<Release> Releases { get; set; }
 
         //public virtual DbSet<RoleProcessStatus> RoleProcessStatuses { get; set; }
@@ -59,9 +58,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<CustomerDataRaw> CustomerDataRaws { get; set; }
 
-        //public virtual DbSet<CustomerData> CustomerDatas { get; set; }
+        public virtual DbSet<CustomerData> CustomerDatas { get; set; }
 
-<<<<<<< HEAD
         public virtual DbSet<ChangeStatusFlow> ChangeStatusFlows { get; set; }
 
         //public virtual DbSet<Reason> Reasons { get; set; }
@@ -71,17 +69,6 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         public virtual DbSet<DataSource> DataSources { get; set; }
 
         public virtual DbSet<ImportData> ImportDatas { get; set; }
-=======
-        //public virtual DbSet<ChangeStatusFlow> ChangeStatusFlows { get; set; }
-
-        //public virtual DbSet<Reason> Reasons { get; set; }
-
-        //public virtual DbSet<DataProcessStatus> DataProcessStatuses { get; set; }
-
-        //public virtual DbSet<DataSource> DataSources { get; set; }
-
-        //public virtual DbSet<ImportData> ImportDatas { get; set; }
->>>>>>> ad6e616... crmdemo/TheKhachHang add
 
         //public virtual DbSet<ReportData> ReportDatas { get; set; }
 
@@ -95,11 +82,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<Voucher> Vouchers { get; set; }
 
-<<<<<<< HEAD
         public virtual DbSet<DM_NgheNghiep> DM_NgheNghieps { get; set; }
-=======
-        //public virtual DbSet<DM_NgheNghiep> DM_NgheNghieps { get; set; }
->>>>>>> ad6e616... crmdemo/TheKhachHang add
 
         //public virtual DbSet<QuanLyKhieuNai> QuanLyKhieuNais { get; set; }
 
@@ -179,17 +162,17 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<DM_ViTri> DM_ViTris { get; set; }
 
-        //public virtual DbSet<NguonKhachHang> NguonKhachHangs { get; set; }
+        public virtual DbSet<NguonKhachHang> NguonKhachHangs { get; set; }
 
         //public virtual DbSet<DM_TyGia> DM_TyGias { get; set; }
 
-        //public virtual DbSet<DM_TrangThai> DM_TrangThais { get; set; }
+        public virtual DbSet<DM_TrangThai> DM_TrangThais { get; set; }
 
         public virtual DbSet<DM_TienTe> DM_TienTes { get; set; }
 
         //public virtual DbSet<DM_ThueSuat> DM_ThueSuats { get; set; }
 
-        //public virtual DbSet<DM_QuanHuyen> DM_QuanHuyens { get; set; }
+        public virtual DbSet<DM_QuanHuyen> DM_QuanHuyens { get; set; }
 
         //public virtual DbSet<DM_PhanLoaiHangHoaDichVu> DM_PhanLoaiHangHoaDichVus { get; set; }
 
@@ -207,7 +190,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<DM_DonVi> DM_DonVis { get; set; }
 
-        //public virtual DbSet<DM_TinhThanh> DM_TinhThanhs { get; set; }
+        public virtual DbSet<DM_TinhThanh> DM_TinhThanhs { get; set; }
 
         //public virtual DbSet<DM_VungMien> DM_VungMiens { get; set; }
 
@@ -215,7 +198,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         //public virtual DbSet<DM_LoaiPhong> DM_LoaiPhongs { get; set; }
 
-        //public virtual DbSet<DM_QuocGia> DM_QuocGias { get; set; }
+        public virtual DbSet<DM_QuocGia> DM_QuocGias { get; set; }
 
         //public virtual DbSet<DM_NganHang> DM_NganHangs { get; set; }
         
@@ -286,8 +269,9 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<Product> Products { get; set; }
 
-        public virtual DbSet<DM_DoiTuong> DM_DoiTuong { get; set; }
 
+        public virtual DbSet<DM_DoiTuong> DM_DoiTuong { get; set; }
+        public virtual DbSet<CustomOrganizationUnit> CustomOrganizationUnit { get; set; }
         //public virtual DbSet<MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs> DM_NhomDoiTuongs { get; set; }
 
         public virtual DbSet<Phone> Phones { get; set; }
@@ -378,10 +362,14 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                        {
                            d.HasIndex(e => new { e.TenantId });
                        });
-            modelBuilder.Entity<DM_NhomDoiTuongs>(d =>
-                       {
-                           d.HasIndex(e => new { e.TenantId });
-                       });
+            //modelBuilder.Entity<CustomOrganizationUnit>(d =>
+            //           {
+            //               d.HasIndex(e => new { e.TenantId });
+            //           });
+            //modelBuilder.Entity<DM_NhomDoiTuongs>(d =>
+            //           {
+            //               d.HasIndex(e => new { e.TenantId });
+            //           });
             modelBuilder.Entity<Phone>(p =>
                        {
                            p.HasIndex(e => new { e.TenantId });

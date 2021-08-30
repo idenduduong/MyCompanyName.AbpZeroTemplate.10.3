@@ -22,7 +22,7 @@ using MyCompanyName.AbpZeroTemplate.Editions.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Common
 {
-	public interface ICrmDemoCommonLookupAppService : IApplicationService, ITransientDependency
+	public interface ICommonLookupAppService : IApplicationService, ITransientDependency
 	{
 		Task<ListResultDto<SubscribableEditionComboboxItemDto>> GetEditionsForCombobox(bool onlyFreeItems = false);
 

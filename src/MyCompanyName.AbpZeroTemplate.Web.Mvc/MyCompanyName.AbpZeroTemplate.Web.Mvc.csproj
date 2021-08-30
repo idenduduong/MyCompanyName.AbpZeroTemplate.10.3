@@ -29,6 +29,7 @@
     <Compile Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
     <Compile Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Compile Remove="Services\**" />
+    <Compile Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Content Remove="App_Data\**" />
     <Content Remove="Areas\devexpress\Views\NewFolder\**" />
     <Content Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
@@ -36,6 +37,7 @@
     <Content Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
     <Content Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Content Remove="Services\**" />
+    <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <EmbeddedResource Remove="App_Data\**" />
     <EmbeddedResource Remove="Areas\devexpress\Views\NewFolder\**" />
     <EmbeddedResource Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
@@ -43,6 +45,7 @@
     <EmbeddedResource Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
     <EmbeddedResource Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <None Remove="App_Data\**" />
     <None Remove="Areas\devexpress\Views\NewFolder\**" />
     <None Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
@@ -50,6 +53,7 @@
     <None Remove="Areas\qlnv\Views\DM_DoiTuong\**" />
     <None Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <None Remove="Services\**" />
+    <None Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Areas\devexpress\Controllers\ApiControllers\ActionsOverviewController.cs" />
