@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Dto;
+using MyCompanyName.AbpZeroTemplate.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Exporting
 {

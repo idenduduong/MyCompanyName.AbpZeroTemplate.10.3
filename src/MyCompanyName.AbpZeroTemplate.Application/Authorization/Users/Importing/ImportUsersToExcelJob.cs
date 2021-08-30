@@ -87,7 +87,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Importing
                     }
                     finally
                     {
-                        uow.Complete();
+                        await uow.CompleteAsync();
                     }
                 }
             }

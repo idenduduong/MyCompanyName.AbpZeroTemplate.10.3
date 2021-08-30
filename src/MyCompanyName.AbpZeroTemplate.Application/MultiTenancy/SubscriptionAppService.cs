@@ -22,7 +22,7 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
                 if (tenant.SubscriptionPaymentType == SubscriptionPaymentType.RecurringAutomatic)
                 {
                     tenant.SubscriptionPaymentType = SubscriptionPaymentType.RecurringManual;
-                    EventBus.Trigger(new RecurringPaymentsDisabledEventData
+                    await EventBus.TriggerAsync(new RecurringPaymentsDisabledEventData
                     {
                         TenantId = AbpSession.GetTenantId(),
                         EditionId = tenant.EditionId.Value
@@ -41,7 +41,7 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
                     tenant.SubscriptionPaymentType = SubscriptionPaymentType.RecurringAutomatic;
                     tenant.SubscriptionEndDateUtc = null;
 
-                    EventBus.Trigger(new RecurringPaymentsEnabledEventData
+                    await EventBus.TriggerAsync(new RecurringPaymentsEnabledEventData
                     {
                         TenantId = AbpSession.GetTenantId()
                     });

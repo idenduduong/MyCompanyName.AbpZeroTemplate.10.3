@@ -16,7 +16,7 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Abp.Application.Editions.Edition", b =>
@@ -373,6 +373,10 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("ProviderKey", "TenantId")
+                        .IsUnique()
+                        .HasFilter("[TenantId] IS NOT NULL");
 
                     b.HasIndex("TenantId", "UserId");
 
@@ -1223,6 +1227,10 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DisplayName")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -1250,6 +1258,8 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.HasIndex("TenantId", "Code");
 
                     b.ToTable("AbpOrganizationUnits");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("OrganizationUnit");
                 });
 
             modelBuilder.Entity("Abp.Organizations.OrganizationUnitRole", b =>
@@ -1555,6 +1565,9 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<string>("CMT")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasMaxLength(128)
@@ -1572,6 +1585,12 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DiaChiTamTru")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -1580,6 +1599,15 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.Property<string>("EmailConfirmationCode")
                         .HasMaxLength(328)
                         .HasColumnType("nvarchar(328)");
+
+                    b.Property<int?>("EmployeeStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("GioiTinh")
+                        .HasColumnType("bit");
 
                     b.Property<string>("GoogleAuthenticatorKey")
                         .HasColumnType("nvarchar(max)");
@@ -1611,10 +1639,25 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.Property<DateTime?>("LockoutEndDateUtc")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("MaNhanVien")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<DateTime?>("NgayCap")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgaySinh")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NoiCap")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoiSinh")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmailAddress")
                         .IsRequired()
@@ -1628,6 +1671,9 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 
                     b.Property<int?>("OrganizationUnitId")
                         .HasColumnType("int");
+
+                    b.Property<double?>("PTCKBanThe")
+                        .HasColumnType("float");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -1658,6 +1704,9 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.Property<DateTime?>("SignInTokenExpireTimeUtc")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SoBHXH")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -1670,6 +1719,9 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("UserType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1812,192 +1864,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Childs");
-                });
-
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.DM_DoiTuongs.DM_DoiTuong", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Anh")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CapTai_DKKD")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ChiaSe")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ChucVu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CustomerManagementOrganizationCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomerManagementOrganizationName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DiaChi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DiaChiKhac")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("DiemKhoiTao")
-                        .HasColumnType("float");
-
-                    b.Property<string>("DienThoai")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("DoanhSoKhoiTao")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Fax")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileDinhKems")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("GioiHanCongNo")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("GioiTinhNam")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("ID_DonViQuanLy")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("ID_Index")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ID_NguoiGioiThieu")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<long?>("ID_NhanVienPhuTrach")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("ID_NhomCu")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsNewCustomer")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LaCaNhan")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LinhVuc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LoaiDoiTuong")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("Ma")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("MaDoiTuong")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaSoThue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NganHang")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("NgayCapCMTND_DKKD")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayDoiNhom")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayGiaoDichGanNhat")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgaySinh_NgayTLap")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgaySuaTrangThai")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NoiCapCMTND_DKKD")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Profile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SDT_CoQuan")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SDT_NhaRieng")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SoCMTND_DKKD")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TaiKhoanNganHang")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenDoiTuong")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenKhac")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenNguonKhach")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenNhom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("TheoDoi")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("TheoDoiVanTay")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ThuongTru")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("TongDiem")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("XungHo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TenantId");
-
-                    b.ToTable("DM_DoiTuongs");
                 });
 
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.Friendships.Friendship", b =>
@@ -2271,62 +2137,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.ToTable("AbpTenants");
                 });
 
-            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LoaiDoiTuong")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MaNhom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("MucDiem")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime?>("NgaySuaCuoi")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("NgayTao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TenNhom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserSuaCuoi")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserTao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TenantId");
-
-                    b.ToTable("DM_NhomDoiTuongs");
-                });
-
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.Persons.Person", b =>
                 {
                     b.Property<int>("Id")
@@ -2508,6 +2318,2633 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.ToTable("AppBinaryObjects");
                 });
 
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Accounting.HoaDonBanLe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("CSKH")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ChoThanhToan")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CustomerAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DienGiai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileDinhKems")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("GioRa")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("GioVao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ID_CheckIn")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_DacDiemKhachHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_DoiTuong")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ID_DonVi")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ID_DonViThucHien")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("ID_NgoaiTe")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ID_NhanVien")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("ID_ViTri")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("KSNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("KeToan")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KhongHaiLong")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("LoaiChungTu")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LoaiHoaDon")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("Ma")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaHoaDon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgayDanhGia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayLapHoaDon")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("NguoiNhapKS")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("PerformedOrganizationCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PerformedOrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("PhaiThanhToan")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Room")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Sale")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SellingOrganizationCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellingOrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SoLanIn")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TongChiPhi")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TongChietKhau")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TongGiamGia")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TongTienHang")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TongTienThue")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TyGia")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("VeSinh")
+                        .HasColumnType("int");
+
+                    b.Property<string>("YKienKhachHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YeuCau")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HoaDonBanLes");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Accounting.HoaDonBanLeChiTiet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ChatLieu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("Chieu")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DonGia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("GiaVon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("ID_DonViTinh")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_HangHoa")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_HoaDon")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_KhoHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_LoHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_MaVach")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_TangKem")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_ThueSuat")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTempData")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("KichCo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("LoaiThoiGianBH")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaNhanVienThucHien")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaNhanVienTuVan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaTheGiaTri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaTheLan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MauSac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PTChiPhi")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PTChietKhau")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PTThue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool?>("Sang")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SoLanDaIn")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuong_TL")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuong_YC")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoThuTu")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("TangKem")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TenNhanVienThucHien")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenNhanVienTuVan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ThanhTien")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ThanhToan")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("ThoiGian")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ThoiGianBaoHanh")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ThoiGianThucHien")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TienChiPhi")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienChietKhau")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienThue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserNhap")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ID_HangHoa");
+
+                    b.HasIndex("ID_HoaDon");
+
+                    b.ToTable("HoaDonBanLeChiTiets");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Accounting.PhieuThuChiTiet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ChiPhiNganHang")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DiaChi_KhachHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_ChungTu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_KhachHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_KhoanThu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_NganHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_PhieuThu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_TheThoanhToan")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaPTChiPhiNganHang")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("LoaiCT")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaChuanChi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ThuPhiTienGui")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("ThuTuThe")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienGui")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienMat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienThu")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhieuThuChiTiets");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_DacDiemKhachHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaDacDiem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenDacDiem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_DacDiemKhachHangs");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_DoiTuong", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Anh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CapTai_DKKD")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ChiaSe")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ChucVu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("CustomerDataId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CustomerManagementOrganizationCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerManagementOrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("DM_NhomDoiTuongId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DM_QuanHuyenId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DM_QuocGiaId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("DM_TinhThanhId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("DM_TrangThaiId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DiaChiKhac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("DiemKhoiTao")
+                        .HasColumnType("float");
+
+                    b.Property<string>("DienThoai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("DoanhSoKhoiTao")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fax")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileDinhKems")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("GioiHanCongNo")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("GioiTinhNam")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ID_DonViQuanLy")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("ID_Index")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ID_NguoiGioiThieu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ID_NhanVienPhuTrach")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("ID_NhomCu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsNewCustomer")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaCaNhan")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("LinhVuc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LoaiDoiTuong")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("Ma")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaDoiTuong")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaSoThue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NganHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgayCapCMTND_DKKD")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayDoiNhom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayGiaoDichGanNhat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgaySinh_NgayTLap")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgaySuaTrangThai")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("NgheNghiepId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("NguonKhachHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NoiCapCMTND_DKKD")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Profile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SDT_CoQuan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SDT_NhaRieng")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SoCMTND_DKKD")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaiKhoanNganHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenDoiTuong")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenKhac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenNguonKhach")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenNhom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("TheoDoi")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("TheoDoiVanTay")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ThuongTru")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TongDiem")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("XungHo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("DM_DoiTuongs");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_HangHoa", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Anh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChatLieu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("ChiPhiThucHien")
+                        .HasColumnType("float");
+
+                    b.Property<bool?>("ChiPhiTinhTheoPT")
+                        .IsRequired()
+                        .HasColumnType("bit");
+
+                    b.Property<double?>("ChietKhauMD_NV")
+                        .HasColumnType("float");
+
+                    b.Property<bool?>("ChietKhauMD_NVTheoPT")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("DM_DoiTuongId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DM_DonViTinhId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DM_NhomHangHoaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DM_QuocGiaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DM_ThueSuatId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("GiaBan1")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("GiaBan2")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("GiaBan3")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("GiaBanLe")
+                        .IsRequired()
+                        .HasColumnType("float");
+
+                    b.Property<double?>("GiaNhap")
+                        .IsRequired()
+                        .HasColumnType("float");
+
+                    b.Property<Guid?>("ID_DVTQuyCach")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_DonViTinhPhu1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_DonViTinhPhu2")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_DonViTinhPhu3")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_PhanLoai")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IDs_NhomKH1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IDs_NhomKH2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IDs_NhomKH3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsTrial")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("KichCo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LaHangHoa")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("LoaiBaoHanh")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaHangHoa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaVach")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MauSac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("QuyCach")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ServiceGroup")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SoPhutThucHien")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TenHangHoa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenKhac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenTGBaoHanh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("TheoDoi")
+                        .IsRequired()
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ThoiGianBaoHanh")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("TiSuat1")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TiSuat2")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TiSuat3")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TiSuatBanLe")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("TiSuatTheoGiaBan1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TiSuatTheoGiaBan2")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TiSuatTheoGiaBan3")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("TinhCPSauChietKhau")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("TinhGiaVon")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("TyLeChuyenDoi1")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TyLeChuyenDoi2")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TyLeChuyenDoi3")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_HangHoas");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_KhuyenMai", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPercentage")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SoQuyetDinh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_KhuyenMais");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_LienHe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CanNang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChieuCao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChucVu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_DoiTuong")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaLienHe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySinh")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SoDienThoai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenLienHe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_LienHes");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NgheNghiep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_NgheNghieps");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NhomDoiTuong", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("LoaiDoiTuong")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaNhom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("MucDiem")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenNhom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_NhomDoiTuongs");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NhomHangHoa", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HienThi_BanThe")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HienThi_Chinh")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HienThi_Phu")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ID_DonVis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_Kho")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_Parent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaNhomHangHoa")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaNhom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MauHienThi")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MayIn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenDonVis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenNhom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_NhomHangHoas");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NhomThe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaNhomThe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenNhomThe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_NhomThes");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_QuanHuyen", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AreaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AreaName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_TinhThanh")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaQuanHuyen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenQuanHuyen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_QuanHuyens");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_QuocGia", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaNuoc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenNuoc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_QuocGias");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_TienTe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_QuocGia")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaNoiTe")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaNgoaiTe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenNgoaiTe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_TienTes");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_TinhThanh", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_QuocGia")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_VungMien")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaTinhThanh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenTinhThanh")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_TinhThanhs");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_TrangThai", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("NgaySuaCuoi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayTao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenTrangThai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserSuaCuoi")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserTao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DM_TrangThais");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DataSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DataSources");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.NguonKhachHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("TenNguonKhach")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NguonKhachHangs");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Config.ChangeStatusFlow", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FromStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEndFlow")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("ToStatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromStatusId");
+
+                    b.HasIndex("ToStatusId");
+
+                    b.ToTable("ChangeStatusFlows");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Config.DataProcessStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("FullCustomer")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsBeginProcess")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsCallRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEndProcess")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsFileRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPhoneCommunicationRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsReasonRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsScheduleRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("OrderNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalDaysLimit")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("TrialCustomer")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DataProcessStatuses");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.CustomerData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ActivedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ActivedByUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("AreaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AuthorizedEmployee")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("AuthorizedEmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("AuthorizedOrganization")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("AuthorizedOrganizationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("AuthorizedOrganizations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("BelongsToSeller")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("BelongsToSellerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BelongsToSellerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CareerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CareerString")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConsultingFiles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("CurrentSchedule")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CustomerId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DataActiveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DataGroup")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DataProcessStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DataProcessStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DataSource")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("DataSourceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DataType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DistrictId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DistrictString")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ImportCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ImportDataId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IndentifyNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsImported")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsInUse")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRecalled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastChangeStatusTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("NationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NationString")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrimaryPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ProvinceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProvinceString")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RecallType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RecalledBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecalledReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondaryPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TargetOrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("TargetOrganizationUnitId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("TargetServiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("TargetServiceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CareerId");
+
+                    b.HasIndex("CustomerId1");
+
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("ImportDataId");
+
+                    b.HasIndex("NationId");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.HasIndex("TargetOrganizationUnitId");
+
+                    b.HasIndex("TargetServiceId");
+
+                    b.ToTable("CustomerDatas");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.ImportData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("DataSourceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DataType")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImportCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ImportTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("ImportedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ImportedId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("InputFile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("OutputFile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TotalDupplicate")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalIgnored")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalInValid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalProcessedData")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalSuccess")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DataSourceId");
+
+                    b.HasIndex("ImportedId");
+
+                    b.ToTable("ImportDatas");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.NhanVienThucHien", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ChiPhiThucHien")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("ChietKhauTheoThucThu")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("DanhGia")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DienGiai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("DuocYeuCau")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EmployeeCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_ChiTietChungTu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_CongViec")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ID_NhanVienChinh")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaNhanVienChinh")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaPTChiPhiThucHien")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaPhanTram")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("LoaiChungTu")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("MaChungTu")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("NgayThucHien")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("NhanVien")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("OrganizationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("PTDoanhThuDuocHuong")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("StageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TienChietKhau")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NhanVienThucHiens");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.NhatKySuDungThe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ID_ChiTietChungTu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_ChungTu")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_HangHoaDichVu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ID_NhanVien")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("ID_TheKhachHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_TheKhachHangChiTiet")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsLastActivity")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaSoLuongDuocTang")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("LoaiChungTu")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Ngay")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ServiceGroup")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("SoTien")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ID_ChiTietChungTu");
+
+                    b.HasIndex("ID_ChungTu");
+
+                    b.HasIndex("ID_TheKhachHang");
+
+                    b.HasIndex("ID_TheKhachHangChiTiet");
+
+                    b.ToTable("NhatKySuDungThes");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangChiTiet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DonGia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ID_HangHoa")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_LopHoc")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_SanPhamChinh")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_TheKhachHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsComplete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LaTangKem")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("MultipleSeller")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("NgayTraLai")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("PTChietKhau")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("PackageOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReleaseAmount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceGroup")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SoLuong")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuongDaSuDung")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuongTang")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoLuongTraLai")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ThanhToan")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienChietKhau")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienDaSuDung")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("TraLaiHHDV")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TheKhachHangChiTiets");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs.TheKhachHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("AdjustedAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("ApDungTatCaSanPham")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("AuthorizedOrganizationCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AuthorizedOrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("DaChuyenThe")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("DaThanhToan")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DiscountFromVoucher")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("DuocChoMuon")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HuyThe")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ID_DonVi")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ID_DonViThuHuong")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ID_DonViThucHien")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("ID_KhachHang")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_KhuyenMai")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("ID_NhanVienLap")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("ID_NhomThe")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_TheCu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ID_TienTe")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MaNhanVienTuVan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaThe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("MenhGiaThe")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("NgayApDung")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayHetHan")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayHuy")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayMua")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayVaoSo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("PTChietKhau")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PTTangThem")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PhaiThanhToan")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ReleaseBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ReleasedBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SellingOrganizationCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SellingOrganizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SoDu")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("SoLanDuocSuDung")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TenNhanVienTuVan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TheGiaTri_SoLan_GiamGia")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TienChietKhau")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TienTangThem")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("TyGia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VirtualBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("VoucherId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TheKhachHangs");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Voucher", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("KhuyenMaiId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("VoucherCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("VoucherValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KhuyenMaiId");
+
+                    b.ToTable("Vouchers");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Temp.EntityOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EntityCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("OrderNumber")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntityOrders");
+                });
+
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.Editions.SubscribableEdition", b =>
                 {
                     b.HasBaseType("Abp.Application.Editions.Edition");
@@ -2589,6 +5026,42 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.ToTable("AbpPermissions");
 
                     b.HasDiscriminator().HasValue("UserPermissionSetting");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits.CustomOrganizationUnit", b =>
+                {
+                    b.HasBaseType("Abp.Organizations.OrganizationUnit");
+
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("AreaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AreaName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lineage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UnitCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("AbpOrganizationUnits");
+
+                    b.HasDiscriminator().HasValue("CustomOrganizationUnit");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
@@ -2843,6 +5316,140 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("UserFk");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Accounting.HoaDonBanLeChiTiet", b =>
+                {
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_HangHoa", "HangHoa")
+                        .WithMany()
+                        .HasForeignKey("ID_HangHoa");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Accounting.HoaDonBanLe", "HoaDon")
+                        .WithMany()
+                        .HasForeignKey("ID_HoaDon");
+
+                    b.Navigation("HangHoa");
+
+                    b.Navigation("HoaDon");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Config.ChangeStatusFlow", b =>
+                {
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Config.DataProcessStatus", "FromStatus")
+                        .WithMany()
+                        .HasForeignKey("FromStatusId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Config.DataProcessStatus", "ToStatus")
+                        .WithMany()
+                        .HasForeignKey("ToStatusId");
+
+                    b.Navigation("FromStatus");
+
+                    b.Navigation("ToStatus");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.CustomerData", b =>
+                {
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_NgheNghiep", "Career")
+                        .WithMany()
+                        .HasForeignKey("CareerId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_DoiTuong", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId1");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_QuanHuyen", "District")
+                        .WithMany()
+                        .HasForeignKey("DistrictId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.ImportData", "ImportData")
+                        .WithMany()
+                        .HasForeignKey("ImportDataId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_QuocGia", "Nation")
+                        .WithMany()
+                        .HasForeignKey("NationId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_TinhThanh", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceId");
+
+                    b.HasOne("Abp.Organizations.OrganizationUnit", "TargetOrganizationUnit")
+                        .WithMany()
+                        .HasForeignKey("TargetOrganizationUnitId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_HangHoa", "TargetService")
+                        .WithMany()
+                        .HasForeignKey("TargetServiceId");
+
+                    b.Navigation("Career");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("District");
+
+                    b.Navigation("ImportData");
+
+                    b.Navigation("Nation");
+
+                    b.Navigation("Province");
+
+                    b.Navigation("TargetOrganizationUnit");
+
+                    b.Navigation("TargetService");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.ImportData", b =>
+                {
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DataSource", "DataSource")
+                        .WithMany()
+                        .HasForeignKey("DataSourceId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.Authorization.Users.User", "Imported")
+                        .WithMany()
+                        .HasForeignKey("ImportedId");
+
+                    b.Navigation("DataSource");
+
+                    b.Navigation("Imported");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.NhatKySuDungThe", b =>
+                {
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Accounting.HoaDonBanLeChiTiet", "ChiTietChungTu")
+                        .WithMany()
+                        .HasForeignKey("ID_ChiTietChungTu");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Accounting.HoaDonBanLe", "ChungTu")
+                        .WithMany()
+                        .HasForeignKey("ID_ChungTu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs.TheKhachHang", "TheKhachHang")
+                        .WithMany()
+                        .HasForeignKey("ID_TheKhachHang");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangChiTiet", "TheKhachHangChiTiet")
+                        .WithMany()
+                        .HasForeignKey("ID_TheKhachHangChiTiet");
+
+                    b.Navigation("ChiTietChungTu");
+
+                    b.Navigation("ChungTu");
+
+                    b.Navigation("TheKhachHang");
+
+                    b.Navigation("TheKhachHangChiTiet");
+                });
+
+            modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Voucher", b =>
+                {
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_KhuyenMai", "KhuyenMai")
+                        .WithMany()
+                        .HasForeignKey("KhuyenMaiId");
+
+                    b.Navigation("KhuyenMai");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>

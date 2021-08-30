@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-  <Import Project="..\..\common.props">
-  </Import>
+
+  <Import Project="..\..\common.props"></Import>
+
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
@@ -24,16 +25,32 @@
   <ItemGroup>
     <Compile Remove="App_Data\**" />
     <Compile Remove="Areas\devexpress\Views\NewFolder\**" />
+    <Compile Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <Compile Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <Compile Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Compile Remove="Services\**" />
+    <Compile Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Content Remove="App_Data\**" />
     <Content Remove="Areas\devexpress\Views\NewFolder\**" />
+    <Content Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <Content Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <Content Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <Content Remove="Services\**" />
+    <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <EmbeddedResource Remove="App_Data\**" />
     <EmbeddedResource Remove="Areas\devexpress\Views\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <EmbeddedResource Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <None Remove="App_Data\**" />
     <None Remove="Areas\devexpress\Views\NewFolder\**" />
+    <None Remove="Areas\qlnv\Models\DM_DoiTuong\**" />
+    <None Remove="Areas\qlnv\Models\DM_NhomDoiTuongs\**" />
+    <None Remove="Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
     <None Remove="Services\**" />
+    <None Remove="wwwroot\view-resources\Areas\qlnv\Views\DM_NhomDoiTuongs\**" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Areas\devexpress\Controllers\ApiControllers\ActionsOverviewController.cs" />
@@ -90,6 +107,9 @@
     <Compile Remove="Areas\devexpress\Models\SignalR\StockTicker.cs" />
     <Compile Remove="Areas\devexpress\SignalRTickData\TickDataService.cs" />
     <Compile Remove="Areas\devexpress\SignalR\StockTicker.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_DoiTuongController.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_DoiTuongController_delete.cs" />
+    <Compile Remove="Areas\qlnv\Controllers\DM_NhomDoiTuongsController.cs" />
     <Compile Remove="Domain.cs" />
     <Compile Remove="Models\DevExtreme\FileManagement\AzureBlobFileProvider.cs" />
     <Compile Remove="Models\DevExtreme\SignalRTickData\TickDataService.cs" />
@@ -103,6 +123,11 @@
     <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.js" />
     <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.min.css" />
     <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Areas\qlnv\Views\DM_DoiTuongs\Index.cshtml.del" />
+    <None Remove="Areas\qlnv\Views\DM_DoiTuongs\_CreateOrEditModal.del" />
+    <None Remove="Areas\qlnv\Views\DM_DoiTuongs\_ViewDM_DoiTuongModal.cshtml.del" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />
@@ -133,7 +158,6 @@
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="5.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
       <PrivateAssets>all</PrivateAssets>

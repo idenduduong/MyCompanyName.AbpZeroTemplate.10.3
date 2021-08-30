@@ -5,14 +5,12 @@ using System.Drawing;
 using System.IO;
 using System.Web;
 //using System.Web.Hosting;
-using Microsoft.AspNetCore.Hosting;
 using Abp.IO.Extensions;
 using MyCompanyName.AbpZeroTemplate.crmdemo;
-using MyCompanyName.AbpZeroTemplate.Web.crmdemo.Helpers;
+using MyCompanyName.AbpZeroTemplate.Web.crmdemo.Web.Helpers;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Hosting.Internal;
 
-namespace MyCompanyName.AbpZeroTemplate.Web.crmdemo.Helpers
+namespace MyCompanyName.AbpZeroTemplate.Web.crmdemo.Web.Helpers
 {
 	public class FilesHelper
 	{
@@ -42,18 +40,18 @@ namespace MyCompanyName.AbpZeroTemplate.Web.crmdemo.Helpers
 
 		public void DeleteFiles(string pathToDelete)
 		{
-            string path = AppDomain.CurrentDomain.BaseDirectory; //HostingEnvironment.MapPath(pathToDelete);
-            if (Directory.Exists(path))
-            {
-                DirectoryInfo di = new DirectoryInfo(path);
-                FileInfo[] files = di.GetFiles();
-                for (int i = 0; i < files.Length; i++)
-                {
-                    File.Delete(files[i].FullName);
-                }
-                di.Delete(recursive: true);
-            }
-        }
+			string path = HostingEnvironment.MapPath(pathToDelete);
+			if (Directory.Exists(path))
+			{
+				DirectoryInfo di = new DirectoryInfo(path);
+				FileInfo[] files = di.GetFiles();
+				for (int i = 0; i < files.Length; i++)
+				{
+					File.Delete(files[i].FullName);
+				}
+				di.Delete(recursive: true);
+			}
+		}
 
 		public string DeleteFile(string file)
 		{
@@ -154,7 +152,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.crmdemo.Helpers
 
 		public ViewDataUploadFilesResult UploadResult(string FileName, int fileSize, string FileFullPath, string folderName)
 		{
-			string getType = "image/jpg";	//MimeMapping.GetMimeMapping(FileFullPath);
+			string getType = MimeMapping.GetMimeMapping(FileFullPath);
 			return new ViewDataUploadFilesResult
 			{
 				name = FileName,
@@ -203,18 +201,17 @@ namespace MyCompanyName.AbpZeroTemplate.Web.crmdemo.Helpers
 
 		public List<string> FilesList()
 		{
-            List<string> Filess = new List<string>();
-			string path = AppDomain.CurrentDomain.BaseDirectory; // HostingEnvironment.MapPath(serverMapPath);
-            if (Directory.Exists(path))
-            {
-                FileInfo[] files = new DirectoryInfo(path).GetFiles();
-                foreach (FileInfo fi in files)
-                {
-                    Filess.Add(fi.Name);
-                }
-            }
-            return Filess;
-            return new List<string>();
+			List<string> Filess = new List<string>();
+			string path = HostingEnvironment.MapPath(serverMapPath);
+			if (Directory.Exists(path))
+			{
+				FileInfo[] files = new DirectoryInfo(path).GetFiles();
+				foreach (FileInfo fi in files)
+				{
+					Filess.Add(fi.Name);
+				}
+			}
+			return Filess;
 		}
 	}
 

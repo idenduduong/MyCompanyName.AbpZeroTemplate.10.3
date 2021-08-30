@@ -13,6 +13,7 @@ using MyCompanyName.AbpZeroTemplate.Sessions.Dto;
 using MyCompanyName.AbpZeroTemplate.UiCustomization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Delegation;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
+using Abp.Domain.Uow;
 
 namespace MyCompanyName.AbpZeroTemplate.Sessions
 {
@@ -21,84 +22,90 @@ namespace MyCompanyName.AbpZeroTemplate.Sessions
         private readonly IUiThemeCustomizerFactory _uiThemeCustomizerFactory;
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;
         private readonly IUserDelegationConfiguration _userDelegationConfiguration;
+        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public SessionAppService(
             IUiThemeCustomizerFactory uiThemeCustomizerFactory,
             ISubscriptionPaymentRepository subscriptionPaymentRepository,
-            IUserDelegationConfiguration userDelegationConfiguration)
+            IUserDelegationConfiguration userDelegationConfiguration,
+            IUnitOfWorkManager unitOfWorkManager)
         {
             _uiThemeCustomizerFactory = uiThemeCustomizerFactory;
             _subscriptionPaymentRepository = subscriptionPaymentRepository;
             _userDelegationConfiguration = userDelegationConfiguration;
+            _unitOfWorkManager = unitOfWorkManager;
         }
 
         [DisableAuditing]
         public async Task<GetCurrentLoginInformationsOutput> GetCurrentLoginInformations()
         {
-            var output = new GetCurrentLoginInformationsOutput
+            return await _unitOfWorkManager.WithUnitOfWorkAsync(async () =>
             {
-                Application = new ApplicationInfoDto
+                var output = new GetCurrentLoginInformationsOutput
                 {
-                    Version = AppVersionHelper.Version,
-                    ReleaseDate = AppVersionHelper.ReleaseDate,
-                    Features = new Dictionary<string, bool>(),
-                    Currency = AbpZeroTemplateConsts.Currency,
-                    CurrencySign = AbpZeroTemplateConsts.CurrencySign,
-                    AllowTenantsToChangeEmailSettings = AbpZeroTemplateConsts.AllowTenantsToChangeEmailSettings,
-                    UserDelegationIsEnabled = _userDelegationConfiguration.IsEnabled,
-                    TwoFactorCodeExpireSeconds = TwoFactorCodeCacheItem.DefaultSlidingExpireTime.TotalSeconds
+                    Application = new ApplicationInfoDto
+                    {
+                        Version = AppVersionHelper.Version,
+                        ReleaseDate = AppVersionHelper.ReleaseDate,
+                        Features = new Dictionary<string, bool>(),
+                        Currency = AbpZeroTemplateConsts.Currency,
+                        CurrencySign = AbpZeroTemplateConsts.CurrencySign,
+                        AllowTenantsToChangeEmailSettings = AbpZeroTemplateConsts.AllowTenantsToChangeEmailSettings,
+                        UserDelegationIsEnabled = _userDelegationConfiguration.IsEnabled,
+                        TwoFactorCodeExpireSeconds = TwoFactorCodeCacheItem.DefaultSlidingExpireTime.TotalSeconds
+                    }
+                };
+
+                var uiCustomizer = await _uiThemeCustomizerFactory.GetCurrentUiCustomizer();
+                output.Theme = await uiCustomizer.GetUiSettings();
+
+                if (AbpSession.TenantId.HasValue)
+                {
+                    output.Tenant = ObjectMapper
+                        .Map<TenantLoginInfoDto>(await TenantManager
+                            .Tenants
+                            .Include(t => t.Edition)
+                            .FirstAsync(t => t.Id == AbpSession.GetTenantId()));
                 }
-            };
 
-            var uiCustomizer = await _uiThemeCustomizerFactory.GetCurrentUiCustomizer();
-            output.Theme = await uiCustomizer.GetUiSettings();
+                if (AbpSession.ImpersonatorTenantId.HasValue)
+                {
+                    output.ImpersonatorTenant = ObjectMapper
+                        .Map<TenantLoginInfoDto>(await TenantManager
+                            .Tenants
+                            .Include(t => t.Edition)
+                            .FirstAsync(t => t.Id == AbpSession.ImpersonatorTenantId));
+                }
 
-            if (AbpSession.TenantId.HasValue)
-            {
-                output.Tenant = ObjectMapper
-                    .Map<TenantLoginInfoDto>(await TenantManager
-                        .Tenants
-                        .Include(t => t.Edition)
-                        .FirstAsync(t => t.Id == AbpSession.GetTenantId()));
-            }
-            
-            if (AbpSession.ImpersonatorTenantId.HasValue)
-            {
-                output.ImpersonatorTenant = ObjectMapper
-                    .Map<TenantLoginInfoDto>(await TenantManager
-                        .Tenants
-                        .Include(t => t.Edition)
-                        .FirstAsync(t => t.Id == AbpSession.ImpersonatorTenantId));
-            }
+                if (AbpSession.UserId.HasValue)
+                {
+                    output.User = ObjectMapper.Map<UserLoginInfoDto>(await GetCurrentUserAsync());
+                }
 
-            if (AbpSession.UserId.HasValue)
-            {
-                output.User = ObjectMapper.Map<UserLoginInfoDto>(await GetCurrentUserAsync());
-            }
-            
-            if (AbpSession.ImpersonatorUserId.HasValue)
-            {
-                output.ImpersonatorUser = ObjectMapper.Map<UserLoginInfoDto>(await GetImpersonatorUserAsync());
-            }
+                if (AbpSession.ImpersonatorUserId.HasValue)
+                {
+                    output.ImpersonatorUser = ObjectMapper.Map<UserLoginInfoDto>(await GetImpersonatorUserAsync());
+                }
 
-            if (output.Tenant == null)
-            {
+                if (output.Tenant == null)
+                {
+                    return output;
+                }
+
+                if (output.Tenant.Edition != null)
+                {
+                    var lastPayment = await _subscriptionPaymentRepository.GetLastCompletedPaymentOrDefaultAsync(output.Tenant.Id, null, null);
+                    if (lastPayment != null)
+                    {
+                        output.Tenant.Edition.IsHighestEdition = IsEditionHighest(output.Tenant.Edition.Id, lastPayment.GetPaymentPeriodType());
+                    }
+                }
+
+                output.Tenant.SubscriptionDateString = GetTenantSubscriptionDateString(output);
+                output.Tenant.CreationTimeString = output.Tenant.CreationTime.ToString("d");
+
                 return output;
-            }
-
-            if (output.Tenant.Edition != null)
-            {
-                var lastPayment = await _subscriptionPaymentRepository.GetLastCompletedPaymentOrDefaultAsync(output.Tenant.Id, null, null);
-                if (lastPayment != null)
-                {
-                    output.Tenant.Edition.IsHighestEdition = IsEditionHighest(output.Tenant.Edition.Id, lastPayment.GetPaymentPeriodType());
-                }
-            }
-
-            output.Tenant.SubscriptionDateString = GetTenantSubscriptionDateString(output);
-            output.Tenant.CreationTimeString = output.Tenant.CreationTime.ToString("d");
-
-            return output;
+            });
 
         }
 
@@ -163,7 +170,7 @@ namespace MyCompanyName.AbpZeroTemplate.Sessions
                     : ""
             };
         }
-        
+
         protected virtual async Task<User> GetImpersonatorUserAsync()
         {
             using (CurrentUnitOfWork.SetTenantId(AbpSession.ImpersonatorTenantId))

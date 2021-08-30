@@ -15,6 +15,10 @@ using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using MyCompanyName.AbpZeroTemplate.Persons;
 using MyCompanyName.AbpZeroTemplate.Persons.Dtos;
+using Abp.Dapper.Repositories;
+using DapperExtensions.Mapper;
+using Dapper;
+using DynamicData;
 
 namespace MyCompanyName.AbpZeroTemplate.Phones
 {
@@ -23,9 +27,20 @@ namespace MyCompanyName.AbpZeroTemplate.Phones
     {
         private readonly IRepository<Person> _personRepository;
 
+        private readonly IDapperRepository<Person> _personDapperRepository;
+
         public PersonsAppService(IRepository<Person> personRepository)
         {
             _personRepository = personRepository;
+        }
+
+        public PersonsAppService(
+                    IRepository<Person> personRepository,
+                    IDapperRepository<Person> personDapperRepository
+                )
+        {
+            _personRepository = personRepository;
+            _personDapperRepository = personDapperRepository;
         }
 
         public async Task CreatePerson(CreatePersonInput input)
@@ -77,5 +92,40 @@ namespace MyCompanyName.AbpZeroTemplate.Phones
             return new ListResultDto<PersonListDto>(ObjectMapper.Map<List<PersonListDto>>(persons));
         }
 
+        //  dapper demo
+        public PagedResultDto<PersonListDto> GetAllPeopleByDapper()
+        {
+            var strSql = $@"Select * From PbPersons;";
+            var query = _personDapperRepository.Query(strSql);
+            var list = query.ToList();
+            //IEnumerable<PersonListDto> list = (IEnumerable<PersonListDto>)people;
+            var result = new PagedResultDto<PersonListDto>();
+            //result = new PagedResultDto<PersonListDto>(query.Count(), (PersonListDto)list);            
+            return result;
+        }
+
+        public PagedResultDto<PersonListDto> GetAllPeoplePagedByDapper(int page = 1, int pageSize = 10)
+        {
+            var query = _personDapperRepository.Query("Select * From PbPersons;");
+            IQueryable<PersonListDto> list = query.AsQueryable().Select(t => new PersonListDto
+                                                                            {
+                                                                                Name = t.Name,
+                                                                                Surname = t.Surname
+                                                                            });
+            var result = new PagedResultDto<PersonListDto>();
+            result = new PagedResultDto<PersonListDto>(query.Count(), list.OrderBy(p => p.LastModificationTime).PageBy(page * pageSize, pageSize).ToList());
+            
+            return result;
+        }
     }
+
+    //public sealed class PersonMapper : ClassMapper<Person>
+    //{
+    //    public PersonMapper()
+    //    {
+    //        Table("Persons");
+    //        Map(x => x.DeletionTime).Ignore();
+    //        AutoMap();
+    //    }
+    //}
 }

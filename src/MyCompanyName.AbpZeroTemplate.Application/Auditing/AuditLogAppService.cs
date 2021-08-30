@@ -1,4 +1,8 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.Auditing;
 using Abp.Authorization;
 using Abp.Configuration.Startup;
@@ -13,10 +17,6 @@ using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 using MyCompanyName.AbpZeroTemplate.Dto;
 using MyCompanyName.AbpZeroTemplate.EntityHistory;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
-using System.Threading.Tasks;
 using EntityHistoryHelper = MyCompanyName.AbpZeroTemplate.EntityHistory.EntityHistoryHelper;
 
 namespace MyCompanyName.AbpZeroTemplate.Auditing
@@ -110,8 +110,8 @@ namespace MyCompanyName.AbpZeroTemplate.Auditing
                 .WhereIf(!input.BrowserInfo.IsNullOrWhiteSpace(), item => item.AuditLog.BrowserInfo.Contains(input.BrowserInfo))
                 .WhereIf(input.MinExecutionDuration.HasValue && input.MinExecutionDuration > 0, item => item.AuditLog.ExecutionDuration >= input.MinExecutionDuration.Value)
                 .WhereIf(input.MaxExecutionDuration.HasValue && input.MaxExecutionDuration < int.MaxValue, item => item.AuditLog.ExecutionDuration <= input.MaxExecutionDuration.Value)
-                .WhereIf(input.HasException == true, item => item.AuditLog.Exception != null && item.AuditLog.Exception != string.Empty)
-                .WhereIf(input.HasException == false, item => item.AuditLog.Exception == null || item.AuditLog.Exception == string.Empty);
+                .WhereIf(input.HasException == true, item => item.AuditLog.Exception != null && item.AuditLog.Exception != "")
+                .WhereIf(input.HasException == false, item => item.AuditLog.Exception == null || item.AuditLog.Exception == "");
             return query;
         }
 

@@ -6,6 +6,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.DataExporting.Excel.EpPlus;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Dto;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Exporting;
+using MyCompanyName.AbpZeroTemplate.Dto;
 using OfficeOpenXml;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Exporting

@@ -24,23 +24,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 
         public async Task<PartialViewResult> AddWidgetModal(string dashboardName, string pageId)
         {
-            var userDashboard = await DashboardCustomizationAppService.GetUserDashboard(
-                new GetDashboardInput
+            var availableWidgets = DashboardCustomizationAppService.GetAllWidgetDefinitions(new GetDashboardInput
                 {
-                    DashboardName = dashboardName,
-                    Application = AbpZeroTemplateDashboardCustomizationConsts.Applications.Mvc
-                }
-            );
-
-            var page = userDashboard.Pages.Single(p => p.Id == pageId);
-
-            var filteredWidgetsByPermission = DashboardCustomizationAppService.GetAllWidgetDefinitions(new GetDashboardInput() { DashboardName = dashboardName })
-                .Where(widgetDef => page.Widgets.All(widgetOnPage => widgetOnPage.WidgetId != widgetDef.Id))
-                .ToList();
+                DashboardName = dashboardName
+            });
 
             var viewModel = new AddWidgetViewModel
             {
-                Widgets = filteredWidgetsByPermission,
+                Widgets = availableWidgets,
                 DashboardName = dashboardName,
                 PageId = pageId
             };
@@ -72,7 +63,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                     .Where(w => DashboardViewConfiguration.WidgetViewDefinitions.ContainsKey(w.WidgetId)).ToList();
             }
 
-            dashboardDefinition.Widgets = dashboardDefinition.Widgets.Where(dw => userDashboard.Pages.Any(p => p.Widgets.Select(w => w.WidgetId).Contains(dw.Id))).ToList();
+            dashboardDefinition.Widgets = dashboardDefinition.Widgets.Where(dw =>
+                userDashboard.Pages.Any(p => p.Widgets.Select(w => w.WidgetId).Contains(dw.Id))).ToList();
 
             return View("~/Areas/qlnv/Views/Shared/Components/CustomizableDashboard/Index.cshtml",
                 new CustomizableDashboardViewModel(

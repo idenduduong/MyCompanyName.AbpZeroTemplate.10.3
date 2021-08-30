@@ -2,7 +2,7 @@
 using MyCompanyName.AbpZeroTemplate.BaseNamespace;
 using MyCompanyName.AbpZeroTemplate.Products;
 using MyCompanyName.AbpZeroTemplate.DM_DoiTuongs;
-using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
+//using MyCompanyName.AbpZeroTemplate.MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs;
 using MyCompanyName.AbpZeroTemplate.Phones;
 using System;
 using System.Linq;
@@ -21,8 +21,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityHistory
             typeof(Child),
             typeof(BaseEntity),
             typeof(Product),
-            typeof(DM_DoiTuong),
-            typeof(DM_NhomDoiTuongs),
+            //typeof(DM_DoiTuong),
+            //typeof(DM_NhomDoiTuongs),
             typeof(Phone),
             typeof(OrganizationUnit), typeof(Role), typeof(Tenant)
         };
@@ -32,8 +32,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityHistory
             typeof(Child),
             typeof(BaseEntity),
             typeof(Product),
-            typeof(DM_DoiTuong),
-            typeof(DM_NhomDoiTuongs),
+            //typeof(DM_DoiTuong),
+            //typeof(DM_NhomDoiTuongs),
             typeof(Phone),
             typeof(OrganizationUnit), typeof(Role)
         };

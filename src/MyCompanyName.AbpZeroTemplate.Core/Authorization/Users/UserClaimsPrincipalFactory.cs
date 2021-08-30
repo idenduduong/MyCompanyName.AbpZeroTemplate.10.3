@@ -25,6 +25,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         public override async Task<ClaimsPrincipal> CreateAsync(User user)
         {
             var claim = await base.CreateAsync(user);
+            
             claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", user.OrganizationUnitId.HasValue ? user.OrganizationUnitId.Value.ToString() : ""));
 
             return claim;

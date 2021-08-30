@@ -1,6 +1,11 @@
 Laptop: 	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
 Desktop: 	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
-
+--------------------------------------------------------
+ERR_SSL_PROTOCOL_ERROR for localhost from Visual Studio debug
+https://stackoverflow.com/questions/60558382/err-ssl-protocol-error-for-localhost-from-visual-studio-debug
+chrome://net-internals/#hsts
+Delete domain security policies
+localhost
 --------------------------------------------------------
 .NET Bulk Operations - Bundle
 946;300-DUONGDUCDAT
@@ -63,3 +68,9 @@ Add person consts in .core.shared
 Add dbset<person> in dbcontext .entity.core
 Add-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
 Update-Database -Context 'AbpZeroTemplateDbContext'
+
+https://support.aspnetzero.com/QA/Questions/4973/Extending-Organization-Unit
+
+https://www.creative-tim.com/product/muse-vue-ant-design-dashboard
+
+https://www.jianshu.com/p/a6e9ace79345

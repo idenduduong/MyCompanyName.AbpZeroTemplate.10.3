@@ -7,10 +7,12 @@ namespace MyCompanyName.AbpZeroTemplate.Web.HealthCheck
     {
         public static IHealthChecksBuilder AddAbpZeroHealthCheck(this IServiceCollection services)
         {
+            //  datdd: disable healthcheck
             var builder = services.AddHealthChecks();
-            builder.AddCheck<AbpZeroTemplateDbContextHealthCheck>("Database Connection");
-            builder.AddCheck<AbpZeroTemplateDbContextUsersHealthCheck>("Database Connection with user check");
-            builder.AddCheck<CacheHealthCheck>("Cache");
+            
+            //builder.AddCheck<AbpZeroTemplateDbContextHealthCheck>("Database Connection");
+            //builder.AddCheck<AbpZeroTemplateDbContextUsersHealthCheck>("Database Connection with user check");
+            //builder.AddCheck<CacheHealthCheck>("Cache");
 
             // add your custom health checks here
             // builder.AddCheck<MyCustomHealthCheck>("my health check");

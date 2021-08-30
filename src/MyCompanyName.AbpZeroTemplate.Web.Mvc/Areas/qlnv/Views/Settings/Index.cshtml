@@ -125,16 +125,18 @@
         <div class="col-sm-6">
             <form id="SettingsLogoUploadForm" method="POST" action="@Url.Action("UploadLogo", "TenantCustomization", new {area = string.Empty})">
                 <h5>@L("ApplicationLogo")</h5>
-                @if (ViewBag.TenantLogoId != null)
-                {
-                    <div class="form-group" style="background: url(/Common/Images/transparent_background.png); width: 50%; padding: 5px;">
+                <div class="form-group brand-logo-preview-area" style="background: url(/Common/Images/transparent_background.png); width: 50%; padding: 5px; @Html.Raw(ViewBag.TenantLogoId == null ? "display:none;":"")">
                         <a href="@Url.Action("GetLogo", "TenantCustomization", new {area = string.Empty, tenantId = ViewBag.TenantId})" target="_blank">
                             <img height="38" src="@Url.Action("GetLogo", "TenantCustomization", new {area = string.Empty, tenantId = ViewBag.TenantId})">
                         </a>
                     </div>
-                }
-                <div class="form-group">
-                    <input type="file" name="ApplicationLogoImage" class="col-lg-12"/>
+
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="ApplicationLogoImage" id="ApplicationLogoImage">
+                        <label class="custom-file-label" id="ApplicationLogoImageLabel"
+                               for="ApplicationLogoImage">@L("ChooseAFile")</label>
+                    </div>
                     <span class="form-text text-muted col-lg-12">@L("UploadLogo_Info")</span>
                 </div>
                 <button class="btn btn-primary" type="submit">@L("Upload")</button>
@@ -144,14 +146,17 @@
         <div class="col-sm-6">
             <form id="SettingsCustomCssUploadForm" method="POST" action="@Url.Action("UploadCustomCss", "TenantCustomization", new {area = string.Empty})">
                 <h5>@L("CustomCSS")</h5>
-                @if (ViewBag.TenantCustomCssId != null)
-                {
-                    <p>
+            
+                <p id="getCustomCssLink" style="@Html.Raw(ViewBag.TenantCustomCssId == null ? "display:none;":"")">
                         <a href="@Url.Action("GetCustomCss", "TenantCustomization", new {area = string.Empty, tenantId = ViewBag.TenantId})" target="_blank">@L("Download")</a>
                     </p>
-                }
-                <div class="form-group">
-                    <input type="file" name="CustomCssFile" class="col-lg-12"/>
+
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="CustomCssFile" id="CustomCssFile">
+                        <label class="custom-file-label" id="CustomCssFileLabel"
+                               for="CustomCssFile">@L("ChooseAFile")</label>
+                    </div>
                     <span class="form-text text-muted col-lg-12">@L("UploadCSS_Info")</span>
                 </div>
                 <button class="btn btn-primary" type="submit">@L("Upload")</button>
@@ -190,6 +195,8 @@
                         @L("UseCaptchaOnRegistration")
                     </label>
                 </div>
+            </div>
+            <div>
                 <div class="form-group">
                     <label for="Setting_UseCaptchaOnLogin" class="checkbox checkbox-outline">
                         <input id="Setting_UseCaptchaOnLogin" type="checkbox" name="UseCaptchaOnLogin" value="true" @(Model.Settings.UserManagement.UseCaptchaOnLogin ? "checked=\"checked\"" : "")>

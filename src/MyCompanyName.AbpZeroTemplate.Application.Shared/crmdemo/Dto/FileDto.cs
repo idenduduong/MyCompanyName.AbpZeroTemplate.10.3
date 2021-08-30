@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Dto
 {
 
-	public class FileDto
+	public class CrmFileDto
 	{
 		[Required]
 		public string FileName { get; set; }
@@ -16,11 +16,12 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Dto
 		[Required]
 		public string FileToken { get; set; }
 
-		public FileDto()
+		public CrmFileDto()
 		{
+
 		}
 
-		public FileDto(string fileName, string fileType)
+		public CrmFileDto(string fileName, string fileType)
 		{
 			FileName = fileName;
 			FileType = fileType;

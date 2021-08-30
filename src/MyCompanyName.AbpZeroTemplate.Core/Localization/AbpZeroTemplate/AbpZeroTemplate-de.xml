@@ -1117,5 +1117,9 @@
     <text name="DisplayName">Anzeigename</text>
     <text name="AssignDynamicPropertiesToEntity">Weisen Sie der Entität dynamische Eigenschaften zu</text>
     <text name="SendEmailWithSavedSettingsWarning">Sie haben die Einstellungen nicht gespeichert. Möchten Sie die Testmail mit den zuvor gespeicherten Einstellungen senden?</text>
+    <text name="DoYouWantToRemoveTheFile">Wollen Sie die Datei entfernen?</text>
+    <text name="CurrentFile">Aktuelle Datei</text>
+    <text name="Dashboard_NoPageDefined_Warning">Für dieses Dashboard ist keine Seite definiert. Bitte wechseln Sie in den Bearbeitungsmodus und fügen Sie eine Seite hinzu!</text>
+    <text name="Filter">Filter</text>
   </texts>
 </localizationDictionary>

@@ -72,130 +72,130 @@ namespace MyCompanyName.AbpZeroTemplate
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
-            //  crmdemo
+			//  crmdemo
 
-            //configuration.CreateMap<CreateOrEditReleaseDto, Release>();
-            //configuration.CreateMap<Release, ReleaseDto>();
-            //configuration.CreateMap<CreateOrEditRoleProcessStatusDto, RoleProcessStatus>();
-            //configuration.CreateMap<RoleProcessStatus, RoleProcessStatusDto>();
-            //configuration.CreateMap<CreateOrEditRecallDataLogDto, RecallDataLog>();
-            //configuration.CreateMap<RecallDataLog, RecallDataLogDto>();
-            //configuration.CreateMap<CreateOrEditDueDateRenewDto, DueDateRenew>();
-            //configuration.CreateMap<DueDateRenew, DueDateRenewDto>();
-            //configuration.CreateMap<CreateOrEditAssigneBulkleDataLogDto, AssigneBulkleDataLog>();
-            //configuration.CreateMap<AssigneBulkleDataLog, AssigneBulkleDataLogDto>();
-            //configuration.CreateMap<CreateOrEditAssignDataLogDto, AssignDataLog>();
-            //configuration.CreateMap<AssignDataLog, AssignDataLogDto>();
-            //configuration.CreateMap<CreateOrEditDataChangeStatusLogDto, DataChangeStatusLog>();
-            //configuration.CreateMap<DataChangeStatusLog, DataChangeStatusLogDto>();
-            //configuration.CreateMap<CreateOrEditPhoneLogDto, PhoneLog>();
-            //configuration.CreateMap<PhoneLog, PhoneLogDto>();
-            //configuration.CreateMap<CreateOrEditCustomerDataRawDto, CustomerDataRaw>();
-            //configuration.CreateMap<CustomerDataRaw, CustomerDataRawDto>();
-            //configuration.CreateMap<CreateOrEditCustomerDataDto, CustomerData>();
-            //configuration.CreateMap<CustomerData, CustomerDataDto>();
-            //configuration.CreateMap<CreateOrEditChangeStatusFlowDto, ChangeStatusFlow>();
-            //configuration.CreateMap<ChangeStatusFlow, ChangeStatusFlowDto>();
-            //configuration.CreateMap<CreateOrEditReasonDto, Reason>();
-            //configuration.CreateMap<Reason, ReasonDto>();
-            //configuration.CreateMap<CreateOrEditDataProcessStatusDto, DataProcessStatus>();
-            //configuration.CreateMap<DataProcessStatus, DataProcessStatusDto>();
-            //configuration.CreateMap<CreateOrEditDataSourceDto, DataSource>();
-            configuration.CreateMap<DataSource, DataSourceDto>();
-            //configuration.CreateMap<CreateOrEditImportDataDto, ImportData>();
-            //configuration.CreateMap<ImportData, ImportDataDto>();
-            //configuration.CreateMap<CreateOrEditReportDataDto, ReportData>();
-            //configuration.CreateMap<ReportData, ReportDataDto>();
-            //configuration.CreateMap<CreateOrEditPackageReleaseDto, PackageRelease>();
-            //configuration.CreateMap<PackageRelease, PackageReleaseDto>();
-            //configuration.CreateMap<CreateOrEditBalanceReleaseDto, BalanceRelease>();
-            //configuration.CreateMap<BalanceRelease, BalanceReleaseDto>();
-            //configuration.CreateMap<CreateOrEditScheduleDto, Schedule>();
-            //configuration.CreateMap<Schedule, ScheduleDto>();
-            //configuration.CreateMap<CreateOrEditSatisfactionLevelDto, SatisfactionLevel>();
-            //configuration.CreateMap<SatisfactionLevel, SatisfactionLevelDto>();
-            //configuration.CreateMap<CreateOrEditVoucherDto, Voucher>();
-            //configuration.CreateMap<Voucher, VoucherDto>();
-            //configuration.CreateMap<CreateOrEditDM_NgheNghiepDto, DM_NgheNghiep>();
-            //configuration.CreateMap<DM_NgheNghiep, DM_NgheNghiepDto>();
-            configuration.CreateMap<CustomOrganizationUnitDto, CustomOrganizationUnit>().ReverseMap();
-            configuration.CreateMap<CustomOrganizationUnit, OrganizationUnitDto>().ReverseMap();
-            //configuration.CreateMap<CreateOrEditQuanLyKhieuNaiDto, QuanLyKhieuNai>();
-            //configuration.CreateMap<QuanLyKhieuNai, QuanLyKhieuNaiDto>();
-            //configuration.CreateMap<CreateOrEditHappyCallDto, HappyCall>();
-            //configuration.CreateMap<HappyCall, CreateOrEditHappyCallDto>().ForMember((CreateOrEditHappyCallDto x) => x.TheKhachHang_DichVuId, delegate (IMemberConfigurationExpression<HappyCall, CreateOrEditHappyCallDto, string> opt)
-            //{
-            //	opt.Ignore();
-            //});
-            //configuration.CreateMap<HappyCall, HappyCallDto>();
-            //configuration.CreateMap<CreateOrEditDM_KhuyenMaiDto, DM_KhuyenMai>();
-            configuration.CreateMap<DM_KhuyenMai, DM_KhuyenMaiDto>();
-            //configuration.CreateMap<CreateOrEditDichVuCongDoanDto, DichVuCongDoan>();
-            //configuration.CreateMap<DichVuCongDoan, DichVuCongDoanDto>();
-            //configuration.CreateMap<CreateOrEditCongDoanDto, CongDoan>();
-            //configuration.CreateMap<CongDoan, CongDoanDto>();
-            //configuration.CreateMap<CreateOrEditNhanVienTuVanDto, NhanVienTuVan>();
-            //configuration.CreateMap<NhanVienTuVan, NhanVienTuVanDto>();
-            //configuration.CreateMap<CreateOrEditNhanVienThucHienDto, NhanVienThucHien>().ForMember((NhanVienThucHien x) => x.OrganizationId, delegate (IMemberConfigurationExpression<CreateOrEditNhanVienThucHienDto, NhanVienThucHien, long?> opt)
-            //{
-            //	opt.Ignore();
-            //});
-            //configuration.CreateMap<NhanVienThucHien, NhanVienThucHienDto>();
-            //configuration.CreateMap<CreateOrEditNhatKySuDungTheDto, NhatKySuDungThe>();
-            //configuration.CreateMap<NhatKySuDungThe, NhatKySuDungTheDto>();
-
-            //configuration.CreateMap<CreateOrEditHoaDonBanLe_DacDiemKhachHangDto, HoaDonBanLe_DacDiemKhachHang>();
-            //configuration.CreateMap<HoaDonBanLe_DacDiemKhachHang, HoaDonBanLe_DacDiemKhachHangDto>();
-            //configuration.CreateMap<CreateOrEditHoaDonBanLeChiTietDto, HoaDonBanLeChiTiet>();
-            //configuration.CreateMap<HoaDonBanLeChiTiet, CreateOrEditHoaDonBanLeChiTietDto>().ForMember((CreateOrEditHoaDonBanLeChiTietDto x) => x.ID_TheKhachHang, delegate (IMemberConfigurationExpression<HoaDonBanLeChiTiet, CreateOrEditHoaDonBanLeChiTietDto, Guid?> opt)
-            //{
-            //	opt.Ignore();
-            //}).ForMember((CreateOrEditHoaDonBanLeChiTietDto x) => x.MaThe, delegate (IMemberConfigurationExpression<HoaDonBanLeChiTiet, CreateOrEditHoaDonBanLeChiTietDto, string> opt)
-            //{
-            //	opt.Ignore();
-            //});
-            //configuration.CreateMap<HoaDonBanLeChiTiet, HoaDonBanLeChiTietDto>();
-            //configuration.CreateMap<CreateOrEditHoaDonBanLeDto, HoaDonBanLe>();
-            //configuration.CreateMap<HoaDonBanLe, CreateOrEditHoaDonBanLeDto>().ForMember((CreateOrEditHoaDonBanLeDto x) => x.TempId, delegate (IMemberConfigurationExpression<HoaDonBanLe, CreateOrEditHoaDonBanLeDto, Guid?> opt)
-            //{
-            //	opt.Ignore();
-            //});
-            //configuration.CreateMap<HoaDonBanLe, HoaDonBanLeDto>();
-            //configuration.CreateMap<CreateOrEditTuVanKhachHangDto, TuVanKhachHang>();
-            //configuration.CreateMap<TuVanKhachHang, TuVanKhachHangDto>();
-            //configuration.CreateMap<CreateOrEditTheKhachHang_DonViSuDungDto, TheKhachHang_DonViSuDung>();
-            //configuration.CreateMap<TheKhachHang_DonViSuDung, TheKhachHang_DonViSuDungDto>();
-            configuration.CreateMap<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet>().ForMember((TheKhachHangChiTiet x) => x.SoLuongDaSuDung, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet, int> opt)
+			//configuration.CreateMap<CreateOrEditReleaseDto, Release>();
+			//configuration.CreateMap<Release, ReleaseDto>();
+			//configuration.CreateMap<CreateOrEditRoleProcessStatusDto, RoleProcessStatus>();
+			//configuration.CreateMap<RoleProcessStatus, RoleProcessStatusDto>();
+			//configuration.CreateMap<CreateOrEditRecallDataLogDto, RecallDataLog>();
+			//configuration.CreateMap<RecallDataLog, RecallDataLogDto>();
+			//configuration.CreateMap<CreateOrEditDueDateRenewDto, DueDateRenew>();
+			//configuration.CreateMap<DueDateRenew, DueDateRenewDto>();
+			//configuration.CreateMap<CreateOrEditAssigneBulkleDataLogDto, AssigneBulkleDataLog>();
+			//configuration.CreateMap<AssigneBulkleDataLog, AssigneBulkleDataLogDto>();
+			//configuration.CreateMap<CreateOrEditAssignDataLogDto, AssignDataLog>();
+			//configuration.CreateMap<AssignDataLog, AssignDataLogDto>();
+			//configuration.CreateMap<CreateOrEditDataChangeStatusLogDto, DataChangeStatusLog>();
+			//configuration.CreateMap<DataChangeStatusLog, DataChangeStatusLogDto>();
+			//configuration.CreateMap<CreateOrEditPhoneLogDto, PhoneLog>();
+			//configuration.CreateMap<PhoneLog, PhoneLogDto>();
+			//configuration.CreateMap<CreateOrEditCustomerDataRawDto, CustomerDataRaw>();
+			//configuration.CreateMap<CustomerDataRaw, CustomerDataRawDto>();
+			//configuration.CreateMap<CreateOrEditCustomerDataDto, CustomerData>();
+			//configuration.CreateMap<CustomerData, CustomerDataDto>();
+			//configuration.CreateMap<CreateOrEditChangeStatusFlowDto, ChangeStatusFlow>();
+			//configuration.CreateMap<ChangeStatusFlow, ChangeStatusFlowDto>();
+			//configuration.CreateMap<CreateOrEditReasonDto, Reason>();
+			//configuration.CreateMap<Reason, ReasonDto>();
+			//configuration.CreateMap<CreateOrEditDataProcessStatusDto, DataProcessStatus>();
+			//configuration.CreateMap<DataProcessStatus, DataProcessStatusDto>();
+			//configuration.CreateMap<CreateOrEditDataSourceDto, DataSource>();
+			configuration.CreateMap<DataSource, DataSourceDto>();
+			//configuration.CreateMap<CreateOrEditImportDataDto, ImportData>();
+			//configuration.CreateMap<ImportData, ImportDataDto>();
+			//configuration.CreateMap<CreateOrEditReportDataDto, ReportData>();
+			//configuration.CreateMap<ReportData, ReportDataDto>();
+			//configuration.CreateMap<CreateOrEditPackageReleaseDto, PackageRelease>();
+			//configuration.CreateMap<PackageRelease, PackageReleaseDto>();
+			//configuration.CreateMap<CreateOrEditBalanceReleaseDto, BalanceRelease>();
+			//configuration.CreateMap<BalanceRelease, BalanceReleaseDto>();
+			//configuration.CreateMap<CreateOrEditScheduleDto, Schedule>();
+			//configuration.CreateMap<Schedule, ScheduleDto>();
+			//configuration.CreateMap<CreateOrEditSatisfactionLevelDto, SatisfactionLevel>();
+			//configuration.CreateMap<SatisfactionLevel, SatisfactionLevelDto>();
+			//configuration.CreateMap<CreateOrEditVoucherDto, Voucher>();
+			//configuration.CreateMap<Voucher, VoucherDto>();
+			//configuration.CreateMap<CreateOrEditDM_NgheNghiepDto, DM_NgheNghiep>();
+			//configuration.CreateMap<DM_NgheNghiep, DM_NgheNghiepDto>();
+			configuration.CreateMap<CustomOrganizationUnitDto, CustomOrganizationUnit>().ReverseMap();
+			configuration.CreateMap<CustomOrganizationUnit, OrganizationUnitDto>().ReverseMap();
+			//configuration.CreateMap<CreateOrEditQuanLyKhieuNaiDto, QuanLyKhieuNai>();
+			//configuration.CreateMap<QuanLyKhieuNai, QuanLyKhieuNaiDto>();
+			//configuration.CreateMap<CreateOrEditHappyCallDto, HappyCall>();
+			//configuration.CreateMap<HappyCall, CreateOrEditHappyCallDto>().ForMember((CreateOrEditHappyCallDto x) => x.TheKhachHang_DichVuId, delegate (IMemberConfigurationExpression<HappyCall, CreateOrEditHappyCallDto, string> opt)
+			//{
+			//	opt.Ignore();
+			//});
+			//configuration.CreateMap<HappyCall, HappyCallDto>();
+			//configuration.CreateMap<CreateOrEditDM_KhuyenMaiDto, DM_KhuyenMai>();
+			configuration.CreateMap<DM_KhuyenMai, DM_KhuyenMaiDto>();
+			//configuration.CreateMap<CreateOrEditDichVuCongDoanDto, DichVuCongDoan>();
+			//configuration.CreateMap<DichVuCongDoan, DichVuCongDoanDto>();
+			//configuration.CreateMap<CreateOrEditCongDoanDto, CongDoan>();
+			//configuration.CreateMap<CongDoan, CongDoanDto>();
+			//configuration.CreateMap<CreateOrEditNhanVienTuVanDto, NhanVienTuVan>();
+			//configuration.CreateMap<NhanVienTuVan, NhanVienTuVanDto>();
+			//configuration.CreateMap<CreateOrEditNhanVienThucHienDto, NhanVienThucHien>().ForMember((NhanVienThucHien x) => x.OrganizationId, delegate (IMemberConfigurationExpression<CreateOrEditNhanVienThucHienDto, NhanVienThucHien, long?> opt)
+			//{
+			//	opt.Ignore();
+			//});
+			//configuration.CreateMap<NhanVienThucHien, NhanVienThucHienDto>();
+			//configuration.CreateMap<CreateOrEditNhatKySuDungTheDto, NhatKySuDungThe>();
+			//configuration.CreateMap<NhatKySuDungThe, NhatKySuDungTheDto>();
+			
+			//configuration.CreateMap<CreateOrEditHoaDonBanLe_DacDiemKhachHangDto, HoaDonBanLe_DacDiemKhachHang>();
+			//configuration.CreateMap<HoaDonBanLe_DacDiemKhachHang, HoaDonBanLe_DacDiemKhachHangDto>();
+			//configuration.CreateMap<CreateOrEditHoaDonBanLeChiTietDto, HoaDonBanLeChiTiet>();
+			//configuration.CreateMap<HoaDonBanLeChiTiet, CreateOrEditHoaDonBanLeChiTietDto>().ForMember((CreateOrEditHoaDonBanLeChiTietDto x) => x.ID_TheKhachHang, delegate (IMemberConfigurationExpression<HoaDonBanLeChiTiet, CreateOrEditHoaDonBanLeChiTietDto, Guid?> opt)
+			//{
+			//	opt.Ignore();
+			//}).ForMember((CreateOrEditHoaDonBanLeChiTietDto x) => x.MaThe, delegate (IMemberConfigurationExpression<HoaDonBanLeChiTiet, CreateOrEditHoaDonBanLeChiTietDto, string> opt)
+			//{
+			//	opt.Ignore();
+			//});
+			//configuration.CreateMap<HoaDonBanLeChiTiet, HoaDonBanLeChiTietDto>();
+			//configuration.CreateMap<CreateOrEditHoaDonBanLeDto, HoaDonBanLe>();
+			//configuration.CreateMap<HoaDonBanLe, CreateOrEditHoaDonBanLeDto>().ForMember((CreateOrEditHoaDonBanLeDto x) => x.TempId, delegate (IMemberConfigurationExpression<HoaDonBanLe, CreateOrEditHoaDonBanLeDto, Guid?> opt)
+			//{
+			//	opt.Ignore();
+			//});
+			//configuration.CreateMap<HoaDonBanLe, HoaDonBanLeDto>();
+			//configuration.CreateMap<CreateOrEditTuVanKhachHangDto, TuVanKhachHang>();
+			//configuration.CreateMap<TuVanKhachHang, TuVanKhachHangDto>();
+			//configuration.CreateMap<CreateOrEditTheKhachHang_DonViSuDungDto, TheKhachHang_DonViSuDung>();
+			//configuration.CreateMap<TheKhachHang_DonViSuDung, TheKhachHang_DonViSuDungDto>();
+			configuration.CreateMap<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet>().ForMember((TheKhachHangChiTiet x) => x.SoLuongDaSuDung, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet, int> opt)
             {
                 opt.Ignore();
             }).ForMember((TheKhachHangChiTiet x) => x.TienDaSuDung, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangChiTietDto, TheKhachHangChiTiet, decimal> opt)
             {
                 opt.Ignore();
             });
-            configuration.CreateMap<TheKhachHangChiTiet, TheKhachHangChiTietDto>();
-            //configuration.CreateMap<CreateOrEditDM_LienHeDto, DM_LienHe>();
-            configuration.CreateMap<DM_LienHe, DM_LienHeDto>();
-            configuration.CreateMap<CreateOrEditTheKhachHangDto, TheKhachHang>().ForMember((TheKhachHang x) => x.DaChuyenThe, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, bool> opt)
-            {
-                opt.Ignore();
-            }).ForMember((TheKhachHang x) => x.SoDu, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
-            {
-                opt.Ignore();
-            })
-                .ForMember((TheKhachHang x) => x.DaThanhToan, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
-                {
-                    opt.Ignore();
-                })
-                .ForMember((TheKhachHang x) => x.SoDu, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
-                {
-                    opt.Ignore();
-                });
-            //	datdd:error
-            //configuration.CreateMap<TheKhachHang, CreateOrEditTheKhachHangDto>().ForMember((CreateOrEditTheKhachHangDto x) => x.TempId, delegate (IMemberConfigurationExpression<TheKhachHang, CreateOrEditTheKhachHangDto, Guid?> option)
-            //{
-            //	option.Ignore();
-            //});
-            configuration.CreateMap<TheKhachHang, TheKhachHangDto>();
+			configuration.CreateMap<TheKhachHangChiTiet, TheKhachHangChiTietDto>();
+			//configuration.CreateMap<CreateOrEditDM_LienHeDto, DM_LienHe>();
+			configuration.CreateMap<DM_LienHe, DM_LienHeDto>();
+			configuration.CreateMap<CreateOrEditTheKhachHangDto, TheKhachHang>().ForMember((TheKhachHang x) => x.DaChuyenThe, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, bool> opt)
+			{
+				opt.Ignore();
+			}).ForMember((TheKhachHang x) => x.SoDu, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
+			{
+				opt.Ignore();
+			})
+				.ForMember((TheKhachHang x) => x.DaThanhToan, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
+				{
+					opt.Ignore();
+				})
+				.ForMember((TheKhachHang x) => x.SoDu, delegate (IMemberConfigurationExpression<CreateOrEditTheKhachHangDto, TheKhachHang, decimal> opt)
+				{
+					opt.Ignore();
+				});
+			//	datdd:error
+			//configuration.CreateMap<TheKhachHang, CreateOrEditTheKhachHangDto>().ForMember((CreateOrEditTheKhachHangDto x) => x.TempId, delegate (IMemberConfigurationExpression<TheKhachHang, CreateOrEditTheKhachHangDto, Guid?> option)
+			//{
+			//	option.Ignore();
+			//});
+			configuration.CreateMap<TheKhachHang, TheKhachHangDto>();
             //configuration.CreateMap<CreateOrEditKhoanThuChi_ChiPhiDoanhThuDto, KhoanThuChi_ChiPhiDoanhThu>/();
             //configuration.CreateMap<KhoanThuChi_ChiPhiDoanhThu, KhoanThuChi_ChiPhiDoanhThuDto>();
             //configuration.CreateMap<CreateOrEditKhoanChiPhi_DoanhThuDto, KhoanChiPhi_DoanhThu>();
@@ -375,10 +375,10 @@ namespace MyCompanyName.AbpZeroTemplate
             ////configuration.CreateMap<FriendCacheItem, FriendDto>();
             configuration.CreateMap<OrganizationUnit, CustomOrganizationUnitDto>();
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            //  datdd
-            configuration.CreateMap<GetAllTasksInput, AppTask>().ReverseMap();
+			//  datdd
+			configuration.CreateMap<GetAllTasksInput, AppTask>().ReverseMap();
             configuration.CreateMap<TaskListDto, AppTask>().ReverseMap();
 
             configuration.CreateMap<EditPersonInput, Person>().ReverseMap();

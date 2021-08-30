@@ -148,6 +148,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
                 return File(logoObject.Bytes, tenant.LogoFileType);
             }
         }
+        
+        [AllowAnonymous]
+        [Route("/TenantCustomization/GetTenantLogo/{skin}/{tenantId?}")]
+        [HttpGet]
+        public Task<ActionResult> GetTenantLogoWithCustomRoute(string skin, int? tenantId = null)
+        {
+            return GetTenantLogo(skin, tenantId);
+        }
 
         [AllowAnonymous]
         public async Task<ActionResult> GetTenantLogo(string skin, int? tenantId)

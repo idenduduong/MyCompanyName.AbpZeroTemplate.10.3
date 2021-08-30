@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Abp.Collections.Extensions;
 using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -38,7 +40,24 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Swagger
 
             var enumNames = new OpenApiArray();
             enumNames.AddRange(Enum.GetNames(type).Select(_ => new OpenApiString(_)));
-            schema.Extensions.Add("x-enumNames", enumNames);
+
+            //  datdd:upgrade to 10.4
+            //schema.Extensions.Add("x-enumNames", enumNames);
+
+            if (schema.Extensions.ContainsKey("x-enumNames"))
+            {
+                var existingEnums = schema.Extensions["x-enumNames"] as OpenApiArray;
+                foreach (var enumName in enumNames)
+                {
+                    existingEnums.AddIfNotContains(enumName);
+                }
+
+                schema.Extensions["x-enumNames"] = existingEnums;
+            }
+            else
+            {
+                schema.Extensions.Add("x-enumNames", enumNames);
+            }
         }
 
         private static void AddEnumParamSpec(OpenApiParameter parameter, Type type, ParameterFilterContext context)

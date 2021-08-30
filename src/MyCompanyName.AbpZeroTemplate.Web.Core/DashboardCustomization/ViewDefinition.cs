@@ -8,18 +8,23 @@
 
         public string JavascriptFile { get; protected set;}
 
+        public string JavascriptClassName { get; protected set; }
+
         public string CssFile { get; protected set;}
         
         public ViewDefinition(
             string id,
             string viewFile,
             string javascriptFile = null,
-            string cssFile = null)
+            string cssFile = null,
+            string javascriptClassName = null
+        )
         {
             Id = id;
             ViewFile = viewFile;
             JavascriptFile = javascriptFile;
             CssFile = cssFile;
+            JavascriptClassName = javascriptClassName ?? id;
         }
     }
 }

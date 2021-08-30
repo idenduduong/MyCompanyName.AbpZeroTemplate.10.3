@@ -17,9 +17,10 @@
     <abp-page-subheader title="@L("Editions")" description="@L("EditionsHeaderInfo")">
         @if (IsGranted(AppPermissions.Pages_Editions_Create))
         {
-<button id="CreateNewEditionButton" class="btn btn-primary">
-    <i class="fa fa-plus"></i> @L("CreateNewEdition")
-</button>}
+            <button id="CreateNewEditionButton" class="btn btn-primary">
+                <i class="fa fa-plus"></i> @L("CreateNewEdition")
+            </button>
+        }
     </abp-page-subheader>
 
     <div class="@(await GetContainerClass())">

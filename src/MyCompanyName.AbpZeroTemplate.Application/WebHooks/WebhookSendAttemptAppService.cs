@@ -88,7 +88,7 @@ namespace MyCompanyName.AbpZeroTemplate.WebHooks
             var webhookEvent = await _webhookEventAppService.Get(webhookSendAttempt.WebhookEventId.ToString());
             var webhookSubscription = await _webhookSubscriptionAppService.GetSubscription(webhookSendAttempt.WebhookSubscriptionId.ToString());
 
-            _backgroundJobManager.Enqueue<WebhookSenderJob, WebhookSenderArgs>(new WebhookSenderArgs()
+            await _backgroundJobManager.EnqueueAsync<WebhookSenderJob, WebhookSenderArgs>(new WebhookSenderArgs()
             {
                 TenantId = AbpSession.TenantId,
                 WebhookEventId = webhookSendAttempt.WebhookEventId,

@@ -9,8 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
+    <EmbeddedResource Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
+    <None Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp" Version="6.3.1" />
     <PackageReference Include="Abp.Zero.Common" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MyCompanyName\AbpZeroTemplate\" />
   </ItemGroup>
 
 </Project>

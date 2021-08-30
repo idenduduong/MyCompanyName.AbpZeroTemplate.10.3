@@ -29,6 +29,7 @@ using MyCompanyName.AbpZeroTemplate.Startup;
 using MyCompanyName.AbpZeroTemplate.Web.Authentication.JwtBearer;
 using MyCompanyName.AbpZeroTemplate.Web.Authentication.TwoFactor;
 using MyCompanyName.AbpZeroTemplate.Web.Chat.SignalR;
+using MyCompanyName.AbpZeroTemplate.Web.Common;
 using MyCompanyName.AbpZeroTemplate.Web.Configuration;
 using MyCompanyName.AbpZeroTemplate.Web.DashboardCustomization;
 
@@ -87,6 +88,11 @@ namespace MyCompanyName.AbpZeroTemplate.Web
 
             //Uncomment this line to use Hangfire instead of default background job manager (remember also to uncomment related lines in Startup.cs file(s)).
             //Configuration.BackgroundJobs.UseHangfire();
+
+            if (WebConsts.HangfireDashboardEnabled)
+            {
+                Configuration.BackgroundJobs.UseHangfire();
+            }
 
             //Uncomment this line to use Redis cache instead of in-memory cache.
             //See app.config for Redis configuration and connection string

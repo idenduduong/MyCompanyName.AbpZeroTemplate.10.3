@@ -3,6 +3,9 @@
   <Import Project="..\..\common.props"></Import>
 
   <PropertyGroup>
+	<LangVersion>8.0</LangVersion>
+	<NullableContextOptions>enable</NullableContextOptions>
+	  
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>MyCompanyName.AbpZeroTemplate</RootNamespace>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
@@ -10,12 +13,16 @@
 
   <ItemGroup>
     <Compile Remove="Customers\**" />
+    <Compile Remove="DM_DoiTuongs\**" />
     <EmbeddedResource Remove="Customers\**" />
+    <EmbeddedResource Remove="DM_DoiTuongs\**" />
     <None Remove="Customers\**" />
+    <None Remove="DM_DoiTuongs\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="crmdemo\Categories\Dtos\GetAllForLookupTableInput.cs" />
+    <Compile Remove="crmdemo\Common\Class1.cs" />
   </ItemGroup>
 
   <ItemGroup>

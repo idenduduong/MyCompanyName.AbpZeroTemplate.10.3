@@ -31,7 +31,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
             Configuration.Modules.AbpWebCommon().MultiTenancy.DomainFormat = _appConfiguration["App:WebSiteRootAddress"] ?? "http://localhost:44302/";
             Configuration.Modules.AspNetZero().LicenseCode = _appConfiguration["AbpZeroLicenseCode"];
             Configuration.Navigation.Providers.Add<qlnvNavigationProvider>();
-            
+
             IocManager.Register<DashboardViewConfiguration>();
         }
 
@@ -42,6 +42,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
         public override void PostInitialize()
         {
+            return;
             if (!IocManager.Resolve<IMultiTenancyConfig>().IsEnabled)
             {
                 return;
@@ -55,9 +56,11 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                 }
             }
 
+            //  datdd:remove BackgroundJobs
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
             var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
-            workManager.Add(IocManager.Resolve<SubscriptionExpirationCheckWorker>());
-            workManager.Add(IocManager.Resolve<SubscriptionExpireEmailNotifierWorker>());
+            //workManager.Add(IocManager.Resolve<SubscriptionExpirationCheckWorker>());
+            //workManager.Add(IocManager.Resolve<SubscriptionExpireEmailNotifierWorker>());
 
             if (Configuration.Auditing.IsEnabled && ExpiredAuditLogDeleterWorker.IsEnabled)
             {

@@ -147,8 +147,7 @@
     }
     <!-- end::Chat Bar -->
     <!-- begin::Theme Selection Panel -->
-    @if (await SettingManager.GetSettingValueAsync<bool>
- (AppSettings.UserManagement.IsQuickThemeSelectEnabled))
+    @if (await SettingManager.GetSettingValueAsync<bool>(AppSettings.UserManagement.IsQuickThemeSelectEnabled))
     {
         @await Html.PartialAsync("~/Areas/qlnv/Views/Layout/_ThemeSelectionPanel.cshtml")
     }

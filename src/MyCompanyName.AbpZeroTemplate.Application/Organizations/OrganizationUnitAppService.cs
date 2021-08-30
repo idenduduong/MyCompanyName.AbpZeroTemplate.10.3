@@ -58,7 +58,7 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
                     count = groupedRoles.Count()
                 }).ToDictionaryAsync(x => x.organizationUnitId, y => y.count);
 
-            return new ListResultDto<OrganizationUnitDto>(
+            var listOrganizationUnitDto = new ListResultDto<OrganizationUnitDto>(
                 organizationUnits.Select(ou =>
                 {
                     var organizationUnitDto = ObjectMapper.Map<OrganizationUnitDto>(ou);
@@ -66,6 +66,8 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
                     organizationUnitDto.RoleCount = organizationUnitRoleCounts.ContainsKey(ou.Id) ? organizationUnitRoleCounts[ou.Id] : 0;
                     return organizationUnitDto;
                 }).ToList());
+
+            return listOrganizationUnitDto;
         }
 
         public async Task<PagedResultDto<OrganizationUnitUserListDto>> GetOrganizationUnitUsers(GetOrganizationUnitUsersInput input)

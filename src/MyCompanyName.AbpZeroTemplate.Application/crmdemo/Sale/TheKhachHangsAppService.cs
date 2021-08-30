@@ -56,6 +56,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Common.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Event;
 using MyCompanyName.AbpZeroTemplate.Authorization;
+using MyCompanyName.AbpZeroTemplate.Dto;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
 {
@@ -214,7 +215,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs
             {
                 throw new UserFriendlyException("Thao tác không hợp lệ");
             }
-            filteredTheKhachHangs = filteredTheKhachHangs.WhereIf(!string.IsNullOrWhiteSpace(input.MaTheFilter), (TheKhachHang e) => e.MaThe.ToLower() == input.MaTheFilter.ToLower().Trim());
+            filteredTheKhachHangs = filteredTheKhachHangs
+                .WhereIf(!string.IsNullOrWhiteSpace(input.MaTheFilter), 
+                (TheKhachHang e) => e.MaThe.ToLower() == input.MaTheFilter.ToLower().Trim());
 
             var dM_NhomTheRepository = _dM_NhomTheRepository.GetAll();
 

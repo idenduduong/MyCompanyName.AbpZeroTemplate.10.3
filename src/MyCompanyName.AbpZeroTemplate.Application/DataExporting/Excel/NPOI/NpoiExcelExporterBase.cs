@@ -14,6 +14,12 @@ namespace MyCompanyName.AbpZeroTemplate.DataExporting.Excel.NPOI
     public abstract class NpoiExcelExporterBase : AbpZeroTemplateServiceBase, ITransientDependency
     {
         private readonly ITempFileCacheManager _tempFileCacheManager;
+        private ICellStyle _dateCellStyle;
+        
+        private ICellStyle GetDateCellStyle(ICell cell)
+        {
+            return _dateCellStyle ??= cell.Sheet.Workbook.CreateCellStyle();
+        }
 
         protected NpoiExcelExporterBase(ITempFileCacheManager tempFileCacheManager)
         {
@@ -57,6 +63,29 @@ namespace MyCompanyName.AbpZeroTemplate.DataExporting.Excel.NPOI
             font.FontHeightInPoints = 12;
             cellStyle.SetFont(font);
             cell.CellStyle = cellStyle;
+        }
+        
+        protected void AddObjects<T>(ISheet sheet, IList<T> items, params Func<T, object>[] propertySelectors)
+        {
+            if (items.IsNullOrEmpty() || propertySelectors.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            for (var i = 1; i <= items.Count; i++)
+            {
+                var row = sheet.CreateRow(i);
+
+                for (var j = 0; j < propertySelectors.Length; j++)
+                {
+                    var cell = row.CreateCell(j);
+                    var value = propertySelectors[j](items[i - 1]);
+                    if (value != null)
+                    {
+                        cell.SetCellValue(value.ToString());
+                    }
+                }
+            }
         }
 
         protected void AddObjects<T>(ISheet sheet, int startRowIndex, IList<T> items, params Func<T, object>[] propertySelectors)

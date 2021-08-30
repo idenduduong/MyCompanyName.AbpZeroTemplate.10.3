@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
+using Abp.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Permissions;
@@ -10,7 +12,9 @@ using MyCompanyName.AbpZeroTemplate.Authorization.Permissions.Dto;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles.Dto;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
+using MyCompanyName.AbpZeroTemplate.Authorization.Users.Dto;
 using MyCompanyName.AbpZeroTemplate.Security;
+using MyCompanyName.AbpZeroTemplate.Web.Areas.AppAreaName.Models.Users;
 using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Roles;
 using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Users;
 using MyCompanyName.AbpZeroTemplate.Web.Controllers;
@@ -106,6 +110,20 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                 LoginAttempts = output.Items.ToList()
             };
             return PartialView("_LoginAttemptsModal", model);
+        }
+
+        public ActionResult LoginAttempts()
+        {
+            var loginResultTypes = Enum.GetNames(typeof(AbpLoginResultType))
+                .Select(e => new ComboboxItemDto(e, L("AbpLoginResultType_" + e)))
+                .ToList();
+
+            loginResultTypes.Insert(0, new ComboboxItemDto("", L("All")));
+
+            return View("LoginAttempts", new UserLoginAttemptsViewModel()
+            {
+                LoginAttemptResults = loginResultTypes
+            });
         }
     }
 }

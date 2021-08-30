@@ -314,13 +314,13 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy.Payments
                 throw new ArgumentException("tenant.EditionId can not be null");
             }
 
-            var currentEdition = _editionManager.GetById(tenant.EditionId.Value);
+            var currentEdition = await _editionManager.GetByIdAsync(tenant.EditionId.Value);
             if (!((SubscribableEdition)currentEdition).IsFree)
             {
                 throw new ArgumentException("You can only switch between free editions. Current edition if not free");
             }
 
-            var upgradeEdition = _editionManager.GetById(upgradeEditionId);
+            var upgradeEdition = await _editionManager.GetByIdAsync(upgradeEditionId);
             if (!((SubscribableEdition)upgradeEdition).IsFree)
             {
                 throw new ArgumentException("You can only switch between free editions. Target edition if not free");
