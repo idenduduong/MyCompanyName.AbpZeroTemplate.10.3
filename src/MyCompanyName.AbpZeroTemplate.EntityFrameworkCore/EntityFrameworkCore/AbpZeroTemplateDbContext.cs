@@ -195,11 +195,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<DM_NhomThe> DM_NhomThes { get; set; }
 
-<<<<<<< HEAD
         public virtual DbSet<DM_NhomHangHoa> DM_NhomHangHoas { get; set; }
-=======
-        //public virtual DbSet<DM_NhomHangHoa> DM_NhomHangHoas { get; set; }
->>>>>>> ad6e616... crmdemo/TheKhachHang add
 
         public virtual DbSet<DM_NhomDoiTuong> DM_NhomDoiTuongs { get; set; }
 

@@ -15,7 +15,6 @@
     <EmbeddedResource Remove="DM_DoiTuongs\**" />
     <None Remove="Customers\**" />
     <None Remove="DM_DoiTuongs\**" />
-<<<<<<< HEAD
   </ItemGroup>
 
   <ItemGroup>

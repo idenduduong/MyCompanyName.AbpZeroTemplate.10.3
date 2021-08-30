@@ -186,9 +186,23 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 			IQueryable<DM_DoiTuong> filteredDM_DoiTuongs = from x in _dM_DoiTuongRepository.GetAll()
 														   where x.LaCaNhan == true
 														   select x;
-			filteredDM_DoiTuongs = filteredDM_DoiTuongs.WhereIf(!string.IsNullOrWhiteSpace(input.TenDoiTuongFilter), (DM_DoiTuong e) => e.TenDoiTuong.ToLower().Contains(input.TenDoiTuongFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.DienThoaiFilter), (DM_DoiTuong e) => e.DienThoai.ToLower().Contains(input.DienThoaiFilter.ToLower().Trim())).WhereIf(!string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter), (DM_DoiTuong e) => e.SoCMTND_DKKD.ToLower().Contains(input.SoCMTND_DKKDFilter.ToLower().Trim()))
-				.WhereIf(!string.IsNullOrWhiteSpace(input.TenKhacFilter), (DM_DoiTuong e) => e.TenKhac.ToLower().Contains(input.TenKhacFilter.ToLower().Trim()))
-				.WhereIf(!string.IsNullOrWhiteSpace(input.MaDoiTuongFilter), (DM_DoiTuong e) => e.MaDoiTuong.ToLower() == input.MaDoiTuongFilter.ToLower().Trim());
+			filteredDM_DoiTuongs = filteredDM_DoiTuongs
+				.WhereIf(
+					!string.IsNullOrWhiteSpace(input.TenDoiTuongFilter), 
+					(DM_DoiTuong e) => e.TenDoiTuong.ToLower().Contains(input.TenDoiTuongFilter.ToLower().Trim()))
+				.WhereIf(
+					!string.IsNullOrWhiteSpace(input.DienThoaiFilter), 
+					(DM_DoiTuong e) => e.DienThoai.ToLower().Contains(input.DienThoaiFilter.ToLower().Trim()))
+				.WhereIf(
+					!string.IsNullOrWhiteSpace(input.SoCMTND_DKKDFilter), 
+					(DM_DoiTuong e) => e.SoCMTND_DKKD.ToLower().Contains(input.SoCMTND_DKKDFilter.ToLower().Trim()))
+				.WhereIf(
+					!string.IsNullOrWhiteSpace(input.TenKhacFilter), 
+					(DM_DoiTuong e) => e.TenKhac.ToLower().Contains(input.TenKhacFilter.ToLower().Trim()))
+				.WhereIf(
+					!string.IsNullOrWhiteSpace(input.MaDoiTuongFilter), 
+					(DM_DoiTuong e) => e.MaDoiTuong.ToLower() == input.MaDoiTuongFilter.ToLower().Trim());
+
 			IQueryable<GetDM_DoiTuongForView> query = (from o in filteredDM_DoiTuongs
 													   join o1 in _dM_NhomDoiTuongRepository.GetAll() on o.DM_NhomDoiTuongId equals o1.Id into j1
 													   from s1 in j1.DefaultIfEmpty()
