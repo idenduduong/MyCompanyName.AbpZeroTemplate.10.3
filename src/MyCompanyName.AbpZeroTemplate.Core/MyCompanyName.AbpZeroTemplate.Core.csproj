@@ -23,21 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
-    <EmbeddedResource Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
-    <None Remove="MyCompanyName\AbpZeroTemplate\DM_NhomDoiTuongs\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Authorization\Users\OrganizationUnit.cs" />
-    <Compile Remove="crmdemo\Storage\BinaryObject.cs" />
     <Compile Remove="DM_DoiTuongs\DM_DoiTuong.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Abp" Version="6.4.0" />
     <PackageReference Include="Abp.Web.Common" Version="6.3.1" />
-    <PackageReference Include="DevExpress.Xpo" Version="21.1.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.17" />
@@ -63,9 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="crmdemo\Storage\" />
     <Folder Include="DM_DoiTuongs\" />
-    <Folder Include="MyCompanyName\AbpZeroTemplate\" />
   </ItemGroup>
 
 </Project>

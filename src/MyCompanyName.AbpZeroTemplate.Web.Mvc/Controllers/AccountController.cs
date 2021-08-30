@@ -9,7 +9,6 @@ using System.Transactions;
 using Abp.AspNetCore.Mvc.Authorization;
 using Abp.Authorization;
 using Abp.Authorization.Users;
-using Abp.Caching;
 using Abp.Collections.Extensions;
 using Abp.Configuration;
 using Abp.Configuration.Startup;
@@ -50,8 +49,6 @@ using MyCompanyName.AbpZeroTemplate.Web.Authentication.External;
 using MyCompanyName.AbpZeroTemplate.Web.Security.Recaptcha;
 using MyCompanyName.AbpZeroTemplate.Web.Session;
 using MyCompanyName.AbpZeroTemplate.Web.Views.Shared.Components.TenantChange;
-using Abp.CachedUniqueKeys;
-using Abp.AspNetCore.Mvc.Caching;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 {
@@ -82,8 +79,6 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         private readonly ExternalLoginInfoManagerFactory _externalLoginInfoManagerFactory;
         private readonly ISettingManager _settingManager;
         private readonly IUserDelegationManager _userDelegationManager;
-        private readonly ICachedUniqueKeyPerUser _cachedUniqueKeyPerUser;
-        //private readonly IGetScriptsResponsePerUserConfiguration _getScriptsResponsePerUserConfiguration;
 
         public AccountController(
             UserManager userManager,
@@ -110,10 +105,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             ISessionAppService sessionAppService,
             ExternalLoginInfoManagerFactory externalLoginInfoManagerFactory,
             ISettingManager settingManager,
-            IUserDelegationManager userDelegationManager,
-            ICachedUniqueKeyPerUser cachedUniqueKeyPerUser
-            //,IGetScriptsResponsePerUserConfiguration getScriptsResponsePerUserConfiguration
-            )
+            IUserDelegationManager userDelegationManager)
         {
             _userManager = userManager;
             _multiTenancyConfig = multiTenancyConfig;
@@ -171,6 +163,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         }
 
         [HttpPost]
+        [UnitOfWork]
         public virtual async Task<JsonResult> Login(LoginViewModel loginModel, string returnUrl = "", string returnUrlHash = "", string ss = "")
         {
             returnUrl = NormalizeReturnUrl(returnUrl);
@@ -675,12 +668,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         }
 
         [HttpPost]
+        [UnitOfWork]
         public virtual async Task<JsonResult> SendEmailActivationLink(SendEmailActivationLinkInput model)
         {
             await _accountAppService.SendEmailActivationLink(model);
             return Json(new AjaxResponse());
         }
 
+        [UnitOfWork]
         public virtual async Task<ActionResult> EmailConfirmation(EmailConfirmationViewModel input)
         {
             await SwitchToTenantIfNeeded(input.TenantId);
@@ -716,6 +711,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             return Challenge(properties, provider);
         }
 
+        [UnitOfWork]
         public virtual async Task<ActionResult> ExternalLoginCallback(string returnUrl, string remoteError = null, string ss = "")
         {
             returnUrl = NormalizeReturnUrl(returnUrl);
@@ -808,10 +804,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             });
         }
 
+        [UnitOfWork]
         public virtual async Task<ActionResult> ImpersonateSignIn(string tokenId)
         {
-            //await ClearGetScriptsResponsePerUserCache();
-
             var result = await _impersonationManager.GetImpersonatedUserAndIdentity(tokenId);
             await _signInManager.SignInAsync(result.Identity, false);
             return RedirectToAppHome();
@@ -840,6 +835,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             });
         }
 
+        [UnitOfWork]
         public virtual async Task<ActionResult> DelegatedImpersonateSignIn(long userDelegationId, string tokenId)
         {
             var userDelegation = await _userDelegationManager.GetAsync(userDelegationId);
@@ -880,6 +876,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 
         #region Linked Account
 
+        [UnitOfWork]
         [AbpMvcAuthorize]
         public virtual async Task<JsonResult> SwitchToLinkedAccount([FromBody] SwitchToLinkedAccountInput model)
         {
@@ -893,6 +890,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             });
         }
 
+        [UnitOfWork]
         public virtual async Task<ActionResult> SwitchToLinkedAccountSignIn(string tokenId)
         {
             var result = await _userLinkManager.GetSwitchedUserAndIdentity(tokenId);

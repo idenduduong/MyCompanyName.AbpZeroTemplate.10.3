@@ -6,10 +6,6 @@
         public string FileType { get; set; }
         public byte[] File { get; set; }
 
-        public TempFileInfo()
-        {
-        }
-
         public TempFileInfo(byte[] file)
         {
             File = file;

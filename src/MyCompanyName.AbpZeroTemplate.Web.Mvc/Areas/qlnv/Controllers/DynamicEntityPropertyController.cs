@@ -49,10 +49,5 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 
             return PartialView("_CreateModal", model);
         }
-        
-        public IActionResult ManageModal()
-        {
-            return PartialView("_ManageModal");
-        }
     }
 }

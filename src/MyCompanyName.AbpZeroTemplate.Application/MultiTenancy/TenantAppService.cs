@@ -89,7 +89,7 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
 
             if (tenant.EditionId != input.EditionId)
             {
-                await EventBus.TriggerAsync(new TenantEditionChangedEventData
+                EventBus.Trigger(new TenantEditionChangedEventData
                 {
                     TenantId = input.Id,
                     OldEditionId = tenant.EditionId,

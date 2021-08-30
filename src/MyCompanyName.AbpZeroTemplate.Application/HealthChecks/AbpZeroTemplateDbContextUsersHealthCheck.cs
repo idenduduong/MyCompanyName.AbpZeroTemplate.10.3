@@ -32,16 +32,15 @@ namespace MyCompanyName.AbpZeroTemplate.HealthChecks
                     // Switching to host is necessary for single tenant mode.
                     using (_unitOfWorkManager.Current.SetTenantId(null))
                     {
-                        var dbContext = await _dbContextProvider.GetDbContextAsync();
-                        if (!await dbContext.Database.CanConnectAsync(cancellationToken))
+                        if (!await _dbContextProvider.GetDbContext().Database.CanConnectAsync(cancellationToken))
                         {
                             return HealthCheckResult.Unhealthy(
                                 "AbpZeroTemplateDbContext could not connect to database"
                             );
                         }
 
-                        var user = await dbContext.Users.AnyAsync(cancellationToken);
-                        await uow.CompleteAsync();
+                        var user = await _dbContextProvider.GetDbContext().Users.AnyAsync(cancellationToken);
+                        uow.Complete();
 
                         if (user)
                         {

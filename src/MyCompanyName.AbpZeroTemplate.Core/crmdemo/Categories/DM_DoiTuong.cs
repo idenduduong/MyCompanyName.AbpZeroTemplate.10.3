@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
-using AutoMapper;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 {
@@ -122,7 +121,6 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		public virtual Guid? NguonKhachHangId { get; set; }
 
-		[IgnoreMap]
 		public virtual int? DM_QuocGiaId { get; set; }
 
 		public virtual int? DM_TrangThaiId { get; set; }

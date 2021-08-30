@@ -58,8 +58,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
                 throw new UserFriendlyException(L("ChangePasswordBeforeLinkToAnAccount"));
             }
 
-            var currentUser = await GetCurrentUserAsync();
-            await _userLinkManager.Link(currentUser, loginResult.User);
+            await _userLinkManager.Link(GetCurrentUser(), loginResult.User);
         }
 
         public async Task<PagedResultDto<LinkedUserDto>> GetLinkedUsers(GetLinkedUsersInput input)

@@ -1,14 +1,9 @@
 ﻿// crmdemo.OrganizationUnits.CustomOrganizationUnit
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
 using Abp.Organizations;
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits
 {
-	//[Table("AbpOrganizationUnits")]
 	public class CustomOrganizationUnit : OrganizationUnit
-	//, IMayHaveTenant
 	{
 		public virtual string UnitCode { get; set; }
 

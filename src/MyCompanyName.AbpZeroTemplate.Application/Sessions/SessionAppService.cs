@@ -13,7 +13,6 @@ using MyCompanyName.AbpZeroTemplate.Sessions.Dto;
 using MyCompanyName.AbpZeroTemplate.UiCustomization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Delegation;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
-using Abp.Domain.Uow;
 
 namespace MyCompanyName.AbpZeroTemplate.Sessions
 {
@@ -22,25 +21,20 @@ namespace MyCompanyName.AbpZeroTemplate.Sessions
         private readonly IUiThemeCustomizerFactory _uiThemeCustomizerFactory;
         private readonly ISubscriptionPaymentRepository _subscriptionPaymentRepository;
         private readonly IUserDelegationConfiguration _userDelegationConfiguration;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public SessionAppService(
             IUiThemeCustomizerFactory uiThemeCustomizerFactory,
             ISubscriptionPaymentRepository subscriptionPaymentRepository,
-            IUserDelegationConfiguration userDelegationConfiguration,
-            IUnitOfWorkManager unitOfWorkManager)
+            IUserDelegationConfiguration userDelegationConfiguration)
         {
             _uiThemeCustomizerFactory = uiThemeCustomizerFactory;
             _subscriptionPaymentRepository = subscriptionPaymentRepository;
             _userDelegationConfiguration = userDelegationConfiguration;
-            _unitOfWorkManager = unitOfWorkManager;
         }
 
         [DisableAuditing]
         public async Task<GetCurrentLoginInformationsOutput> GetCurrentLoginInformations()
         {
-            return await _unitOfWorkManager.WithUnitOfWorkAsync(async () =>
-            {
             var output = new GetCurrentLoginInformationsOutput
             {
                 Application = new ApplicationInfoDto
@@ -105,7 +99,6 @@ namespace MyCompanyName.AbpZeroTemplate.Sessions
             output.Tenant.CreationTimeString = output.Tenant.CreationTime.ToString("d");
 
             return output;
-            });
 
         }
 

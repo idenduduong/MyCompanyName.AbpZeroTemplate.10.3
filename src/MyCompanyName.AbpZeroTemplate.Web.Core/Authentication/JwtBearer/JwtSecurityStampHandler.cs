@@ -82,8 +82,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Authentication.JwtBearer
             {
                 using (_unitOfWorkManager.Current.SetTenantId(userIdentifier.TenantId))
                 {
-                    var user = await _userManager.GetUserAsync(userIdentifier);
-                    await uow.CompleteAsync();
+                    var user = _userManager.GetUser(userIdentifier);
+                    uow.Complete();
 
                     //cache last requested value
                     await SetSecurityStampCacheItem(userIdentifier.TenantId, userIdentifier.UserId, user.SecurityStamp);

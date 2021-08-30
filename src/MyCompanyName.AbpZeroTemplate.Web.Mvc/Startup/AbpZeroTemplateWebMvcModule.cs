@@ -42,7 +42,6 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
         public override void PostInitialize()
         {
-            return;
             if (!IocManager.Resolve<IMultiTenancyConfig>().IsEnabled)
             {
                 return;
@@ -56,8 +55,6 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                 }
             }
 
-            //  datdd:disable BackgroundJobs
-            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
             var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
             workManager.Add(IocManager.Resolve<SubscriptionExpirationCheckWorker>());
             workManager.Add(IocManager.Resolve<SubscriptionExpireEmailNotifierWorker>());

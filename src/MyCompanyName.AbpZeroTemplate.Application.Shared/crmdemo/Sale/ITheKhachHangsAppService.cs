@@ -16,8 +16,6 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Sale
 	{
         Task<PagedResultDto<GetTheKhachHangForView>> GetAll(GetAllTheKhachHangsInput input);
 
-        //Task<PagedResultDto<GetTheKhachHangForView>> GetAll();
-
         //Task<GetTheKhachHangForEditOutput> GetTheKhachHangForEdit(EntityDto<Guid> input);
 
         //Task<Guid> CreateOrEdit(CreateOrEditTheKhachHangDto input);

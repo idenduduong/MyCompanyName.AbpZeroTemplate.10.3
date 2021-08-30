@@ -189,8 +189,7 @@ namespace MyCompanyName.AbpZeroTemplate.DashboardCustomization
         {
             var value = JsonConvert.SerializeObject(dashboards);
 
-            var currentUser = await GetCurrentUserAsync();
-            await SettingManager.ChangeSettingForUserAsync(currentUser.ToUserIdentifier(), GetSettingName(application), value);
+            await SettingManager.ChangeSettingForUserAsync(GetCurrentUser().ToUserIdentifier(), GetSettingName(application), value);
         }
 
         private byte CalculatePositionY(List<Widget> widgets)

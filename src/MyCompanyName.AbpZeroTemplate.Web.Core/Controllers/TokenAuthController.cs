@@ -173,9 +173,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
                 if (model.TwoFactorVerificationCode.IsNullOrEmpty())
                 {
                     //Add a cache item which will be checked in SendTwoFactorAuthCode to prevent sending unwanted two factor code to users.
-                    await _cacheManager
+                    _cacheManager
                         .GetTwoFactorCodeCache()
-                        .SetAsync(
+                        .Set(
                             loginResult.User.ToUserIdentifier().ToString(),
                             new TwoFactorCodeCacheItem()
                         );

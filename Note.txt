@@ -1,11 +1,6 @@
 Laptop: 	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
 Desktop: 	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
---------------------------------------------------------
-ERR_SSL_PROTOCOL_ERROR for localhost from Visual Studio debug
-https://stackoverflow.com/questions/60558382/err-ssl-protocol-error-for-localhost-from-visual-studio-debug
-chrome://net-internals/#hsts
-Delete domain security policies
-localhost
+
 --------------------------------------------------------
 .NET Bulk Operations - Bundle
 946;300-DUONGDUCDAT

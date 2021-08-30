@@ -1145,19 +1145,5 @@
     <text name="CurrentFile">Current File</text>
     <text name="Dashboard_NoPageDefined_Warning">There is no page defined for this dashboard. Please switch to edit mode and add a page!</text>
     <text name="Filter">Filter</text>
-    <text name="LoginAttemptsHeaderInfo">List and filter login attempts</text>
-    <text name="AbpLoginResultType_Success">Success</text>
-    <text name="AbpLoginResultType_InvalidUserNameOrEmailAddress">Invalid username or email address</text>
-    <text name="AbpLoginResultType_InvalidPassword">Invalid password</text>
-    <text name="AbpLoginResultType_UserIsNotActive">User is not active</text>
-    <text name="AbpLoginResultType_InvalidTenancyName">Invalid tenancy name</text>
-    <text name="AbpLoginResultType_TenantIsNotActive">Tenant is not active</text>
-    <text name="AbpLoginResultType_UserEmailIsNotConfirmed">Email is not confirmed</text>
-    <text name="AbpLoginResultType_UnknownExternalLogin">Unknown external login</text>
-    <text name="AbpLoginResultType_LockedOut">Locked out</text>
-    <text name="AbpLoginResultType_UserPhoneNumberIsNotConfirmed">Phone number is not confirmed</text>
-    <text name="Result">Result</text>
-    <text name="ChangeDefaultLanguage">Change default language</text>
-    <text name="ChooseAFile">Choose A File</text>
   </texts>
 </localizationDictionary>

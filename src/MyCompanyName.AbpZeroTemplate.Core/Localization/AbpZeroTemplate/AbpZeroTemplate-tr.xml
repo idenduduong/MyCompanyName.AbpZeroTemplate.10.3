@@ -625,7 +625,7 @@
     <text name="SubscriptionExpire_SubTitle">Bu e-posta üyeliğinizin bitimi hakkında bilgilendirmek için gönderilmiştir.</text>
     <text name="SubscriptionAssignedToAnother_Email_Body">AbpZeroTemplate üyeliğiniz {1} tarihinde sonlanmıştır. Mevcut paketiniz {0} olarak değiştirilmişir.</text>
     <text name="FailedSubscriptionTerminations_Title">Üyelik sonlandırma hatası</text>
-    <text name="FailedSubscriptionTerminations_SubTitle">Bazı müşteriler için üyelik sonlandırma hatası.</text>
+    <text name="FailedSubscriptionTerminations_SubTitle">Bazı müşteriler için üyelik sonlandırma hatası.</text>,,
     <text name="SubscriptionExpiringSoon_Title">AbpZeroTemplate üyeliğin sonlanması</text>
     <text name="SubscriptionExpiringSoon_SubTitle">Bu e-posta üyelik yakında sonlanacağını bilgilendirmek için gönderilmiştir.</text>
     <text name="AdminRoleCannotRemoveFromAdminUser">Admin rolü admin kullanıcısından silinemez</text>
@@ -1111,19 +1111,5 @@
     <text name="CurrentFile">Şuanki Dosya</text>
     <text name="Dashboard_NoPageDefined_Warning">Bu genel görünüm için hiçbir sayfa eklenmemiş. Lütfen düzenleme modune geçip bir sayfa ekleyin!</text>
     <text name="Filter">Filtre</text>
-    <text name="LoginAttemptsHeaderInfo">Giriş denemelerini listeleyip filtreleyin</text>
-    <text name="AbpLoginResultType_Success">Başarılı</text>
-    <text name="AbpLoginResultType_InvalidUserNameOrEmailAddress">Geçersiz kullanıcı adı veya email</text>
-    <text name="AbpLoginResultType_InvalidPassword">Geçersiz şifre</text>
-    <text name="AbpLoginResultType_UserIsNotActive">Kullanıcı aktif değil</text>
-    <text name="AbpLoginResultType_InvalidTenancyName">Geçersiz müşteri adı</text>
-    <text name="AbpLoginResultType_TenantIsNotActive">Müşteri aktif değil</text>
-    <text name="AbpLoginResultType_UserEmailIsNotConfirmed">Email doğrulanmamış</text>
-    <text name="AbpLoginResultType_UnknownExternalLogin">Bilinmeyen harici giriş</text>
-    <text name="AbpLoginResultType_LockedOut">Kilitli</text>
-    <text name="AbpLoginResultType_UserPhoneNumberIsNotConfirmed">Telefon numarası doğrulanmamış</text>
-    <text name="Result">Sonuç</text>
-    <text name="ChangeDefaultLanguage">Varsayılan dili değiştir</text>
-    <text name="ChooseAFile">Dosya Seçiniz</text>
   </texts>
 </localizationDictionary>

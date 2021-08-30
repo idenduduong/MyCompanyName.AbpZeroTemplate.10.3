@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
-using Abp.Domain.Uow;
 using Abp.Threading;
 using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
@@ -22,15 +21,13 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
         private readonly IRepository<SubscribableEdition> _editionRepository;
         private readonly TenantManager _tenantManager;
         private readonly UserEmailer _userEmailer;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public SubscriptionExpirationCheckWorker(
             AbpTimer timer,
             IRepository<Tenant> tenantRepository,
             IRepository<SubscribableEdition> editionRepository,
             TenantManager tenantManager,
-            UserEmailer userEmailer,
-            IUnitOfWorkManager unitOfWorkManager)
+            UserEmailer userEmailer)
             : base(timer)
         {
             _tenantRepository = tenantRepository;
@@ -42,13 +39,10 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
             Timer.RunOnStart = true;
 
             LocalizationSourceName = AbpZeroTemplateConsts.LocalizationSourceName;
-            _unitOfWorkManager = unitOfWorkManager;
         }
 
         protected override void DoWork()
         {
-            _unitOfWorkManager.WithUnitOfWork(() =>
-            {
             var utcNow = Clock.Now.ToUniversalTime();
             var failedTenancyNames = new List<string>();
 
@@ -101,7 +95,6 @@ namespace MyCompanyName.AbpZeroTemplate.MultiTenancy
             }
 
             AsyncHelper.RunSync(() => _userEmailer.TryToSendFailedSubscriptionTerminationsEmail(failedTenancyNames, utcNow));
-            });
         }
     }
 }

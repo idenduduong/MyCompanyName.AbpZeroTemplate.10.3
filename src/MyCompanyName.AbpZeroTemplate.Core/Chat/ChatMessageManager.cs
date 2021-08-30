@@ -26,7 +26,6 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
         private readonly IUserEmailer _userEmailer;
         private readonly IRepository<ChatMessage, long> _chatMessageRepository;
         private readonly IChatFeatureChecker _chatFeatureChecker;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public ChatMessageManager(
             IFriendshipManager friendshipManager,
@@ -37,8 +36,7 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
             IUserFriendsCache userFriendsCache,
             IUserEmailer userEmailer,
             IRepository<ChatMessage, long> chatMessageRepository,
-            IChatFeatureChecker chatFeatureChecker, 
-            IUnitOfWorkManager unitOfWorkManager)
+            IChatFeatureChecker chatFeatureChecker)
         {
             _friendshipManager = friendshipManager;
             _chatCommunicator = chatCommunicator;
@@ -49,7 +47,6 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
             _userEmailer = userEmailer;
             _chatMessageRepository = chatMessageRepository;
             _chatFeatureChecker = chatFeatureChecker;
-            _unitOfWorkManager = unitOfWorkManager;
         }
 
         public async Task SendMessageAsync(UserIdentifier sender, UserIdentifier receiver, string message, string senderTenancyName, string senderUserName, Guid? senderProfilePictureId)
@@ -80,21 +77,18 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
             }
         }
 
+        [UnitOfWork]
         public virtual long Save(ChatMessage message)
         {
-            return _unitOfWorkManager.WithUnitOfWork(() =>
-            {
             using (CurrentUnitOfWork.SetTenantId(message.TenantId))
             {
                 return _chatMessageRepository.InsertAndGetId(message);
             }
-            });
         }
 
+        [UnitOfWork]
         public virtual int GetUnreadMessageCount(UserIdentifier sender, UserIdentifier receiver)
         {
-            return _unitOfWorkManager.WithUnitOfWork(() =>
-            {
             using (CurrentUnitOfWork.SetTenantId(receiver.TenantId))
             {
                 return _chatMessageRepository.Count(cm => cm.UserId == receiver.UserId &&
@@ -102,7 +96,6 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
                                                           cm.TargetTenantId == sender.TenantId &&
                                                           cm.ReadState == ChatMessageReadState.Unread);
             }
-            });
         }
 
         public async Task<ChatMessage> FindMessageAsync(int id, long userId)
@@ -117,9 +110,11 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
             {
                 friendshipState = FriendshipState.Accepted;
 
-                var receiverTenancyName = await GetTenancyNameOrNull(receiverIdentifier.TenantId);
+                var receiverTenancyName = receiverIdentifier.TenantId.HasValue
+                    ? _tenantCache.Get(receiverIdentifier.TenantId.Value).TenancyName
+                    : null;
 
-                var receiverUser = await _userManager.GetUserAsync(receiverIdentifier);
+                var receiverUser = _userManager.GetUser(receiverIdentifier);
                 await _friendshipManager.CreateFriendshipAsync(
                     new Friendship(
                         senderIdentifier,
@@ -161,9 +156,11 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
 
             if (friendshipState == null)
             {
-                var senderTenancyName = await GetTenancyNameOrNull(senderIdentifier.TenantId);
+                var senderTenancyName = senderIdentifier.TenantId.HasValue ?
+                    _tenantCache.Get(senderIdentifier.TenantId.Value).TenancyName :
+                    null;
 
-                var senderUser = await _userManager.GetUserAsync(senderIdentifier);
+                var senderUser = _userManager.GetUser(senderIdentifier);
                 await _friendshipManager.CreateFriendshipAsync(
                     new Friendship(
                         receiverIdentifier,
@@ -201,11 +198,13 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
             }
             else if (GetUnreadMessageCount(senderIdentifier, receiverIdentifier) == 1)
             {
-                var senderTenancyName = await GetTenancyNameOrNull(senderIdentifier.TenantId);
+                var senderTenancyName = senderIdentifier.TenantId.HasValue ?
+                    _tenantCache.Get(senderIdentifier.TenantId.Value).TenancyName :
+                    null;
 
                 await _userEmailer.TryToSendChatMessageMail(
-                      await _userManager.GetUserAsync(receiverIdentifier),
-                      (await _userManager.GetUserAsync(senderIdentifier)).UserName,
+                      _userManager.GetUser(receiverIdentifier),
+                      _userManager.GetUser(senderIdentifier).UserName,
                       senderTenancyName,
                       sentMessage
                   );
@@ -241,16 +240,5 @@ namespace MyCompanyName.AbpZeroTemplate.Chat
 
             await _friendshipManager.UpdateFriendshipAsync(friendship);
         }
-
-        private async Task<string> GetTenancyNameOrNull(int? tenantId)
-        {
-            if (tenantId.HasValue)
-            {
-                var tenant = await _tenantCache.GetAsync(tenantId.Value);
-                return tenant.TenancyName;
-            }
-
-            return null;
-        }
     }
-    }
+}

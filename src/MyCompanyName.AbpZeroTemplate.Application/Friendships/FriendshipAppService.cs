@@ -83,17 +83,6 @@ namespace MyCompanyName.AbpZeroTemplate.Friendships
             return sourceFriendshipRequest;
         }
 
-        private async Task<string> GetTenancyNameAsync(int? tenantId)
-        {
-            if (tenantId.HasValue)
-            {
-                var tenant = await _tenantCache.GetAsync(tenantId.Value);
-                return tenant.TenancyName;
-            }
-
-            return null;
-        }
-
         public async Task<FriendDto> CreateFriendshipRequestByUserName(CreateFriendshipRequestByUserNameInput input)
         {
             var probableFriend = await GetUserIdentifier(input.TenancyName, input.UserName);
