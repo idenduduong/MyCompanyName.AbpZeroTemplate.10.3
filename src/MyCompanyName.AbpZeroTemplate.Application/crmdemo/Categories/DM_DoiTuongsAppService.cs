@@ -284,7 +284,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper(GetAllDM_DoiTuongsInput input)
 		{
 			//var connectionString = _appConfiguration[$"ConnectionStrings:{AbpZeroTemplateConsts.ConnectionStringName}"];
-			string str = "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
+			string str = "Server=10.10.179.252; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
 			List<GetDM_DoiTuongForView2> temp_abc = new List<GetDM_DoiTuongForView2>();
 			//using (IDbConnection conn = new SqlConnection(str))
 			//{
@@ -340,7 +340,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 		public async Task<PagedResultDto<GetDM_DoiTuongForView2>> GetAllByDapper2(GetAllDM_DoiTuongsInput input)
 		{
 			//var connectionString = _appConfiguration[$"ConnectionStrings:{AbpZeroTemplateConsts.ConnectionStringName}"];
-			//string str = "Server=.; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
+			//string str = "Server=10.10.179.252; Database=AbpZeroTemplateDb103;User=sa;Password=Abc12#$";
 			string connectionString = _appConfiguration["ConnectionStrings:Default"];
 			
 			List<GetDM_DoiTuongForView2> temp_abc = new List<GetDM_DoiTuongForView2>();
