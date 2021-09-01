@@ -82,6 +82,8 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
 		private readonly IRepository<DM_QuanHuyen, Guid> _dM_QuanHuyenRepository;
 
+		private readonly IRepository<DM_VungMien, Guid> _dM_VungMien;
+
 		private readonly IRepository<User, long> _userRepository;
 
 		private readonly IRepository<NguonKhachHang, Guid> _nguonKhachHangRepository;

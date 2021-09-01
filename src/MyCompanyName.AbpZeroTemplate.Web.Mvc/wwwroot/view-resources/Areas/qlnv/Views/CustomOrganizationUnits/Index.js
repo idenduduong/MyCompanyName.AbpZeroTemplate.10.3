@@ -43,9 +43,12 @@
             }
         });
 
-        var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
+        //  datdd:error when custom
+        //var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
 
         function entityHistoryIsEnabled() {
+            // datdd:disable EntityHistory
+            return false;
             return abp.custom.EntityHistory &&
                 abp.custom.EntityHistory.IsEnabled &&
                 _.filter(abp.custom.EntityHistory.EnabledEntities, function (entityType) {
@@ -101,7 +104,7 @@
                     }
 
                     members.load();
-                    roles.load();
+                    //roles.load();
                 }
             },
 
@@ -350,7 +353,6 @@
 
                     organizationTree.$tree.on('click', '.ou-text .fa-caret-down', function (e) {
                         e.preventDefault();
-
                         var ouId = $(this).closest('.ou-text').attr('data-ou-id');
                         setTimeout(function () {
                             organizationTree.$tree.jstree('show_contextmenu', ouId);
@@ -458,6 +460,7 @@
             },
 
             init: function () {
+                
                 this.dataTable = members.$table.find(".organization-members-table").DataTable({
                     paging: true,
                     serverSide: true,
@@ -496,18 +499,30 @@
                         },
                         {
                             targets: 1,
-                            data: "userName"
+                            data: "userName",
+                            render: function (userName) {
+                                return userName + "/" + _permissions.manageMembers + 'abc';
+                            },
+                           
                         },
                         {
                             targets: 2,
                             data: "addedTime",
                             render: function (addedTime) {
                                 return moment(addedTime).format('L');
-                            }
+                            },
                         }
                     ]
                 });
 
+
+                $(".organization-members-table").on('processing.dt', function (e, settings, processing) {
+                    if (processing) {
+                        console.log('it is loadding');     // **I do not get this**
+                    } else {
+                        console.log('it is not loadding'); // **I get this**
+                    }
+                }).dataTable();
 
                 $('#AddUserToOuButton').click(function (e) {
                     e.preventDefault();
@@ -518,164 +533,163 @@
             }
         };
 
-        var roles = {
-            $table: $('#OuRolesTable'),
-            $emptyInfo: $('#OuRolesEmptyInfo'),
-            $addRoleToOuButton: $('#AddRoleToOuButton'),
-            $selectedOuRightTitle: $('#SelectedOuRightTitle'),
-            dataTable: null,
+        //var roles = {
+        //    $table: $('#OuRolesTable'),
+        //    $emptyInfo: $('#OuRolesEmptyInfo'),
+        //    $addRoleToOuButton: $('#AddRoleToOuButton'),
+        //    $selectedOuRightTitle: $('#SelectedOuRightTitle'),
+        //    dataTable: null,
 
-            showTable: function () {
-                roles.$emptyInfo.hide();
-                roles.$table.show();
-                roles.$addRoleToOuButton.show();
-                roles.$selectedOuRightTitle.text(organizationTree.selectedOu.displayName).show();
-            },
+        //    showTable: function () {
+        //        roles.$emptyInfo.hide();
+        //        roles.$table.show();
+        //        roles.$addRoleToOuButton.show();
+        //        roles.$selectedOuRightTitle.text(organizationTree.selectedOu.displayName).show();
+        //    },
 
-            hideTable: function () {
-                roles.$selectedOuRightTitle.hide();
-                roles.$addRoleToOuButton.hide();
-                roles.$table.hide();
-                roles.$emptyInfo.show();
-            },
+        //    hideTable: function () {
+        //        roles.$selectedOuRightTitle.hide();
+        //        roles.$addRoleToOuButton.hide();
+        //        roles.$table.hide();
+        //        roles.$emptyInfo.show();
+        //    },
 
-            load: function () {
-                if (!organizationTree.selectedOu.id) {
-                    roles.hideTable();
-                    return;
-                }
+        //    load: function () {
+        //        if (!organizationTree.selectedOu.id) {
+        //            roles.hideTable();
+        //            return;
+        //        }
 
-                roles.showTable();
-                this.dataTable.ajax.reload();
-            },
+        //        roles.showTable();
+        //        this.dataTable.ajax.reload();
+        //    },
 
-            add: function (roleList) {
-                var ouId = organizationTree.selectedOu.id;
-                if (!ouId) {
-                    return;
-                }
+        //    add: function (roleList) {
+        //        var ouId = organizationTree.selectedOu.id;
+        //        if (!ouId) {
+        //            return;
+        //        }
 
-                var roleIds = _.pluck(roleList, "value");
-                _organizationUnitService.addRolesToOrganizationUnit({
-                    organizationUnitId: ouId,
-                    roleIds: roleIds
-                }).done(function () {
-                    abp.notify.success(app.localize('SuccessfullyAdded'));
-                    organizationTree.incrementRoleCount(ouId, roleIds.length);
-                    roles.load();
-                });
-            },
+        //        var roleIds = _.pluck(roleList, "value");
+        //        _organizationUnitService.addRolesToOrganizationUnit({
+        //            organizationUnitId: ouId,
+        //            roleIds: roleIds
+        //        }).done(function () {
+        //            abp.notify.success(app.localize('SuccessfullyAdded'));
+        //            organizationTree.incrementRoleCount(ouId, roleIds.length);
+        //            roles.load();
+        //        });
+        //    },
 
-            remove: function (role) {
-                var ouId = organizationTree.selectedOu.id;
-                if (!ouId) {
-                    return;
-                }
+        //    remove: function (role) {
+        //        var ouId = organizationTree.selectedOu.id;
+        //        if (!ouId) {
+        //            return;
+        //        }
 
-                abp.message.confirm(
-                    app.localize('RemoveRoleFromOuWarningMessage',
-                        role.displayName,
-                        organizationTree.selectedOu.displayName),
-                    app.localize('AreYouSure'),
-                    function (isConfirmed) {
-                        if (isConfirmed) {
-                            _organizationUnitService.removeRoleFromOrganizationUnit({
-                                organizationUnitId: parseInt(ouId),
-                                roleId: role.id
-                            }).done(function () {
-                                abp.notify.success(app.localize('SuccessfullyRemoved'));
-                                organizationTree.incrementRoleCount(ouId, -1);
-                                roles.load();
-                            });
-                        }
-                    }
-                );
-            },
+        //        abp.message.confirm(
+        //            app.localize('RemoveRoleFromOuWarningMessage',
+        //                role.displayName,
+        //                organizationTree.selectedOu.displayName),
+        //            app.localize('AreYouSure'),
+        //            function (isConfirmed) {
+        //                if (isConfirmed) {
+        //                    _organizationUnitService.removeRoleFromOrganizationUnit({
+        //                        organizationUnitId: parseInt(ouId),
+        //                        roleId: role.id
+        //                    }).done(function () {
+        //                        abp.notify.success(app.localize('SuccessfullyRemoved'));
+        //                        organizationTree.incrementRoleCount(ouId, -1);
+        //                        roles.load();
+        //                    });
+        //                }
+        //            }
+        //        );
+        //    },
 
-            openAddModal: function () {
-                var ouId = organizationTree.selectedOu.id;
-                if (!ouId) {
-                    return;
-                }
+        //    openAddModal: function () {
+        //        var ouId = organizationTree.selectedOu.id;
+        //        if (!ouId) {
+        //            return;
+        //        }
 
-                _addRoleModal.open({
-                    title: app.localize('SelectARole'),
-                    organizationUnitId: ouId
-                },
-                    function (selectedItems) {
-                        roles.add(selectedItems);
-                    });
-            },
+        //        _addRoleModal.open({
+        //            title: app.localize('SelectARole'),
+        //            organizationUnitId: ouId
+        //        },
+        //            function (selectedItems) {
+        //                roles.add(selectedItems);
+        //            });
+        //    },
 
-            init: function () {
-                this.dataTable = roles.$table.find(".organization-roles-table").DataTable({
-                    paging: true,
-                    serverSide: true,
-                    processing: true,
-                    deferLoading: 0, //prevents table for ajax request on initialize
-                    responsive: false,
-                    listAction: {
-                        ajaxFunction: _organizationUnitService.getOrganizationUnitRoles,
-                        inputFilter: function () {
-                            return { id: organizationTree.selectedOu.id };
-                        }
-                    },
-                    columnDefs: [
-                        {
-                            targets: 0,
-                            data: null,
-                            orderable: false,
-                            defaultContent: '',
-                            className: 'text-center',
-                            rowAction: {
-                                targets: 0,
-                                data: null,
-                                orderable: false,
-                                defaultContent: '',
-                                element: $("<button/>")
-                                    .addClass("btn btn-outline-danger btn-icon btn-sm")
-                                    .attr("title", app.localize('Delete'))
-                                    .append($("<i/>").addClass("la la-times")).click(function () {
-                                        var record = $(this).data();
-                                        roles.remove(record);
-                                    }),
-                                visible: function () {
-                                    return _permissions.manageRoles;
-                                }
-                            }
-                        },
-                        {
-                            targets: 1,
-                            data: "displayName"
-                        },
-                        {
-                            targets: 2,
-                            data: "addedTime",
-                            render: function (addedTime) {
-                                return moment(addedTime).format('L');
-                            }
-                        }
-                    ]
-                });
+        //    init: function () {
+        //        this.dataTable = roles.$table.find(".organization-roles-table").DataTable({
+        //            paging: true,
+        //            serverSide: true,
+        //            processing: true,
+        //            deferLoading: 0, //prevents table for ajax request on initialize
+        //            responsive: false,
+        //            listAction: {
+        //                ajaxFunction: _organizationUnitService.getOrganizationUnitRoles,
+        //                inputFilter: function () {
+        //                    return { id: organizationTree.selectedOu.id };
+        //                }
+        //            },
+        //            columnDefs: [
+        //                {
+        //                    targets: 0,
+        //                    data: null,
+        //                    orderable: false,
+        //                    defaultContent: '',
+        //                    className: 'text-center',
+        //                    rowAction: {
+        //                        targets: 0,
+        //                        data: null,
+        //                        orderable: false,
+        //                        defaultContent: '',
+        //                        element: $("<button/>")
+        //                            .addClass("btn btn-outline-danger btn-icon btn-sm")
+        //                            .attr("title", app.localize('Delete'))
+        //                            .append($("<i/>").addClass("la la-times")).click(function () {
+        //                                var record = $(this).data();
+        //                                roles.remove(record);
+        //                            }),
+        //                        visible: function () {
+        //                            return _permissions.manageRoles;
+        //                        }
+        //                    }
+        //                },
+        //                {
+        //                    targets: 1,
+        //                    data: "displayName"
+        //                },
+        //                {
+        //                    targets: 2,
+        //                    data: "addedTime",
+        //                    render: function (addedTime) {
+        //                        return moment(addedTime).format('L');
+        //                    }
+        //                }
+        //            ]
+        //        });
 
+        //        $('#AddRoleToOuButton').click(function (e) {
+        //            e.preventDefault();
+        //            roles.openAddModal();
+        //        });
 
-                $('#AddRoleToOuButton').click(function (e) {
-                    e.preventDefault();
-                    roles.openAddModal();
-                });
-
-                roles.hideTable();
-            }
-        };
-
-        members.init();
-        roles.init();
+        //        roles.hideTable();
+        //    }
+        //};
         organizationTree.init();
+        members.init();
+        //roles.init();
+        
 
-        KTUtil.ready(function() {
-            KTLayoutStretchedCard.init('ouCard');
-            KTLayoutStretchedCard.init('ouMembersCard');
-        });
+        //KTUtil.ready(function() {
+        //    KTLayoutStretchedCard.init('ouCard');
+        //    KTLayoutStretchedCard.init('ouMembersCard');
+        //});
         
     });
 })();

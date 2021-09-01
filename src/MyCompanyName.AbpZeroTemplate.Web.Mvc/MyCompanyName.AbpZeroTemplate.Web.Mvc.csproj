@@ -125,9 +125,13 @@
     <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Areas\qlnv\Views\CustomOrganizationUnits\Index.cshtml.bak" />
     <None Remove="Areas\qlnv\Views\DM_DoiTuongs\Index.cshtml.del" />
     <None Remove="Areas\qlnv\Views\DM_DoiTuongs\_CreateOrEditModal.del" />
     <None Remove="Areas\qlnv\Views\DM_DoiTuongs\_ViewDM_DoiTuongModal.cshtml.del" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\qlnv\Views\CustomOrganizationUnits\Index.cshtml.bak" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />

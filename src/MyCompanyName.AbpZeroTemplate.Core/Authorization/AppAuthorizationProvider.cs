@@ -44,6 +44,11 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
             theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_SearchFull, L("SearchFullTheKhachHang"));
             theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_LoadFull, L("LoadFullTheKhachHang"));
 
+            var dm_TinhThanhs = pages.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs, L("TinhThanhs"));
+            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Create, L("CreateTheKhachHang"));
+            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Edit, L("EditTheKhachHang"));
+            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Delete, L("DeleteTheKhachHang"));
+
             var baseEntities = pages.CreateChildPermission(AppPermissions.Pages_BaseEntities, L("BaseEntities"));
             baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Create, L("CreateNewBaseEntity"));
             baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Edit, L("EditBaseEntity"));

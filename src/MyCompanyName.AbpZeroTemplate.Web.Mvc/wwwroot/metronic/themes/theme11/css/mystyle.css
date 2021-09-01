@@ -1,5 +1,14 @@
 ﻿@media (min-width: 992px) {
 
+    html {
+        font-family: sans-serif !important;
+        line-height: 1.15 !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -ms-overflow-style: scrollbar;
+        -webkit-tap-highlight-color: transparent;
+    }
+
     .header-menu .menu-nav {
         display: -webkit-box !important;
         -webkit-box-align: stretch !important;
@@ -106,5 +115,13 @@
         color: #7E8299;
         font-weight: 500;
         font-size: 1.25rem;
+    }
+
+    .header-menu .menu-nav > .menu-item > .menu-link .menu-bullet {
+        width: auto;
+    }
+
+    .header-menu .menu-nav > .menu-item > .menu-link .menu-bullet-father {
+        width: 20px;
     }
 }

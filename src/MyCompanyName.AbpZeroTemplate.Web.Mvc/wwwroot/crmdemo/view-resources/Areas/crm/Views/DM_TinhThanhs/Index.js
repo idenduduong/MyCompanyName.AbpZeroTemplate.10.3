@@ -10,19 +10,19 @@
         });
 
         var _permissions = {
-            create: abp.auth.hasPermission('Pages.Categories.Locations.DM_TinhThanhs.Create'),
-            edit: abp.auth.hasPermission('Pages.Categories.Locations.DM_TinhThanhs.Edit'),
-            'delete': abp.auth.hasPermission('Pages.Categories.Locations.DM_TinhThanhs.Delete')
+            create: abp.auth.hasPermission('Pages.Administration.DM_TinhThanhs.Create'),
+            edit: abp.auth.hasPermission('Pages.Administration.DM_TinhThanhs.Edit'),
+            'delete': abp.auth.hasPermission('Pages.Administration.DM_TinhThanhs.Delete')
         };
 
         var _createOrEditModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'crm/DM_TinhThanhs/CreateOrEditModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/crm/Views/DM_TinhThanhs/_CreateOrEditModal.js',
+            viewUrl: abp.appPath + 'qlnv/DM_TinhThanhs/CreateOrEditModal',
+            scriptUrl: abp.appPath + '~/crmdemo/view-resources/Areas/crm/Views/DM_TinhThanhs/_CreateOrEditModal.js',
             modalClass: 'CreateOrEditDM_TinhThanhModal'
         });
 
 		 var _viewDM_TinhThanhModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'crm/DM_TinhThanhs/ViewdM_TinhThanhModal',
+             viewUrl: abp.appPath + 'qlnv/DM_TinhThanhs/ViewdM_TinhThanhModal',
             modalClass: 'ViewDM_TinhThanhModal'
         });
 
@@ -67,7 +67,10 @@
                                 return _permissions.edit;
                             },
                             action: function (data) {
-                                _createOrEditModal.open({ id: data.record.dM_TinhThanh.id });
+                                console.log(data)
+                                debugger
+
+                                _createOrEditModal.open({ id: data.record.id });
                             }
                         }, 
 						{
@@ -81,59 +84,58 @@
                         }]
                     }
                 },
-					{
-						targets: 1,
-						 data: "dM_TinhThanh.maTinhThanh"   
-					},
-					{
-						targets: 2,
-						 data: "dM_TinhThanh.tenTinhThanh"   
-					},
-					{
-						targets: 3,
-						 data: "dM_TinhThanh.ghiChu"   
-					},
-					//{
-					//	targets: 4,
-					//	 data: "dM_TinhThanh.userTao"   
-					//},
-					//{
-					//	targets: 5,
-					//	 data: "dM_TinhThanh.ngayTao" ,
-					//render: function (ngayTao) {
-					//	if (ngayTao) {
-					//		return moment(ngayTao).format('L');
-					//	}
-					//	return "";
-					//}
+				{
+					targets: 1,
+						data: "maTinhThanh"
+				},
+				{
+					targets: 2,
+						data: "tenTinhThanh"
+				},
+				{
+					targets: 3,
+						data: "ghiChu"
+				},
+				//{
+				//	targets: 4,
+				//	 data: "dM_TinhThanh.userTao"   
+				//},
+				//{
+				//	targets: 5,
+				//	 data: "dM_TinhThanh.ngayTao" ,
+				//render: function (ngayTao) {
+				//	if (ngayTao) {
+				//		return moment(ngayTao).format('L');
+				//	}
+				//	return "";
+				//}
 			  
-					//},
-					//{
-					//	targets: 6,
-					//	 data: "dM_TinhThanh.userSuaCuoi"   
-					//},
-					//{
-					//	targets: 7,
-					//	 data: "dM_TinhThanh.ngaySuaCuoi" ,
-					//render: function (ngaySuaCuoi) {
-					//	if (ngaySuaCuoi) {
-					//		return moment(ngaySuaCuoi).format('L');
-					//	}
-					//	return "";
-					//}
+				//},
+				//{
+				//	targets: 6,
+				//	 data: "dM_TinhThanh.userSuaCuoi"   
+				//},
+				//{
+				//	targets: 7,
+				//	 data: "dM_TinhThanh.ngaySuaCuoi" ,
+				//render: function (ngaySuaCuoi) {
+				//	if (ngaySuaCuoi) {
+				//		return moment(ngaySuaCuoi).format('L');
+				//	}
+				//	return "";
+				//}
 			  
-					//},
-					{
-						targets: 4,
-						 data: "dM_QuocGiaTenNuoc" 
-					},
-					{
-						targets: 5,
-						 data: "dM_VungMienTenVung" 
-					}
+				//},
+				{
+					targets: 4,
+						data: "dM_QuocGiaTenNuoc" 
+				},
+				{
+					targets: 5,
+                    data: "dM_VungMienTenVung"
+                }
             ]
         });
-
 
         function getDM_TinhThanhs() {
             dataTable.ajax.reload();

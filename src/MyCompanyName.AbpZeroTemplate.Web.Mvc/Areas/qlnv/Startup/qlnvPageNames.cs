@@ -4,6 +4,10 @@
     {
         public static class Common
         {
+            public const string Categories = "Administration.Categories";
+            public const string DM_TinhThanhs = "Administration.Categories.DM_TinhThanhs";
+            public const string DM_QuanHuyens = "Administration.Categories.DM_QuanHuyens";
+
             public const string Persons = "Persons.Person";
             public const string BaseEntities = "BaseNamespace.BaseEntities";
             public const string Childs = "ChildNamespace1.Childs";

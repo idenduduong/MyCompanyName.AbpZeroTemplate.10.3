@@ -1,6 +1,23 @@
-﻿@{
+﻿@using MyCompanyName.AbpZeroTemplate.Authorization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
+@{
+    ViewBag.CurrentPageName = qlnvPageNames.Common.OrganizationUnits;
+}
+
+@section Styles
+{
+    <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/OrganizationUnits/Index.css" asp-append-version="true" />
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/qlnv/Views/OrganizationUnits/Index.js" asp-append-version="true"></script>
+}
+
+@{
     Layout = null;
 }
+
 
 <!DOCTYPE html>
 <html lang="en" dir=>
@@ -14,7 +31,7 @@
     <meta property="og:title" content="QLNV Management System" />
     <meta property="og:image" content="/Common/Images/vnpost-big-removebg.png" />
     <meta property="og:description" content="Base solution for your next web application" />
-    <meta property="og:url" content="crm/DM_DoiTuongs">
+    <meta property="og:url" content="/qlnv/OrganizationUnits">
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/vendors.bundle.css?v=" />
     <link rel="stylesheet" href="~/crmdemo/metronic/dist/html/blue/assets/demo/blue/base/style.bundle.css?v=" />
@@ -42,19 +59,23 @@
             font-size: 12px !important;
         }
 
-        /*
         media only screen and (max-device-width: 1919px) {
-            html, body {
-                font-size: 12px !important;
-            }
+            html, body
+
+        {
+            font-size: 12px !important;
+        }
+
         }
 
         media only screen and (min-device-width: 1920px) {
-            html, body {
-                font-size: 14px !important;
-            }
+            html, body
+
+        {
+            font-size: 14px !important;
         }
-        */
+
+        }
 
         .datatable-child-table {
             margin-top: 15px;
@@ -84,6 +105,13 @@
         }
     </style>
 
+    <link rel="stylesheet" href="~/crmdemo/view-resources/Areas/crm/Views/OrganizationUnits/Index.css?v=" />
+    <style>
+        .ou-text {
+            color: #575962 !important;
+        }
+    </style>
+
     <script type="text/javascript">
         var abp = abp || {}; abp.appPath = '/';
     </script>
@@ -93,9 +121,6 @@
 <body class="m-page--fluid m--skin-light2
       m-content--skin-light2
       m-header--static
-
-
-
       m-aside-left--hide
       m-aside-left--enabled
       m-aside-left--skin-light
@@ -132,8 +157,6 @@
                                         <i class="flaticon-more" aria-label="[Toggle]"></i>
                                     </a>
                                     <!-- BEGIN: Topbar Toggler -->
-
-
                                 </div>
                             </div>
                         </div>
@@ -154,22 +177,20 @@
                                                aria-expanded="false"
                                                tabindex="-1">
                                                 <span class="language-dropdown">
-                                                    <i class="famfamfam-flags vn" aria-label="famfamfam-flags vn"></i>
+                                                    <i class="famfamfam-flags us" aria-label="famfamfam-flags us"></i>
                                                     <span class="m-menu__link-text langname">
-                                                        Vietnamese
-
-
+                                                        English
                                                     </span>
                                                     <i class="fa fa-angle-down"></i>
                                                 </span>
 
                                             </a>
                                             <ul class="dropdown-menu"
-                                                aria-label="Ng&#xF4;n ng&#x1EEF; "
+                                                aria-label="Languages"
                                                 role="menu">
                                                 <li role="none">
-                                                    <a href="/AbpLocalization/ChangeCulture?cultureName=en&returnUrl=/crm/DM_DoiTuongs" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">
-                                                        <i class="famfamfam-flags us"></i> English
+                                                    <a href="/AbpLocalization/ChangeCulture?cultureName=vi&returnUrl=/crm/OrganizationUnits" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">
+                                                        <i class="famfamfam-flags vn"></i> Vietnamese
                                                     </a>
                                                 </li>
                                             </ul>
@@ -181,10 +202,10 @@
                                                aria-expanded="false"
                                                tabindex="0">
                                                 <span class="m-topbar__username m--font-primary">
-                                                    <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">admin</span>
+                                                    <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">thangpa</span>
                                                 </span>
                                                 <span class="m-topbar__userpic">
-                                                    <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637644670605573731" />
+                                                    <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637660006726394176" />
                                                 </span>
                                             </a>
                                             <div class="m-dropdown__wrapper">
@@ -193,14 +214,12 @@
                                                     <div class="m-dropdown__header m--align-center" style="background: url(/metronic/dist/html/blue/assets/demo/blue/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                                         <div class="m-card-user m-card-user--skin-dark">
                                                             <div class="m-card-user__pic">
-                                                                <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637644670605573731" />
+                                                                <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637660006726394176" />
                                                             </div>
                                                             <div class="m-card-user__details">
                                                                 <span class="m-card-user__name m--font-weight-500">
-                                                                    <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">admin</span>
+                                                                    <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">thangpa</span>
                                                                 </span>
-
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -220,9 +239,7 @@
                                                                         <span class="m-nav__link-title">
                                                                             <span class="m-nav__link-wrap">
                                                                                 <span id="UserProfileChangePasswordLink" class="m-nav__link-text">
-                                                                                    &#x110;&#x1ED5;i m&#x1EAD;t kh&#x1EA9;u&#xD;&#xA;
-
-
+                                                                                    Change password
                                                                                 </span>
                                                                             </span>
                                                                         </span>
@@ -239,8 +256,6 @@
                                                                             <span class="m-nav__link-wrap">
                                                                                 <span id="ShowLoginAttemptsLink" class="m-nav__link-text">
                                                                                     C&#x1ED1; g&#x1EAF;ng &#x111;&#x103;ng nh&#x1EAD;p&#xD;&#xA;
-
-
                                                                                 </span>
                                                                             </span>
                                                                         </span>
@@ -256,9 +271,7 @@
                                                                         <span class="m-nav__link-title">
                                                                             <span class="m-nav__link-wrap">
                                                                                 <span id="UserProfileChangePictureLink" class="m-nav__link-text">
-                                                                                    Thay &#x111;&#x1ED5;i h&#xEC;nh &#x1EA3;nh &#x111;&#x1EA1;i di&#x1EC7;n&#xD;&#xA;
-
-
+                                                                                    Change profile picture
                                                                                 </span>
                                                                             </span>
                                                                         </span>
@@ -270,18 +283,15 @@
                                                                        role="menuitem"
                                                                        aria-haspopup="true"
                                                                        aria-expanded="false"
-                                                                       tabindex="-1">&#x110;&#x103;ng xu&#x1EA5;t</a>
+                                                                       tabindex="-1">Logout</a>
                                                                 </li>
                                                             </ul>
                                                         </nav>
-
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
-
                                 </nav>
                             </div>
                             <!-- END: Topbar -->
@@ -547,7 +557,7 @@
                                                     aria-haspopup="true"
                                                     role=none
                                                     data-menu-submenu-toggle="click">
-                                                    <a href="/qlnv/OrganizationUnits" class="m-menu__link"
+                                                    <a href="/qlnv/CustomOrganizationUnits" class="m-menu__link"
                                                        role="menuitem"
                                                        aria-haspopup="true"
                                                        aria-expanded="false"
@@ -986,7 +996,7 @@
     <a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon{{^unreadMessageExists}}_not{{/unreadMessageExists}}">
         <span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small {{#unreadMessageExists}}m-badge--danger{{/unreadMessageExists}}"></span>
         <span class="m-nav__link-icon">
-            <i class="flaticon-music-2" aria-label="Th&#xF4;ng b&#xE1;o"></i>
+            <i class="flaticon-music-2" aria-label="Notifications"></i>
         </span>
     </a>
     <div class="m-dropdown__wrapper">
@@ -1002,11 +1012,11 @@
                     <div class="row">
                         <div class="text-left col-md-8">
                             {{#unreadCount}}
-                            <a href="" id="setAllNotificationsAsReadLink">&#x110;&#x1EB7;t t&#x1EA5;t c&#x1EA3; l&#xE0; &#x111;&#xE3; &#x111;&#x1ECD;c</a>
+                            <a href="" id="setAllNotificationsAsReadLink">Set all as read</a>
                             {{/unreadCount}}
                         </div>
                         <div class="text-right col-md-4">
-                            <a id="openNotificationSettingsModalLink" class="text-right" href="">C&#xE0;i &#x111;&#x1EB7;t</a>
+                            <a id="openNotificationSettingsModalLink" class="text-right" href="">Settings</a>
                         </div>
                     </div>
                     <hr />
@@ -1024,7 +1034,7 @@
                                         {{timeAgo}}
                                         {{#isUnread}}
                                         <span>
-                                            <a href="javascript:;" data-notification-id="{{userNotificationId}}" class="m-link set-notification-as-read">thi&#x1EBF;t l&#x1EAD;p l&#xE0; &#x111;&#xE3; &#x111;&#x1ECD;c</a>
+                                            <a href="javascript:;" data-notification-id="{{userNotificationId}}" class="m-link set-notification-as-read">set as read</a>
                                         </span>
                                         {{/isUnread}}
                                     </span>
@@ -1032,14 +1042,14 @@
                                 {{/notifications}}
                                 {{^notifications.length}}
                                 <span class="notification-empty-text">
-                                    Kh&#xF4;ng c&#xF3; th&#xF4;ng b&#xE1;o.
+                                    There is no notification.
                                 </span>
                                 {{/notifications.length}}
                             </div>
                             {{#notifications.length}}
                             <div class="m-nav__separator m-nav__separator--fit"></div>
                             <div class="external notifications-footer">
-                                <div class="text-center"><a href="/crm/Notifications">Xem t&#x1EA5;t c&#x1EA3; th&#xF4;ng b&#xE1;o&#xD;&#xA;</a></div>
+                                <div class="text-center"><a href="/crm/Notifications">See all notifications</a></div>
                             </div>
                             {{/notifications.length}}
                         </div>
@@ -1056,312 +1066,82 @@
             <!-- BEGIN: Left Aside -->
             <!-- END: Left Aside -->
             <div class="m-grid__item m-grid__item--fluid m-wrapper">
+
                 <div class="m-subheader">
-                    <div class="row align-items-center">
-                        <div class="mr-auto col-sm-12 col-md-6">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto">
                             <h3 class="m-subheader__title m-subheader__title--separator">
-                                <span>Danh m&#x1EE5;c kh&#xE1;ch h&#xE0;ng</span>
+                                <span>Nh&#xF3;m &#x111;&#x1A1;n v&#x1ECB; t&#x1ED5; ch&#x1EE9;c</span>
                             </h3>
                             <span class="m-section__sub">
-                                Qu&#x1EA3;n l&#xFD; danh s&#xE1;ch kh&#xE1;ch h&#xE0;ng
+                                Use organization units to organize users and entities
                             </span>
                         </div>
-                        <div class="col-sm-12 col-md-6 text-right">
-                            <button id="CreateNewDM_DoiTuongButton" class="btn btn-primary blue"><i class="la la-plus"></i> Th&#xEA;m kh&#xE1;ch h&#xE0;ng m&#x1EDB;i</button>
-                            <button id="ExportToExcelButton" class="btn btn-outline-success"><i class="la la-download"></i> Xu&#x1EA5;t excel</button>
-                        </div>
+
                     </div>
                 </div>
+
+
                 <div class="m-content">
-                    <div class="m-portlet m-portlet--mobile">
-                        <div class="m-portlet__body">
-                            <div class="m-form m-form--label-align-right">
-                                <div class="row align-items-center m--margin-bottom-10">
-                                    <div class="col-xl-12">
-                                        <div class="form-group m-form__group align-items-center">
-                                            <div class="input-group">
-                                                <input type="text" id="DM_DoiTuongsTableFilter" class="form-control m-input" placeholder="T&#xEC;m ki&#x1EBF;m ..." value="">
-                                                <span class="input-group-btn">
-                                                    <button id="GetDM_DoiTuongsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
-                                                </span>
-                                            </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                Organization tree
+                                            </h3>
                                         </div>
                                     </div>
+                                    <div class="m-portlet__head-tools">
+                                        <button type="button" id="AddRootUnitButton" class="btn btn-primary">
+                                            <i class="la la-plus"></i> Add root unit
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div id="OrganizationUnitEditTree"></div>
+                                    <div id="OrganizationUnitTreeEmptyInfo" ng-if="!vm.organizationTree.unitCount" class="text-muted">
+                                        No organization unit defined yet.
+                                    </div>
                                 </div>
                             </div>
-                            <div id="AdvacedAuditFiltersArea" class="row m--margin-bottom-10">
-                                <div class="col-md-12">
-                                    <div class="m-separator m-separator--dashed"></div>
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="MaDoiTuongFilterId">M&#xE3; kh&#xE1;ch h&#xE0;ng</label>
-                                        <input type="text" class="form-control" name="maDoiTuongFilter" id="MaDoiTuongFilterId">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                Members
+                                                <span id="SelectedOuRightTitle"></span>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-tools">
+                                        <button type="button" id="AddUserToOuButton" class="btn btn-primary" style="display:none">
+                                            <i class="la la-plus"></i> Add member
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="TenDoiTuongFilterId">T&#xEA;n kh&#xE1;ch h&#xE0;ng</label>
-                                        <input type="text" class="form-control" name="tenDoiTuongFilter" id="TenDoiTuongFilterId">
+                                <div class="m-portlet__body">
+                                    <div id="OuMembersTable" style="display:none">
+                                        <table class="organization-members-table display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Delete</th>
+                                                    <th>User name</th>
+                                                    <th>Addition time</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+
+                                    <div id="OuMembersEmptyInfo" class="text-muted">
+                                        Select an organization unit to see members.
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="DienThoaiFilterId">&#x110;i&#x1EC7;n tho&#x1EA1;i</label>
-                                        <input type="text" class="form-control" name="dienThoaiFilter" id="DienThoaiFilterId">
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="SoCMTND_DKKDFilterId">S&#x1ED1; CMTND</label>
-                                        <input type="text" class="form-control" name="soCMTND_DKKDFilter" id="SoCMTND_DKKDFilterId">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row align-items-center">
-                                <table id="DM_DoiTuongsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>H&#xE0;nh &#x111;&#x1ED9;ng</th>
-                                            <th>Nh&#xF3;m kh&#xE1;ch h&#xE0;ng</th>
-                                            <th>&#x110;&#x1A1;n v&#x1ECB; qu&#x1EA3;n l&#xFD;</th>
-                                            <th>M&#xE3; kh&#xE1;ch h&#xE0;ng</th>
-                                            <th>T&#xEA;n kh&#xE1;ch h&#xE0;ng</th>
-                                            <th>&#x110;i&#x1EC7;n tho&#x1EA1;i</th>
-                                            <th>C&#x103;n c&#x1B0;&#x1EDB;c c&#xF4;ng d&#xE2;n/CMT</th>
-                                            <th>Ng&#xE0;y sinh</th>
-
-                                            <th>Gi&#x1EDB;i t&#xED;nh</th>
-
-                                            <th>&#x110;&#x1ECB;a ch&#x1EC9;</th>
-                                            <th>Ngh&#x1EC1; nghi&#x1EC7;p</th>
-                                            <th>Qu&#x1EAD;n/Huy&#x1EC7;n</th>
-
-                                            <th>T&#x1EC9;nh th&#xE0;nh ph&#x1ED1;</th>
-                                            <th>Qu&#x1ED1;c gia</th>
-                                            <th>Email</th>
-                                            <th>Danh m&#x1EE5;c ngu&#x1ED3;n kh&#xE1;ch h&#xE0;ng</th>
-
-                                        </tr>
-                                    </thead>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -1380,8 +1160,6 @@
                     </div>
                     <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
 
-
-
                     </div>
                 </div>
             </div>
@@ -1394,13 +1172,13 @@
     <div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
         <div class="m-quick-sidebar__content m--hide">
             <a href="#" id="m_quick_sidebar_back" class="d-none">
-                <i class="la la-arrow-circle-left" aria-label="Tr&#x1EDF; l&#x1EA1;i"></i>
+                <i class="la la-arrow-circle-left" aria-label="Back"></i>
             </a>
             <a href="javascript:;" class="page-quick-sidebar-pinner">
                 <i class="icon-pin" aria-label="Pin"></i>
             </a>
             <span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
-                <i class="la la-close" aria-label="&#x110;&#xF3;ng"></i>
+                <i class="la la-close" aria-label="Close"></i>
             </span>
             <div class="m-messenger m-messenger-friends m-messenger--skin-light">
                 <div class="row">
@@ -1410,7 +1188,6 @@
                             <span class="m-input-icon__icon m-input-icon__icon--right">
                                 <span>
                                     <i id="InterTenantChatHintIcon" class="la la-info-circle" data-toggle="m-popover" data-placement="bottom" data-html="true" title="Ch&#x1EC9; vi&#x1EBF;t t&#xEA;n ng&#x1B0;&#x1EDD;i d&#xF9;ng cho c&#xF9;ng ng&#x1B0;&#x1EDD;i d&#xF9;ng thu&#xEA;, &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; &lt;strong&gt; [tenancyName] \ [userName] &lt;/ strong&gt; cho ng&#x1B0;&#x1EDD;i d&#xF9;ng c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; nh&#xE0; kh&#xE1;c &lt;br&gt; &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; v&#xED; d&#x1EE5;: &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; . \ admin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n l&#x1B0;u tr&#x1EEF; &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; Ki&#x1EC3;m tra \ admin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; th&#x1EED; nghi&#x1EC7;m &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; admin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; nh&#xE0; c&#x1EE7;a b&#x1EA1;n"></i>
-
                                 </span>
                             </span>
                         </div>
@@ -1443,15 +1220,11 @@
                     <div class="selected-chat-user-image">
                         <img id="selectedChatUserImage" class="media-object">
                         <span id="selectedChatUserStatus" class="contact-status2"></span>
-
-
-
                     </div>
                     <h6 id="selectedChatUserName"></h6>
                     <div class="actions">
                         <a class="btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
                             <i class="fa fa-angle-down" aria-label="[Expand]"></i>
-
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li id="liBanChatUser">
@@ -1472,29 +1245,6 @@
                 <hr />
                 <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
                     <div class="m-messenger__messages" id="UserChatMessages">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                     <div class="m-messenger__seperator"></div>
                     <form name="chatMessageForm" id="chatMessageForm" role="form">
@@ -1506,21 +1256,14 @@
                         <div class="col-md-12 chat-progress-bar">
                             <div id="chatFileUploadProgress" class="progress">
                                 <div class="progress-bar progress-bar-success"></div>
-
                             </div>
                         </div>
 
                         <div class="m-messenger__form" id="ChatMessageWrapper">
                             <div class="m-messenger__form-controls">
                                 <input id="ChatMessage" type="text" name="message" class="m-messenger__form-input" placeholder="Nh&#x1EAD;p tin nh&#x1EAF;n t&#x1EA1;i &#x111;&#xE2;y ..." required maxlength="4096" />
-
                             </div>
-
                             <div class="m-messenger__form-tools">
-
-
-
-
                                 <a id="chatDropdownToggle" href="" class="m-messenger__form-attachment select-media" data-toggle="dropdown" tabindex="-1" aria-expanded="false">
                                     <i class="la la-paperclip" aria-label="[Attach]"></i>
                                 </a>
@@ -1552,7 +1295,6 @@
                                         </a>
                                     </li>
                                 </ul>
-
                             </div>
                         </div>
                     </form>
@@ -1627,113 +1369,27 @@
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/app-layout-libs.js?v="></script>
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/scripts.bundle.js?v="></script>
     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-    <script src="/AbpServiceProxies/GetAll?v=637644670119783223" type="text/javascript"></script>
-    <script src="/AbpScripts/GetScripts?v=637644670119783223" type="text/javascript"></script>
+    <script src="/AbpServiceProxies/GetAll?v=" type="text/javascript"></script>
+    <script src="/AbpScripts/GetScripts?v=" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/cultures/globalize.culture.vi-VN.js"></script>
     <script type="text/javascript">
-        abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: 'Vietnamese' });
+        abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: 'English' });
         abp.localization.defaultApiDateTimeFormat = "MM/DD/YYYY";
-        moment.locale('vi'); //Localizing moment.js
+        moment.locale('en'); //Localizing moment.js
     </script>
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/common-scripts.js?v="></script>
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/app-common-scripts.js?v="></script>
     <script src="~/crmdemo/view-resources/Areas/crm/Views/Layout/_Header.js?v="></script>
 
-
-    <script src="~/crmdemo/lib/jquery-validation/dist/localization/messages_vi.js?v="></script>
-
-    <script src="~/crmdemo/lib/bootstrap-select/dist/js/i18n/defaults-en_US.js?v="></script>
-    <script src="~/crmdemo/lib/timeago/locales/jquery.timeago.vi.js?v="></script>
-    <script src="~/crmdemo/lib/select2/dist/js/i18n/vi.js?v="></script>
+    <script src="/Common/Scripts/_empty.js?v="></script>
+    <script src="/lib/bootstrap-select/dist/js/i18n/defaults-en_US.js?v="></script>
+    <script src="/lib/timeago/locales/jquery.timeago.en.js?v="></script>
+    <script src="/lib/select2/dist/js/i18n/en.js?v="></script>
     <!--end::Base Scripts -->
     <!--begin::Page Snippets -->
-    <!-- The template to display files available for upload -->
-    <script id="template-upload" type="text/x-tmpl">
-        {% for (var i=0, file; file=o.files[i]; i++) { %}
-        <tr class="template-upload fade">
-            <td>
-                <span class="preview"></span>
-            </td>
-            <td>
-                <p class="name">{%=file.name%}</p>
-                <strong class="error text-danger"></strong>
-            </td>
-            <td>
-                <p class="size">&#x110;ang x&#x1EED; l&#xFD;...</p>
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-            </td>
-            <td>
-                {% if (!i && !o.options.autoUpload) { %}
-                <button class="btn btn-primary start" disabled>
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>B&#x1EAF;t &#x111;&#x1EA7;u</span>
-                </button>
-                {% } %}
-                {% if (!i) { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>H&#x1EE7;y</span>
-                </button>
-                {% } %}
-            </td>
-        </tr>
-        {% } %}
-    </script>
-    <!-- The template to display files available for download -->
-    <script id="template-download" type="text/x-tmpl">
-        {% for (var i=0, file; file=o.files[i]; i++) { %}
-        <tr class="template-download fade">
-            <td>
-                <span class="preview">
-                    {% if (file.thumbnailUrl) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-                    {% } %}
-                </span>
-            </td>
-            <td>
-                <p class="name">
-                    {% if (file.url) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-                    {% } else { %}
-                    <span>{%=file.name%}</span>
-                    {% } %}
-                </p>
-                {% if (file.error) { %}
-                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-                {% } %}
-            </td>
-            <td>
-                <span class="size">{%=o.formatFileSize(file.size)%}</span>
-            </td>
-            <td>
-                {% if (file.deleteUrl) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <span>Delete</span>
-                </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
-                {% } else { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
-                </button>
-                {% } %}
-            </td>
-        </tr>
-        {% } %}
-    </script>
-    <script src="~/crmdemo/view-resources/Areas/crm/Views/DM_DoiTuongs/Index.js?v=5"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/tmpl.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/load-image.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.iframe-transport.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload-process.js" type="text/javascript"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload-image.js" type="text/javascript"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload-ui.js" type="text/javascript"></script>
+
+    <script src="/view-resources/Areas/qlnv/Views/CustomOrganizationUnits/Index.js?v="></script>
 
     <script>
         $(function () {

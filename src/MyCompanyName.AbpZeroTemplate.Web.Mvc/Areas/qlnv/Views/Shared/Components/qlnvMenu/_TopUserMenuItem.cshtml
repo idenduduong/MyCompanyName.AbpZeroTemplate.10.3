@@ -14,7 +14,13 @@
         <a href="@Model.MenuItem.CalculateUrl(ApplicationPath)" class="menu-link">
             @if (!Model.RootLevel)
             {
-                <i class="menu-bullet menu-bullet-dot">
+                <i class="menu-bullet @Model.RootLevel @Model.MenuItem.Icon">
+                    <span></span>
+                </i>
+            }
+            else
+            {
+                <i class="menu-bullet @Model.MenuItem.Icon">
                     <span></span>
                 </i>
             }
@@ -26,8 +32,9 @@ else
 {
     <li class="menu-item menu-item-submenu menu-item-open-dropdown @GetMenuItemClass(Model) @GetActiveMenuClass(Model)" data-menu-toggle="hover" aria-haspopup="true">
         <a href="javascript:;" class="menu-link menu-toggle">
+            <i class="menu-bullet-father @Model.MenuItem.Icon"><span></span></i>
             <span class="menu-text">@Model.MenuItem.DisplayName</span>
-            <i class="menu-arrow"></i>
+            <i class="menu-arrow menu-bullet-dot"></i>
         </a>
         <div class="menu-submenu menu-submenu-classic @GetSubMenuClass(Model)">
             <ul class="menu-subnav">

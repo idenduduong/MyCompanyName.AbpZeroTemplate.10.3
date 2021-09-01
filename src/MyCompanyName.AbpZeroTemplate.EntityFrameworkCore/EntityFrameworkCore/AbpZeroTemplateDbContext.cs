@@ -192,7 +192,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<DM_TinhThanh> DM_TinhThanhs { get; set; }
 
-        //public virtual DbSet<DM_VungMien> DM_VungMiens { get; set; }
+        public virtual DbSet<DM_VungMien> DM_VungMiens { get; set; }
 
         //public virtual DbSet<DM_KhuVuc> DM_KhuVucs { get; set; }
 

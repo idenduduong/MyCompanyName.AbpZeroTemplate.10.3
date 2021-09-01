@@ -1,4 +1,20 @@
-﻿@{
+﻿@using MyCompanyName.AbpZeroTemplate.Authorization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
+@{
+    ViewBag.CurrentPageName = qlnvPageNames.Common.DM_TinhThanhs;
+}
+
+@section Styles
+{
+    @*<link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/OrganizationUnits/Index.css" asp-append-version="true" />*@
+}
+
+@section Scripts
+{
+    @*<script abp-src="/view-resources/Areas/qlnv/Views/OrganizationUnits/Index.js" asp-append-version="true"></script>*@
+}
+
+@{
     Layout = null;
 }
 
@@ -12,9 +28,9 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <meta property="og:title" content="QLNV Management System" />
-    <meta property="og:image" content="/Common/Images/vnpost-big-removebg.png" />
+    <meta property="og:image" content="/Common/Images/app-logo-on-light.png" />
     <meta property="og:description" content="Base solution for your next web application" />
-    <meta property="og:url" content="crm/DM_DoiTuongs">
+    <meta property="og:url" content="http://localhost/crm/DM_TinhThanhs">
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/vendors.bundle.css?v=" />
     <link rel="stylesheet" href="~/crmdemo/metronic/dist/html/blue/assets/demo/blue/base/style.bundle.css?v=" />
@@ -42,19 +58,23 @@
             font-size: 12px !important;
         }
 
-        /*
         media only screen and (max-device-width: 1919px) {
-            html, body {
-                font-size: 12px !important;
-            }
+            html, body
+
+        {
+            font-size: 12px !important;
+        }
+
         }
 
         media only screen and (min-device-width: 1920px) {
-            html, body {
-                font-size: 14px !important;
-            }
+            html, body
+
+        {
+            font-size: 14px !important;
         }
-        */
+
+        }
 
         .datatable-child-table {
             margin-top: 15px;
@@ -93,9 +113,6 @@
 <body class="m-page--fluid m--skin-light2
       m-content--skin-light2
       m-header--static
-
-
-
       m-aside-left--hide
       m-aside-left--enabled
       m-aside-left--skin-light
@@ -132,8 +149,6 @@
                                         <i class="flaticon-more" aria-label="[Toggle]"></i>
                                     </a>
                                     <!-- BEGIN: Topbar Toggler -->
-
-
                                 </div>
                             </div>
                         </div>
@@ -157,8 +172,6 @@
                                                     <i class="famfamfam-flags vn" aria-label="famfamfam-flags vn"></i>
                                                     <span class="m-menu__link-text langname">
                                                         Vietnamese
-
-
                                                     </span>
                                                     <i class="fa fa-angle-down"></i>
                                                 </span>
@@ -168,7 +181,7 @@
                                                 aria-label="Ng&#xF4;n ng&#x1EEF; "
                                                 role="menu">
                                                 <li role="none">
-                                                    <a href="/AbpLocalization/ChangeCulture?cultureName=en&returnUrl=/crm/DM_DoiTuongs" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">
+                                                    <a href="/AbpLocalization/ChangeCulture?cultureName=en&returnUrl=/crm/DM_TinhThanhs" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">
                                                         <i class="famfamfam-flags us"></i> English
                                                     </a>
                                                 </li>
@@ -184,7 +197,7 @@
                                                     <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">admin</span>
                                                 </span>
                                                 <span class="m-topbar__userpic">
-                                                    <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637644670605573731" />
+                                                    <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637660909539731287" />
                                                 </span>
                                             </a>
                                             <div class="m-dropdown__wrapper">
@@ -193,14 +206,12 @@
                                                     <div class="m-dropdown__header m--align-center" style="background: url(/metronic/dist/html/blue/assets/demo/blue/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                                         <div class="m-card-user m-card-user--skin-dark">
                                                             <div class="m-card-user__pic">
-                                                                <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637644670605573731" />
+                                                                <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637660909539731287" />
                                                             </div>
                                                             <div class="m-card-user__details">
                                                                 <span class="m-card-user__name m--font-weight-500">
                                                                     <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">admin</span>
                                                                 </span>
-
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -221,8 +232,6 @@
                                                                             <span class="m-nav__link-wrap">
                                                                                 <span id="UserProfileChangePasswordLink" class="m-nav__link-text">
                                                                                     &#x110;&#x1ED5;i m&#x1EAD;t kh&#x1EA9;u&#xD;&#xA;
-
-
                                                                                 </span>
                                                                             </span>
                                                                         </span>
@@ -239,8 +248,6 @@
                                                                             <span class="m-nav__link-wrap">
                                                                                 <span id="ShowLoginAttemptsLink" class="m-nav__link-text">
                                                                                     C&#x1ED1; g&#x1EAF;ng &#x111;&#x103;ng nh&#x1EAD;p&#xD;&#xA;
-
-
                                                                                 </span>
                                                                             </span>
                                                                         </span>
@@ -257,8 +264,6 @@
                                                                             <span class="m-nav__link-wrap">
                                                                                 <span id="UserProfileChangePictureLink" class="m-nav__link-text">
                                                                                     Thay &#x111;&#x1ED5;i h&#xEC;nh &#x1EA3;nh &#x111;&#x1EA1;i di&#x1EC7;n&#xD;&#xA;
-
-
                                                                                 </span>
                                                                             </span>
                                                                         </span>
@@ -274,14 +279,11 @@
                                                                 </li>
                                                             </ul>
                                                         </nav>
-
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
-
                                 </nav>
                             </div>
                             <!-- END: Topbar -->
@@ -307,7 +309,7 @@
                                     <li class="m-menu__item  "
                                         aria-haspopup="true"
                                         data-menu-submenu-toggle="click">
-                                        <a href="/qlnv/TheKhachHangs" class="m-menu__link"
+                                        <a href="/crm/TheKhachHangs" class="m-menu__link"
                                            role="menuitem"
                                            aria-haspopup="true"
                                            aria-expanded="false"
@@ -322,7 +324,7 @@
                                     <li class="m-menu__item  "
                                         aria-haspopup="true"
                                         data-menu-submenu-toggle="click">
-                                        <a href="/qlnv/DM_DoiTuongs" class="m-menu__link"
+                                        <a href="/crm/DM_DoiTuongs" class="m-menu__link"
                                            role="menuitem"
                                            aria-haspopup="true"
                                            aria-expanded="false"
@@ -334,193 +336,330 @@
                                         </a>
                                     </li>
 
-                                    @*<li class="m-menu__item  "
-                                            aria-haspopup="true"
-                                            data-menu-submenu-toggle="click">
-                                            <a href="/crm/Releases" class="m-menu__link"
-                                               role="menuitem"
-                                               aria-haspopup="true"
-                                               aria-expanded="false"
-                                               tabindex="-1">
-                                                <i class="m-menu__link-icon flaticon-share"></i>
-                                                <span class="m-menu__link-text">
-                                                    <span class="title">Releases</span>
-                                                </span>
-                                            </a>
-                                        </li>
+                                    <li class="m-menu__item  "
+                                        aria-haspopup="true"
+                                        data-menu-submenu-toggle="click">
+                                        <a href="/crm/Releases" class="m-menu__link"
+                                           role="menuitem"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           tabindex="-1">
+                                            <i class="m-menu__link-icon flaticon-share"></i>
+                                            <span class="m-menu__link-text">
+                                                <span class="title">Chuy&#x1EC3;n nh&#x1B0;&#x1EE3;ng</span>
+                                            </span>
+                                        </a>
+                                    </li>
 
-                                        <li class="m-menu__item  "
-                                            aria-haspopup="true"
-                                            data-menu-submenu-toggle="click">
-                                            <a href="/crm/PhieuThus" class="m-menu__link"
-                                               role="menuitem"
-                                               aria-haspopup="true"
-                                               aria-expanded="false"
-                                               tabindex="-1">
-                                                <i class="m-menu__link-icon flaticon-coins"></i>
-                                                <span class="m-menu__link-text">
-                                                    <span class="title">Phi&#x1EBF;u thu</span>
-                                                </span>
-                                            </a>
-                                        </li>
+                                    <li class="m-menu__item  "
+                                        aria-haspopup="true"
+                                        data-menu-submenu-toggle="click">
+                                        <a href="/crm/PhieuThus" class="m-menu__link"
+                                           role="menuitem"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           tabindex="-1">
+                                            <i class="m-menu__link-icon flaticon-coins"></i>
+                                            <span class="m-menu__link-text">
+                                                <span class="title">Phi&#x1EBF;u thu</span>
+                                            </span>
+                                        </a>
+                                    </li>
 
-                                        <li class="m-menu__item m-menu__item--submenu "
-                                            aria-haspopup="true"
-                                            data-menu-submenu-toggle="click">
-                                            <a href="#" class="m-menu__link m-menu__toggle"
-                                               role="menuitem"
-                                               aria-haspopup="true"
-                                               aria-expanded="false"
-                                               tabindex="-1">
-                                                <i class="m-menu__link-icon flaticon-network"></i>
-                                                <span class="m-menu__link-text">
-                                                    <span class="title">Sale</span>
-                                                </span>
+                                    <li class="m-menu__item m-menu__item--submenu "
+                                        aria-haspopup="true"
+                                        data-menu-submenu-toggle="click">
+                                        <a href="#" class="m-menu__link m-menu__toggle"
+                                           role="menuitem"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           tabindex="-1">
+                                            <i class="m-menu__link-icon flaticon-network"></i>
+                                            <span class="m-menu__link-text">
+                                                <span class="title">Sale</span>
+                                            </span>
 
-                                                <i class="m-menu__hor-arrow la la-angle-down"></i>
-                                                <i class="m-menu__ver-arrow la la-angle-right"></i>
-                                            </a>
-                                            <nav class="m-menu__submenu m-menu__submenu--classic " aria-label="Sale">
-                                                <ul class="m-menu__subnav"
-                                                    role="menu"
-                                                    aria-label="Sale">
+                                            <i class="m-menu__hor-arrow la la-angle-down"></i>
+                                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                        </a>
+                                        <nav class="m-menu__submenu m-menu__submenu--classic " aria-label="Sale">
+                                            <ul class="m-menu__subnav"
+                                                role="menu"
+                                                aria-label="Sale">
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/Reasons" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="0">
-                                                            <i class="m-menu__link-icon flaticon-more"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">Reasons</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/CustomerDatas" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="0">
+                                                        <i class="m-menu__link-icon flaticon-more"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">Kho d&#x1EEF; li&#x1EC7;u</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/DataSources" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="-1">
-                                                            <i class="m-menu__link-icon flaticon-more"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">Data sources</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </li>
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/Reasons" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon flaticon-more"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">Danh m&#x1EE5;c l&#xFD; do</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
 
-                                        <li class="m-menu__item m-menu__item--submenu "
-                                            aria-haspopup="true"
-                                            data-menu-submenu-toggle="click">
-                                            <a href="#" class="m-menu__link m-menu__toggle"
-                                               role="menuitem"
-                                               aria-haspopup="true"
-                                               aria-expanded="false"
-                                               tabindex="-1">
-                                                <i class="m-menu__link-icon flaticon-diagram"></i>
-                                                <span class="m-menu__link-text">
-                                                    <span class="title">B&#xE1;o c&#xE1;o</span>
-                                                </span>
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/DataProcessStatuses" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon flaticon-more"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">Tr&#x1EA1;ng th&#xE1;i d&#x1EEF; li&#x1EC7;u</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
 
-                                                <i class="m-menu__hor-arrow la la-angle-down"></i>
-                                                <i class="m-menu__ver-arrow la la-angle-right"></i>
-                                            </a>
-                                            <nav class="m-menu__submenu m-menu__submenu--classic " aria-label="B&#xE1;o c&#xE1;o">
-                                                <ul class="m-menu__subnav"
-                                                    role="menu"
-                                                    aria-label="B&#xE1;o c&#xE1;o">
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/DataSources" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon flaticon-more"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">Danh m&#x1EE5;c ngu&#x1ED3;n d&#x1EEF; li&#x1EC7;u</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/HoaDonBanLes" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="0">
-                                                            <i class="m-menu__link-icon la la-cc-mastercard"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">Doanh thu th&#x1EF1;c hi&#x1EC7;n</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
+                                                <li class="m-menu__item m-menu__item--submenu "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="#" class="m-menu__link m-menu__toggle"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon flaticon-more"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">B&#xE1;o c&#xE1;o</span>
+                                                        </span>
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/ReportSUKTV" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="-1">
-                                                            <i class="m-menu__link-icon la la-file-excel-o"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">B&#xE1;o c&#xE1;o SU &#x2B; KTV</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
+                                                        <i class="m-menu__hor-arrow la la-angle-right"></i>
+                                                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                                    </a>
+                                                    <nav class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right" aria-label="B&#xE1;o c&#xE1;o">
+                                                        <ul class="m-menu__subnav"
+                                                            role="menu"
+                                                            aria-label="B&#xE1;o c&#xE1;o">
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/ReportSUHS" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="-1">
-                                                            <i class="m-menu__link-icon la la-file-excel-o"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">B&#xE1;o c&#xE1;o SU &#x2B; Sales</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </li>
+                                                            <li class="m-menu__item  "
+                                                                aria-haspopup="true"
+                                                                role=none
+                                                                data-menu-submenu-toggle="click">
+                                                                <a href="/crm/SaleReports/PerformanceBySeller" class="m-menu__link"
+                                                                   role="menuitem"
+                                                                   aria-haspopup="true"
+                                                                   aria-expanded="false"
+                                                                   tabindex="0">
+                                                                    <i class="m-menu__link-icon flaticon-more"></i>
+                                                                    <span class="m-menu__link-text">
+                                                                        <span class="title">B&#xE1;o c&#xE1;o theo sale</span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
 
-                                        <li class="m-menu__item  "
-                                            aria-haspopup="true"
-                                            data-menu-submenu-toggle="click">
-                                            <a href="/crm/CSKH" class="m-menu__link"
-                                               role="menuitem"
-                                               aria-haspopup="true"
-                                               aria-expanded="false"
-                                               tabindex="-1">
-                                                <i class="m-menu__link-icon flaticon-users"></i>
-                                                <span class="m-menu__link-text">
-                                                    <span class="title">C s k h</span>
-                                                </span>
-                                            </a>
-                                        </li>
+                                                            <li class="m-menu__item  "
+                                                                aria-haspopup="true"
+                                                                role=none
+                                                                data-menu-submenu-toggle="click">
+                                                                <a href="/crm/SaleReports/PerformanceByDataSource" class="m-menu__link"
+                                                                   role="menuitem"
+                                                                   aria-haspopup="true"
+                                                                   aria-expanded="false"
+                                                                   tabindex="-1">
+                                                                    <i class="m-menu__link-icon flaticon-more"></i>
+                                                                    <span class="m-menu__link-text">
+                                                                        <span class="title">B&#xE1;o c&#xE1;o theo ngu&#x1ED3;n d&#x1EEF; li&#x1EC7;u</span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </li>
 
-                                        <li class="m-menu__item  "
-                                            aria-haspopup="true"
-                                            data-menu-submenu-toggle="click">
-                                            <a href="/crm/Schedules" class="m-menu__link"
-                                               role="menuitem"
-                                               aria-haspopup="true"
-                                               aria-expanded="false"
-                                               tabindex="-1">
-                                                <i class="m-menu__link-icon flaticon-calendar"></i>
-                                                <span class="m-menu__link-text">
-                                                    <span class="title">Schedules</span>
-                                                </span>
-                                            </a>
-                                        </li>*@
+                                    <li class="m-menu__item m-menu__item--submenu "
+                                        aria-haspopup="true"
+                                        data-menu-submenu-toggle="click">
+                                        <a href="#" class="m-menu__link m-menu__toggle"
+                                           role="menuitem"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           tabindex="-1">
+                                            <i class="m-menu__link-icon flaticon-diagram"></i>
+                                            <span class="m-menu__link-text">
+                                                <span class="title">B&#xE1;o c&#xE1;o</span>
+                                            </span>
+
+                                            <i class="m-menu__hor-arrow la la-angle-down"></i>
+                                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                        </a>
+                                        <nav class="m-menu__submenu m-menu__submenu--classic " aria-label="B&#xE1;o c&#xE1;o">
+                                            <ul class="m-menu__subnav"
+                                                role="menu"
+                                                aria-label="B&#xE1;o c&#xE1;o">
+
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/HoaDonBanLes" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="0">
+                                                        <i class="m-menu__link-icon la la-cc-mastercard"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">Doanh thu th&#x1EF1;c hi&#x1EC7;n</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/ReportTheGiaTri" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon la la-file-excel-o"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">B&#xE1;o c&#xE1;o doanh thu th&#x1EBB; gi&#xE1; tr&#x1ECB;</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/ReportStatistic" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon la la-file-excel-o"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">B&#xE1;o c&#xE1;o th&#x1ED1;ng k&#xEA;</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/ReportLichSuSuDungThe" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon la la-file-excel-o"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">Th&#x1ED1;ng k&#xEA; l&#x1ECB;ch s&#x1EED; s&#x1EED; d&#x1EE5;ng th&#x1EBB;</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/ReportSUKTV" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon la la-file-excel-o"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">B&#xE1;o c&#xE1;o SU &#x2B; KTV</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/ReportSUHS" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon la la-file-excel-o"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">B&#xE1;o c&#xE1;o SU &#x2B; Sales</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </li>
+
+                                    <li class="m-menu__item  "
+                                        aria-haspopup="true"
+                                        data-menu-submenu-toggle="click">
+                                        <a href="/crm/CSKH" class="m-menu__link"
+                                           role="menuitem"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           tabindex="-1">
+                                            <i class="m-menu__link-icon flaticon-users"></i>
+                                            <span class="m-menu__link-text">
+                                                <span class="title">CSKH</span>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    <li class="m-menu__item  "
+                                        aria-haspopup="true"
+                                        data-menu-submenu-toggle="click">
+                                        <a href="/crm/Schedules" class="m-menu__link"
+                                           role="menuitem"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           tabindex="-1">
+                                            <i class="m-menu__link-icon flaticon-calendar"></i>
+                                            <span class="m-menu__link-text">
+                                                <span class="title">L&#x1ECB;ch h&#x1EB9;n</span>
+                                            </span>
+                                        </a>
+                                    </li>
 
                                     <li class="m-menu__item m-menu__item--submenu m-menu__item--active"
                                         aria-haspopup="true"
@@ -543,11 +682,11 @@
                                                 role="menu"
                                                 aria-label="Qu&#x1EA3;n tr&#x1ECB;">
 
-                                                <li class="m-menu__item  m-menu__item--active"
+                                                <li class="m-menu__item  "
                                                     aria-haspopup="true"
                                                     role=none
                                                     data-menu-submenu-toggle="click">
-                                                    <a href="/qlnv/OrganizationUnits" class="m-menu__link"
+                                                    <a href="/crm/OrganizationUnits" class="m-menu__link"
                                                        role="menuitem"
                                                        aria-haspopup="true"
                                                        aria-expanded="false"
@@ -570,7 +709,7 @@
                                                        tabindex="-1">
                                                         <i class="m-menu__link-icon flaticon-suitcase"></i>
                                                         <span class="m-menu__link-text">
-                                                            <span class="title">Roles</span>
+                                                            <span class="title">Danh s&#xE1;ch vai tr&#xF2;</span>
                                                         </span>
                                                     </a>
                                                 </li>
@@ -586,7 +725,7 @@
                                                        tabindex="-1">
                                                         <i class="m-menu__link-icon flaticon-users"></i>
                                                         <span class="m-menu__link-text">
-                                                            <span class="title">Users</span>
+                                                            <span class="title">Danh s&#xE1;ch ng&#x1B0;&#x1EDD;i d&#xF9;ng</span>
                                                         </span>
                                                     </a>
                                                 </li>
@@ -602,7 +741,7 @@
                                                        tabindex="-1">
                                                         <i class="m-menu__link-icon flaticon-tabs"></i>
                                                         <span class="m-menu__link-text">
-                                                            <span class="title">Languages</span>
+                                                            <span class="title">Ng&#xF4;n ng&#x1EEF; </span>
                                                         </span>
                                                     </a>
                                                 </li>
@@ -618,7 +757,7 @@
                                                        tabindex="-1">
                                                         <i class="m-menu__link-icon flaticon-folder-1"></i>
                                                         <span class="m-menu__link-text">
-                                                            <span class="title">Audit logs</span>
+                                                            <span class="title">Nh&#x1EAD;t k&#xFD; ki&#x1EC3;m tra</span>
                                                         </span>
                                                     </a>
                                                 </li>
@@ -634,12 +773,12 @@
                                                        tabindex="-1">
                                                         <i class="m-menu__link-icon flaticon-settings"></i>
                                                         <span class="m-menu__link-text">
-                                                            <span class="title">Settings</span>
+                                                            <span class="title">C&#xE0;i &#x111;&#x1EB7;t</span>
                                                         </span>
                                                     </a>
                                                 </li>
 
-                                                <li class="m-menu__item m-menu__item--submenu "
+                                                <li class="m-menu__item m-menu__item--submenu m-menu__item--active"
                                                     aria-haspopup="true"
                                                     role=none
                                                     data-menu-submenu-toggle="click">
@@ -661,7 +800,7 @@
                                                             role="menu"
                                                             aria-label="Qu&#x1EA3;n l&#xFD; danh m&#x1EE5;c">
 
-                                                            <li class="m-menu__item m-menu__item--submenu "
+                                                            <li class="m-menu__item m-menu__item--submenu m-menu__item--active"
                                                                 aria-haspopup="true"
                                                                 role=none
                                                                 data-menu-submenu-toggle="click">
@@ -683,7 +822,7 @@
                                                                         role="menu"
                                                                         aria-label="Danh m&#x1EE5;c &#x111;&#x1ECB;a &#x111;i&#x1EC3;m">
 
-                                                                        <li class="m-menu__item  "
+                                                                        <li class="m-menu__item  m-menu__item--active"
                                                                             aria-haspopup="true"
                                                                             role=none
                                                                             data-menu-submenu-toggle="click">
@@ -729,7 +868,7 @@
                                                                    tabindex="-1">
                                                                     <i class="m-menu__link-icon flaticon-customer"></i>
                                                                     <span class="m-menu__link-text">
-                                                                        <span class="title">Satisfaction levels</span>
+                                                                        <span class="title">M&#x1EE9;c &#x111;&#x1ED9; h&#xE0;i l&#xF2;ng</span>
                                                                     </span>
                                                                 </a>
                                                             </li>
@@ -761,7 +900,7 @@
                                                                    tabindex="-1">
                                                                     <i class="m-menu__link-icon flaticon-stopwatch"></i>
                                                                     <span class="m-menu__link-text">
-                                                                        <span class="title">D m _ khuyen mais</span>
+                                                                        <span class="title">Danh m&#x1EE5;c khuy&#x1EBF;n m&#x1EA1;i</span>
                                                                     </span>
                                                                 </a>
                                                             </li>
@@ -777,7 +916,7 @@
                                                                    tabindex="-1">
                                                                     <i class="m-menu__link-icon flaticon-more"></i>
                                                                     <span class="m-menu__link-text">
-                                                                        <span class="title">D m _ nghe nghieps</span>
+                                                                        <span class="title">Danh m&#x1EE5;c ngh&#x1EC1; nghi&#x1EC7;p</span>
                                                                     </span>
                                                                 </a>
                                                             </li>
@@ -884,77 +1023,77 @@
                                         </nav>
                                     </li>
 
-                                    @*<li class="m-menu__item m-menu__item--submenu "
-                                            aria-haspopup="true"
-                                            data-menu-submenu-toggle="click">
-                                            <a href="#" class="m-menu__link m-menu__toggle"
-                                               role="menuitem"
-                                               aria-haspopup="true"
-                                               aria-expanded="false"
-                                               tabindex="-1">
-                                                <i class="m-menu__link-icon flaticon-graph"></i>
-                                                <span class="m-menu__link-text">
-                                                    <span class="title">BOD</span>
-                                                </span>
+                                    <li class="m-menu__item m-menu__item--submenu "
+                                        aria-haspopup="true"
+                                        data-menu-submenu-toggle="click">
+                                        <a href="#" class="m-menu__link m-menu__toggle"
+                                           role="menuitem"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           tabindex="-1">
+                                            <i class="m-menu__link-icon flaticon-graph"></i>
+                                            <span class="m-menu__link-text">
+                                                <span class="title">BOD</span>
+                                            </span>
 
-                                                <i class="m-menu__hor-arrow la la-angle-down"></i>
-                                                <i class="m-menu__ver-arrow la la-angle-right"></i>
-                                            </a>
-                                            <nav class="m-menu__submenu m-menu__submenu--classic " aria-label="BOD">
-                                                <ul class="m-menu__subnav"
-                                                    role="menu"
-                                                    aria-label="BOD">
+                                            <i class="m-menu__hor-arrow la la-angle-down"></i>
+                                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                        </a>
+                                        <nav class="m-menu__submenu m-menu__submenu--classic " aria-label="BOD">
+                                            <ul class="m-menu__subnav"
+                                                role="menu"
+                                                aria-label="BOD">
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/SummaryReports/ReportAccountingByOrg" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="0">
-                                                            <i class="m-menu__link-icon flaticon-graph"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">B&#xE1;o c&#xE1;o doanh thu t&#x1ED5;ng theo trung t&#xE2;m</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/SummaryReports/ReportAccountingByOrg" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="0">
+                                                        <i class="m-menu__link-icon flaticon-graph"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">B&#xE1;o c&#xE1;o doanh thu t&#x1ED5;ng theo trung t&#xE2;m</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/SummaryReports/ReportAccountingForNowByOrg" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="-1">
-                                                            <i class="m-menu__link-icon flaticon-graph"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">B&#xE1;o c&#xE1;o doanh thu chi ti&#x1EBF;t theo trung t&#xE2;m</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/SummaryReports/ReportAccountingForNowByOrg" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon flaticon-graph"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">B&#xE1;o c&#xE1;o doanh thu chi ti&#x1EBF;t theo trung t&#xE2;m</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
 
-                                                    <li class="m-menu__item  "
-                                                        aria-haspopup="true"
-                                                        role=none
-                                                        data-menu-submenu-toggle="click">
-                                                        <a href="/crm/SummaryReports/ByDate" class="m-menu__link"
-                                                           role="menuitem"
-                                                           aria-haspopup="true"
-                                                           aria-expanded="false"
-                                                           tabindex="-1">
-                                                            <i class="m-menu__link-icon flaticon-graph"></i>
-                                                            <span class="m-menu__link-text">
-                                                                <span class="title">BOD</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </li>*@
+                                                <li class="m-menu__item  "
+                                                    aria-haspopup="true"
+                                                    role=none
+                                                    data-menu-submenu-toggle="click">
+                                                    <a href="/crm/SummaryReports/ByDate" class="m-menu__link"
+                                                       role="menuitem"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       tabindex="-1">
+                                                        <i class="m-menu__link-icon flaticon-graph"></i>
+                                                        <span class="m-menu__link-text">
+                                                            <span class="title">BOD</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -1060,15 +1199,14 @@
                     <div class="row align-items-center">
                         <div class="mr-auto col-sm-12 col-md-6">
                             <h3 class="m-subheader__title m-subheader__title--separator">
-                                <span>Danh m&#x1EE5;c kh&#xE1;ch h&#xE0;ng</span>
+                                <span>Danh m&#x1EE5;c t&#x1EC9;nh th&#xE0;nh</span>
                             </h3>
                             <span class="m-section__sub">
-                                Qu&#x1EA3;n l&#xFD; danh s&#xE1;ch kh&#xE1;ch h&#xE0;ng
+                                Qu&#x1EA3;n l&#xFD; danh s&#xE1;ch t&#x1EC9;nh th&#xE0;nh
                             </span>
                         </div>
                         <div class="col-sm-12 col-md-6 text-right">
-                            <button id="CreateNewDM_DoiTuongButton" class="btn btn-primary blue"><i class="la la-plus"></i> Th&#xEA;m kh&#xE1;ch h&#xE0;ng m&#x1EDB;i</button>
-                            <button id="ExportToExcelButton" class="btn btn-outline-success"><i class="la la-download"></i> Xu&#x1EA5;t excel</button>
+                            <button id="CreateNewDM_TinhThanhButton" class="btn btn-primary blue"><i class="la la-plus"></i> Th&#xEA;m m&#x1EDB;i t&#x1EC9;nh th&#xE0;nh</button>
                         </div>
                     </div>
                 </div>
@@ -1080,285 +1218,68 @@
                                     <div class="col-xl-12">
                                         <div class="form-group m-form__group align-items-center">
                                             <div class="input-group">
-                                                <input type="text" id="DM_DoiTuongsTableFilter" class="form-control m-input" placeholder="T&#xEC;m ki&#x1EBF;m ..." value="">
+                                                <input type="text" id="DM_TinhThanhsTableFilter" class="form-control m-input" placeholder="T&#xEC;m ki&#x1EBF;m ..." value="">
                                                 <span class="input-group-btn">
-                                                    <button id="GetDM_DoiTuongsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                                    <button id="GetDM_TinhThanhsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="AdvacedAuditFiltersArea" class="row m--margin-bottom-10">
+                            <div id="AdvacedAuditFiltersArea" style="display: none" class="row m--margin-bottom-10">
                                 <div class="col-md-12">
                                     <div class="m-separator m-separator--dashed"></div>
                                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="MaDoiTuongFilterId">M&#xE3; kh&#xE1;ch h&#xE0;ng</label>
-                                        <input type="text" class="form-control" name="maDoiTuongFilter" id="MaDoiTuongFilterId">
+                                        <label for="MaTinhThanhFilterId">M&#xE3; t&#x1EC9;nh th&#xE0;nh</label>
+                                        <input type="text" class="form-control" name="maTinhThanhFilter" id="MaTinhThanhFilterId">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="TenDoiTuongFilterId">T&#xEA;n kh&#xE1;ch h&#xE0;ng</label>
-                                        <input type="text" class="form-control" name="tenDoiTuongFilter" id="TenDoiTuongFilterId">
+                                        <label for="TenTinhThanhFilterId">T&#xEA;n t&#x1EC9;nh th&#xE0;nh</label>
+                                        <input type="text" class="form-control" name="tenTinhThanhFilter" id="TenTinhThanhFilterId">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="DienThoaiFilterId">&#x110;i&#x1EC7;n tho&#x1EA1;i</label>
-                                        <input type="text" class="form-control" name="dienThoaiFilter" id="DienThoaiFilterId">
+                                        <label for="GhiChuFilterId">Ghi ch&#xFA;</label>
+                                        <input type="text" class="form-control" name="ghiChuFilter" id="GhiChuFilterId">
                                     </div>
                                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="SoCMTND_DKKDFilterId">S&#x1ED1; CMTND</label>
-                                        <input type="text" class="form-control" name="soCMTND_DKKDFilter" id="SoCMTND_DKKDFilterId">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                        <label for="DM_QuocGiaTenNuocFilterId">(Danh m&#x1EE5;c qu&#x1ED1;c gia) T&#xEA;n qu&#x1ED1;c gia</label>
+                                        <input type="text" class="form-control" name="dM_QuocGiaTenNuocFilter" id="DM_QuocGiaTenNuocFilterId">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DM_VungMienTenVungFilterId">(Danh m&#x1EE5;c v&#xF9;ng mi&#x1EC1;n) T&#xEA;n v&#xF9;ng</label>
+                                        <input type="text" class="form-control" name="dM_VungMienTenVungFilter" id="DM_VungMienTenVungFilterId">
                                     </div>
                                 </div>
 
                             </div>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-xl-12">
+                                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> Hi&#x1EC3;n th&#x1ECB; b&#x1ED9; l&#x1ECD;c n&#xE2;ng cao</span>
+                                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> &#x1EA8;n b&#x1ED9; l&#x1ECD;c n&#xE2;ng cao</span>
+                                </div>
+                            </div>
                             <div class="row align-items-center">
-                                <table id="DM_DoiTuongsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                <table id="DM_TinhThanhsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th>H&#xE0;nh &#x111;&#x1ED9;ng</th>
-                                            <th>Nh&#xF3;m kh&#xE1;ch h&#xE0;ng</th>
-                                            <th>&#x110;&#x1A1;n v&#x1ECB; qu&#x1EA3;n l&#xFD;</th>
-                                            <th>M&#xE3; kh&#xE1;ch h&#xE0;ng</th>
-                                            <th>T&#xEA;n kh&#xE1;ch h&#xE0;ng</th>
-                                            <th>&#x110;i&#x1EC7;n tho&#x1EA1;i</th>
-                                            <th>C&#x103;n c&#x1B0;&#x1EDB;c c&#xF4;ng d&#xE2;n/CMT</th>
-                                            <th>Ng&#xE0;y sinh</th>
-
-                                            <th>Gi&#x1EDB;i t&#xED;nh</th>
-
-                                            <th>&#x110;&#x1ECB;a ch&#x1EC9;</th>
-                                            <th>Ngh&#x1EC1; nghi&#x1EC7;p</th>
-                                            <th>Qu&#x1EAD;n/Huy&#x1EC7;n</th>
-
-                                            <th>T&#x1EC9;nh th&#xE0;nh ph&#x1ED1;</th>
-                                            <th>Qu&#x1ED1;c gia</th>
-                                            <th>Email</th>
-                                            <th>Danh m&#x1EE5;c ngu&#x1ED3;n kh&#xE1;ch h&#xE0;ng</th>
-
+                                            <th>Thao t&#xE1;c</th>
+                                            <th>M&#xE3; t&#x1EC9;nh th&#xE0;nh</th>
+                                            <th>T&#xEA;n t&#x1EC9;nh th&#xE0;nh</th>
+                                            <th>Ghi ch&#xFA;</th>
+                                            <th>T&#xEA;n qu&#x1ED1;c gia</th>
+                                            <th>T&#xEA;n v&#xF9;ng mi&#x1EC1;n</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -1379,8 +1300,6 @@
                         </span>
                     </div>
                     <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
-
-
 
                     </div>
                 </div>
@@ -1410,7 +1329,6 @@
                             <span class="m-input-icon__icon m-input-icon__icon--right">
                                 <span>
                                     <i id="InterTenantChatHintIcon" class="la la-info-circle" data-toggle="m-popover" data-placement="bottom" data-html="true" title="Ch&#x1EC9; vi&#x1EBF;t t&#xEA;n ng&#x1B0;&#x1EDD;i d&#xF9;ng cho c&#xF9;ng ng&#x1B0;&#x1EDD;i d&#xF9;ng thu&#xEA;, &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; &lt;strong&gt; [tenancyName] \ [userName] &lt;/ strong&gt; cho ng&#x1B0;&#x1EDD;i d&#xF9;ng c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; nh&#xE0; kh&#xE1;c &lt;br&gt; &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; v&#xED; d&#x1EE5;: &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; . \ admin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n l&#x1B0;u tr&#x1EEF; &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; Ki&#x1EC3;m tra \ admin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; th&#x1EED; nghi&#x1EC7;m &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; admin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; nh&#xE0; c&#x1EE7;a b&#x1EA1;n"></i>
-
                                 </span>
                             </span>
                         </div>
@@ -1443,15 +1361,11 @@
                     <div class="selected-chat-user-image">
                         <img id="selectedChatUserImage" class="media-object">
                         <span id="selectedChatUserStatus" class="contact-status2"></span>
-
-
-
                     </div>
                     <h6 id="selectedChatUserName"></h6>
                     <div class="actions">
                         <a class="btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
                             <i class="fa fa-angle-down" aria-label="[Expand]"></i>
-
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li id="liBanChatUser">
@@ -1472,29 +1386,6 @@
                 <hr />
                 <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
                     <div class="m-messenger__messages" id="UserChatMessages">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                     <div class="m-messenger__seperator"></div>
                     <form name="chatMessageForm" id="chatMessageForm" role="form">
@@ -1506,21 +1397,14 @@
                         <div class="col-md-12 chat-progress-bar">
                             <div id="chatFileUploadProgress" class="progress">
                                 <div class="progress-bar progress-bar-success"></div>
-
                             </div>
                         </div>
 
                         <div class="m-messenger__form" id="ChatMessageWrapper">
                             <div class="m-messenger__form-controls">
                                 <input id="ChatMessage" type="text" name="message" class="m-messenger__form-input" placeholder="Nh&#x1EAD;p tin nh&#x1EAF;n t&#x1EA1;i &#x111;&#xE2;y ..." required maxlength="4096" />
-
                             </div>
-
                             <div class="m-messenger__form-tools">
-
-
-
-
                                 <a id="chatDropdownToggle" href="" class="m-messenger__form-attachment select-media" data-toggle="dropdown" tabindex="-1" aria-expanded="false">
                                     <i class="la la-paperclip" aria-label="[Attach]"></i>
                                 </a>
@@ -1552,7 +1436,6 @@
                                         </a>
                                     </li>
                                 </ul>
-
                             </div>
                         </div>
                     </form>
@@ -1627,8 +1510,8 @@
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/app-layout-libs.js?v="></script>
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/scripts.bundle.js?v="></script>
     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-    <script src="/AbpServiceProxies/GetAll?v=637644670119783223" type="text/javascript"></script>
-    <script src="/AbpScripts/GetScripts?v=637644670119783223" type="text/javascript"></script>
+    <script src="/AbpServiceProxies/GetAll?v=" type="text/javascript"></script>
+    <script src="/AbpScripts/GetScripts?v=" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/cultures/globalize.culture.vi-VN.js"></script>
     <script type="text/javascript">
@@ -1641,99 +1524,14 @@
     <script src="~/crmdemo/view-resources/Areas/crm/Views/Layout/_Header.js?v="></script>
 
 
-    <script src="~/crmdemo/lib/jquery-validation/dist/localization/messages_vi.js?v="></script>
-
-    <script src="~/crmdemo/lib/bootstrap-select/dist/js/i18n/defaults-en_US.js?v="></script>
-    <script src="~/crmdemo/lib/timeago/locales/jquery.timeago.vi.js?v="></script>
-    <script src="~/crmdemo/lib/select2/dist/js/i18n/vi.js?v="></script>
+    <script src="/lib/jquery-validation/dist/localization/messages_vi.js?v="></script>
+    <script src="/lib/bootstrap-select/dist/js/i18n/defaults-en_US.js?v="></script>
+    <script src="/lib/timeago/locales/jquery.timeago.vi.js?v="></script>
+    <script src="/lib/select2/dist/js/i18n/vi.js?v="></script>
     <!--end::Base Scripts -->
     <!--begin::Page Snippets -->
-    <!-- The template to display files available for upload -->
-    <script id="template-upload" type="text/x-tmpl">
-        {% for (var i=0, file; file=o.files[i]; i++) { %}
-        <tr class="template-upload fade">
-            <td>
-                <span class="preview"></span>
-            </td>
-            <td>
-                <p class="name">{%=file.name%}</p>
-                <strong class="error text-danger"></strong>
-            </td>
-            <td>
-                <p class="size">&#x110;ang x&#x1EED; l&#xFD;...</p>
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-            </td>
-            <td>
-                {% if (!i && !o.options.autoUpload) { %}
-                <button class="btn btn-primary start" disabled>
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>B&#x1EAF;t &#x111;&#x1EA7;u</span>
-                </button>
-                {% } %}
-                {% if (!i) { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>H&#x1EE7;y</span>
-                </button>
-                {% } %}
-            </td>
-        </tr>
-        {% } %}
-    </script>
-    <!-- The template to display files available for download -->
-    <script id="template-download" type="text/x-tmpl">
-        {% for (var i=0, file; file=o.files[i]; i++) { %}
-        <tr class="template-download fade">
-            <td>
-                <span class="preview">
-                    {% if (file.thumbnailUrl) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-                    {% } %}
-                </span>
-            </td>
-            <td>
-                <p class="name">
-                    {% if (file.url) { %}
-                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-                    {% } else { %}
-                    <span>{%=file.name%}</span>
-                    {% } %}
-                </p>
-                {% if (file.error) { %}
-                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
-                {% } %}
-            </td>
-            <td>
-                <span class="size">{%=o.formatFileSize(file.size)%}</span>
-            </td>
-            <td>
-                {% if (file.deleteUrl) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deletewithcredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <span>Delete</span>
-                </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
-                {% } else { %}
-                <button class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
-                </button>
-                {% } %}
-            </td>
-        </tr>
-        {% } %}
-    </script>
-    <script src="~/crmdemo/view-resources/Areas/crm/Views/DM_DoiTuongs/Index.js?v=5"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/tmpl.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/load-image.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.iframe-transport.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload.js"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload-process.js" type="text/javascript"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload-image.js" type="text/javascript"></script>
-    <script src="~/crmdemo/other-lib/jquery-file-upload/js/jquery.fileupload-ui.js" type="text/javascript"></script>
+
+    <script src="~/crmdemo/view-resources/Areas/crm/Views/DM_TinhThanhs/Index.js?v=6" asp-append-version="true"></script>
 
     <script>
         $(function () {

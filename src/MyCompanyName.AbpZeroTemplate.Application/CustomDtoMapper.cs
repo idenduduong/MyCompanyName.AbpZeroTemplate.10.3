@@ -303,8 +303,8 @@ namespace MyCompanyName.AbpZeroTemplate
             //configuration.CreateMap<DM_DonViTinh, DM_DonViTinhDto>();
             //configuration.CreateMap<CreateOrEditDM_DonViDto, DM_DonVi>();
             //configuration.CreateMap<DM_DonVi, DM_DonViDto>();
-            //configuration.CreateMap<CreateOrEditDM_TinhThanhDto, DM_TinhThanh>();
-            //configuration.CreateMap<DM_TinhThanh, DM_TinhThanhDto>();
+            configuration.CreateMap<CreateOrEditDM_TinhThanhDto, DM_TinhThanh>();
+            configuration.CreateMap<DM_TinhThanh, DM_TinhThanhDto>();
             //configuration.CreateMap<CreateOrEditDM_VungMienDto, DM_VungMien>();
             //configuration.CreateMap<DM_VungMien, DM_VungMienDto>();
             //configuration.CreateMap<CreateOrEditDM_KhuVucDto, DM_KhuVuc>();

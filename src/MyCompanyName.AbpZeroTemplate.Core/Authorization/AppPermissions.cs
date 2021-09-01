@@ -68,6 +68,16 @@
         public const string Pages_Administration_Roles_Edit = "Pages.Administration.Roles.Edit";
         public const string Pages_Administration_Roles_Delete = "Pages.Administration.Roles.Delete";
 
+        public const string Pages_Administration_DM_TinhThanhs = "Pages.Administration.DM_TinhThanhs";
+        public const string Pages_Administration_DM_TinhThanhs_Create = "Pages.Administration.DM_TinhThanhs.Create";
+        public const string Pages_Administration_DM_TinhThanhs_Edit = "Pages.Administration.DM_TinhThanhs.Edit";
+        public const string Pages_Administration_DM_TinhThanhs_Delete = "Pages.Administration.DM_TinhThanhs.Delete";
+
+        public const string Pages_Administration_DM_QuanHuyens = "Pages.Administration.DM_QuanHuyens";
+        public const string Pages_Administration_DM_QuanHuyens_Create = "Pages.Administration.DM_QuanHuyens.Create";
+        public const string Pages_Administration_DM_QuanHuyens_Edit = "Pages.Administration.DM_QuanHuyens.Edit";
+        public const string Pages_Administration_DM_QuanHuyens_Delete = "Pages.Administration.DM_QuanHuyens.Delete";
+
         public const string Pages_Administration_Users = "Pages.Administration.Users";
         public const string Pages_Administration_Users_Create = "Pages.Administration.Users.Create";
         public const string Pages_Administration_Users_Edit = "Pages.Administration.Users.Edit";

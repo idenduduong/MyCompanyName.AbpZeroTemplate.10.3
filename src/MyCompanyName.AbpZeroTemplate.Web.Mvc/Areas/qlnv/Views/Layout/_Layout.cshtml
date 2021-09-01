@@ -44,24 +44,24 @@
 
     <link rel="shortcut icon" href="~/favicon.ico" />
 
-    <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/_Bundles/vendors.bundle.css" asp-append-version="true" />
-    <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/_Bundles/app-layout-libs.css" asp-append-version="true" />
-    <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/_Bundles/common-styles.css" asp-append-version="true" />
-    <link rel="stylesheet" abp-href="/Common/Scripts/Datatables/datatables@(CultureHelper.IsRtl ? "-rtl":"").css" asp-append-version="true" />
-    <link rel="stylesheet" abp-href="/Common/Styles/metronic-customize.css" asp-append-version="true" />
+        <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/_Bundles/vendors.bundle.css" asp-append-version="true" />
+        <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/_Bundles/app-layout-libs.css" asp-append-version="true" />
+        <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/_Bundles/common-styles.css" asp-append-version="true" />
+        <link rel="stylesheet" abp-href="/Common/Scripts/Datatables/datatables@(CultureHelper.IsRtl ? "-rtl":"").css" asp-append-version="true" />
+        <link rel="stylesheet" abp-href="/Common/Styles/metronic-customize.css" asp-append-version="true" />
 
-    @if (CultureHelper.IsRtl)
-    {
-        <link rel="stylesheet" href="@(ApplicationPath)Common/Styles/abp-zero-template-rtl.css" asp-append-version="true" />
-    }
+        @if (CultureHelper.IsRtl)
+        {
+            <link rel="stylesheet" href="@(ApplicationPath)Common/Styles/abp-zero-template-rtl.css" asp-append-version="true" />
+        }
 
-    @if (isChatEnabled)
-    {
-        <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/Layout/_ChatBar.css" asp-append-version="true" />
-    }
+        @if (isChatEnabled)
+        {
+            <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/Layout/_ChatBar.css" asp-append-version="true" />
+        }
 
-    <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/Layout/_Layout.css" asp-append-version="true" />
-
+        <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/Layout/_Layout.css" asp-append-version="true" />
+    
     @await RenderSectionAsync("Styles", false)
 
     @{ var loginInfo = await SessionCache.GetCurrentLoginInformationsAsync(); }
