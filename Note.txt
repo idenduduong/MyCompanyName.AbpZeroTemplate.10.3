@@ -7,6 +7,8 @@ chrome://net-internals/#hsts
 Delete domain security policies
 localhost
 --------------------------------------------------------
+supercharge 1.2: 6pAF3t43xAPorR9bXspfP1rBqWoa5uopLZoYPwkL9GIoBDAEyDJmlBqcxKXIAwpZooZuIyMNaVrif2QOTgmNrvb/KyYnxicIWpTR+nJMPa+v+LlK4Zst85KoRxSO/S9iaWuZ0oQA
+--------------------------------------------------------
 .NET Bulk Operations - Bundle
 946;300-DUONGDUCDAT
 A3BAB50-2611CE3-F86CCB9-8F8F82A-A2DA
