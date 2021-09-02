@@ -7,6 +7,8 @@ chrome://net-internals/#hsts
 Delete domain security policies
 localhost
 --------------------------------------------------------
+VS 2019 KEY: BF8Y8-GN2QH-T84XB-QVY3B-RC4DF
+--------------------------------------------------------
 supercharge 1.2: 
 #6pAF3t43xAPorR9bXspfP1rBqWoa5uopLZoYPwkL9GIoBDAEyDJmlBqcxKXIAwpZooZuIyMNaVrif2QOTgmNrvb/KyYnxicIWpTR+nJMPa+v+LlK4Zst85KoRxSO/S9iaWuZ0oQA
 127.0.0.1 supercharger.tools
