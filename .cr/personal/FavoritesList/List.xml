@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root Type="DevExpress.CodeRush.Foundation.CodePlaces.Options.FavoritesListContainer">
   <Options Language="Neutral">
-    <Groups>
-      <Item Id="{0b05d858-f587-4bda-8cb9-d0aa3e05545f}">
-        <GroupName>Favorites</GroupName>
-        <Items>
-          <Item Id="{2e83ba4d-5321-40e2-9878-9038144c63dd}">
-            <LogicalPath>&lt;global namespace&gt;\MyCompanyName\MyCompanyName.AbpZeroTemplate\MyCompanyName.AbpZeroTemplate.crmdemo\MyCompanyName.AbpZeroTemplate.crmdemo.Categories\MyCompanyName.AbpZeroTemplate.crmdemo.Categories.DM_DoiTuongsAppService</LogicalPath>
-            <FilePath>D:\BDHN\MyCompanyName.AbpZeroTemplate.10.3\src\MyCompanyName.AbpZeroTemplate.Application\crmdemo\Categories\DM_DoiTuongsAppService.cs</FilePath>
-          </Item>
-        </Items>
-      </Item>
-    </Groups>
+    <Groups />
   </Options>
 </Root>
