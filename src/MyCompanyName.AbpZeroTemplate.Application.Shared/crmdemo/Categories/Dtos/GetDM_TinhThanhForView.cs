@@ -6,7 +6,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos
 {
 	public class GetDM_TinhThanhForView : DM_TinhThanhDto
 	{
-		//public DM_TinhThanhDto DM_TinhThanh { get; set; }
+		public DM_TinhThanhDto DM_TinhThanh { get; set; }
 
 		public string DM_QuocGiaTenNuoc { get; set; }
 

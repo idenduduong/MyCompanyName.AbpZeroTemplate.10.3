@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root Type="DevExpress.CodeRush.Foundation.Shortcuts.ShortcutsOptions">
+  <Options Language="Neutral">
+    <RootFolder>
+      <SubFolders>
+        <Item Id="{01ea3896-6cc1-4912-824e-88c7c5a82a25}">
+          <SubFolders>
+            <Item Id="{4fe9d975-e06f-45ee-b9a4-79dfa309787e}" />
+            <Item Id="{617bf4c0-2098-418f-92a5-199c731a9265}" />
+            <Item Id="{0d027ecb-e83f-4f4a-97d7-01aa4edd9bb5}">
+              <Bindings>
+                <Item Id="{a9a79a0e-00f9-49ea-b9a0-b1f3205777ac}">
+                  <Enabled>False</Enabled>
+                </Item>
+                <Item Id="{cd73021d-0a61-46ca-b0b5-2d0f1690ba47}">
+                  <Enabled>False</Enabled>
+                </Item>
+                <Item Id="{bdbae881-432e-41ec-8b9a-35f5e390df4a}">
+                  <Enabled>False</Enabled>
+                </Item>
+                <Item Id="{fcae9145-a08e-44df-860c-f405ac8cacb8}">
+                  <Enabled>False</Enabled>
+                </Item>
+              </Bindings>
+            </Item>
+          </SubFolders>
+        </Item>
+        <Item Id="{66d31aae-e1f0-43b9-8108-123cb59d73bd}" />
+        <Item Id="{4fcfb46a-6fd9-4ba4-a790-6447cb1cf0a5}" />
+        <Item Id="{55d41133-671c-49f1-a934-6c5d59c3f319}">
+          <SubFolders>
+            <Item Id="{4bc2f87d-6dc0-41b5-9b0b-251498b765df}">
+              <Bindings>
+                <Item Id="{d18a79d1-fff5-4b71-8301-fb8f2397e0ac}" />
+                <Item Id="{cc238591-6417-4f4c-bca3-08b8ecbb8a1b}">
+                  <Enabled>False</Enabled>
+                </Item>
+              </Bindings>
+            </Item>
+          </SubFolders>
+        </Item>
+        <Item Id="{a3f2b3b4-9497-4db5-9f8b-c4b30a2240ac}">
+          <SubFolders>
+            <Item Id="{28d84f66-997e-40f1-916b-bccd3a30e979}">
+              <Bindings>
+                <Item Id="{cf5e0bd9-3ceb-42b3-adfa-b93dd2c87e93}">
+                  <Enabled>False</Enabled>
+                </Item>
+                <Item Id="{4646ea7d-99ca-462f-bfd3-4ee7f398b310}">
+                  <Enabled>False</Enabled>
+                </Item>
+                <Item Id="{929d817f-3800-4d53-bb60-2810a6d1ee8b}" />
+                <Item Id="{8f378564-7d90-4e9e-9264-52c1e4832f37}" />
+                <Item Id="{3c58f2fb-5e6c-4015-add0-b8c5cd5ee80b}" />
+                <Item Id="{9cfa836d-bb74-4e55-a80a-e9fa27304b5d}" />
+              </Bindings>
+            </Item>
+            <Item Id="{5f50d588-fef9-4f94-843a-08a71e81cadb}" />
+            <Item Id="{0e1a8f0e-939c-43d4-a574-17bc62e79d31}" />
+            <Item Id="{9742ad00-8e7d-4f8b-902b-cdb634e79708}" />
+            <Item Id="{c66047dd-1843-4f94-9785-095fbc40af81}" />
+          </SubFolders>
+        </Item>
+        <Item Id="{318b8900-85af-4c66-b37f-8a86508e7a89}" />
+        <Item Id="{d33fb6fa-56b3-40a1-b169-71e855b2e3a2}" />
+        <Item Id="{4aa0656f-7150-440b-8585-509c548e9d7e}" />
+      </SubFolders>
+    </RootFolder>
+  </Options>
+</Root>

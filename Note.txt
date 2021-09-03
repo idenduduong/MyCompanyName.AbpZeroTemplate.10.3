@@ -82,3 +82,39 @@ https://support.aspnetzero.com/QA/Questions/4973/Extending-Organization-Unit
 https://www.creative-tim.com/product/muse-vue-ant-design-dashboard
 
 https://www.jianshu.com/p/a6e9ace79345
+---------------------------------------
+https://client.kentico.com/free-edition
+
+1. Copy and replace "CMS.LicenseProvider.dll" to "%your website root%/CMS/bin"
+	Note: you must stop all Kentico services before copy and replace "CMS.LicenseProvider.dll"
+2. Open "%your website root%/CMS/web.config" file and add following setting and save it.
+	
+	<system.web>
+		<hostingEnvironment shadowCopyBinAssemblies="false" />
+	</system.web>
+
+3. Go to CMS Administration area and in "Licenses" section add following license key with your desired domain name:
+
+C:\Windows\System32\cmd.exe - """C:\Program Files\dotnet\dotnet.exe""" run -p ""C:\inetpub\wwwroot\Kentico13\DancingGoatCore"" --no-build --urls=http://localhost:58218
+
+DOMAIN:Downloadly.ir
+PRODUCT:CX13
+EXPIRATION:00000000
+OWNER:DownloadDevTools
+SERVERS:0
+EDXhyYmQveP8DKrHVRL7+QGo/K+axcoNhvmX2KtF6OzfN6XjWRn686FFLXJ7l5N+rQVFGH3D7ksdpVjHDYUUtTOk5cyIwuvZJ6C/CFNZQrnwUnPecn64cfyMKqGsHGofQezdnSZqPnkSvztqLs0YfPb/Y1A98cSbP3/qyj2cdrGTRyRtinpfCpne94h8S75ld4RAK+Vwcwts4aef0bmh4D8cCavDZs+GTknqVW8TEmZivLEGgu9CsSSbx2kqrLFZTMH075fYOsrYmQ9RlJZmHbAobrEK0KEpy0aausQkyNbHOKMvBy8QwvktoJ03VAMFEqVS7ZQCuGCfdmb3iErn/w==
+
+127.0.0.1
+CX13-20210917-2p6Mxu
+
+localhost
+CX13-20210917-2p6Mxu
+
+DOMAIN:localhost:51661
+PRODUCT:CX13
+EXPIRATION:00000000
+OWNER:DownloadDevTools
+SERVERS:0
+EDXhyYmQveP8DKrHVRL7+QGo/K+axcoNhvmX2KtF6OzfN6XjWRn686FFLXJ7l5N+rQVFGH3D7ksdpVjHDYUUtTOk5cyIwuvZJ6C/CFNZQrnwUnPecn64cfyMKqGsHGofQezdnSZqPnkSvztqLs0YfPb/Y1A98cSbP3/qyj2cdrGTRyRtinpfCpne94h8S75ld4RAK+Vwcwts4aef0bmh4D8cCavDZs+GTknqVW8TEmZivLEGgu9CsSSbx2kqrLFZTMH075fYOsrYmQ9RlJZmHbAobrEK0KEpy0aausQkyNbHOKMvBy8QwvktoJ03VAMFEqVS7ZQCuGCfdmb3iErn/w==
+
+dotnet.exe run -p ""D:\BDHN\Kentico13\DancingGoatCore"" --no-build --urls=http://localhost:58218

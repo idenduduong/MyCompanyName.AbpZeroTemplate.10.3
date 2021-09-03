@@ -72,7 +72,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 															MaTinhThanh = o.MaTinhThanh,
 															TenTinhThanh = o.TenTinhThanh,
 															GhiChu = o.GhiChu,
-															//DM_TinhThanh = ObjectMapper.Map<DM_TinhThanhDto>(o),
+															DM_TinhThanh = ObjectMapper.Map<DM_TinhThanhDto>(o),
 															DM_QuocGiaTenNuoc = ((s1 == null) ? "" : s1.TenNuoc.ToString()),
 															DM_VungMienTenVung = ((s2 == null) ? "" : s2.TenVung.ToString())
 														})
@@ -117,13 +117,18 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 		{
 			DM_TinhThanh dM_TinhThanh = await _dM_TinhThanhRepository.FirstOrDefaultAsync(input.Id);
 
-			GetDM_TinhThanhForEditOutput output = new GetDM_TinhThanhForEditOutput();
+			//GetDM_TinhThanhForEditOutput output = new GetDM_TinhThanhForEditOutput();
 
-			if (dM_TinhThanh == null)
-            {
-				return output;
-            }
-			output.DM_TinhThanh = base.ObjectMapper.Map<CreateOrEditDM_TinhThanhDto>(dM_TinhThanh);
+			//if (dM_TinhThanh == null)
+			//{
+			//	return output;
+			//}
+			//output.DM_TinhThanh = ObjectMapper.Map<CreateOrEditDM_TinhThanhDto>(dM_TinhThanh);
+
+			GetDM_TinhThanhForEditOutput output = new GetDM_TinhThanhForEditOutput
+			{
+				DM_TinhThanh = base.ObjectMapper.Map<CreateOrEditDM_TinhThanhDto>(dM_TinhThanh)
+			};
 
 			if (output.DM_TinhThanh.ID_QuocGia.HasValue)
 			{

@@ -1,0 +1,75 @@
+﻿
+@using System.Globalization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.DM_TinhThanhs
+@model DM_TinhThanhViewModel
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("NewDN_TinhThanhs")))
+
+<div class="modal-header">
+    <h5 class="modal-title">
+        <span></span>
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+</div>
+
+<div class="modal-body">
+    <div id="DM_TinhThanhInformationsTab">
+
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>M&#xE3; t&#x1EC9;nh th&#xE0;nh :</h6>
+                <label> @Model.DM_TinhThanh.MaTinhThanh </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>T&#xEA;n t&#x1EC9;nh th&#xE0;nh :</h6>
+                <label> @Model.DM_TinhThanh.TenTinhThanh</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Ghi ch&#xFA; :</h6>
+                <label> @Model.DM_TinhThanh.GhiChu</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Nh&#x1EAD;p b&#x1EDF;i :</h6>
+                <label> </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Nh&#x1EAD;p ng&#xE0;y :</h6>
+                <label> </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>C&#x1EAD;p nh&#x1EAD;t b&#x1EDF;i :</h6>
+                <label> </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>C&#x1EAD;p nh&#x1EAD;t ng&#xE0;y :</h6>
+                <label> </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(Danh m&#x1EE5;c qu&#x1ED1;c gia) T&#xEA;n qu&#x1ED1;c gia :</h6>
+                <label> VIETNAM</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(Danh m&#x1EE5;c v&#xF9;ng mi&#x1EC1;n) T&#xEA;n v&#xF9;ng :</h6>
+                <label> </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn default close-button" data-dismiss="modal">Close</button>
+</div>
+
