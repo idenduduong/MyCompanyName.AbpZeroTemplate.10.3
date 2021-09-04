@@ -21,12 +21,22 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         {
         }
 
-        //  datdd
+        //  datdd: add datafilter to OrganizationUnit
+        //We need to store OrganizationUnitId of logged in user in claims, 
+        //so we can get it in order to filter IMayHaveOrganizationUnit entities in our DbContext.
+        //In order to do that, override the CreateAsync method of UserClaimsPrincipalFactory class and 
+        //add logged in users OrganizationUnitId to claims like below.l
         public override async Task<ClaimsPrincipal> CreateAsync(User user)
         {
             var claim = await base.CreateAsync(user);
-            
-            claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", user.OrganizationUnitId.HasValue ? user.OrganizationUnitId.Value.ToString() : ""));
+
+            claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", user.OrganizationUnitId.HasValue ? user.OrganizationUnitId.Value.ToString() : string.Empty));
+            //claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", ",1,5,6"));
+
+            //foreach (var org in user.OrganizationUnits)
+            //{
+            //    claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", string.IsNullOrEmpty(org.OrganizationUnitId.ToString()) ? user.OrganizationUnitId.Value.ToString() : string.Empty));
+            //}
 
             return claim;
         }

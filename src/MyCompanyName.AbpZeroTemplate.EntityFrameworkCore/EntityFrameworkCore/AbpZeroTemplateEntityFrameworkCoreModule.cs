@@ -44,6 +44,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                 });
             }
 
+            //  datdd: enabling entity history
             // Set this setting to true for enabling entity history.
             Configuration.EntityHistory.IsEnabled = false;
 
@@ -56,7 +57,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         {
             IocManager.RegisterAssemblyByConvention(typeof(AbpZeroTemplateEntityFrameworkCoreModule).GetAssembly());
 
-            //  datdd
+            //  datdd: add datafilter to OrganizationUnit
 
             //register filter with default value
             Configuration.UnitOfWork.RegisterFilter("MayHaveOrganizationUnit", true);

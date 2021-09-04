@@ -95,6 +95,31 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
                 }).ToList());
         }
 
+        public async Task<PagedResultDto<OrganizationUnitUserListDto>> GetAllOrganizationUnitByUserId(long Id)
+        {
+            var query = from ouUser in _userOrganizationUnitRepository.GetAll()
+                        join ou in _organizationUnitRepository.GetAll() on ouUser.OrganizationUnitId equals ou.Id
+                        join user in UserManager.Users on ouUser.UserId equals user.Id
+                        where ouUser.UserId == Id
+                        select new
+                        {
+                            ouUser,
+                            user
+                        };
+
+            var totalCount = await query.CountAsync();
+            var items = await query.ToListAsync();
+
+            return new PagedResultDto<OrganizationUnitUserListDto>(
+                totalCount,
+                items.Select(item =>
+                {
+                    var organizationUnitUserDto = ObjectMapper.Map<OrganizationUnitUserListDto>(item.user);
+                    organizationUnitUserDto.AddedTime = item.ouUser.CreationTime;
+                    return organizationUnitUserDto;
+                }).ToList());
+        }
+
         public async Task<PagedResultDto<OrganizationUnitRoleListDto>> GetOrganizationUnitRoles(GetOrganizationUnitRolesInput input)
         {
             var query = from ouRole in _organizationUnitRoleRepository.GetAll()

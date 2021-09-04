@@ -10,7 +10,7 @@
 
         public const string Disable_Filters = "Disable.Filter";
         public const string Disable_Filters_Tenant = "Disable.Filter.Tenant";
-        public const string Disable_Filters_MayHaveOrganizationUnit = "Disable.Filter.MayHaveOrganizationUnit";
+        public const string Disable_Filters_OrganizationUnit = "Disable.Filter.OrganizationUnit";
 
         public const string Pages_Dm_DoiTuongs = "Pages.Dm_DoiTuongs";
         public const string Pages_Dm_DoiTuongs_Create = "Pages.Dm_DoiTuongs.Create";

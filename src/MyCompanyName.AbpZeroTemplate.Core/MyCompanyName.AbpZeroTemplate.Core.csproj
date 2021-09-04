@@ -32,6 +32,7 @@
     <Compile Remove="Authorization\Users\OrganizationUnit.cs" />
     <Compile Remove="crmdemo\Storage\BinaryObject.cs" />
     <Compile Remove="DM_DoiTuongs\DM_DoiTuong.cs" />
+    <Compile Remove="MyCompanyName\AbpZeroTemplate\Authorization\Users\CustomUserOrganizationUnit.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,7 +66,7 @@
   <ItemGroup>
     <Folder Include="crmdemo\Storage\" />
     <Folder Include="DM_DoiTuongs\" />
-    <Folder Include="MyCompanyName\AbpZeroTemplate\" />
+    <Folder Include="MyCompanyName\AbpZeroTemplate\Authorization\Users\" />
   </ItemGroup>
 
 </Project>

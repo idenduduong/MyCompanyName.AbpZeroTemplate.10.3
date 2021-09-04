@@ -11,6 +11,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.IdentityServer
         {
             return new List<ApiResource>
             {
+                //  datdd: add claim tye to Application_OrganizationUnitId
+                //new ApiResource("default-api", "Default (all) API", new[] { "Application_OrganizationUnitId" })
                 new ApiResource("default-api", "Default (all) API")
                 {
                     Description = "AllFunctionalityYouHaveInTheApplication",

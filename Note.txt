@@ -62,9 +62,13 @@ admin/123qwe
 
 Add-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
 
-Remove-Migration
+Remove-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
+
+Remove-Migration -Context 'AbpZeroTemplateDbContext' -f
 
 Update-Database -Context 'AbpZeroTemplateDbContext'
+
+Update-Database -Migration 'Add_dm_vungmiens' -Context 'AbpZeroTemplateDbContext'
 
 dotnet tool install -g dotnet-ef
 

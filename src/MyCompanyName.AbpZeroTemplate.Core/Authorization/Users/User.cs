@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using Abp.Timing;
 
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
+using MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits;
 
 namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
 {
-    /// <summary>
-    /// Represents a user in the system.
-    /// </summary>
     public class User : AbpUser<User>
     {
         //  crmdemo
@@ -57,6 +56,10 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
 
         public List<UserOrganizationUnit> OrganizationUnits { get; set; }
 
+        //[NotMapped]
+        //[ForeignKey("OrganizationUnitId")]
+        //public List<CustomUserOrganizationUnit> CustomUserOrganizationUnit { get; set; }
+
         //Can add application specific user properties here
 
         public User()
@@ -66,7 +69,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         }
 
         //  datdd
-        public int? OrganizationUnitId { get; set; }
+        public long? OrganizationUnitId { get; set; }
 
         /// <summary>
         /// Creates admin <see cref="User"/> for a tenant.

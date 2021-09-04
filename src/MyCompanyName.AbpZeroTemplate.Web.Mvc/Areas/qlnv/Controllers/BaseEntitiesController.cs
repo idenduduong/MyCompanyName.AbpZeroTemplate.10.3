@@ -1,15 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
+using Abp.Domain.Uow;
 using Microsoft.AspNetCore.Mvc;
-using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BaseEntities;
-using MyCompanyName.AbpZeroTemplate.Web.Controllers;
 using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.BaseNamespace;
 using MyCompanyName.AbpZeroTemplate.BaseNamespace.Dtos;
-using Abp.Application.Services.Dto;
-using Abp.Extensions;
-using Abp.Domain.Uow;
+using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BaseEntities;
+using MyCompanyName.AbpZeroTemplate.Web.Controllers;
+using System;
+using System.Threading.Tasks;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
 {
@@ -29,31 +28,39 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         //[AbpMvcAuthorize(AppPermissions.Pages_BaseEntities_Create, AppPermissions.Pages_BaseEntities_Edit)]
         public ActionResult Index()
         {
-            if (IsGranted("Disable.Filter.MayHaveOrganizationUnit"))
-            {
-                _unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit");
-                bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
-                //using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
-                //{
-                var model = new BaseEntitiesViewModel
-                    {
-                        FilterText = ""
-                    };
+            //if (IsGranted("Disable.Filter.MayHaveOrganizationUnit"))
+            //{
+            //    //_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit");
+            //    bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+            //    using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
+            //    {
+            //        var model = new BaseEntitiesViewModel { FilterText = string.Empty };
+            //        return View(model);
+            //    }
+            //}
 
+            if (IsGranted("Disable.Filter.OrganizationUnit"))
+            {
+                //CurrentUnitOfWork.SetFilterParameter("MayHaveOrganizationUnit", "CurrentOUId", "1");
+                //_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit")
+                bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+                using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
+                {
+                    IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+                    var model = new BaseEntitiesViewModel
+                    {
+                        FilterText = string.Empty
+                    };
                     return View(model);
-                //}
+                }
             }
             else
             {
-                //using (_unitOfWorkManager.Current.EnableFilter("MayHaveOrganizationUnit"))
-                //{
-                    var model = new BaseEntitiesViewModel
-                    {
-                        FilterText = ""
-                    };
-
-                    return View(model);
-                //}
+                var model = new BaseEntitiesViewModel
+                {
+                    FilterText = string.Empty
+                };
+                return View(model);
             }
         }
 
@@ -105,7 +112,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             {
                 Id = id,
                 DisplayName = displayName,
-                FilterText = ""
+                FilterText = string.Empty
             };
 
             return PartialView("_BaseEntityOrganizationUnitLookupTableModal", viewModel);
