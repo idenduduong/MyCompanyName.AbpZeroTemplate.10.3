@@ -5,11 +5,14 @@ using Abp.IdentityFramework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using MyCompanyName.AbpZeroTemplate.Extensions;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 {
     public abstract class AbpZeroTemplateControllerBase : AbpController
     {
+        //public new IAbpSessionExtension AbpSession { get; set; }
+
         protected AbpZeroTemplateControllerBase()
         {
             LocalizationSourceName = AbpZeroTemplateConsts.LocalizationSourceName;

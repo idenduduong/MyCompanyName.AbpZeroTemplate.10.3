@@ -7,6 +7,7 @@ using Abp.Runtime.Session;
 using Abp.Threading;
 using Microsoft.AspNetCore.Identity;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
+using MyCompanyName.AbpZeroTemplate.Extensions;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy;
 
 namespace MyCompanyName.AbpZeroTemplate
@@ -16,6 +17,8 @@ namespace MyCompanyName.AbpZeroTemplate
     /// </summary>
     public abstract class AbpZeroTemplateAppServiceBase : ApplicationService
     {
+        //public new IAbpSessionExtension AbpSession { get; set; }
+
         public TenantManager TenantManager { get; set; }
 
         public UserManager UserManager { get; set; }

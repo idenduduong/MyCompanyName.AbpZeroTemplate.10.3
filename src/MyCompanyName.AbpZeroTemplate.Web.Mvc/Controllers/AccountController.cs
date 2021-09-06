@@ -529,6 +529,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
                     if (loginResult.Result == AbpLoginResultType.Success)
                     {
                         await _signInManager.SignInAsync(loginResult.Identity, false);
+                        
                         if (!string.IsNullOrEmpty(model.SingleSignIn) && model.SingleSignIn.Equals("true", StringComparison.OrdinalIgnoreCase) && loginResult.Result == AbpLoginResultType.Success)
                         {
                             var returnUrl = NormalizeReturnUrl(model.ReturnUrl);

@@ -43,7 +43,6 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         public string UserType { get; set; }
         /// //////////////////////////////////////////////////////////////
 
-
         public virtual Guid? ProfilePictureId { get; set; }
 
         public virtual bool ShouldChangePasswordOnNextLogin { get; set; }
