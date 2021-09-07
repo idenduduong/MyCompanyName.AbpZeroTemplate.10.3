@@ -54,6 +54,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
         {
             var result = LoginAsyncInternal(userNameOrEmailAddress, plainPassword, tenancyName, shouldLockout);
             SaveLoginAttemptAsync(result.Result, tenancyName, userNameOrEmailAddress);
+            
             return result;
         }
 

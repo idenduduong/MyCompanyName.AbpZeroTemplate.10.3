@@ -19,7 +19,7 @@ namespace MyCompanyName.AbpZeroTemplate.Extensions
         {
         }
 
-        public string ApplicationOrganizationUnits => GetClaimValue("ApplicationOrganizationUnits"); //ClaimTypes.Email
+        public string ApplicationOrganizationUnits => GetClaimValue("Application_OrganizationUnit"); //ClaimTypes.Email
 
         private string GetClaimValue(string claimType)
         {

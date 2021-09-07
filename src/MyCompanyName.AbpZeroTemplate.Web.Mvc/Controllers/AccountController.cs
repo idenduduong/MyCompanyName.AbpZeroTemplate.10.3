@@ -262,6 +262,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         {
             var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
+            //var test = AbpSession.ApplicationOrganizationUnits;
+
             switch (loginResult.Result)
             {
                 case AbpLoginResultType.Success:
