@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
 {
-    public class CustomUserOrganizationUnit 
-        //: UserOrganizationUnit
+    public class CustomUserOrganizationUnit : UserOrganizationUnit
     {
-        //[ForeignKey("UserId")]
-        //[NotMapped]
-        //public virtual User UserInOrg { get; set; }
+        [NotMapped]
+        [ForeignKey("UserId")]
+        public virtual User UserInOrg { get; set; }
     }
 }

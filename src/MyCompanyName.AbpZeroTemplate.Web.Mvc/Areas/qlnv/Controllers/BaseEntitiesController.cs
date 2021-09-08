@@ -44,7 +44,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                 //CurrentUnitOfWork.SetFilterParameter("MayHaveOrganizationUnit", "CurrentOUId", "1");
                 //_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit")
                 bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
-                using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
+                using (_unitOfWorkManager.Current.EnableFilter("MayHaveOrganizationUnit"))
                 {
                     IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
                     var model = new BaseEntitiesViewModel

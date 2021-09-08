@@ -72,6 +72,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
 
         public Startup(IWebHostEnvironment env)
         {
+            #region
             //  datdd
             //////////////////////////////////////////////////////////////////////////////////////////////////
             ////sql driver only
@@ -128,15 +129,32 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
             //    throw new Exception(licenseErrorMessage);
             //}
             //////////////////////////////////////////////////////////////////////////////////////////////////
+            #endregion
+
             _appConfiguration = env.GetAppConfiguration();
             _hostingEnvironment = env;
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //datdd
+            //  datdd
             _services = services;
             services.AddHttpContextAccessor();
+
+            //  datdd: use session
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AspNetCore.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.IsEssential = true;
+
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
+                //options.Cookie.HttpOnly = true;
+                //options.Cookie.IsEssential = true;
+            });
+
 
             // MVC
             services.AddControllersWithViews(options =>
@@ -352,6 +370,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
                         new GraphQLPlaygroundOptions()); //to explorer API navigate https://*DOMAIN*/ui/playground
                 }
             }
+
+            //  datdd: use session
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -10,6 +10,6 @@ namespace MyCompanyName.AbpZeroTemplate.Extensions
 {
     public interface IAbpSessionExtension : IAbpSession
     {
-        string ApplicationOrganizationUnits { get; }
+        public string ApplicationOrganizationUnits { get; }
     }
 }

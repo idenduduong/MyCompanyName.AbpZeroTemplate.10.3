@@ -17,7 +17,7 @@ namespace MyCompanyName.AbpZeroTemplate
     /// </summary>
     public abstract class AbpZeroTemplateAppServiceBase : ApplicationService
     {
-        //public new IAbpSessionExtension AbpSession { get; set; }
+        public new IAbpSessionExtension AbpSession { get; set; }
 
         public TenantManager TenantManager { get; set; }
 

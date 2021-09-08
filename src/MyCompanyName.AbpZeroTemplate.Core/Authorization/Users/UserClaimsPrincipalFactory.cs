@@ -53,9 +53,13 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
             ////////////////////////////////////////////////////////////////////////////////////////////////////
             string claim_Application_OrganizationUnitId = string.Empty;
             var currentClaims = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == "Application_OrganizationUnitId");
-            if (string.IsNullOrEmpty(currentClaims?.Value))
+
+            if (currentClaims != null)
             {
-                claim_Application_OrganizationUnitId = currentClaims.Value;
+                if (string.IsNullOrEmpty(currentClaims?.Value))
+                {
+                    claim_Application_OrganizationUnitId = currentClaims.Value;
+                }
             }
 
             var claim = await base.CreateAsync(user);
@@ -78,7 +82,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
                 }
                 else
                 {
-                    Console.WriteLine("NULL");
+                   // Console.WriteLine("NULL");
                     claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", claim_Application_OrganizationUnitId));
                 }
             }

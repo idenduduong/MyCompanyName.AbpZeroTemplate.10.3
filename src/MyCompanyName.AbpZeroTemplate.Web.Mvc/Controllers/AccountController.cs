@@ -52,6 +52,7 @@ using MyCompanyName.AbpZeroTemplate.Web.Session;
 using MyCompanyName.AbpZeroTemplate.Web.Views.Shared.Components.TenantChange;
 using Abp.CachedUniqueKeys;
 using Abp.AspNetCore.Mvc.Caching;
+using Microsoft.AspNetCore.Http;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 {
@@ -83,6 +84,11 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         private readonly ISettingManager _settingManager;
         private readonly IUserDelegationManager _userDelegationManager;
         private readonly ICachedUniqueKeyPerUser _cachedUniqueKeyPerUser;
+
+        private readonly IUserLoginAppService _userLoginAppService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private ISession _session => _httpContextAccessor.HttpContext.Session;
+
         //private readonly IGetScriptsResponsePerUserConfiguration _getScriptsResponsePerUserConfiguration;
 
         public AccountController(
@@ -111,8 +117,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             ExternalLoginInfoManagerFactory externalLoginInfoManagerFactory,
             ISettingManager settingManager,
             IUserDelegationManager userDelegationManager,
-            ICachedUniqueKeyPerUser cachedUniqueKeyPerUser
+            ICachedUniqueKeyPerUser cachedUniqueKeyPerUser,
             //,IGetScriptsResponsePerUserConfiguration getScriptsResponsePerUserConfiguration
+            IUserLoginAppService userLoginAppService
             )
         {
             _userManager = userManager;
@@ -140,6 +147,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             _externalLoginInfoManagerFactory = externalLoginInfoManagerFactory;
             _settingManager = settingManager;
             _userDelegationManager = userDelegationManager;
+            _userLoginAppService = userLoginAppService;
         }
 
         #region Login / Logout
@@ -159,6 +167,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             ViewBag.IsMultiTenancyEnabled = _multiTenancyConfig.IsEnabled;
             ViewBag.SingleSignIn = ss;
             ViewBag.UseCaptcha = UseCaptchaOnLogin();
+
+            
 
             return View(
                 new LoginFormViewModel
@@ -262,7 +272,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         {
             var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
-            //var test = AbpSession.ApplicationOrganizationUnits;
+            var userOrgs = _userLoginAppService.GetUserOrgs();
+            //AbpSession.ApplicationOrganizationUnits = userOrgs;
+            _session.SetString("AppUserOrgs", userOrgs);
 
             switch (loginResult.Result)
             {

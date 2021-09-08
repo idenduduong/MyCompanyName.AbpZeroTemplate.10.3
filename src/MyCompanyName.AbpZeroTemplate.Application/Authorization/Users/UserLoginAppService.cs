@@ -64,5 +64,35 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
                 loginAttemptDtos
             );
         }
+
+        public string GetUserOrgs()
+        {
+            var userId = AbpSession.UserId;
+
+            var currentAppOrg = AbpSession.ApplicationOrganizationUnits;
+
+            if (currentAppOrg == null)
+            {
+                var filter = UserManager.Users.Where(u => u.Id == userId).Include(u => u.OrganizationUnits);
+
+                var strSql = filter.ToQueryString();
+
+                var filterToObj = filter.ToList();
+
+                //var strSql = filter.ToQueryString();
+
+                var result = "";
+
+                if (filterToObj[0] != null)
+                {
+                    if (filterToObj[0].OrganizationUnits[0] != null)
+                        result = string.Join(",", filterToObj.Select(e => e.OrganizationUnits[0].OrganizationUnitId).ToArray());
+                }
+                AbpSession.ApplicationOrganizationUnits = "," + result + ",";
+
+                return AbpSession.ApplicationOrganizationUnits;
+            }
+            return "";
+        }
     }
 }

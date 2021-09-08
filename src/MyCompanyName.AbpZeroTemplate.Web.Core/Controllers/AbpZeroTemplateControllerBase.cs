@@ -11,7 +11,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 {
     public abstract class AbpZeroTemplateControllerBase : AbpController
     {
-        //public new IAbpSessionExtension AbpSession { get; set; }
+        public new IAbpSessionExtension AbpSession { get; set; }
 
         protected AbpZeroTemplateControllerBase()
         {

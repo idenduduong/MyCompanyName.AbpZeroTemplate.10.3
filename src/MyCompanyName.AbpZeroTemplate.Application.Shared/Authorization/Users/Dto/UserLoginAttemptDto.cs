@@ -17,5 +17,8 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Dto
         public string Result { get; set; }
 
         public DateTime CreationTime { get; set; }
+
+        //  datdd: add appuserorgs session
+        public string AppUserOrgs { get; set; }
     }
 }

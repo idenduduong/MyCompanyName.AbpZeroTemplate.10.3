@@ -1,7 +1,9 @@
-﻿using Abp.IdentityServer4vNext;
+﻿using Abp.Authorization.Users;
+using Abp.IdentityServer4vNext;
 using Abp.Organizations;
 using Abp.Runtime.Session;
 using Abp.Zero.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MyCompanyName.AbpZeroTemplate.AppTasks;
@@ -19,6 +21,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Sale;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.TheKhachHangs;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Temp;
 using MyCompanyName.AbpZeroTemplate.Editions;
+using MyCompanyName.AbpZeroTemplate.Extensions;
 using MyCompanyName.AbpZeroTemplate.Friendships;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy.Accounting;
@@ -38,20 +41,34 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 {
     public class AbpZeroTemplateDbContext : AbpZeroDbContext<Tenant, Role, User, AbpZeroTemplateDbContext>, IAbpPersistedGrantDbContext
     {
+        public new IAbpSessionExtension AbpSession { get; set; }
+
+        //private readonly IHttpContextAccessor _httpContextAccessor;
+        //private ISession _session => _httpContextAccessor.HttpContext.Session;
 
         public AbpZeroTemplateDbContext(DbContextOptions<AbpZeroTemplateDbContext> options)
             : base(options)
         {
-
         }
 
         protected override Expression<Func<TEntity, bool>> CreateFilterExpression<TEntity>()
         {
             var expression = base.CreateFilterExpression<TEntity>();
+            //if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
+            //{
+            //    Expression<Func<TEntity, bool>> mayHaveOUFilter = e => ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() == CurrentOUId || 
+            //                                                            ((((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() != CurrentOUId) && IsOUFilterEnabled);
+            //    //Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId) == IsOUFilterEnabled;
+            //    expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
+            //}
             if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
             {
-                Expression<Func<TEntity, bool>> mayHaveOUFilter = e => ((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId || (((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId) == IsOUFilterEnabled;
-                //Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId) == IsOUFilterEnabled;
+                var units = "";//Session["AppUserOrgs"];
+                
+                //_session.SetString("Test", "Ben Rules!");
+                //var message = _session.GetString("AppUserOrgs");
+                Expression<Func<TEntity, bool>> mayHaveOUFilter = e => units.Contains(((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString()) ||
+                                                                        (!units.Contains(((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString()) && IsOUFilterEnabled);
                 expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
             }
 
@@ -118,7 +135,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             return result;
         }
 
-        protected virtual long? GetCurrentUsersOuIdOrNull()
+        protected virtual string? GetCurrentUsersOuIdOrNull()
         {
             var userOuClaim = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == "Application_OrganizationUnitId");
             if (string.IsNullOrEmpty(userOuClaim?.Value))
@@ -126,7 +143,37 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                 return null;
             }
 
-            return Convert.ToInt64(userOuClaim.Value);
+            return (userOuClaim.Value);
+        }
+
+        protected virtual string? GETALLOUFUSER()
+        {
+            var userId = AbpSession.UserId;
+
+            var currentAppOrg = AbpSession.ApplicationOrganizationUnits;
+
+            if (currentAppOrg == null)
+            {
+                var filter = Users.Where(u => u.Id == userId).Include(u => u.OrganizationUnits);
+
+                var strSql = filter.ToQueryString();
+
+                var filterToObj = filter.ToList();
+
+                //var strSql = filter.ToQueryString();
+
+                var result = "";
+
+                if (filterToObj[0] != null)
+                {
+                    if (filterToObj[0].OrganizationUnits[0] != null)
+                        result = string.Join(",", filterToObj.Select(e => e.OrganizationUnits[0].OrganizationUnitId).ToArray());
+                }
+                AbpSession.ApplicationOrganizationUnits = "," + result + ",";
+
+                return AbpSession.ApplicationOrganizationUnits;
+            }
+            return currentAppOrg;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -137,10 +184,14 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             //  datdd: add datafilter to OrganizationUnit
             //modelBuilder.Filter("PersonFilter", (IHasPerson entity, int personId) => entity.PersonId == personId, 0);
 
+            //modelBuilder.Entity<User>()
+            //                            .HasMany(u => u.CustomUserOrganizationUnit)
+            //                             .WithOne(co => co.UserInOrg);
+            //////////////////////////////////////////////////////////////////////////////////////////
             //modelBuilder.Entity<BaseEntity>(b =>
             //            {
             //                ////b.HasQueryFilter(e => e.OrganizationUnitId == CurrentOUId);
-            //                b.HasQueryFilter(e => AllCurrentsOUId.Contains("," + e.OrganizationUnitId.ToString() + ","));
+            //                //b.HasQueryFilter(e => AllCurrentsOUId.Contains("," + e.OrganizationUnitId.ToString() + ","));
             //                ////b.HasQueryFilter(m => AllOUId.Contains(Convert.ToInt64(string.IsNullOrEmpty(m.OrganizationUnitId.ToString()) ? m.OrganizationUnitId : 0)));
             //            });
             //////////////////////////////////////////////////////////////////////////////////////////
@@ -282,7 +333,9 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         protected virtual List<long> AllOUId => GetAllUsersOuIdOrNull();
 
         //  datdd: add datafilter to OrganizationUnit
-        protected virtual long? CurrentOUId => GetCurrentUsersOuIdOrNull();
+        protected virtual string? CurrentOUId => GetCurrentUsersOuIdOrNull();
+
+        protected virtual string? strUnits => GETALLOUFUSER();
 
         protected virtual bool IsOUFilterEnabled => CurrentUnitOfWorkProvider?.Current?.IsFilterEnabled("MayHaveOrganizationUnit") == true;
 
