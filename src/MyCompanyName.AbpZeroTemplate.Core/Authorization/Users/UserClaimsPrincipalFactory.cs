@@ -4,6 +4,7 @@ using Abp.Extensions;
 using Abp.Runtime.Security;
 using Abp.Runtime.Session;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles;
 using System;
@@ -36,41 +37,24 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         //add logged in users OrganizationUnitId to claims like below.l
         public override async Task<ClaimsPrincipal> CreateAsync(User user)
         {
-            //public override async Task<ClaimsPrincipal> CreateAsync(TUser user)
-            //{
-            //    return await _unitOfWorkManager.WithUnitOfWorkAsync(async () =>
-            //    {
-            //        var principal = await base.CreateAsync(user);
+            var filter = UserManager.Users.Where(e => user.Id == e.Id).Include(u => u.OrganizationUnits);
 
-            //        if (user.TenantId.HasValue)
-            //        {
-            //            principal.Identities.First().AddClaim(new Claim(AbpClaimTypes.TenantId, user.TenantId.ToString()));
-            //        }
+            var filterToObj = filter.ToList();
 
-            //        return principal;
-            //    });
-            //}
+            //var strSql = filter.ToQueryString();
+
+            //var orgs = (from f in filter select new UserOrganizationUnit {
+            //    OrganizationUnitId = f.OrganizationUnitId == null ? 0 : 1
+            //}).ToList();
+
+            if (filter.Any()) user.OrganizationUnits = filterToObj[0].OrganizationUnits;
+
             ////////////////////////////////////////////////////////////////////////////////////////////////////
-            string claim_Application_OrganizationUnitId = string.Empty;
-            var currentClaims = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == "Application_OrganizationUnitId");
-
-            if (currentClaims != null)
-            {
-                if (string.IsNullOrEmpty(currentClaims?.Value))
-                {
-                    claim_Application_OrganizationUnitId = currentClaims.Value;
-                }
-            }
+            //claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", user.OrganizationUnitId.HasValue ? user.OrganizationUnitId.Value.ToString() : string.Empty));
+            //claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnit", ",1,5,6"));
 
             var claim = await base.CreateAsync(user);
 
-            //claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", user.OrganizationUnitId.HasValue ? user.OrganizationUnitId.Value.ToString() : string.Empty));
-            claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnit", ",1,5,6"));
-
-            //    //foreach (var org in user.OrganizationUnits)
-            //    //{
-            //    //    claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", string.IsNullOrEmpty(org.OrganizationUnitId.ToString()) ? user.OrganizationUnitId.Value.ToString() : string.Empty));
-            //    //}
             try
             {
                 if (user.OrganizationUnits != null)
@@ -82,14 +66,15 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
                 }
                 else
                 {
-                   // Console.WriteLine("NULL");
-                    claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", claim_Application_OrganizationUnitId));
+                    claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", ""));
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+
+            var currentClaims = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == "Application_OrganizationUnitId");
 
             return claim;
         }

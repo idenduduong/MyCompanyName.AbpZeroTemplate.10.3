@@ -44,7 +44,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                 //CurrentUnitOfWork.SetFilterParameter("MayHaveOrganizationUnit", "CurrentOUId", "1");
                 //_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit")
                 bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
-                using (_unitOfWorkManager.Current.EnableFilter("MayHaveOrganizationUnit"))
+                using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
                 {
                     IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
                     var model = new BaseEntitiesViewModel
@@ -56,11 +56,16 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             }
             else
             {
-                var model = new BaseEntitiesViewModel
+                bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+                using (_unitOfWorkManager.Current.EnableFilter("MayHaveOrganizationUnit"))
                 {
-                    FilterText = string.Empty
-                };
-                return View(model);
+                    IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+                    var model = new BaseEntitiesViewModel
+                    {
+                        FilterText = string.Empty
+                    };
+                    return View(model);
+                }
             }
         }
 

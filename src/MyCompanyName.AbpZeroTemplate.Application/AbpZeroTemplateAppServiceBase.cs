@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.IdentityFramework;
@@ -6,6 +7,7 @@ using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.Threading;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 using MyCompanyName.AbpZeroTemplate.Extensions;
 using MyCompanyName.AbpZeroTemplate.MultiTenancy;
@@ -31,6 +33,24 @@ namespace MyCompanyName.AbpZeroTemplate
         protected virtual async Task<User> GetCurrentUserAsync()
         {
             var user = await UserManager.FindByIdAsync(AbpSession.GetUserId().ToString());
+
+            var filter = UserManager.Users.Where(e => user.Id == e.Id).Include(u => u.OrganizationUnits);
+
+            var filterToObj = filter.ToList();
+
+            //var strSql = filter.ToQueryString();
+
+            //var orgs = (from f in filter select new UserOrganizationUnit {
+            //    OrganizationUnitId = f.OrganizationUnitId == null ? 0 : 1
+            //}).ToList();
+
+            if (filter.Any()) user.OrganizationUnits = filterToObj[0].OrganizationUnits;
+
+            //foreach (var org in orgs)
+            //{ 
+            //    user. = string.Join(",", orgs.Select(e => e.OrganizationUnitId).ToArray());
+            //}
+
             if (user == null)
             {
                 throw new Exception("There is no current user!");

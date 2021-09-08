@@ -1,4 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Authorization.Users;
+using System.Collections.Generic;
 
 namespace MyCompanyName.AbpZeroTemplate.Sessions.Dto
 {
@@ -13,5 +15,7 @@ namespace MyCompanyName.AbpZeroTemplate.Sessions.Dto
         public string EmailAddress { get; set; }
 
         public string ProfilePictureId { get; set; }
+
+        public List<UserOrganizationUnit> OrganizationUnits { get; set; }
     }
 }

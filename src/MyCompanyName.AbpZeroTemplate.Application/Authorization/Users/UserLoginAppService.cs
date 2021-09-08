@@ -88,9 +88,9 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
                     if (filterToObj[0].OrganizationUnits[0] != null)
                         result = string.Join(",", filterToObj.Select(e => e.OrganizationUnits[0].OrganizationUnitId).ToArray());
                 }
-                AbpSession.ApplicationOrganizationUnits = "," + result + ",";
+                //AbpSession.ApplicationOrganizationUnits = "," + result + ",";
 
-                return AbpSession.ApplicationOrganizationUnits;
+                return result;
             }
             return "";
         }

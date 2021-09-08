@@ -21,6 +21,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users.Profile
 
         public async Task<string> GetProfilePictureContentForUser(UserIdentifier userIdentifier)
         {
+            //  datdd add userorgs
             var user = await _userManager.GetUserOrNullAsync(userIdentifier);
             if (user?.ProfilePictureId == null)
             {

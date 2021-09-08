@@ -79,6 +79,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         [UnitOfWork]
         public virtual async Task<User> GetUserOrNullAsync(UserIdentifier userIdentifier)
         {
+            //  datdd add userorgs
             using (_unitOfWorkManager.Current.SetTenantId(userIdentifier.TenantId))
             {
                 return await FindByIdAsync(userIdentifier.UserId.ToString());

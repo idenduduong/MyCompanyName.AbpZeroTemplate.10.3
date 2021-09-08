@@ -117,9 +117,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             ExternalLoginInfoManagerFactory externalLoginInfoManagerFactory,
             ISettingManager settingManager,
             IUserDelegationManager userDelegationManager,
-            ICachedUniqueKeyPerUser cachedUniqueKeyPerUser,
+            ICachedUniqueKeyPerUser cachedUniqueKeyPerUser
             //,IGetScriptsResponsePerUserConfiguration getScriptsResponsePerUserConfiguration
-            IUserLoginAppService userLoginAppService
             )
         {
             _userManager = userManager;
@@ -147,7 +146,6 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             _externalLoginInfoManagerFactory = externalLoginInfoManagerFactory;
             _settingManager = settingManager;
             _userDelegationManager = userDelegationManager;
-            _userLoginAppService = userLoginAppService;
         }
 
         #region Login / Logout
@@ -271,10 +269,6 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
             var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
-
-            var userOrgs = _userLoginAppService.GetUserOrgs();
-            //AbpSession.ApplicationOrganizationUnits = userOrgs;
-            _session.SetString("AppUserOrgs", userOrgs);
 
             switch (loginResult.Result)
             {

@@ -56,19 +56,17 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             var expression = base.CreateFilterExpression<TEntity>();
             //if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
             //{
-            //    Expression<Func<TEntity, bool>> mayHaveOUFilter = e => ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() == CurrentOUId || 
+            //    Expression<Func<TEntity, bool>> mayHaveOUFilter = e => ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() == CurrentOUId ||
             //                                                            ((((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() != CurrentOUId) && IsOUFilterEnabled);
             //    //Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId) == IsOUFilterEnabled;
             //    expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
             //}
             if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
-            {
-                var units = "";//Session["AppUserOrgs"];
-                
-                //_session.SetString("Test", "Ben Rules!");
-                //var message = _session.GetString("AppUserOrgs");
-                Expression<Func<TEntity, bool>> mayHaveOUFilter = e => units.Contains(((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString()) ||
-                                                                        (!units.Contains(((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString()) && IsOUFilterEnabled);
+            {   
+                Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == true && IsOUFilterEnabled == true)
+                                                                       ||
+                                                                       (UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == false && IsOUFilterEnabled == false)
+                                                                        ;
                 expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
             }
 
@@ -135,7 +133,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             return result;
         }
 
-        protected virtual string? GetCurrentUsersOuIdOrNull()
+        protected virtual string? GetUserOrgsOrNull()
         {
             var userOuClaim = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == "Application_OrganizationUnitId");
             if (string.IsNullOrEmpty(userOuClaim?.Value))
@@ -169,9 +167,9 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                     if (filterToObj[0].OrganizationUnits[0] != null)
                         result = string.Join(",", filterToObj.Select(e => e.OrganizationUnits[0].OrganizationUnitId).ToArray());
                 }
-                AbpSession.ApplicationOrganizationUnits = "," + result + ",";
+                //AbpSession.ApplicationOrganizationUnits = "," + result + ",";
 
-                return AbpSession.ApplicationOrganizationUnits;
+                return result;
             }
             return currentAppOrg;
         }
@@ -328,14 +326,16 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             return base.ShouldFilterEntity<TEntity>(entityType);
         }
 
-        protected virtual string? AllCurrentsOUId => GetAllCurrentsUsersOuIdOrNull();
+        //protected virtual string? AllCurrentsOUId => GetAllCurrentsUsersOuIdOrNull();
 
-        protected virtual List<long> AllOUId => GetAllUsersOuIdOrNull();
+        //protected virtual List<long> AllOUId => GetAllUsersOuIdOrNull();
 
         //  datdd: add datafilter to OrganizationUnit
-        protected virtual string? CurrentOUId => GetCurrentUsersOuIdOrNull();
+        //protected virtual string? CurrentOUId => GetCurrentUsersOuIdOrNull();
 
-        protected virtual string? strUnits => GETALLOUFUSER();
+        //protected virtual string? strUnits => GETALLOUFUSER();
+
+        protected virtual string? UserOrgs => GetUserOrgsOrNull();
 
         protected virtual bool IsOUFilterEnabled => CurrentUnitOfWorkProvider?.Current?.IsFilterEnabled("MayHaveOrganizationUnit") == true;
 
