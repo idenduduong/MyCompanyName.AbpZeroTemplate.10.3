@@ -1,4 +1,5 @@
-﻿using Abp.Authorization.Users;
+﻿using Abp.Authorization;
+using Abp.Authorization.Users;
 using Abp.IdentityServer4vNext;
 using Abp.Organizations;
 using Abp.Runtime.Session;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MyCompanyName.AbpZeroTemplate.AppTasks;
+using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Delegation;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
@@ -51,23 +53,33 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         {
         }
 
-        protected override Expression<Func<TEntity, bool>> CreateFilterExpression<TEntity>()
+        //protected override Expression<Func<TEntity, bool>> CreateFilterExpression<TEntity>()
+        //{
+        //    var expression = base.CreateFilterExpression<TEntity>();
+        //    //if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
+        //    //{
+        //    //    Expression<Func<TEntity, bool>> mayHaveOUFilter = e => ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() == CurrentOUId ||
+        //    //                                                            ((((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() != CurrentOUId) && IsOUFilterEnabled);
+        //    //    //Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId) == IsOUFilterEnabled;
+        //    //    expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
+        //    //}
+        //    if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
+        //    {   
+        //        //Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == true) || IsOUFilterEnabled == false;
+        //        Expression<Func<TEntity, bool>> mayHaveOUFilter = e => IsOUFilterEnabled == true;
+        //        expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
+        //    }
+
+        //    return expression;
+        //}
+
+        protected Expression<Func<BaseEntity, bool>> CreateFilterExpressionBaseEntity<TEntity>()
         {
-            var expression = base.CreateFilterExpression<TEntity>();
-            //if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
-            //{
-            //    Expression<Func<TEntity, bool>> mayHaveOUFilter = e => ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() == CurrentOUId ||
-            //                                                            ((((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() != CurrentOUId) && IsOUFilterEnabled);
-            //    //Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (((IMayHaveOrganizationUnit)e).OrganizationUnitId == CurrentOUId) == IsOUFilterEnabled;
-            //    expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
-            //}
-            if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
-            {   
-                Expression<Func<TEntity, bool>> mayHaveOUFilter = e => (UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == true && IsOUFilterEnabled == true)
-                                                                       ||
-                                                                       (UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == false && IsOUFilterEnabled == false)
-                                                                        ;
-                expression = expression == null ? mayHaveOUFilter : CombineExpressions(expression, mayHaveOUFilter);
+            var expression = CreateFilterExpression<BaseEntity>();
+            if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(BaseEntity)))
+            {
+                Expression<Func<BaseEntity, bool>> mayHaveOUFilter = e => (UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == true) || IsOUFilterEnabled == false;
+                expression = mayHaveOUFilter;
             }
 
             return expression;
@@ -141,7 +153,14 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                 return null;
             }
 
-            return (userOuClaim.Value);
+            return ("," + userOuClaim.Value + ",");
+        }
+
+        protected virtual bool GetFilterStatus()
+        {
+            var status = CurrentUnitOfWorkProvider?.Current?.Filters.Select(f => f.FilterName == "MayHaveOrganizationUnit"); // IsFilterEnabled("MayHaveOrganizationUnit");
+            if (true == true) return true;
+            else return false;
         }
 
         protected virtual string? GETALLOUFUSER()
@@ -186,12 +205,13 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             //                            .HasMany(u => u.CustomUserOrganizationUnit)
             //                             .WithOne(co => co.UserInOrg);
             //////////////////////////////////////////////////////////////////////////////////////////
-            //modelBuilder.Entity<BaseEntity>(b =>
-            //            {
-            //                ////b.HasQueryFilter(e => e.OrganizationUnitId == CurrentOUId);
-            //                //b.HasQueryFilter(e => AllCurrentsOUId.Contains("," + e.OrganizationUnitId.ToString() + ","));
-            //                ////b.HasQueryFilter(m => AllOUId.Contains(Convert.ToInt64(string.IsNullOrEmpty(m.OrganizationUnitId.ToString()) ? m.OrganizationUnitId : 0)));
-            //            });
+            modelBuilder.Entity<BaseEntity>(b =>
+                        {
+                            ////b.HasQueryFilter(e => e.OrganizationUnitId == CurrentOUId);
+                            ///(UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == true) || IsOUFilterEnabled == false
+                            b.HasQueryFilter(CreateFilterExpressionBaseEntity<BaseEntity>());
+                            ////b.HasQueryFilter(m => AllOUId.Contains(Convert.ToInt64(string.IsNullOrEmpty(m.OrganizationUnitId.ToString()) ? m.OrganizationUnitId : 0)));
+                        });
             //////////////////////////////////////////////////////////////////////////////////////////
             modelBuilder.Entity<Child>(c =>
                         {
@@ -337,7 +357,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         protected virtual string? UserOrgs => GetUserOrgsOrNull();
 
-        protected virtual bool IsOUFilterEnabled => CurrentUnitOfWorkProvider?.Current?.IsFilterEnabled("MayHaveOrganizationUnit") == true;
+        protected virtual bool IsOUFilterEnabled => GetFilterStatus();
 
         public virtual DbSet<BaseEntity> BaseEntities { get; set; }
 

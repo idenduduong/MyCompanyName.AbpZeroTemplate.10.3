@@ -37,11 +37,16 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
 
         public async Task<PagedResultDto<GetBaseEntityForViewDto>> GetAll(GetAllBaseEntitiesInput input)
         {
-                var filteredBaseEntities = _baseEntityRepository.GetAll()
-                        .Include(e => e.OrganizationUnitFk)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.BaseProp1.Contains(input.Filter))
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.BaseProp1Filter), e => e.BaseProp1 == input.BaseProp1Filter)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.OrganizationUnitDisplayNameFilter), e => e.OrganizationUnitFk != null && e.OrganizationUnitFk.DisplayName == input.OrganizationUnitDisplayNameFilter);
+            var sqlIgnoreQueryFilters = _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters().ToQueryString();
+
+            var sqlQueryFilters = _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk).ToQueryString();
+
+            var baseEntityRepository = IsGranted("Filter.OrganizationUnit") ? _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk) : _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters();
+
+            var filteredBaseEntities = baseEntityRepository
+                    .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.BaseProp1.Contains(input.Filter))
+                    .WhereIf(!string.IsNullOrWhiteSpace(input.BaseProp1Filter), e => e.BaseProp1 == input.BaseProp1Filter)
+                    .WhereIf(!string.IsNullOrWhiteSpace(input.OrganizationUnitDisplayNameFilter), e => e.OrganizationUnitFk != null && e.OrganizationUnitFk.DisplayName == input.OrganizationUnitDisplayNameFilter);
 
             var pagedAndFilteredBaseEntities = filteredBaseEntities
                 .OrderBy(input.Sorting ?? "id asc")
@@ -53,7 +58,6 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
 
                                select new
                                {
-
                                    o.BaseProp1,
                                    Id = o.Id,
                                    OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()

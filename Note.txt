@@ -114,7 +114,7 @@ CX13-20210917-2p6Mxu
 localhost
 CX13-20210917-2p6Mxu
 
-DOMAIN:localhost:51661
+DOMAIN:localhost:57118
 PRODUCT:CX13
 EXPIRATION:00000000
 OWNER:DownloadDevTools
@@ -122,3 +122,5 @@ SERVERS:0
 EDXhyYmQveP8DKrHVRL7+QGo/K+axcoNhvmX2KtF6OzfN6XjWRn686FFLXJ7l5N+rQVFGH3D7ksdpVjHDYUUtTOk5cyIwuvZJ6C/CFNZQrnwUnPecn64cfyMKqGsHGofQezdnSZqPnkSvztqLs0YfPb/Y1A98cSbP3/qyj2cdrGTRyRtinpfCpne94h8S75ld4RAK+Vwcwts4aef0bmh4D8cCavDZs+GTknqVW8TEmZivLEGgu9CsSSbx2kqrLFZTMH075fYOsrYmQ9RlJZmHbAobrEK0KEpy0aausQkyNbHOKMvBy8QwvktoJ03VAMFEqVS7ZQCuGCfdmb3iErn/w==
 
 dotnet.exe run -p ""C:\inetpub\wwwroot\Kentico13\DancingGoatCore"" --no-build --urls=http://localhost:58218
+
+Data Source=.;Initial Catalog=Kentico;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=Abc12#$;Connect Timeout=60;Encrypt=False;

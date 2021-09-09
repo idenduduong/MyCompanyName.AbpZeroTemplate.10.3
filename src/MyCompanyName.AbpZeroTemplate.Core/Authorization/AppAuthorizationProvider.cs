@@ -55,9 +55,9 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
             baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Delete, L("DeleteBaseEntity"));
 
             //  datdd
-            var filters = pages.CreateChildPermission(AppPermissions.Disable_Filters, L("Disable_Filters"));
-            filters.CreateChildPermission(AppPermissions.Disable_Filters_Tenant, L("Disable_Filters_Tenant"));
-            filters.CreateChildPermission(AppPermissions.Disable_Filters_OrganizationUnit, L("Disable_Filters_OrganizationUnit"));
+            var filters = pages.CreateChildPermission(AppPermissions.Disable_Filters, L("Filters"));
+            filters.CreateChildPermission(AppPermissions.Disable_Filters_Tenant, L("FiltersTenant"));
+            filters.CreateChildPermission(AppPermissions.Disable_Filters_OrganizationUnit, L("FiltersOrganizationUnit"));
 
             var childs = pages.CreateChildPermission(AppPermissions.Pages_Childs, L("Childs"));
             childs.CreateChildPermission(AppPermissions.Pages_Childs_Create, L("CreateNewChild"));

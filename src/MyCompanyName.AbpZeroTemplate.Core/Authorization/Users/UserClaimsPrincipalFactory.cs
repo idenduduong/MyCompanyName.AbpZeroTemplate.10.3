@@ -37,21 +37,17 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         //add logged in users OrganizationUnitId to claims like below.l
         public override async Task<ClaimsPrincipal> CreateAsync(User user)
         {
-            var filter = UserManager.Users.Where(e => user.Id == e.Id).Include(u => u.OrganizationUnits);
-
-            var filterToObj = filter.ToList();
-
-            //var strSql = filter.ToQueryString();
-
-            //var orgs = (from f in filter select new UserOrganizationUnit {
-            //    OrganizationUnitId = f.OrganizationUnitId == null ? 0 : 1
-            //}).ToList();
-
-            if (filter.Any()) user.OrganizationUnits = filterToObj[0].OrganizationUnits;
-
-            ////////////////////////////////////////////////////////////////////////////////////////////////////
-            //claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", user.OrganizationUnitId.HasValue ? user.OrganizationUnitId.Value.ToString() : string.Empty));
-            //claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnit", ",1,5,6"));
+            try
+            {
+                var filter = UserManager.Users.Where(e => user.Id == e.Id).Include(u => u.OrganizationUnits).Where(o => o.IsDeleted == false);
+                var filterToObj = filter.ToList();
+                var strSql = filter.ToQueryString();
+                if (filter.Any()) user.OrganizationUnits = filterToObj[0].OrganizationUnits;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
             var claim = await base.CreateAsync(user);
 

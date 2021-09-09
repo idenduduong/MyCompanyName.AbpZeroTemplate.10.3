@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="vi">
   <texts>
+    <text name="Filters">Filter</text>
+    <text name="FiltersOrganizationUnit">OrganizationUnit Filter</text>
+    <text name="FiltersTenant">Tenant Filter</text>
+
     <text name="HomePage">Trang chủ</text>
     <text name="AboutUs">Về chúng tôi</text>
     <text name="Administration">Quản trị</text>

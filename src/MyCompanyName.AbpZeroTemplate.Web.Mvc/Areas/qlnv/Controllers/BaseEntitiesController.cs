@@ -39,14 +39,15 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             //    }
             //}
 
-            if (IsGranted("Disable.Filter.OrganizationUnit"))
+            if (IsGranted("Filter.OrganizationUnit"))
             {
                 //CurrentUnitOfWork.SetFilterParameter("MayHaveOrganizationUnit", "CurrentOUId", "1");
                 //_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit")
                 bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
-                using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
+                using (_unitOfWorkManager.Current.EnableFilter("MayHaveOrganizationUnit"))
                 {
                     IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+                    //CurrentUnitOfWork.SetFilterParameter("CompanyFilter", "CompanyId", 19);
                     var model = new BaseEntitiesViewModel
                     {
                         FilterText = string.Empty
@@ -57,15 +58,16 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             else
             {
                 bool IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
-                using (_unitOfWorkManager.Current.EnableFilter("MayHaveOrganizationUnit"))
-                {
-                    IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
+                //using (_unitOfWorkManager.Current.DisableFilter("MayHaveOrganizationUnit"))
+                //{
+                CurrentUnitOfWork.DisableFilter("MayHaveOrganizationUnit");
+                IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
                     var model = new BaseEntitiesViewModel
                     {
                         FilterText = string.Empty
                     };
                     return View(model);
-                }
+                //}
             }
         }
 
