@@ -16,7 +16,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
 {
     public class UserClaimsPrincipalFactory : AbpUserClaimsPrincipalFactory<User, Role>, ITransientDependency
     {
-        public IPrincipalAccessor PrincipalAccessor { get; set; }
+        //public IPrincipalAccessor PrincipalAccessor { get; set; }
 
         public UserClaimsPrincipalFactory(
             UserManager userManager,
@@ -30,50 +30,52 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
 
         }
 
+        //  datdd
+        public override async Task<ClaimsPrincipal> CreateAsync(User user)
+        {
+            var claim = await base.CreateAsync(user);
+
+            //claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", user.OrganizationUnitId.HasValue ? user.OrganizationUnitId.Value.ToString() : ""));
+
+            return claim;
+        }
+
         //  datdd: add datafilter to OrganizationUnit
         //We need to store OrganizationUnitId of logged in user in claims, 
         //so we can get it in order to filter IMayHaveOrganizationUnit entities in our DbContext.
         //In order to do that, override the CreateAsync method of UserClaimsPrincipalFactory class and 
         //add logged in users OrganizationUnitId to claims like below.l
 
-        public override async Task<ClaimsPrincipal> CreateAsync(User user)
-        {
-            try
-            {
-                var filter = UserManager.Users.Where(e => user.Id == e.Id).Include(u => u.OrganizationUnits).Where(o => o.IsDeleted == false);
-                var filterToObj = filter.ToList();
-                var strSql = filter.ToQueryString();
-                if (filter.Any()) user.OrganizationUnits = filterToObj[0].OrganizationUnits;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+        //public override async Task<ClaimsPrincipal> CreateAsync(User user)
+        //{
+        //    var claim = new ClaimsPrincipal();
+        //    try
+        //    {
+        //        var filter = UserManager.Users.Where(e => user.Id == e.Id).Include(u => u.OrganizationUnits).Where(o => o.IsDeleted == false);
+        //        var filterToObj = filter.ToList();
+        //        var strSql = filter.ToQueryString();
+        //        if (filter.Any()) user.OrganizationUnits = filterToObj[0].OrganizationUnits;
 
-            var claim = await base.CreateAsync(user);
+        //        claim = await base.CreateAsync(user);
 
-            try
-            {
-                if (user.OrganizationUnits != null)
-                {
-                    if (user.OrganizationUnits.Count > 0)
-                    {
-                        claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", string.IsNullOrEmpty(string.Join(",", user.OrganizationUnits.Select(e => e.OrganizationUnitId).ToArray())) ? user.OrganizationUnitId.Value.ToString() : ',' + string.Join(",", user.OrganizationUnits.Select(e => e.OrganizationUnitId).ToArray()) + ','));
-                    }
-                }
-                else
-                {
-                    claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", ""));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+        //        if (user.OrganizationUnits != null)
+        //        {
+        //            if (user.OrganizationUnits.Count > 0)
+        //            {
+        //                claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", string.IsNullOrEmpty(string.Join(",", user.OrganizationUnits.Select(e => e.OrganizationUnitId).ToArray())) ? user.OrganizationUnitId.Value.ToString() : ',' + string.Join(",", user.OrganizationUnits.Select(e => e.OrganizationUnitId).ToArray()) + ','));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            claim.Identities.First().AddClaim(new Claim("Application_OrganizationUnitId", ""));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
 
-            var currentClaims = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == "Application_OrganizationUnitId");
-
-            return claim;
-        }
+        //    return claim;
+        //}
     }
 }

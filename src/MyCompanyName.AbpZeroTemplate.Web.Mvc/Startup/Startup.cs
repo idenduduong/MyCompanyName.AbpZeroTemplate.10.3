@@ -372,7 +372,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Startup
             }
 
             //  datdd: use session
-            app.UseSession();
+            //app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

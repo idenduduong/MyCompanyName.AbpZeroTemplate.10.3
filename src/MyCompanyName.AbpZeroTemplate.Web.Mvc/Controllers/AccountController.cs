@@ -52,7 +52,6 @@ using MyCompanyName.AbpZeroTemplate.Web.Session;
 using MyCompanyName.AbpZeroTemplate.Web.Views.Shared.Components.TenantChange;
 using Abp.CachedUniqueKeys;
 using Abp.AspNetCore.Mvc.Caching;
-using Microsoft.AspNetCore.Http;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
 {
@@ -84,11 +83,6 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
         private readonly ISettingManager _settingManager;
         private readonly IUserDelegationManager _userDelegationManager;
         private readonly ICachedUniqueKeyPerUser _cachedUniqueKeyPerUser;
-
-        private readonly IUserLoginAppService _userLoginAppService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private ISession _session => _httpContextAccessor.HttpContext.Session;
-
         //private readonly IGetScriptsResponsePerUserConfiguration _getScriptsResponsePerUserConfiguration;
 
         public AccountController(
@@ -165,8 +159,6 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Controllers
             ViewBag.IsMultiTenancyEnabled = _multiTenancyConfig.IsEnabled;
             ViewBag.SingleSignIn = ss;
             ViewBag.UseCaptcha = UseCaptchaOnLogin();
-
-            
 
             return View(
                 new LoginFormViewModel

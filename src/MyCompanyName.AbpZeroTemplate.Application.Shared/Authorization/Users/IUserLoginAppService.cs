@@ -11,6 +11,6 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
 
         Task<PagedResultDto<UserLoginAttemptDto>> GetUserLoginAttempts(GetLoginAttemptsInput input);
 
-        string GetUserOrgs();
+        //string GetUserOrgs();
     }
 }

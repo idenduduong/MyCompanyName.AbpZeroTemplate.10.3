@@ -79,6 +79,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(BaseEntity)))
             {
                 Expression<Func<BaseEntity, bool>> mayHaveOUFilter = e => (UserOrgs.Contains("," + ((IMayHaveOrganizationUnit)e).OrganizationUnitId.ToString() + ",") == true) || IsOUFilterEnabled == false;
+                //Expression<Func<BaseEntity, bool>> mayHaveOUFilter = e => (BaseEntity)e.;
                 expression = mayHaveOUFilter;
             }
 

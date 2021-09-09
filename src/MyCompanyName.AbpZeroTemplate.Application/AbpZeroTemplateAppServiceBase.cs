@@ -19,7 +19,7 @@ namespace MyCompanyName.AbpZeroTemplate
     /// </summary>
     public abstract class AbpZeroTemplateAppServiceBase : ApplicationService
     {
-        public new IAbpSessionExtension AbpSession { get; set; }
+        //public new IAbpSessionExtension AbpSession { get; set; }
 
         public TenantManager TenantManager { get; set; }
 
@@ -33,23 +33,6 @@ namespace MyCompanyName.AbpZeroTemplate
         protected virtual async Task<User> GetCurrentUserAsync()
         {
             var user = await UserManager.FindByIdAsync(AbpSession.GetUserId().ToString());
-
-            var filter = UserManager.Users.Where(e => user.Id == e.Id).Include(u => u.OrganizationUnits);
-
-            var filterToObj = filter.ToList();
-
-            //var strSql = filter.ToQueryString();
-
-            //var orgs = (from f in filter select new UserOrganizationUnit {
-            //    OrganizationUnitId = f.OrganizationUnitId == null ? 0 : 1
-            //}).ToList();
-
-            if (filter.Any()) user.OrganizationUnits = filterToObj[0].OrganizationUnits;
-
-            //foreach (var org in orgs)
-            //{ 
-            //    user. = string.Join(",", orgs.Select(e => e.OrganizationUnitId).ToArray());
-            //}
 
             if (user == null)
             {
