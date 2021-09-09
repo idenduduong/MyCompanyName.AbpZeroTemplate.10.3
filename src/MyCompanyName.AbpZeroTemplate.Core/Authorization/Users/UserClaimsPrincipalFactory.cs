@@ -35,6 +35,7 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization.Users
         //so we can get it in order to filter IMayHaveOrganizationUnit entities in our DbContext.
         //In order to do that, override the CreateAsync method of UserClaimsPrincipalFactory class and 
         //add logged in users OrganizationUnitId to claims like below.l
+
         public override async Task<ClaimsPrincipal> CreateAsync(User user)
         {
             try

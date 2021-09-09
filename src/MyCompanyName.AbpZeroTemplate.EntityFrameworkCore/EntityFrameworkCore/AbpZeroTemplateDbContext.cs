@@ -85,65 +85,65 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             return expression;
         }
 
-        protected string? GetAllCurrentsUsersOuIdOrNull()
-        {
-            //var documents = _documentRepository.GetAllList();
-            //var documentTitles = string.Join(",", documents.Select(e => e.Title).ToArray());
-            string result = ",";
-            try
-            {
-                var userOuClaim = PrincipalAccessor.Principal?.Claims.Where(c => c.Type == "Application_OrganizationUnitId");
-                if (!userOuClaim.Any())
-                {
-                    return null;
-                }
-                foreach (var item in userOuClaim.ToList())
-                {
-                    try
-                    {
-                        result += item.Value.ToString() + ",";
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.ToString());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            return result;
-        }
+        //protected string? GetAllCurrentsUsersOuIdOrNull()
+        //{
+        //    //var documents = _documentRepository.GetAllList();
+        //    //var documentTitles = string.Join(",", documents.Select(e => e.Title).ToArray());
+        //    string result = ",";
+        //    try
+        //    {
+        //        var userOuClaim = PrincipalAccessor.Principal?.Claims.Where(c => c.Type == "Application_OrganizationUnitId");
+        //        if (!userOuClaim.Any())
+        //        {
+        //            return null;
+        //        }
+        //        foreach (var item in userOuClaim.ToList())
+        //        {
+        //            try
+        //            {
+        //                result += item.Value.ToString() + ",";
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine(ex.ToString());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //    return result;
+        //}
 
-        protected virtual List<long>? GetAllUsersOuIdOrNull()
-        {
-            List<long> result = new List<long>();
-            try
-            {
-                var userOuClaim = PrincipalAccessor.Principal?.Claims.Select(c => c.Type == "Application_OrganizationUnitId");
-                if (!userOuClaim.Any())
-                {
-                    return null;
-                }
-                foreach (var item in userOuClaim.ToList())
-                {
-                    try
-                    {
-                        result.Add(Convert.ToInt64(item));
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.ToString());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            return result;
-        }
+        //protected virtual List<long>? GetAllUsersOuIdOrNull()
+        //{
+        //    List<long> result = new List<long>();
+        //    try
+        //    {
+        //        var userOuClaim = PrincipalAccessor.Principal?.Claims.Select(c => c.Type == "Application_OrganizationUnitId");
+        //        if (!userOuClaim.Any())
+        //        {
+        //            return null;
+        //        }
+        //        foreach (var item in userOuClaim.ToList())
+        //        {
+        //            try
+        //            {
+        //                result.Add(Convert.ToInt64(item));
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Console.WriteLine(ex.ToString());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //    return result;
+        //}
 
         protected virtual string? GetUserOrgsOrNull()
         {
@@ -158,46 +158,45 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         protected virtual bool GetFilterStatus()
         {
-            var status = CurrentUnitOfWorkProvider?.Current?.Filters.Select(f => f.FilterName == "MayHaveOrganizationUnit"); // IsFilterEnabled("MayHaveOrganizationUnit");
-            if (true == true) return true;
+            var status = CurrentUnitOfWorkProvider?.Current?.IsFilterEnabled("MayHaveOrganizationUnit");
+            if (status == true) return true;
             else return false;
         }
 
-        protected virtual string? GETALLOUFUSER()
-        {
-            var userId = AbpSession.UserId;
+        //protected virtual string? GETALLOUFUSER()
+        //{
+        //    var userId = AbpSession.UserId;
 
-            var currentAppOrg = AbpSession.ApplicationOrganizationUnits;
+        //    var currentAppOrg = AbpSession.ApplicationOrganizationUnits;
 
-            if (currentAppOrg == null)
-            {
-                var filter = Users.Where(u => u.Id == userId).Include(u => u.OrganizationUnits);
+        //    if (currentAppOrg == null)
+        //    {
+        //        var filter = Users.Where(u => u.Id == userId).Include(u => u.OrganizationUnits);
 
-                var strSql = filter.ToQueryString();
+        //        var strSql = filter.ToQueryString();
 
-                var filterToObj = filter.ToList();
+        //        var filterToObj = filter.ToList();
 
-                //var strSql = filter.ToQueryString();
+        //        //var strSql = filter.ToQueryString();
 
-                var result = "";
+        //        var result = "";
 
-                if (filterToObj[0] != null)
-                {
-                    if (filterToObj[0].OrganizationUnits[0] != null)
-                        result = string.Join(",", filterToObj.Select(e => e.OrganizationUnits[0].OrganizationUnitId).ToArray());
-                }
-                //AbpSession.ApplicationOrganizationUnits = "," + result + ",";
+        //        if (filterToObj[0] != null)
+        //        {
+        //            if (filterToObj[0].OrganizationUnits[0] != null)
+        //                result = string.Join(",", filterToObj.Select(e => e.OrganizationUnits[0].OrganizationUnitId).ToArray());
+        //        }
+        //        //AbpSession.ApplicationOrganizationUnits = "," + result + ",";
 
-                return result;
-            }
-            return currentAppOrg;
-        }
+        //        return result;
+        //    }
+        //    return currentAppOrg;
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<OrganizationUnit>().HasQueryFilter("PersonFilter", (IMayHaveOrganizationUnit entity, int ouId) => entity.OrganizationUnitId == ouId, 0);
-
+            
             //  datdd: add datafilter to OrganizationUnit
             //modelBuilder.Filter("PersonFilter", (IHasPerson entity, int personId) => entity.PersonId == personId, 0);
 
@@ -213,6 +212,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                             ////b.HasQueryFilter(m => AllOUId.Contains(Convert.ToInt64(string.IsNullOrEmpty(m.OrganizationUnitId.ToString()) ? m.OrganizationUnitId : 0)));
                         });
             //////////////////////////////////////////////////////////////////////////////////////////
+            
             modelBuilder.Entity<Child>(c =>
                         {
                             c.HasIndex(e => new { e.TenantId });
@@ -337,14 +337,14 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
             modelBuilder.ConfigurePersistedGrantEntity();
         }
 
-        protected override bool ShouldFilterEntity<TEntity>(IMutableEntityType entityType)
-        {
-            if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
-            {
-                return true;
-            }
-            return base.ShouldFilterEntity<TEntity>(entityType);
-        }
+        //protected override bool ShouldFilterEntity<TEntity>(IMutableEntityType entityType)
+        //{
+        //    if (typeof(IMayHaveOrganizationUnit).IsAssignableFrom(typeof(TEntity)))
+        //    {
+        //        return true;
+        //    }
+        //    return base.ShouldFilterEntity<TEntity>(entityType);
+        //}
 
         //protected virtual string? AllCurrentsOUId => GetAllCurrentsUsersOuIdOrNull();
 
