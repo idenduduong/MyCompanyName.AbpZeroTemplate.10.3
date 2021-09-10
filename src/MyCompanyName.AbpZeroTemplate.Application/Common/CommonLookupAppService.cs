@@ -187,6 +187,15 @@ namespace MyCompanyName.AbpZeroTemplate.Common
                                                          select x).FirstOrDefaultAsync();
             if (organization == null)
             {
+                var strSql = (from x in _userOrganizationRepository.GetAll()
+                              where (long?)x.UserId == userId
+                              select x into ou
+                              from o in from x in _organizationRepository.GetAll()
+                                        where x.Id == ou.OrganizationUnitId
+                                        select x
+                              select o into x
+                              orderby x.ParentId descending
+                              select x).ToQueryString();
                 throw new UserFriendlyException("Tài khoản chưa được thiết lập đơn vị");
             }
             return base.ObjectMapper.Map<CustomOrganizationUnitDto>(organization);
