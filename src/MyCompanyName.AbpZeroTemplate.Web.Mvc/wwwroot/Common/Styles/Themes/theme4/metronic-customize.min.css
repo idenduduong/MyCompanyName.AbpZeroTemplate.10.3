@@ -1,0 +1,66 @@
+.cc-window {
+  background-color: #282a3a;
+}
+.cc-btn {
+  background-color: #5867dd;
+  border-color: #5867dd;
+  color: #ffffff;
+}
+.cc-message {
+  color: #fefefe;
+}
+.subheader {
+  background-color: #663259;
+  background-position: right bottom;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-image: url(/metronic/themes/theme4/images/bg/taieri.svg);
+}
+.unread-chat-message-count {
+  position: absolute;
+  top: 18px;
+}
+.unread-notification-count {
+  position: absolute;
+  top: 19px;
+  left: 22px;
+}
+.searchMenuContainerSelect2 {
+  width: 150px !important;
+}
+@media (max-width: 991px) {
+  .searchMenuContainerSelect2 {
+    width: calc(100% - 50px) !important;
+  }
+  .searchMenuContainerSelect2 .select2-container {
+    width: 214px;
+  }
+  .searchMenuContainerSelect2 .select2-container * {
+    color: #5e6383 !important;
+  }
+  .searchMenuTop {
+    display: block !important;
+  }
+  .searchMenuBottom {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  .searchMenuTop {
+    display: none !important;
+  }
+  .searchMenuBottom {
+    display: block !important;
+  }
+}
+.searchMenuBottom .select2-container {
+  top: 20px;
+}
+.searchMenuTop {
+  margin-bottom: 1em !important;
+  margin-left: 25px !important;
+}
+#kt_header_menu_wrapper > .container,
+#kt_header_menu_wrapper .container-fluid {
+  height: 100%;
+}

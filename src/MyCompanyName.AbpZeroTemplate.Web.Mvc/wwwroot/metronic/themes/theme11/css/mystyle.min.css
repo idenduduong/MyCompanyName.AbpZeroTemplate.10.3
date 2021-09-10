@@ -1,0 +1,189 @@
+@media (min-width: 992px) {
+  html {
+    font-family: sans-serif !important;
+    line-height: 1.15 !important;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .header-menu .menu-nav {
+    display: -webkit-box !important;
+    -webkit-box-align: stretch !important;
+    align-items: stretch !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .header-menu .menu-nav > .menu-item {
+    display: flex !important;
+    -webkit-box-align: center !important;
+    align-items: center !important;
+    padding: 0px 0.5rem !important;
+  }
+  .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link {
+    background-color: #F3F6F9;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.42rem;
+    position: relative;
+    vertical-align: middle;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    outline: none !important;
+    text-decoration: none;
+  }
+  .header-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-text {
+    color: #3699FF;
+    font-weight: 500;
+    text-transform: initial;
+    width: auto;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    padding: 0;
+  }
+  .header-navs {
+    word-wrap: break-word;
+    border-radius: 0.42rem;
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  .content {
+    padding: 0px !important;
+  }
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12,
+  .col,
+  .col-auto,
+  .col-sm-1,
+  .col-sm-2,
+  .col-sm-3,
+  .col-sm-4,
+  .col-sm-5,
+  .col-sm-6,
+  .col-sm-7,
+  .col-sm-8,
+  .col-sm-9,
+  .col-sm-10,
+  .col-sm-11,
+  .col-sm-12,
+  .col-sm,
+  .col-sm-auto,
+  .col-md-1,
+  .col-md-2,
+  .col-md-3,
+  .col-md-4,
+  .col-md-5,
+  .col-md-6,
+  .col-md-7,
+  .col-md-8,
+  .col-md-9,
+  .col-md-10,
+  .col-md-11,
+  .col-md-12,
+  .col-md,
+  .col-md-auto,
+  .col-lg-1,
+  .col-lg-2,
+  .col-lg-3,
+  .col-lg-4,
+  .col-lg-5,
+  .col-lg-6,
+  .col-lg-7,
+  .col-lg-8,
+  .col-lg-9,
+  .col-lg-10,
+  .col-lg-11,
+  .col-lg-12,
+  .col-lg,
+  .col-lg-auto,
+  .col-xl-1,
+  .col-xl-2,
+  .col-xl-3,
+  .col-xl-4,
+  .col-xl-5,
+  .col-xl-6,
+  .col-xl-7,
+  .col-xl-8,
+  .col-xl-9,
+  .col-xl-10,
+  .col-xl-11,
+  .col-xl-12,
+  .col-xl,
+  .col-xl-auto,
+  .col-xxl-1,
+  .col-xxl-2,
+  .col-xxl-3,
+  .col-xxl-4,
+  .col-xxl-5,
+  .col-xxl-6,
+  .col-xxl-7,
+  .col-xxl-8,
+  .col-xxl-9,
+  .col-xxl-10,
+  .col-xxl-11,
+  .col-xxl-12,
+  .col-xxl,
+  .col-xxl-auto {
+    position: relative;
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 1px solid #EBEDF3;
+    border-radius: 0.42rem;
+    border: 1px solid #EBEDF3 !important;
+  }
+  .card.card-custom > .card-body {
+    padding: 1rem 1.25rem;
+  }
+  .subheader {
+    border-radius: 0.42rem;
+  }
+  .subheader-enabled:not(.subheader-fixed) .content {
+    border-radius: 0.42rem;
+  }
+  .header-menu .menu-nav > .menu-item:hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text,
+  .header-menu .menu-nav > .menu-item.menu-item-hover:not(.menu-item-here):not(.menu-item-active) > .menu-link .menu-text {
+    color: #3699FF;
+  }
+  .header-menu .menu-nav > .menu-item > .menu-link .menu-text {
+    color: #7E8299;
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+  .header-menu .menu-nav > .menu-item > .menu-link .menu-bullet {
+    width: auto;
+  }
+  .header-menu .menu-nav > .menu-item > .menu-link .menu-bullet-father {
+    width: 20px;
+  }
+}

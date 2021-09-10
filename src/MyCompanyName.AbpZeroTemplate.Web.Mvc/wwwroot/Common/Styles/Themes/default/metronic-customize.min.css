@@ -1,0 +1,57 @@
+.cc-window {
+  background-color: #282a3a;
+}
+.cc-btn {
+  background-color: #5867dd;
+  border-color: #5867dd;
+  color: #ffffff;
+}
+.cc-message {
+  color: #fefefe;
+}
+.unread-notification-count {
+  position: absolute;
+  top: 13px;
+  right: 3px;
+}
+.unread-chat-message-count {
+  position: absolute;
+  top: 13px;
+}
+.menuSearchBarInput {
+  width: 214px !important;
+}
+.aside-menu-dark .select2-selection {
+  background-color: #12121e !important;
+  border: 1px solid #2c2d44 !important;
+  color: #9899ac !important;
+}
+.aside-menu-dark .select2-selection:focus {
+  border-color: #7380fc !important;
+  color: #fff !important;
+}
+.aside-menu-dark .searchMenuSelect2 {
+  background-color: #12121e !important;
+  border: 1px solid #2c2d44 !important;
+  color: #9899ac !important;
+}
+.aside-menu-dark .searchMenuSelect2:focus {
+  border-color: #7380fc !important;
+  color: #fff !important;
+}
+.aside-minimize .searchMenuContainerSelect2 .select2-container {
+  width: 45px !important;
+}
+.aside-minimize .searchMenuContainerSelect2 .select2-selection__placeholder,
+.side-minimize .searchMenuContainerSelect2 .select2-selection__arrow {
+  display: none;
+}
+.aside-minimize .searchMenuContainerSelect2 span.select2-selection.select2-selection--single:before {
+  left: 15px;
+}
+.aside-minimize .searchMenuDropDownSelect2 .select2-dropdown {
+  width: 235px !important;
+}
+.searchMenuContainerSelect2 {
+  margin: 15px;
+}

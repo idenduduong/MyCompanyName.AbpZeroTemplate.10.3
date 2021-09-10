@@ -1,0 +1,15 @@
+#NotificationsTable {
+  color: #000;
+}
+#NotificationsTable a {
+  color: #000;
+}
+#NotificationsTable .notification-read {
+  color: #999;
+}
+#NotificationsTable .notification-read a {
+  color: #999;
+}
+#NotificationsTable td:nth-child(3) {
+  text-align: center;
+}

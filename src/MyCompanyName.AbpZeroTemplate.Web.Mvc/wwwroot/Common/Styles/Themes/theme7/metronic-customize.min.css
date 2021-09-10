@@ -1,0 +1,49 @@
+.cc-window {
+  background-color: #282a3a;
+}
+.cc-btn {
+  background-color: #5867dd;
+  border-color: #5867dd;
+  color: #ffffff;
+}
+.cc-message {
+  color: #fefefe;
+}
+.unread-chat-message-count {
+  position: absolute;
+  top: 18px;
+}
+.unread-notification-count {
+  position: absolute;
+  top: 19px;
+  right: 5px;
+}
+@media (max-width: 991px) {
+  .searchMenuTop {
+    display: block !important;
+  }
+  .searchMenuBottom {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  .searchMenuTop {
+    display: none !important;
+  }
+  .searchMenuBottom {
+    display: block !important;
+  }
+}
+.searchMenuContainerSelect2 {
+  margin: 0px !important;
+}
+.searchMenuBottom {
+  margin: 5px 0 0 0 !important;
+}
+.searchMenuBottom .select2-container {
+  max-width: 225px !important;
+  float: right;
+}
+.subscription-warning span {
+  color: white;
+}

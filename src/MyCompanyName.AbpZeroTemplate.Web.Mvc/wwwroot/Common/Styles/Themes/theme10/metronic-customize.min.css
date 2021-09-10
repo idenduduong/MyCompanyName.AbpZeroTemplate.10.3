@@ -1,0 +1,39 @@
+.cc-window {
+  background-color: #282a3a;
+}
+.cc-btn {
+  background-color: #5867dd;
+  border-color: #5867dd;
+  color: #ffffff;
+}
+.cc-message {
+  color: #fefefe;
+}
+.unread-chat-message-count {
+  position: absolute;
+  top: 0px;
+}
+.unread-notification-count {
+  position: absolute;
+  top: 0px;
+  left: 22px;
+}
+#kt_header .topbar-item {
+  margin-right: 0.75rem !important;
+}
+@media (max-width: 991px) {
+  .searchMenuTop {
+    display: block !important;
+  }
+  .searchMenuBottom {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  .searchMenuTop {
+    display: none !important;
+  }
+  .searchMenuBottom {
+    display: block !important;
+  }
+}

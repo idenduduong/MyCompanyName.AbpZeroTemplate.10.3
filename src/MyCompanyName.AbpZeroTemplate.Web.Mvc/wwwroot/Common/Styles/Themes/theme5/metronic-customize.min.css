@@ -1,0 +1,26 @@
+.cc-window {
+  background-color: #282a3a;
+}
+.cc-btn {
+  background-color: #5867dd;
+  border-color: #5867dd;
+  color: #ffffff;
+}
+.cc-message {
+  color: #fefefe;
+}
+.unread-chat-message-count {
+  position: absolute;
+  top: 18px;
+}
+.topbar .topbar-item {
+  margin-right: 1rem !important;
+}
+.searchMenuContainerSelect2 {
+  margin: 15px;
+}
+.unread-notification-count {
+  position: absolute;
+  top: 19px;
+  left: 18px;
+}
