@@ -71,10 +71,11 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
                                                         join o1 in _dM_TinhThanhRepository.GetAll()
                                                         
                                                         .WhereIf(!string.IsNullOrWhiteSpace(input.DM_TinhThanhTenTinhThanhFilter),
-                                                            (DM_TinhThanh f) => f.TenTinhThanh.ToLower().Equals(input.DM_TinhThanhTenTinhThanhFilter.ToLower().Trim()))
-                                                        
+                                                            //(DM_TinhThanh f) => f.TenTinhThanh.ToLower().Equals(input.DM_TinhThanhTenTinhThanhFilter.ToLower().Trim()))
+                                                            (DM_TinhThanh e) => e.TenTinhThanh.ToLower() == input.DM_TinhThanhTenTinhThanhFilter.ToLower().Trim())
+
                                                         on o.ID_TinhThanh equals o1.Id into j1
-                                                        from s1 in j1.DefaultIfEmpty()
+                                                        from s1 in j1 //.DefaultIfEmpty()
                                                         select new GetDM_QuanHuyenForView
                                                         {
                                                             DM_QuanHuyen = ObjectMapper.Map<DM_QuanHuyenDto>(o),

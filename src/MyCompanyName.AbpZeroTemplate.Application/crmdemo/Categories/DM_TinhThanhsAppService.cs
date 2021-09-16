@@ -14,6 +14,7 @@ using MyCompanyName.AbpZeroTemplate.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
@@ -62,10 +63,23 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
                     (DM_TinhThanh e) => e.GhiChu.ToLower() == input.GhiChuFilter.ToLower().Trim());
 
             IQueryable<GetDM_TinhThanhForView> query = (from o in filteredDM_TinhThanhs
-                                                        join o1 in _dM_QuocGiaRepository.GetAll() on o.ID_QuocGia equals o1.Id into j1
-                                                        from s1 in j1.DefaultIfEmpty()
-                                                        join o2 in _dM_VungMienRepository.GetAll() on o.ID_VungMien equals o2.Id into j2
-                                                        from s2 in j2.DefaultIfEmpty()
+                                                        join o1 in _dM_QuocGiaRepository.GetAll()
+                                                        
+                                                        //  search by filter: DM_QuocGiaTenNuocFilter
+                                                        .WhereIf(
+                                                            !string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter),
+                                                            (DM_QuocGia e) => e.TenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
+                                                        on o.ID_QuocGia equals o1.Id into j1
+                                                        from s1 in (!string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter)? j1 : j1.DefaultIfEmpty())
+
+                                                        //  search by filter: DM_VungMienTenVungFilter
+                                                        join o2 in _dM_VungMienRepository.GetAll()
+                                                        .WhereIf(
+                                                            !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
+                                                            (DM_VungMien e) => e.TenVung.ToLower() == input.DM_VungMienTenVungFilter.ToLower().Trim())
+                                                        on o.ID_VungMien equals o2.Id into j2
+                                                        from s2 in (!string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter) ? j2 : j2.DefaultIfEmpty())
+                                                        
                                                         select new GetDM_TinhThanhForView
                                                         {
                                                             MaTinhThanh = o.MaTinhThanh,
@@ -74,13 +88,13 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
                                                             DM_TinhThanh = ObjectMapper.Map<DM_TinhThanhDto>(o),
                                                             DM_QuocGiaTenNuoc = ((s1 == null) ? "" : s1.TenNuoc.ToString()),
                                                             DM_VungMienTenVung = ((s2 == null) ? "" : s2.TenVung.ToString())
-                                                        })
-                                                    .WhereIf(
-                                                        !string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter),
-                                                        (GetDM_TinhThanhForView e) => e.DM_QuocGiaTenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
-                                                    .WhereIf(
-                                                        !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
-                                                        (GetDM_TinhThanhForView e) => e.DM_VungMienTenVung.ToLower() == input.DM_VungMienTenVungFilter.ToLower().Trim());
+                                                        });
+                                                    //.WhereIf(
+                                                    //    !string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter),
+                                                    //    (GetDM_TinhThanhForView e) => e.DM_QuocGiaTenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
+                                                    //.WhereIf(
+                                                    //    !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
+                                                    //    (GetDM_TinhThanhForView e) => e.DM_VungMienTenVung.ToLower() == input.DM_VungMienTenVungFilter.ToLower().Trim());
 
             var strquery = query.ToQueryString();
 
