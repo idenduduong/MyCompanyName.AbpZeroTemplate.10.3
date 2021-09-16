@@ -1,14 +1,9 @@
-﻿using Abp.Authorization;
-using Abp.Authorization.Users;
-using Abp.IdentityServer4vNext;
+﻿using Abp.IdentityServer4vNext;
 using Abp.Organizations;
 using Abp.Runtime.Session;
 using Abp.Zero.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using MyCompanyName.AbpZeroTemplate.AppTasks;
-using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.Authorization.Delegation;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
@@ -34,7 +29,6 @@ using MyCompanyName.AbpZeroTemplate.Phones;
 using MyCompanyName.AbpZeroTemplate.Products;
 using MyCompanyName.AbpZeroTemplate.Storage;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 //using Volo.Abp.Data;
@@ -197,7 +191,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
             //  datdd: add datafilter to OrganizationUnit
             //modelBuilder.Filter("PersonFilter", (IHasPerson entity, int personId) => entity.PersonId == personId, 0);
 
@@ -213,7 +207,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
                             ////b.HasQueryFilter(m => AllOUId.Contains(Convert.ToInt64(string.IsNullOrEmpty(m.OrganizationUnitId.ToString()) ? m.OrganizationUnitId : 0)));
                         });
             //////////////////////////////////////////////////////////////////////////////////////////
-            
+
             modelBuilder.Entity<Child>(c =>
                         {
                             c.HasIndex(e => new { e.TenantId });
@@ -365,7 +359,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         /* Define an IDbSet for each entity of the application */
 
         //public virtual DbSet<CustomUserOrganizationUnit> CustomUserOrganizationUnit { get; set; }
-        
+
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
 
         public virtual DbSet<ChangeStatusFlow> ChangeStatusFlows { get; set; }

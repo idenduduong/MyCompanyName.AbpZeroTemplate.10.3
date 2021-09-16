@@ -44,10 +44,15 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
             theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_SearchFull, L("SearchFullTheKhachHang"));
             theKhachHangs.CreateChildPermission(AppPermissions.Pages_TheKhachHangs_LoadFull, L("LoadFullTheKhachHang"));
 
-            var dm_TinhThanhs = pages.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs, L("TinhThanhs"));
-            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Create, L("CreateTheKhachHang"));
-            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Edit, L("EditTheKhachHang"));
-            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Delete, L("DeleteTheKhachHang"));
+            var dm_TinhThanhs = pages.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs, L("TinhThanh"));
+            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Create, L("CreateTinhThanh"));
+            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Edit, L("EditTinhThanh"));
+            dm_TinhThanhs.CreateChildPermission(AppPermissions.Pages_Administration_DM_TinhThanhs_Delete, L("DeleteTinhThanh"));
+
+            var dm_DM_QuanHuyens = pages.CreateChildPermission(AppPermissions.Pages_Administration_DM_QuanHuyens, L("QuanHuyen"));
+            dm_DM_QuanHuyens.CreateChildPermission(AppPermissions.Pages_Administration_DM_QuanHuyens_Create, L("CreateQuanHuyen"));
+            dm_DM_QuanHuyens.CreateChildPermission(AppPermissions.Pages_Administration_DM_QuanHuyens_Edit, L("EditQuanHuyen"));
+            dm_DM_QuanHuyens.CreateChildPermission(AppPermissions.Pages_Administration_DM_QuanHuyens_Delete, L("DeleteQuanHuyen"));
 
             var baseEntities = pages.CreateChildPermission(AppPermissions.Pages_BaseEntities, L("BaseEntities"));
             baseEntities.CreateChildPermission(AppPermissions.Pages_BaseEntities_Create, L("CreateNewBaseEntity"));

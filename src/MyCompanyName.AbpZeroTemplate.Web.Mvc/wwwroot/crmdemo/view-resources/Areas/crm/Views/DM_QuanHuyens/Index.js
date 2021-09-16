@@ -10,19 +10,19 @@
         });
 
         var _permissions = {
-            create: abp.auth.hasPermission('Pages.Categories.Locations.DM_QuanHuyens.Create'),
-            edit: abp.auth.hasPermission('Pages.Categories.Locations.DM_QuanHuyens.Edit'),
-            'delete': abp.auth.hasPermission('Pages.Categories.Locations.DM_QuanHuyens.Delete')
+            create: abp.auth.hasPermission('Pages.Administration.DM_QuanHuyens.Create'),
+            edit: abp.auth.hasPermission('Pages.Administration.DM_QuanHuyens.Edit'),
+            'delete': abp.auth.hasPermission('Pages.Administration.DM_QuanHuyens.Delete')
         };
 
         var _createOrEditModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'crm/DM_QuanHuyens/CreateOrEditModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/crm/Views/DM_QuanHuyens/_CreateOrEditModal.js',
+            viewUrl: abp.appPath + 'qlnv/DM_QuanHuyens/CreateOrEditModal',
+            scriptUrl: abp.appPath + 'crmdemo/view-resources/Areas/crm/Views/DM_QuanHuyens/_CreateOrEditModal.js',
             modalClass: 'CreateOrEditDM_QuanHuyenModal'
         });
 
 		 var _viewDM_QuanHuyenModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'crm/DM_QuanHuyens/ViewdM_QuanHuyenModal',
+             viewUrl: abp.appPath + 'qlnv/DM_QuanHuyens/ViewdM_QuanHuyenModal',
             modalClass: 'ViewDM_QuanHuyenModal'
         });
 
@@ -80,53 +80,51 @@
                         }]
                     }
                 },
-					{
-						targets: 1,
-						 data: "dM_QuanHuyen.maQuanHuyen"   
-					},
-					{
-						targets: 2,
-						 data: "dM_QuanHuyen.tenQuanHuyen"   
-					},
-					{
-						targets: 3,
-						 data: "dM_QuanHuyen.ghiChu"   
+				{
+					targets: 1,
+						data: "dM_QuanHuyen.maQuanHuyen"   
+				},
+				{
+					targets: 2,
+						data: "dM_QuanHuyen.tenQuanHuyen"   
+				},
+				{
+					targets: 3,
+						data: "dM_QuanHuyen.ghiChu"   
                 }
-                ,
-					//{
-					//	targets: 4,
-					//	 data: "dM_QuanHuyen.userTao"   
-					//},
-					//{
-					//	targets: 5,
-					//	 data: "dM_QuanHuyen.ngayTao" ,
-					//render: function (ngayTao) {
-					//	if (ngayTao) {
-					//		return moment(ngayTao).format('L');
-					//	}
-					//	return "";
-					//}
+                //,
+				//{
+				//	targets: 4,
+				//	 data: "dM_QuanHuyen.userTao"   
+				//},
+				//{
+				//	targets: 5,
+				//	 data: "dM_QuanHuyen.ngayTao" ,
+				//render: function (ngayTao) {
+				//	if (ngayTao) {
+				//		return moment(ngayTao).format('L');
+				//	}
+				//	return "";
+				//}
 			  
-					//},
-					//{
-					//	targets: 6,
-					//	 data: "dM_QuanHuyen.userSuaCuoi"   
-					//},
-					//{
-					//	targets: 7,
-					//	 data: "dM_QuanHuyen.ngaySuaCuoi" ,
-					//render: function (ngaySuaCuoi) {
-					//	if (ngaySuaCuoi) {
-					//		return moment(ngaySuaCuoi).format('L');
-					//	}
-					//	return "";
-					//}
-			  
-					//},
-					{
-						targets: 4,
-						 data: "dM_TinhThanhTenTinhThanh" 
-					}
+				//},
+				//{
+				//	targets: 6,
+				//	 data: "dM_QuanHuyen.userSuaCuoi"   
+				//},
+				//{
+				//	targets: 7,
+				//	 data: "dM_QuanHuyen.ngaySuaCuoi" ,
+				//render: function (ngaySuaCuoi) {
+				//	if (ngaySuaCuoi) {
+				//		return moment(ngaySuaCuoi).format('L');
+				//	}
+				//	return "";
+				//}
+				,{
+					targets: 4,
+						data: "dM_TinhThanhTenTinhThanh" 
+				}
             ]
         });
 

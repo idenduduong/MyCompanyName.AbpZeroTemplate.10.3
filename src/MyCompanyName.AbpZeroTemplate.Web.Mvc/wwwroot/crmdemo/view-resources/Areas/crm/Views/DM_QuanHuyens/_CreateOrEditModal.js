@@ -7,8 +7,8 @@
         var _$dM_QuanHuyenInformationForm = null;
 
 		        var _dM_TinhThanhLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'crm/DM_QuanHuyens/DM_TinhThanhLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/crm/Views/DM_QuanHuyens/_DM_TinhThanhLookupTableModal.js',
+            viewUrl: abp.appPath + 'qlnv/DM_QuanHuyens/DM_TinhThanhLookupTableModal',
+            scriptUrl: abp.appPath + 'crmdemo/view-resources/Areas/crm/Views/DM_QuanHuyens/_DM_TinhThanhLookupTableModal.js',
             modalClass: 'DM_TinhThanhLookupTableModal'
         });
 

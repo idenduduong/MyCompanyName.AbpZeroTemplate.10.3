@@ -1,0 +1,71 @@
+﻿@using System.Globalization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.DM_QuanHuyens
+@model CreateOrEditDM_QuanHuyenModalViewModel
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Thêm / Sửa")))
+
+@*<div class="modal-body">
+        <form name="OrganizationUnitForm" role="form" novalidate class="form-validation">
+            <input type="hidden" name="ParentId" value="@Model.ParentId" />
+            <div class="form-group">
+                <label for="DisplayName">@L("Name")</label>
+                <input id="DisplayName" class="form-control" type="text" name="DisplayName" required maxlength="@OrganizationUnit.MaxDisplayNameLength">
+            </div>
+        </form>
+    </div>*@
+
+<div class="modal-header">
+    <h5 class="modal-title">
+        <span>Cập nhật thông tin quận/huyện</span>
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+</div>
+
+<div class="modal-body">
+    <div id="DM_QuanHuyenInformationsTab">
+        <form name="DM_QuanHuyenInformationsForm" role="form" novalidate class="form-validation">
+
+            <input type="hidden" name="id" value="@Model.DM_QuanHuyen.Id" />
+
+
+            <div class="form-group m-form__group">
+                <label for="DM_TinhThanhTenTinhThanh">Danh m&#x1EE5;c t&#x1EC9;nh th&#xE0;nh</label>
+                <div class="input-group">
+                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="dM_TinhThanhTenTinhThanh" value="@Model.DM_TinhThanhTenTinhThanh" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenDM_TinhThanhLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearDM_TinhThanhTenTinhThanhButton"><i class="la la-eraser"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <input class="form-control" value="@Model.DM_QuanHuyen.ID_TinhThanh" type="text" name="iD_TinhThanh" hidden />
+
+            <div class="form-group">
+                <label for="DM_QuanHuyen_MaQuanHuyen">M&#xE3; qu&#x1EAD;n huy&#x1EC7;n</label>
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.DM_QuanHuyen.MaQuanHuyen" type="text" name="maQuanHuyen" />
+            </div>
+
+            <div class="form-group">
+                <label for="DM_QuanHuyen_TenQuanHuyen">T&#xEA;n qu&#x1EAD;n/huy&#x1EC7;n</label>
+                <input class="form-control" id="DM_QuanHuyen_TenQuanHuyen" value="@Model.DM_QuanHuyen.TenQuanHuyen" type="text" name="tenQuanHuyen" required />
+            </div>
+
+            <div class="form-group">
+                <label for="DM_QuanHuyen_GhiChu">Ghi ch&#xFA;</label>
+                <input class="form-control" id="DM_QuanHuyen_GhiChu" value="@Model.DM_QuanHuyen.GhiChu" type="text" name="ghiChu" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@*<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">H&#x1EE7;y</button>
+    <button type="button" class="btn btn-primary save-button"><i class="fa fa-save"></i> <span>L&#x1B0;u</span></button>
+</div>*@
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

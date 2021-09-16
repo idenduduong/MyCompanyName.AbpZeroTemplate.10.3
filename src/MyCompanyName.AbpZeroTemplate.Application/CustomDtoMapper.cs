@@ -285,8 +285,9 @@ namespace MyCompanyName.AbpZeroTemplate
 			//configuration.CreateMap<DM_TienTe, DM_TienTeDto>();
 			//configuration.CreateMap<CreateOrEditDM_ThueSuatDto, DM_ThueSuat>();
 			//configuration.CreateMap<DM_ThueSuat, DM_ThueSuatDto>();
-			//configuration.CreateMap<CreateOrEditDM_QuanHuyenDto, DM_QuanHuyen>();
-			//configuration.CreateMap<DM_QuanHuyen, DM_QuanHuyenDto>();
+			configuration.CreateMap<CreateOrEditDM_QuanHuyenDto, DM_QuanHuyen>();
+			configuration.CreateMap<DM_QuanHuyen, DM_QuanHuyenDto>();
+			configuration.CreateMap<DM_QuanHuyen, CreateOrEditDM_QuanHuyenDto>();
 			//configuration.CreateMap<CreateOrEditDM_PhanLoaiHangHoaDichVuDto, DM_PhanLoaiHangHoaDichVu>();
 			//configuration.CreateMap<DM_PhanLoaiHangHoaDichVu, DM_PhanLoaiHangHoaDichVuDto>();
 			//configuration.CreateMap<CreateOrEditDM_NhomTheDto, DM_NhomThe>();
