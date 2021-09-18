@@ -69,9 +69,10 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
             IQueryable<GetDM_QuanHuyenForView> query = (from o in filteredDM_QuanHuyens
                                                         join o1 in _dM_TinhThanhRepository.GetAll()
-                                                        
-                                                        .WhereIf(!string.IsNullOrWhiteSpace(input.DM_TinhThanhTenTinhThanhFilter),
-                                                            //(DM_TinhThanh f) => f.TenTinhThanh.ToLower().Equals(input.DM_TinhThanhTenTinhThanhFilter.ToLower().Trim()))
+
+                                                        //  search by filter: DM_TinhThanhTenTinhThanhFilter
+                                                        .WhereIf(
+                                                            !string.IsNullOrWhiteSpace(input.DM_TinhThanhTenTinhThanhFilter),
                                                             (DM_TinhThanh e) => e.TenTinhThanh.ToLower() == input.DM_TinhThanhTenTinhThanhFilter.ToLower().Trim())
 
                                                         on o.ID_TinhThanh equals o1.Id into j1

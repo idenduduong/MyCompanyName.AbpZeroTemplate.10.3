@@ -105,12 +105,12 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
             if (input.Sorting == null)
             {
-                list = query.OrderByDescending(q => q.MaTinhThanh).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                list = query.OrderByDescending(q => q.DM_TinhThanh.NgayTao).PageBy(input.SkipCount, input.MaxResultCount).ToList();
                 //list = query.PageBy(10, 10).ToList();
             }
             else
             {
-                list = query.OrderBy(q => q.NgayTao).PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                list = query.OrderBy(input.Sorting).PageBy(input.SkipCount, input.MaxResultCount).ToList();
             }
 
             if (query.Any())

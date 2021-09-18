@@ -9,18 +9,22 @@
 @model MyCompanyName.AbpZeroTemplate.Web.Models.Account.LoginFormViewModel
 @inject SignInManager SignInManager
 
+@{
+    ViewBag.DisableTenantChange = true;
+}
+
 @section Scripts
 {
     @if (ViewBag.UseCaptcha)
     {
-        <recaptcha-script-v3/>
+        <recaptcha-script-v3 />
         <recaptcha-script-v3-js action="login" execute="false" />
     }
     <script abp-src="/view-resources/Views/Account/Login.js" asp-append-version="true"></script>
 }
 
 @section Styles{
-    <link href="/metronic/common/css/login-1@(CultureHelper.IsRtl ? ".rtl" : "").css" rel="stylesheet"/>
+    <link href="/metronic/common/css/login-1@(CultureHelper.IsRtl ? ".rtl" : "").css" rel="stylesheet" />
 }
 
 @if (!Model.SuccessMessage.IsNullOrEmpty())
@@ -40,12 +44,12 @@
     </div>
     <!--begin::Form-->
     <form class="login-form form" asp-action="Login" method="post">
-        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl"/>
-        <input type="hidden" name="returnUrlHash"/>
-        <input type="hidden" name="ss" value="@ViewBag.SingleSignIn"/>
+        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+        <input type="hidden" name="returnUrlHash" />
+        <input type="hidden" name="ss" value="@ViewBag.SingleSignIn" />
         @if (ViewBag.UseCaptcha)
         {
-            <input type="hidden" name="@RecaptchaValidator.RecaptchaResponseKey" id="recaptchaResponse"/>
+            <input type="hidden" name="@RecaptchaValidator.RecaptchaResponseKey" id="recaptchaResponse" />
         }
 
         <div class="form-group">
@@ -75,7 +79,6 @@
     </form>
 
     <!--end::Form-->
-
     <!--begin::Options-->
     @{
         var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync())
@@ -101,9 +104,9 @@
         <!--end::Divider-->
         <div class="pb-lg-0 pb-5 external-logins">
             <form asp-action="ExternalLogin" method="post">
-                <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl"/>
-                <input type="hidden" name="provider" value=""/>
-                <input type="hidden" name="ss" value="@ViewBag.SingleSignIn"/>
+                <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                <input type="hidden" name="provider" value="" />
+                <input type="hidden" name="ss" value="@ViewBag.SingleSignIn" />
 
                 @foreach (var p in loginProviders)
                 {

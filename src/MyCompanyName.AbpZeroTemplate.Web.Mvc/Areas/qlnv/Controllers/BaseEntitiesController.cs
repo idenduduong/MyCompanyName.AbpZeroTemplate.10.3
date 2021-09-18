@@ -62,11 +62,11 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                 //{
                 CurrentUnitOfWork.DisableFilter("MayHaveOrganizationUnit");
                 IsOUFilterEnabled = _unitOfWorkManager.Current.IsFilterEnabled("MayHaveOrganizationUnit");
-                    var model = new BaseEntitiesViewModel
-                    {
-                        FilterText = string.Empty
-                    };
-                    return View(model);
+                var model = new BaseEntitiesViewModel
+                {
+                    FilterText = string.Empty
+                };
+                return View(model);
                 //}
             }
         }

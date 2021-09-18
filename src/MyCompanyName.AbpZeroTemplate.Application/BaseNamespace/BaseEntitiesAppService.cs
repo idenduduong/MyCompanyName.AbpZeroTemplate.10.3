@@ -34,13 +34,14 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
 
         public async Task<PagedResultDto<GetBaseEntityForViewDto>> GetAll(GetAllBaseEntitiesInput input)
         {
-            var sqlIgnoreQueryFilters = _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters().ToQueryString();
+            var sqlIgnoreQueryFilters = _baseEntityRepository.GetAll().Where(e => !e.IsDeleted).Include(e => e.OrganizationUnitFk).IgnoreQueryFilters().ToQueryString();
 
             var sqlQueryFilters = _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk).ToQueryString();
 
             var baseEntityRepository = IsGranted("Filter.OrganizationUnit") ? _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk) : _baseEntityRepository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters();
 
             var filteredBaseEntities = baseEntityRepository
+                    .Where(e => !e.IsDeleted)
                     .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.BaseProp1.Contains(input.Filter))
                     .WhereIf(!string.IsNullOrWhiteSpace(input.BaseProp1Filter), e => e.BaseProp1 == input.BaseProp1Filter)
                     .WhereIf(!string.IsNullOrWhiteSpace(input.OrganizationUnitDisplayNameFilter), e => e.OrganizationUnitFk != null && e.OrganizationUnitFk.DisplayName == input.OrganizationUnitDisplayNameFilter);
@@ -90,7 +91,9 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
 
         public async Task<GetBaseEntityForViewDto> GetBaseEntityForView(int id)
         {
+            //  datdd: error for ol
             var baseEntity = await _baseEntityRepository.GetAsync(id);
+            //var baseEntity = _baseEntityRepository.FirstOrDefaultAsync(id);
 
             var output = new GetBaseEntityForViewDto { BaseEntity = ObjectMapper.Map<BaseEntityDto>(baseEntity) };
 
