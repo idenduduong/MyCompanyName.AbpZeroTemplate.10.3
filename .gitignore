@@ -118,7 +118,7 @@ src/.vs/config/applicationhost.config
 #src/MyCompanyName.AbpZeroTemplate.Web.Host/wwwroot/Temp/Downloads
 #src/MyCompanyName.AbpZeroTemplate.Web.Mvc/wwwroot/Temp/Downloads
 #src/MyCompanyName.AbpZeroTemplate.Web.Mvc/Properties/PublishProfiles
-src/MyCompanyName.AbpZeroTemplate.Web.Mvc/node_modules
+#src/MyCompanyName.AbpZeroTemplate.Web.Mvc/node_modules
 #src/MyCompanyName.AbpZeroTemplate.Web.Mvc/wwwroot/lib
 #src/MyCompanyName.AbpZeroTemplate.Web.Mvc/wwwroot/dist
 #src/MyCompanyName.AbpZeroTemplate.Web.Mvc/wwwroot/view-resources/Views/_Bundles
@@ -134,4 +134,4 @@ src/MyCompanyName.AbpZeroTemplate.Web.Mvc/node_modules
 #src/MyCompanyName.AbpZeroTemplate.Web.Public/wwwroot/view-resources/Views/_Bundles
 #src/MyCompanyName.AbpZeroTemplate.Web.Public/wwwroot/view-resources/**/*.min.*
 #src/MyCompanyName.AbpZeroTemplate.Web.Public/wwwroot/Common/**/*.min.*
-src/MyCompanyName.AbpZeroTemplate.Web.Public/node_modules
+#src/MyCompanyName.AbpZeroTemplate.Web.Public/node_modules
