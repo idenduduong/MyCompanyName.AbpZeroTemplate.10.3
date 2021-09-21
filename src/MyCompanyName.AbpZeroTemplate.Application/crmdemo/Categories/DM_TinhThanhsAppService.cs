@@ -90,12 +90,6 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
                                                             DM_QuocGiaTenNuoc = ((s1 == null) ? "" : s1.TenNuoc.ToString()),
                                                             DM_VungMienTenVung = ((s2 == null) ? "" : s2.TenVung.ToString())
                                                         });
-            //.WhereIf(
-            //    !string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter),
-            //    (GetDM_TinhThanhForView e) => e.DM_QuocGiaTenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
-            //.WhereIf(
-            //    !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
-            //    (GetDM_TinhThanhForView e) => e.DM_VungMienTenVung.ToLower() == input.DM_VungMienTenVungFilter.ToLower().Trim());
 
             var strquery = query.ToQueryString();
 
@@ -104,99 +98,77 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
             var result = new PagedResultDto<GetDM_TinhThanhForView>();
 
-            //if (input.Sorting !=null && input.Sorting.Contains("dM_QuocGiaTenNuoc"))
-            //{
-            //    input.Sorting = input.Sorting.Replace("dM_QuocGiaTenNuoc", "TenNuoc");
-            //}
-            //if (input.Sorting != null && input.Sorting.Contains("dM_VungMienTenVung"))
-            //{
-            //     input.Sorting = input.Sorting.Replace("dM_VungMienTenVung", "TenVung");
-            //     //input.Sorting = input.Sorting.Replace("dM_VungMienTenVung", "dM_VungMienTenVung");
-            //}
-
-            //list = query.PageBy(input.SkipCount, input.MaxResultCount).ToList();
-
             if (input.Sorting == null)
             {
-                //  .OrderByDescending(q => q.DM_TinhThanh.NgayTao)
                 list = query
                         .OrderBy(input.Sorting ?? "MaTinhThanh asc")
                         .PageBy(input.SkipCount, input.MaxResultCount).ToList();
             }
             else
             {
-                List<string> paramm = input.Sorting.Split(' ').ToList();
-                if (paramm.Count > 0)
-                {
-                    paramm[0] = "DM_VungMienTenVung";
-                    var dt = query.OrderByDat(paramm[0], true);
-                    list = query
-                       .OrderBy(input.Sorting ?? "TenVung asc")
-                       .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                } else
-                {
-                    list = query
-                       .OrderBy(input.Sorting ?? "TenVung asc")
-                       .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                }
-                // //  .OrderBy(input.Sorting)
-                //try
-                // {
-                //     //if (input.Sorting.Contains("TenVung"))
-                //     //{
-                //     //    var abc = query.ToList().OrderBy(_o => _o.DM_VungMienTenVung).ToList();
-                //     //    //list = query.OrderByDescending(_o => _o.DM_VungMienTenVung)
-                //     //    list = abc.AsQueryable()
-                //     //        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                //     //}  else
-                //     //{
-                //     //    list = query
-                //     //   //.OrderBy(input.Sorting ?? "MaTinhThanh asc")
-                //     //   .OrderBy(input.Sorting ?? "TenVung asc")
-                //     //   .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                //     //}
-                //     string str_sort = input.Sorting.ToString().Trim().ToLower();
-                //     switch (str_sort)
-                //     {
-                //         case "tenvung asc":
-                //             list = query.ToList().OrderBy(_o => _o.DM_VungMienTenVung).AsQueryable()
-                //                 .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                //             break;
-                //         case "tenvung desc":
-                //             list = query.ToList().OrderByDescending(_o => _o.DM_VungMienTenVung).AsQueryable()
-                //                 .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                //             break;
-                //         default:
-                //             list = query
-                //            .OrderBy(input.Sorting ?? "TenVung asc")
+                ///////////////////////////////////////////////////////////////////////
+                //List<string> paramm = input.Sorting.Split(' ').ToList();
+                //if (paramm.Count == 2 && (paramm[0].Contains("dM_QuocGiaTenNuoc") || paramm[0].Contains("dM_VungMienTenVung")))
+                //{
+                //    if (paramm[0].ToLower().Equals("desc"))
+                //    {
+                //        query = query.ToList().AsQueryable().CustomOrderBy(paramm[0], true);
+                //    }
+                //    else
+                //    {
+                //        query = query.ToList().AsQueryable().CustomOrderBy(paramm[0], false);
+                //    }
+                //    list = query
                 //            .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                //             break;
-                //     }
+                //} else
+                //{
+                //    list = query
+                //            .OrderBy(input.Sorting ?? "MaTinhThanh asc")
+                //            .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                //}
+                ///////////////////////////////////////////////////////////////////////
+                try
+                {
+                    switch (input.Sorting)
+                    {
+                        case "dM_VungMienTenVung asc":
+                            list = query.ToList().OrderBy(_o => _o.DM_VungMienTenVung).AsQueryable()
+                                .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+                        case "dM_VungMienTenVung desc":
+                            list = query.ToList().OrderByDescending(_o => _o.DM_VungMienTenVung).AsQueryable()
+                                .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+                        case "dM_QuocGiaTenNuoc asc":
+                            list = query.ToList().OrderBy(_o => _o.DM_QuocGiaTenNuoc).AsQueryable()
+                                .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+                        case "dM_QuocGiaTenNuoc desc":
+                            list = query.ToList().OrderByDescending(_o => _o.DM_QuocGiaTenNuoc).AsQueryable()
+                                .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
 
-
-                // }
-                // catch (Exception ex)
-                // {
-                //     string str = ex.StackTrace;
-                //     list = query
-                //       .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                // }
+                        default:
+                            list = query
+                               .OrderBy(input.Sorting ?? "MaTinhThanh asc")
+                               .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string str = ex.StackTrace;
+                    list = query
+                      .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                }
+                ///////////////////////////////////////////////////////////////////////
             }
-
             if (query.Any())
             {
                 result = new PagedResultDto<GetDM_TinhThanhForView>(count, list);
             }
-
             return result;
-            //OrderBy(input.Sorting ?? "dM_TinhThanh.id asc"
-            //.PageBy(input).ToListAsync());
-            //list = query.OrderBy(q => q.DM_TinhThanh.MaTinhThanh).PageBy(input.SkipCount, input.MaxResultCount).ToList();
-            //return new PagedResultDto<GetDM_TinhThanhForView>(count,list);
         }
-
-
-
 
         [AbpAuthorize(AppPermissions.Pages_Administration_DM_TinhThanhs_Edit)]
         public async Task<GetDM_TinhThanhForEditOutput> GetDM_TinhThanhForEdit(EntityDto<Guid> input)
@@ -321,8 +293,24 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 }
 public static class DatDD
 {
-    public static IQueryable<TEntity> OrderByDat<TEntity>(this IQueryable<TEntity> source, string orderByProperty,
-                      bool desc)
+    public static IQueryable<TEntity> CustomOrderBy<TEntity>(this IQueryable<TEntity> source, string orderByProperty, bool desc)
+    {
+        string command = desc ? "OrderByDescending" : "OrderBy";
+        var type = typeof(TEntity);
+
+        var property = type.GetProperty(orderByProperty);
+        //var property = type.GetProperty("dM_VungMienTenVung");
+        //var property = type.GetProperty("DM_VungMienTenVung");
+
+        var parameter = Expression.Parameter(type, "p");
+        var propertyAccess = Expression.MakeMemberAccess(parameter, property);
+        var orderByExpression = Expression.Lambda(propertyAccess, parameter);
+        var resultExpression = Expression.Call(typeof(Queryable), command, new Type[] { type, property.PropertyType },
+                                      source.Expression, Expression.Quote(orderByExpression));
+        return source.Provider.CreateQuery<TEntity>(resultExpression);
+    }
+
+    public static IQueryable<TEntity> OrderByDat<TEntity>(this IQueryable<TEntity> source, string orderByProperty, bool desc)
     {
         string command = desc ? "OrderByDescending" : "OrderBy";
         var type = typeof(TEntity);
