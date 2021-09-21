@@ -34,12 +34,12 @@
 				ajaxFunction: _dM_TinhThanhsService.getAll,
 				inputFilter: function () {
 					return {
-					filter: $('#DM_TinhThanhsTableFilter').val(),
-					maTinhThanhFilter: $('#MaTinhThanhFilterId').val(),
-					tenTinhThanhFilter: $('#TenTinhThanhFilterId').val(),
-					ghiChuFilter: $('#GhiChuFilterId').val(),
-					dM_QuocGiaTenNuocFilter: $('#DM_QuocGiaTenNuocFilterId').val(),
-					dM_VungMienTenVungFilter: $('#DM_VungMienTenVungFilterId').val()
+						filter: $('#DM_TinhThanhsTableFilter').val(),
+						maTinhThanhFilter: $('#MaTinhThanhFilterId').val(),
+						tenTinhThanhFilter: $('#TenTinhThanhFilterId').val(),
+						ghiChuFilter: $('#GhiChuFilterId').val(),
+						dM_QuocGiaTenNuocFilter: $('#DM_QuocGiaTenNuocFilterId').val(),
+						dM_VungMienTenVungFilter: $('#DM_VungMienTenVungFilterId').val()
 					};
 				}
 			},

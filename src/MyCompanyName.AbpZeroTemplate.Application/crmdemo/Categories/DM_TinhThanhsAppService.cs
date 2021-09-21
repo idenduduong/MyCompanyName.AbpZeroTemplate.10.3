@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
@@ -64,22 +65,22 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
             IQueryable<GetDM_TinhThanhForView> query = (from o in filteredDM_TinhThanhs
                                                         join o1 in _dM_QuocGiaRepository.GetAll()
-                                                        
+
                                                         //  search by filter: DM_QuocGiaTenNuocFilter
                                                         .WhereIf(
                                                             !string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter),
                                                             (DM_QuocGia e) => e.TenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
                                                         on o.ID_QuocGia equals o1.Id into j1
-                                                        from s1 in (!string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter)? j1 : j1.DefaultIfEmpty())
+                                                        from s1 in (!string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter) ? j1 : j1.DefaultIfEmpty())
 
-                                                        //  search by filter: DM_VungMienTenVungFilter
+                                                            //  search by filter: DM_VungMienTenVungFilter
                                                         join o2 in _dM_VungMienRepository.GetAll()
                                                         .WhereIf(
                                                             !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
                                                             (DM_VungMien e) => e.TenVung.ToLower() == input.DM_VungMienTenVungFilter.ToLower().Trim())
                                                         on o.ID_VungMien equals o2.Id into j2
                                                         from s2 in (!string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter) ? j2 : j2.DefaultIfEmpty())
-                                                        
+
                                                         select new GetDM_TinhThanhForView
                                                         {
                                                             MaTinhThanh = o.MaTinhThanh,
@@ -89,12 +90,12 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
                                                             DM_QuocGiaTenNuoc = ((s1 == null) ? "" : s1.TenNuoc.ToString()),
                                                             DM_VungMienTenVung = ((s2 == null) ? "" : s2.TenVung.ToString())
                                                         });
-                                                    //.WhereIf(
-                                                    //    !string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter),
-                                                    //    (GetDM_TinhThanhForView e) => e.DM_QuocGiaTenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
-                                                    //.WhereIf(
-                                                    //    !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
-                                                    //    (GetDM_TinhThanhForView e) => e.DM_VungMienTenVung.ToLower() == input.DM_VungMienTenVungFilter.ToLower().Trim());
+            //.WhereIf(
+            //    !string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter),
+            //    (GetDM_TinhThanhForView e) => e.DM_QuocGiaTenNuoc.ToLower() == input.DM_QuocGiaTenNuocFilter.ToLower().Trim())
+            //.WhereIf(
+            //    !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
+            //    (GetDM_TinhThanhForView e) => e.DM_VungMienTenVung.ToLower() == input.DM_VungMienTenVungFilter.ToLower().Trim());
 
             var strquery = query.ToQueryString();
 
@@ -103,15 +104,83 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
 
             var result = new PagedResultDto<GetDM_TinhThanhForView>();
 
+            //if (input.Sorting !=null && input.Sorting.Contains("dM_QuocGiaTenNuoc"))
+            //{
+            //    input.Sorting = input.Sorting.Replace("dM_QuocGiaTenNuoc", "TenNuoc");
+            //}
+            //if (input.Sorting != null && input.Sorting.Contains("dM_VungMienTenVung"))
+            //{
+            //     input.Sorting = input.Sorting.Replace("dM_VungMienTenVung", "TenVung");
+            //     //input.Sorting = input.Sorting.Replace("dM_VungMienTenVung", "dM_VungMienTenVung");
+            //}
+
+            //list = query.PageBy(input.SkipCount, input.MaxResultCount).ToList();
+
             if (input.Sorting == null)
             {
                 //  .OrderByDescending(q => q.DM_TinhThanh.NgayTao)
-                list = query.PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                list = query
+                        .OrderBy(input.Sorting ?? "MaTinhThanh asc")
+                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
             }
             else
             {
-                //  .OrderBy(input.Sorting)
-                list = query.PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                List<string> paramm = input.Sorting.Split(' ').ToList();
+                if (paramm.Count > 0)
+                {
+                    paramm[0] = "DM_VungMienTenVung";
+                    var dt = query.OrderByDat(paramm[0], true);
+                    list = query
+                       .OrderBy(input.Sorting ?? "TenVung asc")
+                       .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                } else
+                {
+                    list = query
+                       .OrderBy(input.Sorting ?? "TenVung asc")
+                       .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                }
+                // //  .OrderBy(input.Sorting)
+                //try
+                // {
+                //     //if (input.Sorting.Contains("TenVung"))
+                //     //{
+                //     //    var abc = query.ToList().OrderBy(_o => _o.DM_VungMienTenVung).ToList();
+                //     //    //list = query.OrderByDescending(_o => _o.DM_VungMienTenVung)
+                //     //    list = abc.AsQueryable()
+                //     //        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                //     //}  else
+                //     //{
+                //     //    list = query
+                //     //   //.OrderBy(input.Sorting ?? "MaTinhThanh asc")
+                //     //   .OrderBy(input.Sorting ?? "TenVung asc")
+                //     //   .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                //     //}
+                //     string str_sort = input.Sorting.ToString().Trim().ToLower();
+                //     switch (str_sort)
+                //     {
+                //         case "tenvung asc":
+                //             list = query.ToList().OrderBy(_o => _o.DM_VungMienTenVung).AsQueryable()
+                //                 .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                //             break;
+                //         case "tenvung desc":
+                //             list = query.ToList().OrderByDescending(_o => _o.DM_VungMienTenVung).AsQueryable()
+                //                 .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                //             break;
+                //         default:
+                //             list = query
+                //            .OrderBy(input.Sorting ?? "TenVung asc")
+                //            .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                //             break;
+                //     }
+
+
+                // }
+                // catch (Exception ex)
+                // {
+                //     string str = ex.StackTrace;
+                //     list = query
+                //       .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                // }
             }
 
             if (query.Any())
@@ -125,6 +194,9 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
             //list = query.OrderBy(q => q.DM_TinhThanh.MaTinhThanh).PageBy(input.SkipCount, input.MaxResultCount).ToList();
             //return new PagedResultDto<GetDM_TinhThanhForView>(count,list);
         }
+
+
+
 
         [AbpAuthorize(AppPermissions.Pages_Administration_DM_TinhThanhs_Edit)]
         public async Task<GetDM_TinhThanhForEditOutput> GetDM_TinhThanhForEdit(EntityDto<Guid> input)
@@ -246,4 +318,20 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
         }
     }
 
+}
+public static class DatDD
+{
+    public static IQueryable<TEntity> OrderByDat<TEntity>(this IQueryable<TEntity> source, string orderByProperty,
+                      bool desc)
+    {
+        string command = desc ? "OrderByDescending" : "OrderBy";
+        var type = typeof(TEntity);
+        var property = type.GetProperty(orderByProperty);
+        var parameter = Expression.Parameter(type, "p");
+        var propertyAccess = Expression.MakeMemberAccess(parameter, property);
+        var orderByExpression = Expression.Lambda(propertyAccess, parameter);
+        var resultExpression = Expression.Call(typeof(Queryable), command, new Type[] { type, property.PropertyType },
+                                      source.Expression, Expression.Quote(orderByExpression));
+        return source.Provider.CreateQuery<TEntity>(resultExpression);
+    }
 }

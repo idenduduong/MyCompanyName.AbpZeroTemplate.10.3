@@ -20,7 +20,10 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:443"
+      "sqlDebugging": false,
+      "nativeDebugging": false,
+      "applicationUrl": "http://localhost:443",
+      "jsWebView2Debugging": false
     },
     "Docker": {
       "commandName": "Docker",
