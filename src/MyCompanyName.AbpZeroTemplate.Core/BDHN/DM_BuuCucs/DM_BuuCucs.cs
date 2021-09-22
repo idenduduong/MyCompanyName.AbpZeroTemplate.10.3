@@ -9,8 +9,8 @@ using Abp.Organizations;
 namespace MyCompanyName.AbpZeroTemplate.BDHN
 {
 	[Audited]
-	[Table("BDHN_DM_BuuCucs")]
-	public class DM_BuuCucs : FullAuditedEntity<Guid>, IMayHaveTenant, IMayHaveOrganizationUnit
+	[Table("BDHN_BuuCucs")]
+	public class BuuCucs : FullAuditedEntity<Guid>, IMayHaveTenant, IMayHaveOrganizationUnit
 	{
 		[Required]
 		[MaxLength(6)]

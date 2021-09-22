@@ -2,7 +2,7 @@
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 {
-    public class DM_BuuCucDto : EntityDto
+    public class BuuCucDto : EntityDto
     {
         public string POSCode { get; set; }
 

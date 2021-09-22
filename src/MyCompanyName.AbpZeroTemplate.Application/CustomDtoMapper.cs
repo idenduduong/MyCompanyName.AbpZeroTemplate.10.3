@@ -390,7 +390,7 @@ namespace MyCompanyName.AbpZeroTemplate
 			configuration.CreateMap<PersonListDto, Person>().ReverseMap();
 
 			//configuration.CreateMap<CreateOrEditBaseEntityDto, DM_BuuCucs>().ReverseMap();
-			configuration.CreateMap<DM_BuuCucDto, DM_BuuCucs>().ReverseMap();
+			configuration.CreateMap<BuuCucDto, BuuCucs>().ReverseMap();
 
 			configuration.CreateMap<CreateOrEditBaseEntityDto, BaseEntity>().ReverseMap();
 			configuration.CreateMap<BaseEntityDto, BaseEntity>().ReverseMap();

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN
 {
-    public class DM_BuuCucsAppService : AbpZeroTemplateAppServiceBase, IDM_BuuCucsAppService
+    public class BuuCucsAppService : AbpZeroTemplateAppServiceBase, IDM_BuuCucsAppService
     {
-        private readonly IRepository<DM_BuuCucs, Guid> _dM_BuuCucRepository;
+        private readonly IRepository<BuuCucs, Guid> _dM_BuuCucRepository;
         //private readonly IBaseEntitiesExcelExporter _baseEntitiesExcelExporter;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
 
-        public DM_BuuCucsAppService(IRepository<DM_BuuCucs, Guid> dM_BuuCucRepository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
+        public BuuCucsAppService(IRepository<BuuCucs, Guid> dM_BuuCucRepository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
         {
             _dM_BuuCucRepository = dM_BuuCucRepository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
