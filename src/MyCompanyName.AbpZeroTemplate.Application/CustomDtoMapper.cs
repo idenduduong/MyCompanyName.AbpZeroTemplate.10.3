@@ -65,6 +65,8 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Sale;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Categories.Dtos;
 using MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Sale.Dtos;
+using MyCompanyName.AbpZeroTemplate.BDHN;
+using MyCompanyName.AbpZeroTemplate.BDHN.Dtos;
 
 namespace MyCompanyName.AbpZeroTemplate
 {
@@ -386,8 +388,13 @@ namespace MyCompanyName.AbpZeroTemplate
 			configuration.CreateMap<EditPersonInput, Person>().ReverseMap();
 			configuration.CreateMap<CreatePersonInput, Person>().ReverseMap();
 			configuration.CreateMap<PersonListDto, Person>().ReverseMap();
+
+			//configuration.CreateMap<CreateOrEditBaseEntityDto, DM_BuuCucs>().ReverseMap();
+			configuration.CreateMap<DM_BuuCucDto, DM_BuuCucs>().ReverseMap();
+
 			configuration.CreateMap<CreateOrEditBaseEntityDto, BaseEntity>().ReverseMap();
 			configuration.CreateMap<BaseEntityDto, BaseEntity>().ReverseMap();
+
 			configuration.CreateMap<CreateOrEditChildDto, Child>().ReverseMap();
 			configuration.CreateMap<ChildDto, Child>().ReverseMap();
 			configuration.CreateMap<CreateOrEditProductDto, Product>().ReverseMap();

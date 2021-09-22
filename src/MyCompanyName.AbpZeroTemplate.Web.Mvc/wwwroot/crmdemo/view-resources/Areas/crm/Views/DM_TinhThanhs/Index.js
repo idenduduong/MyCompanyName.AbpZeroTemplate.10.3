@@ -68,8 +68,6 @@
 							},
 							action: function (data) {
 								console.log(data)
-								debugger
-
 								_createOrEditModal.open({ id: data.record.dM_TinhThanh.id });
 							}
 						}, 

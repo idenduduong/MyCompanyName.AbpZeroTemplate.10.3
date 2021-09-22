@@ -8,6 +8,7 @@ using MyCompanyName.AbpZeroTemplate.Authorization.Delegation;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 using MyCompanyName.AbpZeroTemplate.BaseNamespace;
+using MyCompanyName.AbpZeroTemplate.BDHN;
 using MyCompanyName.AbpZeroTemplate.Chat;
 using MyCompanyName.AbpZeroTemplate.ChildNamespace1;
 using MyCompanyName.AbpZeroTemplate.crmdemo.Accounting;
@@ -353,6 +354,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
         protected virtual string? UserOrgs => GetUserOrgsOrNull();
 
         protected virtual bool IsOUFilterEnabled => GetFilterStatus();
+
+        public virtual DbSet<DM_BuuCucs> DM_BuuCucs { get; set; }
 
         public virtual DbSet<BaseEntity> BaseEntities { get; set; }
 
