@@ -64,6 +64,11 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
             filters.CreateChildPermission(AppPermissions.Disable_Filters_Tenant, L("FiltersTenant"));
             filters.CreateChildPermission(AppPermissions.Disable_Filters_OrganizationUnit, L("FiltersOrganizationUnit"));
 
+            var bucCucs = pages.CreateChildPermission(AppPermissions.Pages_BuuCucs, L("BuuCucs"));
+            bucCucs.CreateChildPermission(AppPermissions.Pages_BuuCucs_Create, L("CreateNewBuuCuc"));
+            bucCucs.CreateChildPermission(AppPermissions.Pages_BuuCucs_Edit, L("EditBuuCuc"));
+            bucCucs.CreateChildPermission(AppPermissions.Pages_BuuCucs_Delete, L("DeleteBuuCuc"));
+
             var childs = pages.CreateChildPermission(AppPermissions.Pages_Childs, L("Childs"));
             childs.CreateChildPermission(AppPermissions.Pages_Childs_Create, L("CreateNewChild"));
             childs.CreateChildPermission(AppPermissions.Pages_Childs_Edit, L("EditChild"));

@@ -42,7 +42,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             {
                 Id = id.Value
             })));
-            CreateOrEditDM_QuanHuyenModalViewModel viewModel = new CreateOrEditDM_QuanHuyenModalViewModel
+            CreateOrEditDM_QuanHuyenViewModel viewModel = new CreateOrEditDM_QuanHuyenViewModel
             {
                 DM_QuanHuyen = getDM_QuanHuyenForEditOutput.DM_QuanHuyen,
                 DM_TinhThanhTenTinhThanh = getDM_QuanHuyenForEditOutput.DM_TinhThanhTenTinhThanh

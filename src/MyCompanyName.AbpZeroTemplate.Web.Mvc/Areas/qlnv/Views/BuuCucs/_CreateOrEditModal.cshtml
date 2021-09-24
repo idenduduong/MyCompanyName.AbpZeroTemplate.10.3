@@ -1,0 +1,72 @@
+﻿@using System.Globalization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BuuCuc
+@model CreateOrEditBuuCucViewModel
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(("Thêm / Sửa")))
+
+@*
+    <div class="modal-body">
+        <form name="OrganizationUnitForm" role="form" novalidate class="form-validation">
+            <input type="hidden" name="ParentId" value="@Model.ParentId" />
+            <div class="form-group">
+                <label for="DisplayName">@L("Name")</label>
+                <input id="DisplayName" class="form-control" type="text" name="DisplayName" required maxlength="@OrganizationUnit.MaxDisplayNameLength">
+            </div>
+        </form>
+    </div>
+*@
+
+@*
+    <div class="modal-header">
+        <h5 class="modal-title">
+            <span>Cập nhật thông tin quận/huyện</span>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    </div>
+*@
+
+<div class="modal-body">
+    <div id="DM_QuanHuyenInformationsTab">
+        <form name="DM_QuanHuyenInformationsForm" role="form" novalidate class="form-validation">
+
+            <input type="hidden" name="id" value="@Model.BuuCuc.Id" />
+
+            <div class="form-group">
+                <label for="DM_QuanHuyen_MaQuanHuyen">Mã bưu cục</label>
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" id="pOSCode" value="@Model.BuuCuc.POSCode" type="text" name="pOSCode" readonly />
+                }
+                else 
+                {
+                    <input class="form-control" id="pOSCode" value="@Model.BuuCuc.POSCode" type="text" name="pOSCode" />
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="DM_QuanHuyen_MaQuanHuyen">Tên bưu cục</label>
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.BuuCuc.POSName" type="text" name="pOSName" />
+            </div>
+
+            <div class="form-group">
+                <label for="DM_QuanHuyen_MaQuanHuyen">Địa chỉ</label>
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.BuuCuc.Address" type="text" name="address" />
+            </div>
+
+            <div class="form-group">
+                <label for="DM_QuanHuyen_MaQuanHuyen">Điện thoại</label>
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.BuuCuc.Tel" type="text" name="tel" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@*<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">H&#x1EE7;y</button>
+    <button type="button" class="btn btn-primary save-button"><i class="fa fa-save"></i> <span>L&#x1B0;u</span></button>
+</div>*@
+
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

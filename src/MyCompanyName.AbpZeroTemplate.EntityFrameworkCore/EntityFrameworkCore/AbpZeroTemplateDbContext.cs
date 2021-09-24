@@ -355,7 +355,7 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         protected virtual bool IsOUFilterEnabled => GetFilterStatus();
 
-        public virtual DbSet<BuuCucs> DM_BuuCucs { get; set; }
+        public virtual DbSet<BuuCuc> BuuCucs { get; set; }
 
         public virtual DbSet<BaseEntity> BaseEntities { get; set; }
 

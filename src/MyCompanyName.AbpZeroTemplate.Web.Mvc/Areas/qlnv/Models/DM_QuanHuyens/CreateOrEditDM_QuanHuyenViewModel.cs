@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.DM_QuanHuyens
 {
-    public class CreateOrEditDM_QuanHuyenModalViewModel
+    public class CreateOrEditDM_QuanHuyenViewModel
     {
         public CreateOrEditDM_QuanHuyenDto DM_QuanHuyen { get; set; }
 

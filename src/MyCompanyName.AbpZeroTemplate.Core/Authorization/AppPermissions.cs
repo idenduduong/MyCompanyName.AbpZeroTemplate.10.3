@@ -31,6 +31,11 @@
         public const string Pages_BaseEntities_Edit = "Pages.BaseEntities.Edit";
         public const string Pages_BaseEntities_Delete = "Pages.BaseEntities.Delete";
 
+        public const string Pages_BuuCucs = "Pages.BuuCucs";
+        public const string Pages_BuuCucs_Create = "Pages.BuuCucs.Create";
+        public const string Pages_BuuCucs_Edit = "Pages.BuuCucs.Edit";
+        public const string Pages_BuuCucs_Delete = "Pages.BuuCucs.Delete";
+
         public const string Pages_Childs = "Pages.Childs";
         public const string Pages_Childs_Create = "Pages.Childs.Create";
         public const string Pages_Childs_Edit = "Pages.Childs.Edit";

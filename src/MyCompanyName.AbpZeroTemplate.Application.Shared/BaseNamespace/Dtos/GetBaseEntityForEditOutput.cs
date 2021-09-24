@@ -9,6 +9,5 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace.Dtos
         public CreateOrEditBaseEntityDto BaseEntity { get; set; }
 
         public string OrganizationUnitDisplayName { get; set; }
-
     }
 }

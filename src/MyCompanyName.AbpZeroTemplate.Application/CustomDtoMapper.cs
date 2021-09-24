@@ -389,16 +389,18 @@ namespace MyCompanyName.AbpZeroTemplate
 			configuration.CreateMap<CreatePersonInput, Person>().ReverseMap();
 			configuration.CreateMap<PersonListDto, Person>().ReverseMap();
 
-			//configuration.CreateMap<CreateOrEditBaseEntityDto, DM_BuuCucs>().ReverseMap();
-			configuration.CreateMap<BuuCucDto, BuuCucs>().ReverseMap();
+            configuration.CreateMap<CreateOrEditBuuCucDto, BuuCuc>().ReverseMap();
+            configuration.CreateMap<BuuCucDto, BuuCuc>().ReverseMap();
 
 			configuration.CreateMap<CreateOrEditBaseEntityDto, BaseEntity>().ReverseMap();
 			configuration.CreateMap<BaseEntityDto, BaseEntity>().ReverseMap();
 
 			configuration.CreateMap<CreateOrEditChildDto, Child>().ReverseMap();
 			configuration.CreateMap<ChildDto, Child>().ReverseMap();
+
 			configuration.CreateMap<CreateOrEditProductDto, Product>().ReverseMap();
 			configuration.CreateMap<ProductDto, Product>().ReverseMap();
+			
 			configuration.CreateMap<CreateOrEditDM_DoiTuongDto, DM_DoiTuong>().ReverseMap();
 			configuration.CreateMap<DM_DoiTuongDto, DM_DoiTuong>().ReverseMap();
 			//configuration.CreateMap<CreateOrEditDM_NhomDoiTuongsDto, MyCompanyName.AbpZeroTemplate.DM_NhomDoiTuongs.DM_NhomDoiTuongs>().ReverseMap();

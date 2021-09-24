@@ -1,19 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using MyCompanyName.AbpZeroTemplate.BDHN.BuuCucs.Dtos;
 using MyCompanyName.AbpZeroTemplate.BDHN.Dtos;
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN
 {
-    public interface IDM_BuuCucsAppService : IApplicationService
+    public interface IBuuCucsAppService : IApplicationService
     {
         Task<PagedResultDto<GetBuuCucForViewDto>> GetAll(GetAllBuuCucInput input);
 
-        //Task<GetBaseEntityForViewDto> GetBaseEntityForView(int id);
+        Task<GetBuuCucForViewDto> GetForView(Guid id);
 
-        //Task<GetBaseEntityForEditOutput> GetBaseEntityForEdit(EntityDto input);
+        Task<GetBuuCucForEditOutput> GetForEdit(EntityDto<Guid> input);
 
-        //Task CreateOrEdit(CreateOrEditBaseEntityDto input);
+        Task CreateOrEdit(CreateOrEditBuuCucDto input);
 
         //Task Delete(EntityDto input);
 

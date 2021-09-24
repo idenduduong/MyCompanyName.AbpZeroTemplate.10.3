@@ -10,6 +10,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
         public string POSName { get; set; }
 
+        public string Address { get; set; }
+
+        public string Tel { get; set; }
+
         public string OrganizationUnitDisplayNameFilter { get; set; }
 
     }

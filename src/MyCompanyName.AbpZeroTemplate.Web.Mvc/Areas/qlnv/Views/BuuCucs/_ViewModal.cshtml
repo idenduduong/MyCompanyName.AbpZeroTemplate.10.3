@@ -1,0 +1,72 @@
+﻿@using System.Globalization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BuuCuc
+@model BuuCucViewModel
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(("Chi tiết bưu cục")))
+
+@*
+<div class="modal-header">
+    <h5 class="modal-title">
+        <span></span>
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+</div>
+*@
+
+<div class="modal-body">
+    <div id="DM_QuanHuyenInformationsTab">
+
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Mã bưu cục :</h6>
+                <label> @Model.BuuCuc.POSCode </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Tên bưu cục :</h6>
+                <label> @Model.BuuCuc.POSName </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Địa chỉ :</h6>
+                <label> @Model.BuuCuc.Address </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Điện thoại :</h6>
+                <label> @Model.BuuCuc.Tel </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Nhập ngày :</h6>
+                <label> @Model.BuuCuc.CreationTime </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Cập nhật bởi :</h6>
+                <label> @Model.BuuCuc.LastModifierUserId </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>Cập nhật ngày :</h6>
+                <label> @Model.BuuCuc.LastModificationTime </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>T&#xEA;n t&#x1EC9;nh th&#xE0;nh :</h6>
+                <label> @Model.OrganizationUnitDisplayName </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+        </div>
+    </div>
+</div>
+
+@*
+<div class="modal-footer">
+    <button type="button" class="btn default close-button" data-dismiss="modal">Đóng</button>
+</div>
+*@
+
+@await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithClose.cshtml")

@@ -124,3 +124,49 @@ EDXhyYmQveP8DKrHVRL7+QGo/K+axcoNhvmX2KtF6OzfN6XjWRn686FFLXJ7l5N+rQVFGH3D7ksdpVjH
 dotnet.exe run -p ""C:\inetpub\wwwroot\Kentico13\DancingGoatCore"" --no-build --urls=http://localhost:58218
 
 Data Source=.;Initial Catalog=Kentico;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=Abc12#$;Connect Timeout=60;Encrypt=False;
+
+----------------
+
+INSERT INTO [dbo].[BDHN_BuuCucs]
+		([Id]
+		,[POSCode]
+		,[POSName]
+		,[Address]
+		,[AddressCode]
+		,[Tel]
+		,[Fax]
+		,[IP]
+		,[DatabaseServer]
+		,[DatabaseUsername]
+		,[DatabasePassword]
+		,[POSTypeCode]
+		,[ProvinceCode]
+		,[ServiceServer]
+		,[ServicePort]
+		,[POSLevelCode]
+		,[CommuneCode]
+		,[IsOffline]
+		,[UnitCode]
+		,[IsDeleted],CreationTime)
+SELECT	NEWID() AS Id,
+		[POSCode]
+		,[POSName]
+		,[Address]
+		,[AddressCode]
+		,[Tel]
+		,[Fax]
+		,[IP]
+		,[DatabaseServer]
+		,[DatabaseUsername]
+		,[DatabasePassword]
+		,[POSTypeCode]
+		,[ProvinceCode]
+		,[ServiceServer]
+		,[ServicePort]
+		,[POSLevelCode]
+		,[CommuneCode]
+		,[IsOffline]
+		,[UnitCode]
+		,[Status]
+		,GETDATE()
+FROM [dbo].[POS]

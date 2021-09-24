@@ -29,7 +29,6 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
             _baseEntityRepository = baseEntityRepository;
             _baseEntitiesExcelExporter = baseEntitiesExcelExporter;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
-
         }
 
         public async Task<PagedResultDto<GetBaseEntityForViewDto>> GetAll(GetAllBaseEntitiesInput input)
@@ -145,7 +144,6 @@ namespace MyCompanyName.AbpZeroTemplate.BaseNamespace
             }
 
             await _baseEntityRepository.InsertAsync(baseEntity);
-
         }
 
         [AbpAuthorize(AppPermissions.Pages_BaseEntities_Edit)]

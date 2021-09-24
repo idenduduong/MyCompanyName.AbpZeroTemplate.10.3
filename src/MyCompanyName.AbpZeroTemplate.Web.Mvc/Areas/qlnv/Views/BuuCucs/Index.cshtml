@@ -1,7 +1,7 @@
 ﻿@using MyCompanyName.AbpZeroTemplate.Authorization
 @using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
 @{
-    ViewBag.CurrentPageName = qlnvPageNames.Common.DM_QuanHuyens;
+    ViewBag.CurrentPageName = "Buu Cuc";//qlnvPageNames.Common.DM_QuanHuyens;
 }
 
 @section Styles
@@ -1199,14 +1199,14 @@
                     <div class="row align-items-center">
                         <div class="mr-auto col-sm-12 col-md-6">
                             <h3 class="m-subheader__title m-subheader__title--separator">
-                                <span>Danh m&#x1EE5;c t&#x1EC9;nh th&#xE0;nh</span>
+                                <span>Danh mục bưu cục</span>
                             </h3>
                             <span class="m-section__sub">
-                                Qu&#x1EA3;n l&#xFD; danh s&#xE1;ch t&#x1EC9;nh th&#xE0;nh
+                                Quản lý danh sách bưu cục
                             </span>
                         </div>
                         <div class="col-sm-12 col-md-6 text-right">
-                            <button id="CreateNewDM_QuanHuyenButton" class="btn btn-primary blue"><i class="la la-plus"></i> Th&#xEA;m m&#x1EDB;i t&#x1EC9;nh th&#xE0;nh</button>
+                            <button id="CreateNew" class="btn btn-primary blue"><i class="la la-plus"></i> Th&#xEA;m m&#x1EDB;i </button>
                         </div>
                     </div>
                 </div>
@@ -1218,9 +1218,9 @@
                                     <div class="col-xl-12">
                                         <div class="form-group m-form__group align-items-center">
                                             <div class="input-group">
-                                                <input type="text" id="DM_QuanHuyensTableFilter" class="form-control m-input" placeholder="T&#xEC;m ki&#x1EBF;m ..." value="">
+                                                <input type="text" id="EntitiesTableFilter" class="form-control m-input" placeholder="T&#xEC;m ki&#x1EBF;m ..." value="">
                                                 <span class="input-group-btn">
-                                                    <button id="GetDM_QuanHuyensButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                                    <button id="GetEntitiesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                                                 </span>
                                             </div>
                                         </div>
@@ -1234,30 +1234,29 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="MaQuanHuyenFilterId">Mã quận huyện</label>
-                                        <input type="text" class="form-control" name="maQuanHuyenFilter" id="MaQuanHuyenFilterId">
+                                        <label for="MaBuuCucFilterId">Mã Bưu Cục</label>
+                                        <input type="text" class="form-control" name="maBuuCucFilter" id="MaFilterId">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="TenQuanHuyenFilterId">Tên quận/huyện</label>
-                                        <input type="text" class="form-control" name="tenQuanHuyenFilter" id="TenQuanHuyenFilterId">
+                                        <label for="TenBuuCucFilterId">Tên Bưu Cục</label>
+                                        <input type="text" class="form-control" name="tenBuuCucFilter" id="TenFilterId">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="GhiChuFilterId">Ghi chú</label>
-                                        <input type="text" class="form-control" name="ghiChuFilter" id="GhiChuFilterId">
+                                            <label for="GhiChuFilterId">Địa chỉ</label>
+                                            <input type="text" class="form-control" name="ghiChuFilter" id="address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="DM_TinhThanhTenTinhThanhFilterId">Điện thoại</label>
+                                            <input type="text" class="form-control" name="dM_TinhThanhTenTinhThanhFilter" id="tel">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="DM_TinhThanhTenTinhThanhFilterId">(Danh mục tỉnh thành) Tên tỉnh thành</label>
-                                        <input type="text" class="form-control" name="dM_TinhThanhTenTinhThanhFilter" id="DM_TinhThanhTenTinhThanhFilterId">
-                                    </div>
-                                </div>
-
-                            </div>
                             <div class="row m--margin-bottom-10">
                                 <div class="col-xl-12">
                                     <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> Hi&#x1EC3;n th&#x1ECB; b&#x1ED9; l&#x1ECD;c n&#xE2;ng cao</span>
@@ -1265,14 +1264,14 @@
                                 </div>
                             </div>
                             <div class="row align-items-center">
-                                <table id="DM_QuanHuyensTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                <table id="EntitiesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th>Thao t&#xE1;c</th>
-                                            <th>M&#xE3; qu&#x1EAD;n huy&#x1EC7;n</th>
-                                            <th>T&#xEA;n qu&#x1EAD;n/huy&#x1EC7;n</th>
-                                            <th>Ghi ch&#xFA;</th>
-                                            <th>T&#xEA;n t&#x1EC9;nh th&#xE0;nh</th>
+                                            <th>Mã Bưu Cục</th>
+                                            <th>Tên Bưu Cục</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Điện thoại</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -1503,7 +1502,7 @@
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/app-layout-libs.js?v="></script>
     <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/scripts.bundle.js?v="></script>
     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-    <script src="/AbpServiceProxies/GetAll?v=" type="text/javascript"></script>
+    <script src="/AbpServiceProxies/GetAll?v=1" type="text/javascript"></script>
     <script src="/AbpScripts/GetScripts?v=" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/cultures/globalize.culture.vi-VN.js"></script>
@@ -1524,7 +1523,7 @@
     <!--end::Base Scripts -->
     <!--begin::Page Snippets -->
 
-    <script src="~/crmdemo/view-resources/Areas/crm/Views/DM_QuanHuyens/Index.js?v=9" asp-append-version="true"></script>
+    <script src="/view-resources/Areas/qlnv/Views/BuuCucs/Index.js?v=1" asp-append-version="true"></script>
 
     <script>
         $(function () {
