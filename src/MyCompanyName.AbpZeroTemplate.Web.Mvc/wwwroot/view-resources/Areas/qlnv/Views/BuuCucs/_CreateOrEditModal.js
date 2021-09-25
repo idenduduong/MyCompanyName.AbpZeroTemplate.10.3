@@ -48,7 +48,6 @@
 
 
         this.save = function () {
-            debugger;
             if (!_$dM_QuanHuyenInformationForm.valid()) {
                 return;
             }

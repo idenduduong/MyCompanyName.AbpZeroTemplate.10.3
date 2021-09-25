@@ -170,3 +170,194 @@ SELECT	NEWID() AS Id,
 		,[Status]
 		,GETDATE()
 FROM [dbo].[POS]
+
+----------------
+
+INSERT INTO [dbo].[BDHN_Regions]
+		([Id]
+		,[RegionCode]
+		,[RegionName]
+		,[Description]
+		,[IsDeleted]
+		,[CreationTime])
+
+SELECT	NEWID() AS Id,
+		[RegionCode]
+		,[RegionName]
+		,[Description]
+		,0
+		,GETDATE()
+FROM [dbo].Region
+
+----------------
+
+INSERT INTO [dbo].[BDHN_Provinces]
+
+        ([ProvinceCode]
+        ,[ProvinceName]
+        ,[Description]
+        ,[RegionCode]
+        ,[ProvinceListCode]
+        ,[Id]
+        ,[CreationTime]
+        ,[IsDeleted])
+
+SELECT	[ProvinceCode]
+        ,[ProvinceName]
+        ,[Description]
+        ,[RegionCode]
+        ,[ProvinceListCode]
+		,NEWID()
+		,GETDATE()
+		,0
+FROM [dbo].Province
+
+----------------
+
+USE [AbpZeroTemplateDb103]
+GO
+
+INSERT INTO [dbo].[BDHN_Districts]
+
+           ([DistrictCode]
+           ,[DistrictName]
+           ,[Description]
+           ,[ProvinceCode]
+           ,[Id]
+           ,[CreationTime]
+           ,[IsDeleted])
+
+SELECT	[DistrictCode]
+        ,[DistrictName]
+        ,[Description]
+        ,[ProvinceCode]
+		,NEWID()
+		,GETDATE()
+		,0
+FROM [dbo].District
+
+GO
+
+----------------
+
+USE [AbpZeroTemplateDb103]
+GO
+
+INSERT INTO [dbo].[BDHN_Communes]
+
+			([CommuneCode]
+			,[CommuneName]
+			,[DistrictCode]
+			,[Id]
+			,[CreationTime]
+			,[IsDeleted])
+		
+SELECT 		
+			[CommuneCode]
+			,[CommuneName]
+			,[DistrictCode]
+			,NEWID()
+			,GETDATE()
+			,0
+
+FROM [AbpZeroTemplateDb103].[dbo].[Commune]
+
+GO
+
+
+----------------
+USE [AbpZeroTemplateDb103]
+GO
+
+--ALTER TABLE [BDHN_BuuCucs] NOCHECK CONSTRAINT ALL
+
+INSERT INTO [dbo].[BDHN_BuuCucs]
+			(
+			[POSCode]
+			,[POSName]
+			,[Address]
+			,[AddressCode]
+			,[Tel]
+			,[Fax]
+			,[IP]
+			,[DatabaseServer]
+			,[DatabaseUsername]
+			,[DatabasePassword]
+			,[POSTypeCode]
+			,[ProvinceCode]
+			,[ServiceServer]
+			,[ServicePort]
+			,[POSLevelCode]
+			,[CommuneCode]
+			,[IsOffline]
+			,[UnitCode]
+
+			,[Id]
+			,[CreationTime]
+			,[IsDeleted])
+SELECT 
+			[POSCode]
+			,[POSName]
+			,[Address]
+			,[AddressCode]
+			,[Tel]
+			,[Fax]
+			,[IP]
+			,[DatabaseServer]
+			,[DatabaseUsername]
+			,[DatabasePassword]
+			,[POSTypeCode]
+			,[ProvinceCode]
+			,[ServiceServer]
+			,[ServicePort]
+			,[POSLevelCode]
+			,[CommuneCode]
+			,[IsOffline]
+			,[UnitCode]
+
+			,NEWID()
+			,GETDATE()
+			,0
+
+  FROM [AbpZeroTemplateDb103].[dbo].[POS] 
+  where [CommuneCode] in (select [CommuneCode] from commune)
+GO
+
+--delete from [BDHN_BuuCucs]  where [CommuneCode] not in (select [CommuneCode] from commune)
+  
+--ALTER TABLE [BDHN_BuuCucs] WITH CHECK CHECK CONSTRAINT ALL
+
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+----------------
+
+
+
+ALTER TABLE [BDHN_BuuCucs] WITH NOCHECK ADD CONSTRAINT [FK_BDHN_BuuCucs_Communes_CommuneCode] FOREIGN KEY ([CommuneCode]) REFERENCES [Commune] ([CommuneCode]) ON DELETE NO ACTION
+
+ALTER TABLE branchOffice NOCHECK CONSTRAINT ALL
+
+begin transaction 
+  ALTER TABLE branchOffice NOCHECK CONSTRAINT ALL
+  
+  ALTER TABLE branchOffice WITH CHECK CHECK CONSTRAINT ALL
+commit transation;

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyCompanyName.AbpZeroTemplate.EntityFrameworkCore;
 
 namespace MyCompanyName.AbpZeroTemplate.Migrations
 {
     [DbContext(typeof(AbpZeroTemplateDbContext))]
-    partial class AbpZeroTemplateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210924033256_Add_Commune_Province_District_Region_Table")]
+    partial class Add_Commune_Province_District_Region_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1816,7 +1818,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                         .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("ProvinceCode")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
@@ -1843,8 +1844,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.HasIndex("CommuneCode");
 
                     b.HasIndex("OrganizationUnitId");
-
-                    b.HasIndex("ProvinceCode");
 
                     b.ToTable("BDHN_BuuCucs");
                 });
@@ -5645,17 +5644,9 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                         .WithMany()
                         .HasForeignKey("OrganizationUnitId");
 
-                    b.HasOne("MyCompanyName.AbpZeroTemplate.BDHN.Province", "ProvinceFk")
-                        .WithMany()
-                        .HasForeignKey("ProvinceCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("CommuneFk");
 
                     b.Navigation("OrganizationUnitFk");
-
-                    b.Navigation("ProvinceFk");
                 });
 
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.BDHN.Commune", b =>

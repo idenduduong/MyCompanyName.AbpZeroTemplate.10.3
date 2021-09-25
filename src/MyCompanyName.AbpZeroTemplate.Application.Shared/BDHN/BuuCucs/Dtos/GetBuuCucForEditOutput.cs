@@ -1,7 +1,7 @@
 ﻿using MyCompanyName.AbpZeroTemplate.BDHN.Dtos;
 using System;
 
-namespace MyCompanyName.AbpZeroTemplate.BDHN.BuuCucs.Dtos
+namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 {
     public class GetBuuCucForEditOutput
     {

@@ -38,7 +38,7 @@
                 {
                     <input class="form-control" id="pOSCode" value="@Model.BuuCuc.POSCode" type="text" name="pOSCode" readonly />
                 }
-                else 
+                else
                 {
                     <input class="form-control" id="pOSCode" value="@Model.BuuCuc.POSCode" type="text" name="pOSCode" />
                 }
@@ -57,6 +57,48 @@
             <div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Điện thoại</label>
                 <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.BuuCuc.Tel" type="text" name="tel" />
+            </div>
+
+            <div class="form-group m-form__group">
+                <label for="DM_TinhThanhTenTinhThanh">Tỉnh thành</label>
+                <div class="input-group">
+                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="provinceCode" value="" type="text" disabled="">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenProvinceLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearProvinceButton"><i class="la la-eraser"></i></button>
+                    </div>
+                </div>
+                <input class="form-control" value="@Model.BuuCuc.ProvinceCode" type="text" name="iD_TinhThanh" hidden="">
+            </div>
+
+            <div class="form-group m-form__group">
+                <label for="DM_TinhThanhTenTinhThanh">Phường / Xã</label>
+                <div class="input-group">
+                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="communeCode" value="" type="text" disabled="">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearCommuneButton"><i class="la la-eraser"></i></button>
+                    </div>
+                </div>
+                <input class="form-control" value="@Model.BuuCuc.CommuneCode" type="text" name="iD_TinhThanh" hidden="">
+            </div>
+
+            <div class="form-group m-form__group">
+                <label for="DM_TinhThanhTenTinhThanh">Đơn vị</label>
+                <div class="input-group">
+                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="unitCode" value="" type="text" disabled="">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenUnitLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearUnitButton"><i class="la la-eraser"></i></button>
+                    </div>
+                </div>
+                <input class="form-control" value="@Model.BuuCuc.UnitCode" type="text" name="iD_TinhThanh" hidden="">
             </div>
 
         </form>

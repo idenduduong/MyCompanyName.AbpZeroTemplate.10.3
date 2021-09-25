@@ -12,7 +12,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 	[Table("BDHN_BuuCucs")]
 	public class BuuCuc : FullAuditedEntity<Guid>, IMayHaveTenant, IMayHaveOrganizationUnit
 	{
-		[Required]
+		[Key]
 		[MaxLength(6)]
 		public virtual string POSCode { get; set; }
 
@@ -47,8 +47,12 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 		[MaxLength(2)]
 		public virtual string? POSTypeCode { get; set; }
 
+		[Required]
 		[MaxLength(3)]
-		public virtual string? ProvinceCode { get; set; }
+		public virtual string ProvinceCode { get; set; }
+
+		[ForeignKey("ProvinceCode")]
+		public Province ProvinceFk { get; set; }
 
 		[MaxLength(50)]
 		public virtual string? ServiceServer { get; set; }
@@ -59,7 +63,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 		public virtual string? POSLevelCode { get; set; }
 
 		[MaxLength(6)]
-		public virtual string? CommuneCode { get; set; }
+		public virtual string CommuneCode { get; set; }
+
+		[ForeignKey("CommuneCode")]
+		public Commune CommuneFk { get; set; }
 
 		public virtual bool? IsOffline { get; set; }
 

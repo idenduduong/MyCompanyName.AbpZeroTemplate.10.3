@@ -3,7 +3,6 @@ using Abp.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.BDHN;
-using MyCompanyName.AbpZeroTemplate.BDHN.BuuCucs.Dtos;
 using MyCompanyName.AbpZeroTemplate.BDHN.Dtos;
 using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BuuCuc;
 using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.DM_QuanHuyens;

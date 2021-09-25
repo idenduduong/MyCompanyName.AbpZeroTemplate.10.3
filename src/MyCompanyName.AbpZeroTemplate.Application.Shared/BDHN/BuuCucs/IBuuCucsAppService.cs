@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using MyCompanyName.AbpZeroTemplate.BDHN.BuuCucs.Dtos;
 using MyCompanyName.AbpZeroTemplate.BDHN.Dtos;
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN

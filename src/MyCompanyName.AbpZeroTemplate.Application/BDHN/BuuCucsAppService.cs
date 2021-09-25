@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using System.Linq.Dynamic.Core;
 using Microsoft.AspNetCore.Mvc;
 using Abp.Authorization;
-using MyCompanyName.AbpZeroTemplate.BDHN.BuuCucs.Dtos;
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN
 {
@@ -26,15 +25,34 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         //private readonly IBaseEntitiesExcelExporter _baseEntitiesExcelExporter;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
 
-        public BuuCucsAppService(IRepository<BuuCuc, Guid> buuCucRepository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
+        public BuuCucsAppService(IRepository<BuuCuc, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
         {
-            _repository = buuCucRepository;
+            _repository = repository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
         }
 
         public async Task<PagedResultDto<GetBuuCucForViewDto>> GetAll(GetAllBuuCucInput input)
         {
-            var entityRepository = IsGranted("Filter.OrganizationUnit") ? _repository.GetAll().Include(e => e.OrganizationUnitFk) : _repository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters();
+            var entityRepository = IsGranted("Filter.OrganizationUnit") ?
+                _repository.GetAll().Include(e => e.OrganizationUnitFk) : 
+                _repository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters();
+
+            try
+            {
+                var filteredEntitiesvar1 = entityRepository
+                .Where(e => !e.IsDeleted)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.POSName.Contains(input.Filter))
+                .WhereIf(!string.IsNullOrWhiteSpace(input.POSCode), e => e.POSCode == input.POSCode)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.POSName), e => e.POSName == input.POSName)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Address), e => e.Address == input.Address)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Tel), e => e.Tel == input.Tel)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.OrganizationUnitDisplayNameFilter), e => e.OrganizationUnitFk != null && e.OrganizationUnitFk.DisplayName == input.OrganizationUnitDisplayNameFilter); 
+
+            }
+            catch(Exception ex)
+            {
+                string s = ex.StackTrace;
+            }
 
             var filteredEntities = entityRepository
                 .Where(e => !e.IsDeleted)
@@ -76,26 +94,32 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
             foreach (var o in dbList)
             {
-                var res = new GetBuuCucForViewDto()
+                try
                 {
-                    BuuCuc = new BuuCucDto
+                    var res = new GetBuuCucForViewDto()
                     {
-                        POSCode = o.POSCode,
-                        POSName = o.POSName,
-                        Address = o.Address,
-                        POSTypeCode = o.POSTypeCode,
-                        Tel = o.Tel,
-                        ProvinceCode = o.ProvinceCode,
-                        CommuneCode = o.CommuneCode,
-                        IsOffline = o.IsOffline,
-                        UnitCode = o.UnitCode,
-                        IsDeleted = o.IsDeleted,
-                        Id = o.Id,
-                    },
-                    OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
-                };
-
-                results.Add(res);
+                        BuuCuc = new BuuCucDto
+                        {
+                            POSCode = o.POSCode,
+                            POSName = o.POSName,
+                            Address = o.Address,
+                            POSTypeCode = o.POSTypeCode,
+                            Tel = o.Tel,
+                            ProvinceCode = o.ProvinceCode,
+                            CommuneCode = o.CommuneCode,
+                            IsOffline = o.IsOffline,
+                            UnitCode = o.UnitCode,
+                            IsDeleted = o.IsDeleted,
+                            Id = o.Id,
+                        },
+                        OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
+                    };
+                    results.Add(res);
+                }catch(Exception e)
+                {
+                    string x = e.StackTrace;
+                }
+                
             }
 
             return new PagedResultDto<GetBuuCucForViewDto>(
@@ -131,6 +155,18 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                 var _lookupOrganizationUnit = await _lookup_organizationUnitRepository.FirstOrDefaultAsync((long)output.BuuCuc.OrganizationUnitId);
                 output.OrganizationUnitDisplayName = _lookupOrganizationUnit?.DisplayName?.ToString();
             }
+            //if (output.BuuCuc.ProvinceCode.HasValue)
+            //{
+            //    output.DM_TinhThanhTenTinhThanh = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
+            //}
+            //if (output.BuuCuc.CommuneCode.HasValue)
+            //{
+            //    output.DM_TinhThanhTenTinhThanh = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
+            //}
+            //if (output.BuuCuc.UnitCode.HasValue)
+            //{
+            //    output.DM_TinhThanhTenTinhThanh = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
+            //}
 
             return output;
         }
@@ -164,7 +200,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         protected virtual async Task Update(CreateOrEditBuuCucDto input)
         {
             var entity = await _repository.FirstOrDefaultAsync(input.Id.Value);
-            ObjectMapper.Map(input, entity);
+            var result = ObjectMapper.Map(input, entity);
         }
 
         [AbpAuthorize(AppPermissions.Pages_BuuCucs_Delete)]
