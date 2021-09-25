@@ -35,13 +35,10 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         //[AbpMvcAuthorize(apppermissions.)]
         public async Task<PartialViewResult> CreateOrEditModal(Guid? id)
         {
-            GetDM_QuanHuyenForEditOutput getDM_QuanHuyenForEditOutput = ((!id.HasValue) ? new GetDM_QuanHuyenForEditOutput
-            {
-                DM_QuanHuyen = new CreateOrEditDM_QuanHuyenDto()
-            } : (await _dM_QuanHuyensAppService.GetDM_QuanHuyenForEdit(new EntityDto<Guid>
-            {
-                Id = id.Value
-            })));
+            GetDM_QuanHuyenForEditOutput getDM_QuanHuyenForEditOutput = ((!id.HasValue) ? 
+                new GetDM_QuanHuyenForEditOutput { DM_QuanHuyen = new CreateOrEditDM_QuanHuyenDto() } : 
+                (await _dM_QuanHuyensAppService.GetDM_QuanHuyenForEdit(new EntityDto<Guid> { Id = id.Value }))
+            );
             CreateOrEditDM_QuanHuyenViewModel viewModel = new CreateOrEditDM_QuanHuyenViewModel
             {
                 DM_QuanHuyen = getDM_QuanHuyenForEditOutput.DM_QuanHuyen,

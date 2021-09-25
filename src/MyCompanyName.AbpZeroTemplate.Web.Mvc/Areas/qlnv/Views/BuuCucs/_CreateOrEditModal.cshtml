@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
-@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BuuCuc
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models
 @model CreateOrEditBuuCucViewModel
 
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(("Thêm / Sửa")))
@@ -62,7 +62,7 @@
             <div class="form-group m-form__group">
                 <label for="DM_TinhThanhTenTinhThanh">Tỉnh thành</label>
                 <div class="input-group">
-                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="provinceCode" value="" type="text" disabled="">
+                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="provinceCode" value="@Model.BuuCuc." type="text" disabled="">
                     <div class="input-group-append">
                         <button class="btn btn-primary blue" id="OpenProvinceLookupTableButton" type="button"><i class="la la-filter"></i></button>
                     </div>

@@ -3,7 +3,7 @@
 
         var _modalManager;
 
-        var _dM_QuanHuyensService = abp.services.app.dM_QuanHuyens;
+        var _dM_QuanHuyensService = abp.services.app.province;
         var _$dM_TinhThanhTable = $('#DM_TinhThanhTable');
 
         this.init = function (modalManager) {

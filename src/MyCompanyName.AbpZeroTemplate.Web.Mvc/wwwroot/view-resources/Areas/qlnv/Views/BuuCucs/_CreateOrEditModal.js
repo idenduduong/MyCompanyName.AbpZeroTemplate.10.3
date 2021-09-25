@@ -6,9 +6,9 @@
         var _modalManager;
         var _$dM_QuanHuyenInformationForm = null;
         var _dM_TinhThanhLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'qlnv/BuuCucs/DM_TinhThanhLookupTableModal',
-            scriptUrl: abp.appPath + 'crmdemo/view-resources/Areas/crm/Views/DM_QuanHuyens/_DM_TinhThanhLookupTableModal.js',
-            modalClass: 'DM_TinhThanhLookupTableModal'
+            viewUrl: abp.appPath + 'qlnv/BuuCucs/ProvinceLookupTableModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/crm/Views/DM_QuanHuyens/_DM_TinhThanhLookupTableModal.js',
+            modalClass: 'ProvinceLookupTableModal'
         });
 
         this.init = function (modalManager) {
@@ -30,7 +30,7 @@
             _$dM_QuanHuyenInformationForm.validate();
         };
 
-        $('#OpenDM_TinhThanhLookupTableButton').click(function () {
+        $('#OpenProvinceLookupTableButton').click(function () {
 
             var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
 

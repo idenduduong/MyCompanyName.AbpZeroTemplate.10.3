@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyCompanyName.AbpZeroTemplate.Authorization;
 using MyCompanyName.AbpZeroTemplate.BDHN;
 using MyCompanyName.AbpZeroTemplate.BDHN.Dtos;
-using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BuuCuc;
-using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.DM_QuanHuyens;
+using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models;
 
 using MyCompanyName.AbpZeroTemplate.Web.Controllers;
 
@@ -95,16 +94,16 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             return PartialView("_ViewModal", model);
         }
 
-        ////[AbpMvcAuthorize(new string[] { "Pages.Categories.Locations.DM_QuanHuyens.Create", "Pages.Categories.Locations.DM_QuanHuyens.Edit" })]
-        //public PartialViewResult DM_TinhThanhLookupTableModal(Guid? id, string displayName)
-        //{
-        //    DM_TinhThanhLookupTableViewModel viewModel = new DM_TinhThanhLookupTableViewModel
-        //    {
-        //        Id = id.ToString(),
-        //        DisplayName = displayName,
-        //        FilterText = string.Empty
-        //    };
-        //    return PartialView("_DM_TinhThanhLookupTableModal", viewModel);
-        //}
+        //[AbpMvcAuthorize(new string[] { "Pages.Categories.Locations.DM_QuanHuyens.Create", "Pages.Categories.Locations.DM_QuanHuyens.Edit" })]
+        public PartialViewResult ProvinceLookupTableModal(Guid? id, string displayName)
+        {
+            ProvinceLookupTableViewModal viewModel = new ProvinceLookupTableViewModal
+            {
+                Id = id.ToString(),
+                DisplayName = displayName,
+                FilterText = string.Empty
+            };
+            return PartialView("_ProvinceLookupTableModal", viewModel);
+        }
     }
 }

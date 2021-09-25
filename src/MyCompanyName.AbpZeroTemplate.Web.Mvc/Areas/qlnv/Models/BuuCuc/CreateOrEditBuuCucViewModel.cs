@@ -2,11 +2,15 @@
 using System;
 using System.Linq;
 
-namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.BuuCuc
+namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models
 {
     public class CreateOrEditBuuCucViewModel
     {
         public CreateOrEditBuuCucDto BuuCuc { get; set; }
+
+        public string ProvinceName { get; set; }
+
+        public string CommuneName { get; set; }
         
         public string OrganizationUnitDisplayName { get; set; }
 

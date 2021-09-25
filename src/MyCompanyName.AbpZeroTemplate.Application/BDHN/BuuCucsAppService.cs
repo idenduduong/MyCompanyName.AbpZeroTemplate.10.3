@@ -23,8 +23,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
     {
         private readonly IRepository<BuuCuc, Guid> _repository;
         //private readonly IBaseEntitiesExcelExporter _baseEntitiesExcelExporter;
+        private readonly IRepository<Province, Guid> _lookup_provinceRepository;
+        private readonly IRepository<Commune, Guid> _lookup_communeRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
-
+        
         public BuuCucsAppService(IRepository<BuuCuc, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
         {
             _repository = repository;
@@ -266,5 +268,62 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             );
         }
 
+        public async Task<PagedResultDto<BuuCucProvinceLookupTableDto>> GetAllProvinceForLookupTable(GetAllForLookupTableInput input)
+        {
+            var query = _lookup_provinceRepository.GetAll().WhereIf(
+                   !string.IsNullOrWhiteSpace(input.Filter),
+                  e => e.ProvinceName != null && e.ProvinceName.Contains(input.Filter)
+               );
+
+            var totalCount = await query.CountAsync();
+
+            var provinceList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+            var lookupTableDtoList = new List<BuuCucProvinceLookupTableDto>();
+            foreach (var province in provinceList)
+            {
+                lookupTableDtoList.Add(new BuuCucProvinceLookupTableDto
+                {
+                    Id = province.Id,
+                    Name = province.ProvinceName?.ToString()
+                });
+            }
+
+            return new PagedResultDto<BuuCucProvinceLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
+        }
+
+        public async Task<PagedResultDto<BuuCucCommuneLookupTableDto>> GetAllCommuneForLookupTable(GetAllForLookupTableInput input)
+        {
+            var query = _lookup_communeRepository.GetAll().WhereIf(
+                   !string.IsNullOrWhiteSpace(input.Filter),
+                  e => e.CommuneName != null && e.CommuneName.Contains(input.Filter)
+               );
+
+            var totalCount = await query.CountAsync();
+
+            var communeList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+            var lookupTableDtoList = new List<BuuCucCommuneLookupTableDto>();
+            foreach (var commune in communeList)
+            {
+                lookupTableDtoList.Add(new BuuCucCommuneLookupTableDto
+                {
+                    Id = commune.Id,
+                    Name = commune.CommuneName?.ToString()
+                });
+            }
+
+            return new PagedResultDto<BuuCucCommuneLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
+        }
     }
 }
