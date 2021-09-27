@@ -25,12 +25,16 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         //private readonly IBaseEntitiesExcelExporter _baseEntitiesExcelExporter;
         private readonly IRepository<Province, Guid> _lookup_provinceRepository;
         private readonly IRepository<Commune, Guid> _lookup_communeRepository;
+        //private readonly IRepository<Unit, Guid> _lookup_communeRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
         
-        public BuuCucsAppService(IRepository<BuuCuc, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
+        public BuuCucsAppService(IRepository<BuuCuc, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<Province, Guid> lookup_provinceRepository, IRepository<Commune, Guid> lookup_communeRepository)
         {
             _repository = repository;
+            _lookup_provinceRepository = lookup_provinceRepository;
+            _lookup_communeRepository = lookup_communeRepository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
+            
         }
 
         public async Task<PagedResultDto<GetBuuCucForViewDto>> GetAll(GetAllBuuCucInput input)
@@ -157,17 +161,17 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                 var _lookupOrganizationUnit = await _lookup_organizationUnitRepository.FirstOrDefaultAsync((long)output.BuuCuc.OrganizationUnitId);
                 output.OrganizationUnitDisplayName = _lookupOrganizationUnit?.DisplayName?.ToString();
             }
-            //if (output.BuuCuc.ProvinceCode.HasValue)
+            if (!string.IsNullOrEmpty(output.BuuCuc.ProvinceCode))
+            {
+                output.ProvinceName = (await _lookup_provinceRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.ProvinceCode == output.BuuCuc.ProvinceCode).FirstOrDefaultAsync()).ProvinceName;
+            }
+            if (!string.IsNullOrEmpty(output.BuuCuc.CommuneCode))
+            {
+                output.CommuneName = (await _lookup_communeRepository.GetAll().Where(e => !e.IsDeleted).Where(e =>e.CommuneCode == output.BuuCuc.CommuneCode).FirstOrDefaultAsync()).CommuneName;
+            }
+            //if (!string.IsNullOrEmpty(output.BuuCuc.UnitCode))
             //{
-            //    output.DM_TinhThanhTenTinhThanh = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
-            //}
-            //if (output.BuuCuc.CommuneCode.HasValue)
-            //{
-            //    output.DM_TinhThanhTenTinhThanh = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
-            //}
-            //if (output.BuuCuc.UnitCode.HasValue)
-            //{
-            //    output.DM_TinhThanhTenTinhThanh = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
+            //    output.UnitName = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
             //}
 
             return output;
@@ -286,8 +290,12 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             {
                 lookupTableDtoList.Add(new BuuCucProvinceLookupTableDto
                 {
-                    Id = province.Id,
-                    Name = province.ProvinceName?.ToString()
+                    //Id = province.Id,
+                    //ProvinceCode = province.ProvinceCode,
+                    //ProvinceName = province.ProvinceName?.ToString()
+
+                    Id = province.ProvinceCode,
+                    DisplayName = province.ProvinceName
                 });
             }
 
@@ -315,8 +323,12 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             {
                 lookupTableDtoList.Add(new BuuCucCommuneLookupTableDto
                 {
-                    Id = commune.Id,
-                    Name = commune.CommuneName?.ToString()
+                    //Id = commune.Id,
+                    //CommuneCode = commune.CommuneCode,
+                    //CommuneName = commune.CommuneName?.ToString()
+
+                    Id = commune.CommuneCode,
+                    DisplayName = commune.CommuneName
                 });
             }
 

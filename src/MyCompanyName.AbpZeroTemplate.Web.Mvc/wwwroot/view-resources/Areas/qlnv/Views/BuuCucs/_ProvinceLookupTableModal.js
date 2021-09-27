@@ -1,22 +1,21 @@
 (function ($) {
-    app.modals.DM_TinhThanhLookupTableModal = function () {
+    app.modals.ProvinceLookupTableModal = function () {
 
         var _modalManager;
 
-        var _dM_QuanHuyensService = abp.services.app.dM_QuanHuyens;
+        var _dM_QuanHuyensService = abp.services.app.buuCucs;
         var _$dM_TinhThanhTable = $('#DM_TinhThanhTable');
 
         this.init = function (modalManager) {
             _modalManager = modalManager;
         };
 
-
         var dataTable = _$dM_TinhThanhTable.DataTable({
             paging: true,
             serverSide: true,
             processing: true,
             listAction: {
-                ajaxFunction: _dM_QuanHuyensService.getAllDM_TinhThanhForLookupTable,
+                ajaxFunction: _dM_QuanHuyensService.getAllProvinceForLookupTable,
                 inputFilter: function () {
                     return {
                         filter: $('#DM_TinhThanhTableFilter').val()
@@ -35,6 +34,12 @@
                     autoWidth: false,
                     orderable: false,
                     targets: 1,
+                    data: "id"
+                },
+                {
+                    autoWidth: false,
+                    orderable: false,
+                    targets: 2,
                     data: "displayName"
                 }
             ]
@@ -42,7 +47,6 @@
 
         $('#DM_TinhThanhTable tbody').on('click', '[id*=selectbtn]', function () {
             var data = dataTable.row($(this).parents('tr')).data();
-            debugger;
             _modalManager.setResult(data);
             _modalManager.close();
         });

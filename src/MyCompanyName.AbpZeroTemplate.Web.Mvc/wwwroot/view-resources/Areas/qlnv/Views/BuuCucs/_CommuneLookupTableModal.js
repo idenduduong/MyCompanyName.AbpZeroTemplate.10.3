@@ -1,22 +1,21 @@
 (function ($) {
-    app.modals.DM_TinhThanhLookupTableModal = function () {
+    app.modals.CommuneLookupTableModal = function () {
 
         var _modalManager;
 
-        var _dM_QuanHuyensService = abp.services.app.province;
+        var _dM_QuanHuyensService = abp.services.app.buuCucs;
         var _$dM_TinhThanhTable = $('#DM_TinhThanhTable');
 
         this.init = function (modalManager) {
             _modalManager = modalManager;
         };
 
-
         var dataTable = _$dM_TinhThanhTable.DataTable({
             paging: true,
             serverSide: true,
             processing: true,
             listAction: {
-                ajaxFunction: _dM_QuanHuyensService.getAllDM_TinhThanhForLookupTable,
+                ajaxFunction: _dM_QuanHuyensService.getAllCommuneForLookupTable,
                 inputFilter: function () {
                     return {
                         filter: $('#DM_TinhThanhTableFilter').val()
@@ -35,6 +34,12 @@
                     autoWidth: false,
                     orderable: false,
                     targets: 1,
+                    data: "id"
+                },
+                {
+                    autoWidth: false,
+                    orderable: false,
+                    targets: 2,
                     data: "displayName"
                 }
             ]

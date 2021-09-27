@@ -5,10 +5,17 @@
 
         var _modalManager;
         var _$dM_QuanHuyenInformationForm = null;
+
         var _dM_TinhThanhLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'qlnv/BuuCucs/ProvinceLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/crm/Views/DM_QuanHuyens/_DM_TinhThanhLookupTableModal.js',
+            scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/BuuCucs/_ProvinceLookupTableModal.js',
             modalClass: 'ProvinceLookupTableModal'
+        });
+
+        var _communeLookupTableModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'qlnv/BuuCucs/CommuneLookupTableModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/BuuCucs/_CommuneLookupTableModal.js',
+            modalClass: 'CommuneLookupTableModal'
         });
 
         this.init = function (modalManager) {
@@ -31,21 +38,32 @@
         };
 
         $('#OpenProvinceLookupTableButton').click(function () {
-
             var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
 
-            _dM_TinhThanhLookupTableModal.open({ id: dM_QuanHuyen.iD_TinhThanh, displayName: dM_QuanHuyen.dM_TinhThanhTenTinhThanh }, function (data) {
-                _$dM_QuanHuyenInformationForm.find('input[name=dM_TinhThanhTenTinhThanh]').val(data.displayName);
-                _$dM_QuanHuyenInformationForm.find('input[name=iD_TinhThanh]').val(data.id);
+            _dM_TinhThanhLookupTableModal.open({ id: dM_QuanHuyen.ProvinceCode, displayName: dM_QuanHuyen.ProvinceName }, function (data) {
+                _$dM_QuanHuyenInformationForm.find('input[name=ProvinceName]').val(data.displayName);
+                _$dM_QuanHuyenInformationForm.find('input[name=ProvinceCode]').val(data.id);
             });
         });
 
-        $('#ClearDM_TinhThanhTenTinhThanhButton').click(function () {
-            _$dM_QuanHuyenInformationForm.find('input[name=dM_TinhThanhTenTinhThanh]').val('');
-            _$dM_QuanHuyenInformationForm.find('input[name=iD_TinhThanh]').val('');
+        $('#OpenCommuneLookupTableButton').click(function () {
+            var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
+
+            _communeLookupTableModal.open({ id: dM_QuanHuyen.CommuneCode, displayName: dM_QuanHuyen.CommuneName }, function (data) {
+                _$dM_QuanHuyenInformationForm.find('input[name=CommuneName]').val(data.displayName);
+                _$dM_QuanHuyenInformationForm.find('input[name=CommuneCode]').val(data.id);
+            });
         });
 
+        $('#ClearProvinceButton').click(function () {
+            _$dM_QuanHuyenInformationForm.find('input[name=ProvinceName]').val('');
+            _$dM_QuanHuyenInformationForm.find('input[name=ProvinceCode]').val('');
+        });
 
+        $('#ClearCommuneButton').click(function () {
+            _$dM_QuanHuyenInformationForm.find('input[name=CommuneName]').val('');
+            _$dM_QuanHuyenInformationForm.find('input[name=CommuneCode]').val('');
+        });
 
         this.save = function () {
             if (!_$dM_QuanHuyenInformationForm.valid()) {

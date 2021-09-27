@@ -53,12 +53,15 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             var viewModel = new CreateOrEditBuuCucViewModel()
             {
                 BuuCuc = getForEditOutput.BuuCuc,
+                ProvinceName = getForEditOutput.ProvinceName,
+                CommuneName = getForEditOutput.CommuneName,
                 OrganizationUnitDisplayName = getForEditOutput.OrganizationUnitDisplayName,
 
             };
 
             return PartialView("_CreateOrEditModal", viewModel);
         }
+
         //public async Task<PartialViewResult> CreateOrEditModal(Guid? id)
         //{
         //    GetBuuCucForEditOutput getEntityForEditOutput;
@@ -95,7 +98,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         }
 
         //[AbpMvcAuthorize(new string[] { "Pages.Categories.Locations.DM_QuanHuyens.Create", "Pages.Categories.Locations.DM_QuanHuyens.Edit" })]
-        public PartialViewResult ProvinceLookupTableModal(Guid? id, string displayName)
+        public PartialViewResult ProvinceLookupTableModal(string? id, string displayName)
         {
             ProvinceLookupTableViewModal viewModel = new ProvinceLookupTableViewModal
             {
@@ -104,6 +107,17 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                 FilterText = string.Empty
             };
             return PartialView("_ProvinceLookupTableModal", viewModel);
+        }
+
+        public PartialViewResult CommuneLookupTableModal(string? id, string displayName)
+        {
+            ProvinceLookupTableViewModal viewModel = new ProvinceLookupTableViewModal
+            {
+                Id = id.ToString(),
+                DisplayName = displayName,
+                FilterText = string.Empty
+            };
+            return PartialView("_CommuneLookupTableModal", viewModel);
         }
     }
 }

@@ -9,5 +9,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
     public interface IProvincesAppService : IApplicationService
     {
         Task<PagedResultDto<GetProvinceForViewDto>> GetAll(GetAllProvinceInput input);
+
+        Task<PagedResultDto<GetProvinceForViewDto>> FindByCodeAsync(string code);
     }
 }

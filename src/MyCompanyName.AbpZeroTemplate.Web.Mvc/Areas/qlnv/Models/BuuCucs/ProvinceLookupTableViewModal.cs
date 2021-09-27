@@ -7,7 +7,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models
 {
     public class ProvinceLookupTableViewModal
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         public string DisplayName { get; set; }
 

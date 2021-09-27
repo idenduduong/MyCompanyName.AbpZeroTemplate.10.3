@@ -28,6 +28,74 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
         }
 
+        public async Task<PagedResultDto<GetProvinceForViewDto>> FindByCodeAsync(string code)
+        {
+            var entityRepository = IsGranted("Filter.OrganizationUnit") ?
+               _repository.GetAll().Include(e => e.OrganizationUnitFk) :
+               _repository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters();
+
+            var filteredEntities = entityRepository
+                .Where(e => !e.IsDeleted)
+                .Where(p => p.ProvinceName == code)
+                //.FirstOrDefaultAsync()
+                ;
+
+            var pagedAndFilteredBaseEntities = filteredEntities
+                .OrderBy("id asc")
+                .PageBy(0,1)
+                ;
+
+            var entities = from o in pagedAndFilteredBaseEntities
+                           join o1 in _lookup_organizationUnitRepository.GetAll() on o.OrganizationUnitId equals o1.Id into j1
+                           from s1 in j1.DefaultIfEmpty()
+
+                           select new
+                           {
+                               o.ProvinceCode,
+                               o.ProvinceName,
+                               o.Description,
+                               o.RegionCode,
+                               o.IsDeleted,
+                               Id = o.Id,
+                               OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? string.Empty : s1.DisplayName.ToString()
+                           };
+
+            var totalCount = await filteredEntities.CountAsync();
+
+            var dbList = await entities.ToListAsync();
+            var results = new List<GetProvinceForViewDto>();
+
+            foreach (var o in dbList)
+            {
+                try
+                {
+                    var res = new GetProvinceForViewDto()
+                    {
+                        Province = new ProvinceDto
+                        {
+                            ProvinceCode = o.ProvinceCode,
+                            ProvinceName = o.ProvinceName,
+                            Description = o.Description,
+                            RegionCode = o.RegionCode,
+                            IsDeleted = o.IsDeleted,
+                            Id = o.Id,
+                        },
+                        OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
+                    };
+                    results.Add(res);
+                }
+                catch (Exception e)
+                {
+                    string x = e.StackTrace;
+                }
+            }
+
+            return new PagedResultDto<GetProvinceForViewDto>(
+                totalCount,
+                results
+            );
+        }
+
         public async Task<PagedResultDto<GetProvinceForViewDto>> GetAll(GetAllProvinceInput input)
         {
             var entityRepository = IsGranted("Filter.OrganizationUnit") ?

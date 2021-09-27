@@ -12,7 +12,6 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
         [Required]
         public string POSName { get; set; }
 
-        [Required]
         public string? Address { get; set; }
 
         //[Required]
@@ -20,16 +19,19 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
         public string? Tel { get; set; }
 
-        [Required]
-        public string? ProvinceCode { get; set; }
+        public Guid? ProvinceId { get; set; }
 
         [Required]
-        public string? CommuneCode { get; set; }
+        public string ProvinceCode { get; set; }
 
-        //public bool? IsOffline { get; set; }
+        public Guid? CommuneId { get; set; }
 
         [Required]
-        public string? UnitCode { get; set; }
+        public string CommuneCode { get; set; }
+
+        public Guid? UnitId { get; set; }
+
+        public string UnitCode { get; set; }
 
         public long? OrganizationUnitId { get; set; }
     }

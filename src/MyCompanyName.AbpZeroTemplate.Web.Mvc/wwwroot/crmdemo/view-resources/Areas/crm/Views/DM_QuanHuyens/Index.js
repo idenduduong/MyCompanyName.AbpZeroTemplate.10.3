@@ -21,8 +21,8 @@
             modalClass: 'CreateOrEditDM_QuanHuyenModal'
         });
 
-		 var _viewDM_QuanHuyenModal = new app.ModalManager({
-             viewUrl: abp.appPath + 'qlnv/DM_QuanHuyens/ViewdM_QuanHuyenModal',
+        var _viewDM_QuanHuyenModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'qlnv/DM_QuanHuyens/ViewdM_QuanHuyenModal',
             modalClass: 'ViewDM_QuanHuyenModal'
         });
 
@@ -34,11 +34,11 @@
                 ajaxFunction: _dM_QuanHuyensService.getAll,
                 inputFilter: function () {
                     return {
-					filter: $('#DM_QuanHuyensTableFilter').val(),
-					maQuanHuyenFilter: $('#MaQuanHuyenFilterId').val(),
-					tenQuanHuyenFilter: $('#TenQuanHuyenFilterId').val(),
-					ghiChuFilter: $('#GhiChuFilterId').val(),
-					dM_TinhThanhTenTinhThanhFilter: $('#DM_TinhThanhTenTinhThanhFilterId').val()
+                        filter: $('#DM_QuanHuyensTableFilter').val(),
+                        maQuanHuyenFilter: $('#MaQuanHuyenFilterId').val(),
+                        tenQuanHuyenFilter: $('#TenQuanHuyenFilterId').val(),
+                        ghiChuFilter: $('#GhiChuFilterId').val(),
+                        dM_TinhThanhTenTinhThanhFilter: $('#DM_TinhThanhTenTinhThanhFilterId').val()
                     };
                 }
             },
@@ -54,77 +54,78 @@
                         cssClass: 'btn btn-brand dropdown-toggle',
                         text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
                         items: [
-						{
+                            {
                                 text: app.localize('View'),
                                 action: function (data) {
                                     _viewDM_QuanHuyenModal.open({ data: data.record });
                                 }
-                        },
-						{
-                            text: app.localize('Edit'),
-                            visible: function () {
-                                return _permissions.edit;
                             },
-                            action: function (data) {
-                                _createOrEditModal.open({ id: data.record.dM_QuanHuyen.id });
-                            }
-                        }, 
-						{
-                            text: app.localize('Delete'),
-                            visible: function () {
-                                return _permissions.delete;
+                            {
+                                text: app.localize('Edit'),
+                                visible: function () {
+                                    return _permissions.edit;
+                                },
+                                action: function (data) {
+                                    _createOrEditModal.open({ id: data.record.dM_QuanHuyen.id });
+                                }
                             },
-                            action: function (data) {
-                                deleteDM_QuanHuyen(data.record.dM_QuanHuyen);
+                            {
+                                text: app.localize('Delete'),
+                                visible: function () {
+                                    return _permissions.delete;
+                                },
+                                action: function (data) {
+                                    deleteDM_QuanHuyen(data.record.dM_QuanHuyen);
+                                }
                             }
-                        }]
+                        ]
                     }
                 },
-				{
-					targets: 1,
-						data: "dM_QuanHuyen.maQuanHuyen"   
-				},
-				{
-					targets: 2,
-						data: "dM_QuanHuyen.tenQuanHuyen"   
-				},
-				{
-					targets: 3,
-						data: "dM_QuanHuyen.ghiChu"   
+                {
+                    targets: 1,
+                    data: "dM_QuanHuyen.maQuanHuyen"
+                },
+                {
+                    targets: 2,
+                    data: "dM_QuanHuyen.tenQuanHuyen"
+                },
+                {
+                    targets: 3,
+                    data: "dM_QuanHuyen.ghiChu"
                 }
                 //,
-				//{
-				//	targets: 4,
-				//	 data: "dM_QuanHuyen.userTao"   
-				//},
-				//{
-				//	targets: 5,
-				//	 data: "dM_QuanHuyen.ngayTao" ,
-				//render: function (ngayTao) {
-				//	if (ngayTao) {
-				//		return moment(ngayTao).format('L');
-				//	}
-				//	return "";
-				//}
-			  
-				//},
-				//{
-				//	targets: 6,
-				//	 data: "dM_QuanHuyen.userSuaCuoi"   
-				//},
-				//{
-				//	targets: 7,
-				//	 data: "dM_QuanHuyen.ngaySuaCuoi" ,
-				//render: function (ngaySuaCuoi) {
-				//	if (ngaySuaCuoi) {
-				//		return moment(ngaySuaCuoi).format('L');
-				//	}
-				//	return "";
-				//}
-				,{
-					targets: 4,
-						data: "dM_TinhThanhTenTinhThanh" 
-				}
+                //{
+                //	targets: 4,
+                //	 data: "dM_QuanHuyen.userTao"   
+                //},
+                //{
+                //	targets: 5,
+                //	 data: "dM_QuanHuyen.ngayTao" ,
+                //render: function (ngayTao) {
+                //	if (ngayTao) {
+                //		return moment(ngayTao).format('L');
+                //	}
+                //	return "";
+                //}
+
+                //},
+                //{
+                //	targets: 6,
+                //	 data: "dM_QuanHuyen.userSuaCuoi"   
+                //},
+                //{
+                //	targets: 7,
+                //	 data: "dM_QuanHuyen.ngaySuaCuoi" ,
+                //render: function (ngaySuaCuoi) {
+                //	if (ngaySuaCuoi) {
+                //		return moment(ngaySuaCuoi).format('L');
+                //	}
+                //	return "";
+                //}
+                , {
+                    targets: 4,
+                    data: "dM_TinhThanhTenTinhThanh"
+                }
             ]
         });
 
@@ -149,7 +150,7 @@
             );
         }
 
-		$('#ShowAdvancedFiltersSpan').click(function () {
+        $('#ShowAdvancedFiltersSpan').click(function () {
             $('#ShowAdvancedFiltersSpan').hide();
             $('#HideAdvancedFiltersSpan').show();
             $('#AdvacedAuditFiltersArea').slideDown();
@@ -165,15 +166,15 @@
             _createOrEditModal.open();
         });
 
-		$('#ExportToExcelButton').click(function () {
+        $('#ExportToExcelButton').click(function () {
             _dM_QuanHuyensService
                 .getDM_QuanHuyensToExcel({
-				filter : $('#DM_QuanHuyensTableFilter').val(),
-					maQuanHuyenFilter: $('#MaQuanHuyenFilterId').val(),
-					tenQuanHuyenFilter: $('#TenQuanHuyenFilterId').val(),
-					ghiChuFilter: $('#GhiChuFilterId').val(),
-					dM_TinhThanhTenTinhThanhFilter: $('#DM_TinhThanhTenTinhThanhFilterId').val()
-				})
+                    filter: $('#DM_QuanHuyensTableFilter').val(),
+                    maQuanHuyenFilter: $('#MaQuanHuyenFilterId').val(),
+                    tenQuanHuyenFilter: $('#TenQuanHuyenFilterId').val(),
+                    ghiChuFilter: $('#GhiChuFilterId').val(),
+                    dM_TinhThanhTenTinhThanhFilter: $('#DM_TinhThanhTenTinhThanhFilterId').val()
+                })
                 .done(function (result) {
                     app.downloadTempFile(result);
                 });
@@ -183,16 +184,16 @@
             getDM_QuanHuyens();
         });
 
-		$('#GetDM_QuanHuyensButton').click(function (e) {
+        $('#GetDM_QuanHuyensButton').click(function (e) {
             e.preventDefault();
             getDM_QuanHuyens();
         });
 
-		$(document).keypress(function(e) {
-		  if(e.which === 13) {
-			getDM_QuanHuyens();
-		  }
-		});
+        $(document).keypress(function (e) {
+            if (e.which === 13) {
+                getDM_QuanHuyens();
+            }
+        });
 
     });
 })();
