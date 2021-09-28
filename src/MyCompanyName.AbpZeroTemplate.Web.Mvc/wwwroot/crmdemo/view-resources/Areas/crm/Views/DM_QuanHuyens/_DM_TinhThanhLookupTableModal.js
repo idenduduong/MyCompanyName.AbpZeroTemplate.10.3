@@ -42,7 +42,6 @@
 
         $('#DM_TinhThanhTable tbody').on('click', '[id*=selectbtn]', function () {
             var data = dataTable.row($(this).parents('tr')).data();
-            debugger;
             _modalManager.setResult(data);
             _modalManager.close();
         });
