@@ -5,6 +5,5 @@
         public BuuCucDto BuuCuc { get; set; }
 
         public string OrganizationUnitDisplayName { get; set; }
-
     }
 }

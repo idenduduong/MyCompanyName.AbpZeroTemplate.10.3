@@ -90,7 +90,7 @@
             <div class="form-group m-form__group">
                 <label for="DM_TinhThanhTenTinhThanh">Đơn vị</label>
                 <div class="input-group">
-                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="unitCode" value="" type="text" disabled="">
+                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="UnitName" value="@Model.UnitName" type="text" disabled="">
                     <div class="input-group-append">
                         <button class="btn btn-primary blue" id="OpenUnitLookupTableButton" type="button"><i class="la la-filter"></i></button>
                     </div>
@@ -98,7 +98,7 @@
                         <button class="btn btn-danger" type="button" id="ClearUnitButton"><i class="la la-eraser"></i></button>
                     </div>
                 </div>
-                <input class="form-control" value="@Model.BuuCuc.UnitCode" type="text" name="iD_DonVi" hidden="">
+                <input class="form-control" value="@Model.BuuCuc.UnitCode" type="text" name="UnitCode" hidden="">
             </div>
 
         </form>
@@ -109,6 +109,5 @@
     <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">H&#x1EE7;y</button>
     <button type="button" class="btn btn-primary save-button"><i class="fa fa-save"></i> <span>L&#x1B0;u</span></button>
 </div>*@
-
 
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

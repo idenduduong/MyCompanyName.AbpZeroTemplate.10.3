@@ -25,16 +25,16 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         //private readonly IBaseEntitiesExcelExporter _baseEntitiesExcelExporter;
         private readonly IRepository<Province, Guid> _lookup_provinceRepository;
         private readonly IRepository<Commune, Guid> _lookup_communeRepository;
-        //private readonly IRepository<Unit, Guid> _lookup_communeRepository;
+        private readonly IRepository<Unit, Guid> _lookup_unitRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
         
-        public BuuCucsAppService(IRepository<BuuCuc, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<Province, Guid> lookup_provinceRepository, IRepository<Commune, Guid> lookup_communeRepository)
+        public BuuCucsAppService(IRepository<BuuCuc, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<Province, Guid> lookup_provinceRepository, IRepository<Commune, Guid> lookup_communeRepository, IRepository<Unit, Guid> lookup_unitRepository)
         {
             _repository = repository;
             _lookup_provinceRepository = lookup_provinceRepository;
             _lookup_communeRepository = lookup_communeRepository;
+            _lookup_unitRepository = lookup_unitRepository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
-            
         }
 
         public async Task<PagedResultDto<GetBuuCucForViewDto>> GetAll(GetAllBuuCucInput input)
@@ -42,23 +42,6 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             var entityRepository = IsGranted("Filter.OrganizationUnit") ?
                 _repository.GetAll().Include(e => e.OrganizationUnitFk) : 
                 _repository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters();
-
-            try
-            {
-                var filteredEntitiesvar1 = entityRepository
-                .Where(e => !e.IsDeleted)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.POSName.Contains(input.Filter))
-                .WhereIf(!string.IsNullOrWhiteSpace(input.POSCode), e => e.POSCode == input.POSCode)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.POSName), e => e.POSName == input.POSName)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Address), e => e.Address == input.Address)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Tel), e => e.Tel == input.Tel)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.OrganizationUnitDisplayNameFilter), e => e.OrganizationUnitFk != null && e.OrganizationUnitFk.DisplayName == input.OrganizationUnitDisplayNameFilter); 
-
-            }
-            catch(Exception ex)
-            {
-                string s = ex.StackTrace;
-            }
 
             var filteredEntities = entityRepository
                 .Where(e => !e.IsDeleted)
@@ -163,16 +146,16 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             }
             if (!string.IsNullOrEmpty(output.BuuCuc.ProvinceCode))
             {
-                output.ProvinceName = (await _lookup_provinceRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.ProvinceCode == output.BuuCuc.ProvinceCode).FirstOrDefaultAsync()).ProvinceName;
+                output.ProvinceName = (await _lookup_provinceRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.ProvinceCode.Trim() == output.BuuCuc.ProvinceCode.Trim()).FirstOrDefaultAsync()).ProvinceName.Trim();
             }
             if (!string.IsNullOrEmpty(output.BuuCuc.CommuneCode))
             {
-                output.CommuneName = (await _lookup_communeRepository.GetAll().Where(e => !e.IsDeleted).Where(e =>e.CommuneCode == output.BuuCuc.CommuneCode).FirstOrDefaultAsync()).CommuneName;
+                output.CommuneName = (await _lookup_communeRepository.GetAll().Where(e => !e.IsDeleted).Where(e =>e.CommuneCode.Trim() == output.BuuCuc.CommuneCode.Trim()).FirstOrDefaultAsync()).CommuneName.Trim();
             }
-            //if (!string.IsNullOrEmpty(output.BuuCuc.UnitCode))
-            //{
-            //    output.UnitName = (await _dM_TinhThanhRepository.FirstOrDefaultAsync(output.DM_QuanHuyen.ID_TinhThanh.Value)).TenTinhThanh.ToString();
-            //}
+            if (!string.IsNullOrEmpty(output.BuuCuc.UnitCode))
+            {
+                output.UnitName = (await _lookup_unitRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.UnitCode.Trim() == output.BuuCuc.UnitCode.Trim()).FirstOrDefaultAsync()).UnitName.Trim();
+            }
 
             return output;
         }
@@ -290,10 +273,6 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             {
                 lookupTableDtoList.Add(new BuuCucProvinceLookupTableDto
                 {
-                    //Id = province.Id,
-                    //ProvinceCode = province.ProvinceCode,
-                    //ProvinceName = province.ProvinceName?.ToString()
-
                     Id = province.ProvinceCode,
                     DisplayName = province.ProvinceName
                 });
@@ -333,6 +312,35 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             }
 
             return new PagedResultDto<BuuCucCommuneLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
+        }
+
+        public async Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllUnitForLookupTable(GetAllForLookupTableInput input)
+        {
+            var query = _lookup_unitRepository.GetAll().WhereIf(
+                   !string.IsNullOrWhiteSpace(input.Filter),
+                  e => e.UnitName != null && e.UnitName.Contains(input.Filter)
+               );
+
+            var totalCount = await query.CountAsync();
+
+            var unitList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+            var lookupTableDtoList = new List<BuuCucUnitLookupTableDto>();
+            foreach (var unit in unitList)
+            {
+                lookupTableDtoList.Add(new BuuCucUnitLookupTableDto
+                {
+                    Id = unit.UnitCode,
+                    DisplayName = unit.UnitName
+                });
+            }
+
+            return new PagedResultDto<BuuCucUnitLookupTableDto>(
                 totalCount,
                 lookupTableDtoList
             );

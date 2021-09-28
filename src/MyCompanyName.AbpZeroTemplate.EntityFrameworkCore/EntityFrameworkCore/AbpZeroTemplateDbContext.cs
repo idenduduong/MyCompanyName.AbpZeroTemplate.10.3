@@ -357,6 +357,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<BuuCuc> BuuCucs { get; set; }
 
+        public virtual DbSet<Unit> Units { get; set; }
+
         public virtual DbSet<Commune> Communes { get; set; }
 
         public virtual DbSet<District> Districts { get; set; }

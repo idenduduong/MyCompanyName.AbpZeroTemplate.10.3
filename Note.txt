@@ -330,6 +330,45 @@ GO
 
 ----------------
 
+
+SELECT TOP (1000) [UnitCode]
+      ,[UnitName]
+      ,[ParentUnitCode]
+      ,[CommuneCode]
+      ,[UnitTypeCode]
+  FROM [AbpZeroTemplateDb103].[dbo].[Unit]
+
+  update BDHN_BuuCucs set UnitCode = null
+
+
+INSERT INTO [dbo].BDHN_Units
+		(	
+			[UnitCode]
+			,[UnitName]
+			,[ParentUnitCode]
+			,[CommuneCode]
+			,[UnitTypeCode]
+			,[Id]
+			,[IsDeleted]
+			,[CreationTime]
+		)
+
+SELECT	
+		[UnitCode]
+		,[UnitName]
+		,[ParentUnitCode]
+		,[CommuneCode]
+		,[UnitTypeCode]
+		,NEWID() --AS [Id]
+		,0 --AS [IsDeleted]
+		,GETDATE() --AS [CreationTime]
+FROM [dbo].[Unit]
+
+UPDATE BDHN_BuuCucs SET BDHN_BuuCucs.UnitCode = pos.UnitCode
+FROM BDHN_BuuCucs inner join pos on BDHN_BuuCucs.PosCode = pos.PosCode where pos.unitcode in (
+	select BDHN_Units.unitcode from BDHN_Units
+)
+
 ----------------
 
 ----------------

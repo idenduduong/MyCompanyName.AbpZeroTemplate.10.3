@@ -49,7 +49,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
 		[Required]
 		[MaxLength(3)]
-		public virtual string ProvinceCode { get; set; }
+		public virtual string? ProvinceCode { get; set; }
 
 		[ForeignKey("ProvinceCode")]
 		public Province ProvinceFk { get; set; }
@@ -63,7 +63,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 		public virtual string? POSLevelCode { get; set; }
 
 		[MaxLength(6)]
-		public virtual string CommuneCode { get; set; }
+		public virtual string? CommuneCode { get; set; }
 
 		[ForeignKey("CommuneCode")]
 		public Commune CommuneFk { get; set; }
@@ -72,6 +72,9 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
 		[MaxLength(6)]
 		public virtual string? UnitCode { get; set; }
+
+		[ForeignKey("UnitCode")]
+		public Unit UnitFk { get; set; }
 
 		public virtual int? TenantId { get; set; }
 

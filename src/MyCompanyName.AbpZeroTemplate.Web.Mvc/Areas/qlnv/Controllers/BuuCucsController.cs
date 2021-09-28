@@ -55,8 +55,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                 BuuCuc = getForEditOutput.BuuCuc,
                 ProvinceName = getForEditOutput.ProvinceName,
                 CommuneName = getForEditOutput.CommuneName,
+                UnitName = getForEditOutput.UnitName,
                 OrganizationUnitDisplayName = getForEditOutput.OrganizationUnitDisplayName,
-
             };
 
             return PartialView("_CreateOrEditModal", viewModel);
@@ -118,6 +118,17 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
                 FilterText = string.Empty
             };
             return PartialView("_CommuneLookupTableModal", viewModel);
+        }
+
+        public PartialViewResult UnitLookupTableModal(string? id, string displayName)
+        {
+            UnitLookupTableViewModal viewModel = new UnitLookupTableViewModal
+            {
+                Id = id.ToString(),
+                DisplayName = displayName,
+                FilterText = string.Empty
+            };
+            return PartialView("_UnitLookupTableModal", viewModel);
         }
     }
 }

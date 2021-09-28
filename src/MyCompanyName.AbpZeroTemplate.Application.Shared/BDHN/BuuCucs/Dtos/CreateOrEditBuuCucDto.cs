@@ -31,7 +31,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
         public Guid? UnitId { get; set; }
 
-        public string UnitCode { get; set; }
+        public string? UnitCode { get; set; }
 
         public long? OrganizationUnitId { get; set; }
     }

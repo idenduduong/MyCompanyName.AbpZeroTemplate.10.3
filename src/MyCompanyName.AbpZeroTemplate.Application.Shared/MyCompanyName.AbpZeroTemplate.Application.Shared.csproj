@@ -12,10 +12,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BDHN\Unit\**" />
     <Compile Remove="Customers\**" />
     <Compile Remove="DM_DoiTuongs\**" />
+    <EmbeddedResource Remove="BDHN\Unit\**" />
     <EmbeddedResource Remove="Customers\**" />
     <EmbeddedResource Remove="DM_DoiTuongs\**" />
+    <None Remove="BDHN\Unit\**" />
     <None Remove="Customers\**" />
     <None Remove="DM_DoiTuongs\**" />
   </ItemGroup>
@@ -34,10 +37,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Core.Shared\MyCompanyName.AbpZeroTemplate.Core.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="BDHN\Unit\" />
   </ItemGroup>
 
 </Project>

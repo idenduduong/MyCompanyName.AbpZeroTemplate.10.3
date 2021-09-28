@@ -21,13 +21,16 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         public virtual string UnitName { get; set; }
 
         [MaxLength(6)]
-        public virtual string ParentUnitCode { get; set; }
+        public virtual string? ParentUnitCode { get; set; }
 
         [MaxLength(6)]
-        public virtual string CommuneCode { get; set; }
+        public virtual string? CommuneCode { get; set; }
+
+        [ForeignKey("CommuneCode")]
+        public Commune CommuneCodeFk { get; set; }
 
         [MaxLength(3)]
-        public virtual string UnitTypeCode { get; set; }
+        public virtual string? UnitTypeCode { get; set; }
         
         public virtual int? TenantId { get; set; }
 
