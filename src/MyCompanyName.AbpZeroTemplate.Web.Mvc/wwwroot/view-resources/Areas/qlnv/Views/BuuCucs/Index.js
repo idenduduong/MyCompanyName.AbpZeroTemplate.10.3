@@ -105,7 +105,15 @@
                 {
 					targets: 4,
                     data: "buuCuc.tel"
-				}
+                },
+                {
+                    targets: 5,
+                    data: "communeName"
+                },
+                {
+                    targets: 6,
+                    data: "unitName"
+                }
             ]
         });
 

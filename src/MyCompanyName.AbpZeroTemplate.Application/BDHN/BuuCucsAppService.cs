@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq.Dynamic.Core;
 using Microsoft.AspNetCore.Mvc;
 using Abp.Authorization;
+using System.Linq.Dynamic;
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN
 {
@@ -27,7 +28,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         private readonly IRepository<Commune, Guid> _lookup_communeRepository;
         private readonly IRepository<Unit, Guid> _lookup_unitRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
-        
+
         public BuuCucsAppService(IRepository<BuuCuc, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<Province, Guid> lookup_provinceRepository, IRepository<Commune, Guid> lookup_communeRepository, IRepository<Unit, Guid> lookup_unitRepository)
         {
             _repository = repository;
@@ -39,8 +40,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
         public async Task<PagedResultDto<GetBuuCucForViewDto>> GetAll(GetAllBuuCucInput input)
         {
+            if (input.Sorting != null) input.Sorting = (input.Sorting.Contains(".") ? input.Sorting.Split(".")[1].ToString() : input.Sorting);
+
             var entityRepository = IsGranted("Filter.OrganizationUnit") ?
-                _repository.GetAll().Include(e => e.OrganizationUnitFk) : 
+                _repository.GetAll().Include(e => e.OrganizationUnitFk) :
                 _repository.GetAll().Include(e => e.OrganizationUnitFk).IgnoreQueryFilters();
 
             var filteredEntities = entityRepository
@@ -52,29 +55,53 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                 .WhereIf(!string.IsNullOrWhiteSpace(input.Tel), e => e.Tel == input.Tel)
                 .WhereIf(!string.IsNullOrWhiteSpace(input.OrganizationUnitDisplayNameFilter), e => e.OrganizationUnitFk != null && e.OrganizationUnitFk.DisplayName == input.OrganizationUnitDisplayNameFilter);
 
-            var pagedAndFilteredBaseEntities = filteredEntities
-                .OrderBy(input.Sorting ?? "id asc")
-                .PageBy(input);
+            var pagedAndFilteredBaseEntities = entityRepository;
+            if (input.Sorting != null && !input.Sorting.Contains("unitName") && !input.Sorting.Contains("communeName"))
+            {
+                pagedAndFilteredBaseEntities = filteredEntities
+                    .OrderBy(input.Sorting ?? "id asc")
+                    .PageBy(input)
+                    ;
+            }
+            else if(input.Sorting == null)
+            {
+                pagedAndFilteredBaseEntities = filteredEntities
+                    .OrderBy(input.Sorting ?? "id asc")
+                    .PageBy(input)
+                    ;
+            }
 
             var entities = from o in pagedAndFilteredBaseEntities
-                               join o1 in _lookup_organizationUnitRepository.GetAll() on o.OrganizationUnitId equals o1.Id into j1
-                               from s1 in j1.DefaultIfEmpty()
+                           join o1 in _lookup_organizationUnitRepository.GetAll() on o.OrganizationUnitId equals o1.Id into j1
+                           from s1 in j1.DefaultIfEmpty()
 
-                               select new
-                               {
-                                   o.POSCode,
-                                   o.POSName,
-                                   o.Address,
-                                   o.POSTypeCode,
-                                   o.Tel,
-                                   o.ProvinceCode,
-                                   o.CommuneCode,
-                                   o.IsOffline,
-                                   o.UnitCode,
-                                   o.IsDeleted,
-                                   Id = o.Id,
-                                   OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
-                               };
+                           join o2 in _lookup_communeRepository.GetAll() //.OrderBy(input.Sorting != null && input.Sorting.Contains("communeName") ? input.Sorting : "id asc")
+                                                                         //.WhereIf
+                           on o.CommuneCode equals o2.CommuneCode into j2
+                           from s2 in j2.DefaultIfEmpty()
+
+                           join o3 in _lookup_unitRepository.GetAll() //.OrderBy(input.Sorting != null && input.Sorting.Contains("unitName") ? input.Sorting : "id asc")
+                                                                      //.WhereIf
+                           on o.UnitCode equals o3.UnitCode into j3
+                           from s3 in j3.DefaultIfEmpty()
+
+                           select new
+                           {
+                               o.POSCode,
+                               o.POSName,
+                               o.Address,
+                               o.POSTypeCode,
+                               o.Tel,
+                               o.ProvinceCode,
+                               o.CommuneCode,
+                               o.IsOffline,
+                               o.UnitCode,
+                               o.IsDeleted,
+                               o.Id,
+                               s2.CommuneName,
+                               s3.UnitName,
+                               OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
+                           };
 
             var totalCount = await filteredEntities.CountAsync();
 
@@ -101,14 +128,47 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                             IsDeleted = o.IsDeleted,
                             Id = o.Id,
                         },
+                        CommuneName = o.CommuneName,
+                        UnitName = o.UnitName,
                         OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
                     };
                     results.Add(res);
-                }catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     string x = e.StackTrace;
                 }
-                
+            }
+
+            if (input.Sorting != null && (input.Sorting.Contains("communeName") || input.Sorting.Contains("unitName")))
+            {
+                switch (input.Sorting)
+                {
+                    case "communeName asc":
+                        results = results.OrderBy(e => e.CommuneName).AsQueryable()
+                            .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                        break;
+
+                    case "communeName desc":
+                        results = results.OrderByDescending(e => e.CommuneName).AsQueryable()
+                                .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                        break;
+
+                    case "unitName asc":
+                        results = results.OrderBy(e => e.UnitName).AsQueryable()
+                               .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                        break;
+
+                    case "unitName desc":
+                        results = results.OrderByDescending(e => e.UnitName).AsQueryable()
+                               .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                        break;
+
+                    default:
+                        results = results.AsQueryable().OrderBy(input.Sorting ?? "id asc")
+                               .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                        break;
+                }
             }
 
             return new PagedResultDto<GetBuuCucForViewDto>(
@@ -150,7 +210,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             }
             if (!string.IsNullOrEmpty(output.BuuCuc.CommuneCode))
             {
-                output.CommuneName = (await _lookup_communeRepository.GetAll().Where(e => !e.IsDeleted).Where(e =>e.CommuneCode.Trim() == output.BuuCuc.CommuneCode.Trim()).FirstOrDefaultAsync()).CommuneName.Trim();
+                output.CommuneName = (await _lookup_communeRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.CommuneCode.Trim() == output.BuuCuc.CommuneCode.Trim()).FirstOrDefaultAsync()).CommuneName.Trim();
             }
             if (!string.IsNullOrEmpty(output.BuuCuc.UnitCode))
             {

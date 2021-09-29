@@ -73,7 +73,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.Categories
                                                         on o.ID_QuocGia equals o1.Id into j1
                                                         from s1 in (!string.IsNullOrWhiteSpace(input.DM_QuocGiaTenNuocFilter) ? j1 : j1.DefaultIfEmpty())
 
-                                                            //  search by filter: DM_VungMienTenVungFilter
+                                                        //  search by filter: DM_VungMienTenVungFilter
                                                         join o2 in _dM_VungMienRepository.GetAll()
                                                         .WhereIf(
                                                             !string.IsNullOrWhiteSpace(input.DM_VungMienTenVungFilter),
