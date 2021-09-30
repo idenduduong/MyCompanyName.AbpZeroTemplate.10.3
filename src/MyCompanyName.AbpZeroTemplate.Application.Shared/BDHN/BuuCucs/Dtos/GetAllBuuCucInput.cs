@@ -18,6 +18,8 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
         public string UnitName { get; set; }
 
+        public string ProvinceName { get; set; }
+
         public string OrganizationUnitDisplayNameFilter { get; set; }
     }
 }

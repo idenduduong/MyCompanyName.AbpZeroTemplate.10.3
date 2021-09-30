@@ -7,8 +7,10 @@
         var _$tenFilterId = $('#TenFilterId');
         var _$address = $('#address');
         var _$tel = $('#tel');
-        var _$commune = $('#communeName');
         var _$unit = $('#unitName');
+        var _$province = $('#provinceName');
+        var _$commune = $('#communeName');
+        
 
         var _$service = abp.services.app.buuCucs;
         
@@ -52,6 +54,7 @@
                         pOSName: _$tenFilterId.val(),
                         address: _$address.val(),
                         communeName: _$commune.val(),
+                        provinceName: _$province.val(),
                         unitName: _$unit.val(),
                         tel: _$tel.val()
                     };
@@ -113,11 +116,15 @@
                 },
                 {
                     targets: 5,
-                    data: "communeName"
+                    data: "unitName"
                 },
                 {
                     targets: 6,
-                    data: "unitName"
+                    data: "provinceName"
+                },
+                {
+                    targets: 7,
+                    data: "communeName"
                 }
             ]
         });

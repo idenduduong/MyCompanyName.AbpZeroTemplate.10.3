@@ -40,6 +40,9 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
         public async Task<PagedResultDto<GetBuuCucForViewDto>> GetAll(GetAllBuuCucInput input)
         {
+            bool foreingSort = input.Sorting != null && (input.Sorting.Contains("provinceName") || input.Sorting.Contains("communeName") || input.Sorting.Contains("unitName"));
+            bool foreignSearch = !string.IsNullOrEmpty(input.ProvinceName) || !string.IsNullOrEmpty(input.CommuneName) || !string.IsNullOrEmpty(input.UnitName);
+
             if (input.Sorting != null) input.Sorting = (input.Sorting.Contains(".") ? input.Sorting.Split(".")[1].ToString() : input.Sorting);
 
             var entityRepository = IsGranted("Filter.OrganizationUnit") ?
@@ -48,22 +51,23 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
             var filteredEntities = entityRepository
                 .Where(e => !e.IsDeleted)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.POSName.Contains(input.Filter))
-                .WhereIf(!string.IsNullOrWhiteSpace(input.POSCode), e => e.POSCode == input.POSCode)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.POSName), e => e.POSName == input.POSName)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Address), e => e.Address == input.Address)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Tel), e => e.Tel == input.Tel)
+                .Where(e => e.ProvinceCode == "10")
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || EF.Functions.Like(e.POSName.ToLower(), "%" + input.Filter.Trim().ToLower() + "%"))
+                .WhereIf(!string.IsNullOrWhiteSpace(input.POSCode), e => EF.Functions.Like(e.POSCode.Trim().ToLower(), "%" + input.POSCode.Trim().ToLower() + "%"))
+                .WhereIf(!string.IsNullOrWhiteSpace(input.POSName), e => EF.Functions.Like(e.POSName.Trim().ToLower(), "%" + input.POSName.Trim().ToLower() + "%"))
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Address), e => EF.Functions.Like(e.Address.Trim().ToLower(), "%" + input.Address.Trim().ToLower() + "%"))
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Tel), e => EF.Functions.Like(e.Tel.ToLower(), "%" + input.Tel.Trim().ToLower().Trim() + "%"))
                 .WhereIf(!string.IsNullOrWhiteSpace(input.OrganizationUnitDisplayNameFilter), e => e.OrganizationUnitFk != null && e.OrganizationUnitFk.DisplayName == input.OrganizationUnitDisplayNameFilter);
 
             var pagedAndFilteredBaseEntities = entityRepository;
-            if (input.Sorting != null && !input.Sorting.Contains("unitName") && !input.Sorting.Contains("communeName"))
+            if (!foreingSort && !foreignSearch)
             {
                 pagedAndFilteredBaseEntities = filteredEntities
                     .OrderBy(input.Sorting ?? "id asc")
                     .PageBy(input)
                     ;
             }
-            else if(input.Sorting == null)
+            else if (input.Sorting == null && (!foreingSort && !foreignSearch))
             {
                 pagedAndFilteredBaseEntities = filteredEntities
                     .OrderBy(input.Sorting ?? "id asc")
@@ -77,15 +81,22 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
                            join o2 in _lookup_communeRepository.GetAll()
                            .WhereIf(!string.IsNullOrWhiteSpace(input.CommuneName),
-                                    (Commune e) => e.CommuneName.ToLower() == input.CommuneName.ToLower().Trim())
+                                    (Commune e) => EF.Functions.Like(e.CommuneName.Trim().ToLower(), "%" + input.CommuneName.Trim().ToLower() + "%"))
                            on o.CommuneCode equals o2.CommuneCode into j2
                            from s2 in (!string.IsNullOrWhiteSpace(input.CommuneName) ? j2 : j2.DefaultIfEmpty())
 
                            join o3 in _lookup_unitRepository.GetAll()
                            .WhereIf(!string.IsNullOrWhiteSpace(input.UnitName),
-                                    (Unit e) => e.UnitName.ToLower() == input.UnitName.ToLower().Trim())
+                                    (Unit e) => EF.Functions.Like(e.UnitName.Trim().ToLower(), "%" + input.UnitName.Trim().ToLower() + "%"))
                            on o.UnitCode equals o3.UnitCode into j3
                            from s3 in (!string.IsNullOrWhiteSpace(input.UnitName) ? j3 : j3.DefaultIfEmpty())
+
+                           join o4 in _lookup_provinceRepository.GetAll()
+                           .WhereIf(!string.IsNullOrWhiteSpace(input.ProvinceName),
+                                    (Province e) => EF.Functions.Like(e.ProvinceName.Trim().ToLower(), "%" + input.ProvinceName.Trim().ToLower() + "%"))
+                           on o.ProvinceCode equals o4.ProvinceCode into j4
+                           from s4 in j4
+                           //from s4 in (!string.IsNullOrWhiteSpace(input.ProvinceName) ? j4 : j4.DefaultIfEmpty())
 
                            select new
                            {
@@ -102,11 +113,12 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                                o.Id,
                                s2.CommuneName,
                                s3.UnitName,
+                               s4.ProvinceName,
                                OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
                            };
 
             var totalCount = 0;
-            if (string.IsNullOrWhiteSpace(input.CommuneName) && string.IsNullOrWhiteSpace(input.UnitName))
+            if (!foreignSearch && !foreingSort)
             {
                 totalCount = await filteredEntities.CountAsync();
             }
@@ -142,6 +154,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                         },
                         CommuneName = o.CommuneName,
                         UnitName = o.UnitName,
+                        ProvinceName = o.ProvinceName,
                         OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
                     };
                     results.Add(res);
@@ -152,35 +165,60 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                 }
             }
 
-            if (input.Sorting != null && (input.Sorting.Contains("communeName") || input.Sorting.Contains("unitName")))
+            try
             {
-                switch (input.Sorting)
+                if (foreingSort || foreignSearch)
                 {
-                    case "communeName asc":
-                        results = results.OrderBy(e => e.CommuneName).AsQueryable()
-                            .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                        break;
-
-                    case "communeName desc":
-                        results = results.OrderByDescending(e => e.CommuneName).AsQueryable()
-                                .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                        break;
-
-                    case "unitName asc":
-                        results = results.OrderBy(e => e.UnitName).AsQueryable()
-                               .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                        break;
-
-                    case "unitName desc":
-                        results = results.OrderByDescending(e => e.UnitName).AsQueryable()
-                               .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                        break;
-
-                    default:
-                        results = results.AsQueryable().OrderBy(input.Sorting ?? "id asc")
-                               .PageBy(input.SkipCount, input.MaxResultCount).ToList();
-                        break;
+                    results = results.AsQueryable().OrderBy(input.Sorting ?? "UnitName asc")
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                    //  datdd: set skipcount because page once only
+                    input.SkipCount = 0;
                 }
+                if (input.Sorting != null)
+                {
+                    switch (input.Sorting)
+                    {
+                        case "provinceName asc":
+                            results = results.OrderBy(e => e.ProvinceName).AsQueryable()
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+
+                        case "provinceName desc":
+                            results = results.OrderByDescending(e => e.ProvinceName).AsQueryable()
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+
+                        case "communeName asc":
+                            results = results.OrderBy(e => e.CommuneName).AsQueryable()
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+
+                        case "communeName desc":
+                            results = results.OrderByDescending(e => e.CommuneName).AsQueryable()
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+
+                        case "unitName asc":
+                            results = results.OrderBy(e => e.UnitName).AsQueryable()
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+
+                        case "unitName desc":
+                            results = results.OrderByDescending(e => e.UnitName).AsQueryable()
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+
+                        default:
+                            results = results.AsQueryable().OrderBy(input.Sorting ?? "Id asc")
+                                        .PageBy(input.SkipCount, input.MaxResultCount).ToList();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                results = results.AsQueryable().OrderBy(input.Sorting ?? "id asc")
+                            .PageBy(input.SkipCount, input.MaxResultCount).ToList();
             }
 
             return new PagedResultDto<GetBuuCucForViewDto>(
