@@ -7,6 +7,9 @@
         var _$tenFilterId = $('#TenFilterId');
         var _$address = $('#address');
         var _$tel = $('#tel');
+        var _$commune = $('#communeName');
+        var _$unit = $('#unitName');
+
         var _$service = abp.services.app.buuCucs;
         
         $('.date-picker').datetimepicker({
@@ -48,13 +51,15 @@
                         pOSCode: _$maFilterId.val(),
                         pOSName: _$tenFilterId.val(),
                         address: _$address.val(),
+                        communeName: _$commune.val(),
+                        unitName: _$unit.val(),
                         tel: _$tel.val()
                     };
                 }
             },
             columnDefs: [
                 {
-                    width: 120,
+                    width: "10",
                     targets: 0,
                     data: null,
                     orderable: false,

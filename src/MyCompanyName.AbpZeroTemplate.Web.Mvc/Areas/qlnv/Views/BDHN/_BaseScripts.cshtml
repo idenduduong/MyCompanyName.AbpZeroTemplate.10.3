@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/app-layout-libs.js?v="></script>
+    <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/scripts.bundle.js?v="></script>
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="/AbpServiceProxies/GetAll?v=1" type="text/javascript"></script>
+    <script src="/AbpScripts/GetScripts?v=" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/cultures/globalize.culture.vi-VN.js"></script>
+    <script type="text/javascript">
+        abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: 'Vietnamese' });
+        abp.localization.defaultApiDateTimeFormat = "MM/DD/YYYY";
+        moment.locale('vi'); //Localizing moment.js
+    </script>
+    <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/common-scripts.js?v="></script>
+    <script src="~/crmdemo/view-resources/Areas/crm/Views/_Bundles/app-common-scripts.js?v="></script>
+    <script src="~/crmdemo/view-resources/Areas/crm/Views/Layout/_Header.js?v="></script>
+
+
+    <script src="/lib/jquery-validation/dist/localization/messages_vi.js?v="></script>
+    <script src="/lib/bootstrap-select/dist/js/i18n/defaults-en_US.js?v="></script>
+    <script src="/lib/timeago/locales/jquery.timeago.vi.js?v="></script>
+    <script src="/lib/select2/dist/js/i18n/vi.js?v="></script>
+}

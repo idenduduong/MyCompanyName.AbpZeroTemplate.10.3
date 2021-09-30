@@ -17,7 +17,9 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             {
                 if (await IsGrantedAsync(AppPermissions.Pages_Administration_Host_Dashboard))
                 {
-                    return RedirectToAction("Index", "HostDashboard");
+                    //  datdd: change default page
+                    //return RedirectToAction("Index", "HostDashboard");
+                    return RedirectToAction("Index", "BuuCucs");
                 }
 
                 if (await IsGrantedAsync(AppPermissions.Pages_Tenants))

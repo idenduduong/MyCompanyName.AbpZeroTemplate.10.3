@@ -102,7 +102,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         {
             ProvinceLookupTableViewModal viewModel = new ProvinceLookupTableViewModal
             {
-                Id = id.ToString(),
+                Id = id?.ToString(),
                 DisplayName = displayName,
                 FilterText = string.Empty
             };
@@ -113,7 +113,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         {
             ProvinceLookupTableViewModal viewModel = new ProvinceLookupTableViewModal
             {
-                Id = id.ToString(),
+                Id = id?.ToString(),
                 DisplayName = displayName,
                 FilterText = string.Empty
             };
@@ -124,7 +124,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         {
             UnitLookupTableViewModal viewModel = new UnitLookupTableViewModal
             {
-                Id = id.ToString(),
+                Id = id?.ToString(),
                 DisplayName = displayName,
                 FilterText = string.Empty
             };

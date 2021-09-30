@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+        <nav class="m-stack__item m-topbar__nav-wrapper"
+             aria-label="Menu tr&#xEA;n">
+            <ul class="m-topbar__nav m-nav m-nav--inline"
+                aria-label="Menu tr&#xEA;n"
+                role="menubar">
+                <li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search m-list-search--skin-light m-dropdown--open dropdown-language"
+                    aria-haspopup="true">
+                    <a href="javascript:;" class="m-nav__link m-dropdown__toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"
+                       role="menuitem"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       tabindex="-1">
+                        <span class="language-dropdown">
+                            <i class="famfamfam-flags vn" aria-label="famfamfam-flags vn"></i>
+                            <span class="m-menu__link-text langname">
+                                Vietnamese
+                            </span>
+                            <i class="fa fa-angle-down"></i>
+                        </span>
+
+                    </a>
+                    <ul class="dropdown-menu"
+                        aria-label="Ng&#xF4;n ng&#x1EEF; "
+                        role="menu">
+                        <li role="none">
+                            <a href="/AbpLocalization/ChangeCulture?cultureName=en&returnUrl=/qlnv/DM_QuanHuyens" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">
+                                <i class="famfamfam-flags us"></i> English
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
+                    <a href="#" class="m-nav__link m-dropdown__toggle"
+                       role="menuitem"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       tabindex="0">
+                        <span class="m-topbar__username m--font-primary">
+                            <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">admin</span>
+                        </span>
+                        <span class="m-topbar__userpic">
+                            <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637660909539731287" />
+                        </span>
+                    </a>
+                    <div class="m-dropdown__wrapper">
+                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                        <div class="m-dropdown__inner">
+                            <div class="m-dropdown__header m--align-center" style="background: url(/metronic/dist/html/blue/assets/demo/blue/media/img/misc/user_profile_bg.jpg); background-size: cover;">
+                                <div class="m-card-user m-card-user--skin-dark">
+                                    <div class="m-card-user__pic">
+                                        <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637660909539731287" />
+                                    </div>
+                                    <div class="m-card-user__details">
+                                        <span class="m-card-user__name m--font-weight-500">
+                                            <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">admin</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-dropdown__body">
+                                <nav class="m-dropdown__content" aria-label="[User account]">
+                                    <ul class="m-nav m-nav--skin-light"
+                                        aria-label="[User account]"
+                                        role="menu">
+                                        <li class="m-nav__separator m-nav__separator--fit" role="none"></li>
+                                        <li class="m-nav__item" role="none">
+                                            <a href="#" class="m-nav__link"
+                                               role="menuitem"
+                                               aria-haspopup="true"
+                                               aria-expanded="false"
+                                               tabindex="-1">
+                                                <i class="m-nav__link-icon flaticon-more-v6"></i>
+                                                <span class="m-nav__link-title">
+                                                    <span class="m-nav__link-wrap">
+                                                        <span id="UserProfileChangePasswordLink" class="m-nav__link-text">
+                                                            &#x110;&#x1ED5;i m&#x1EAD;t kh&#x1EA9;u&#xD;&#xA;
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="m-nav__item" role="none">
+                                            <a href="#" class="m-nav__link"
+                                               role="menuitem"
+                                               aria-haspopup="true"
+                                               aria-expanded="false"
+                                               tabindex="-1">
+                                                <i class="m-nav__link-icon flaticon-list"></i>
+                                                <span class="m-nav__link-title">
+                                                    <span class="m-nav__link-wrap">
+                                                        <span id="ShowLoginAttemptsLink" class="m-nav__link-text">
+                                                            C&#x1ED1; g&#x1EAF;ng &#x111;&#x103;ng nh&#x1EAD;p&#xD;&#xA;
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="m-nav__item" role="none">
+                                            <a href="#" class="m-nav__link"
+                                               role="menuitem"
+                                               aria-haspopup="true"
+                                               aria-expanded="false"
+                                               tabindex="-1">
+                                                <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                                <span class="m-nav__link-title">
+                                                    <span class="m-nav__link-wrap">
+                                                        <span id="UserProfileChangePictureLink" class="m-nav__link-text">
+                                                            Thay &#x111;&#x1ED5;i h&#xEC;nh &#x1EA3;nh &#x111;&#x1EA1;i di&#x1EC7;n&#xD;&#xA;
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="m-nav__separator m-nav__separator--fit" role="none"></li>
+                                        <li class="m-nav__item" role="none">
+                                            <a href="/Account/Logout" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+                                               role="menuitem"
+                                               aria-haspopup="true"
+                                               aria-expanded="false"
+                                               tabindex="-1">&#x110;&#x103;ng xu&#x1EA5;t</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+}

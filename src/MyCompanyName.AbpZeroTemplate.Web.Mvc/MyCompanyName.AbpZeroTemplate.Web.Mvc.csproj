@@ -122,7 +122,6 @@
     <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\qlnv\Views\BDHN\" />
     <Folder Include="wwwroot\metronic\my\" />
     <Folder Include="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="21.1.3" />

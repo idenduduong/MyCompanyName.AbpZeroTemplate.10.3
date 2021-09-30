@@ -14,7 +14,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
         public string Tel { get; set; }
 
-        public string OrganizationUnitDisplayNameFilter { get; set; }
+        public string CommuneName { get; set; }
 
+        public string UnitName { get; set; }
+
+        public string OrganizationUnitDisplayNameFilter { get; set; }
     }
 }

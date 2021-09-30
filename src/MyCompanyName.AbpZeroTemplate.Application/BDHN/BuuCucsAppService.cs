@@ -75,15 +75,17 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                            join o1 in _lookup_organizationUnitRepository.GetAll() on o.OrganizationUnitId equals o1.Id into j1
                            from s1 in j1.DefaultIfEmpty()
 
-                           join o2 in _lookup_communeRepository.GetAll() //.OrderBy(input.Sorting != null && input.Sorting.Contains("communeName") ? input.Sorting : "id asc")
-                                                                         //.WhereIf
+                           join o2 in _lookup_communeRepository.GetAll()
+                           .WhereIf(!string.IsNullOrWhiteSpace(input.CommuneName),
+                                    (Commune e) => e.CommuneName.ToLower() == input.CommuneName.ToLower().Trim())
                            on o.CommuneCode equals o2.CommuneCode into j2
-                           from s2 in j2.DefaultIfEmpty()
+                           from s2 in (!string.IsNullOrWhiteSpace(input.CommuneName) ? j2 : j2.DefaultIfEmpty())
 
-                           join o3 in _lookup_unitRepository.GetAll() //.OrderBy(input.Sorting != null && input.Sorting.Contains("unitName") ? input.Sorting : "id asc")
-                                                                      //.WhereIf
+                           join o3 in _lookup_unitRepository.GetAll()
+                           .WhereIf(!string.IsNullOrWhiteSpace(input.UnitName),
+                                    (Unit e) => e.UnitName.ToLower() == input.UnitName.ToLower().Trim())
                            on o.UnitCode equals o3.UnitCode into j3
-                           from s3 in j3.DefaultIfEmpty()
+                           from s3 in (!string.IsNullOrWhiteSpace(input.UnitName) ? j3 : j3.DefaultIfEmpty())
 
                            select new
                            {
@@ -103,7 +105,17 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                                OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
                            };
 
-            var totalCount = await filteredEntities.CountAsync();
+            var totalCount = 0;
+            if (string.IsNullOrWhiteSpace(input.CommuneName) && string.IsNullOrWhiteSpace(input.UnitName))
+            {
+                totalCount = await filteredEntities.CountAsync();
+            }
+            else
+            {
+                totalCount = await entities.CountAsync();
+            }
+
+            var sql = entities.ToQueryString();
 
             var dbList = await entities.ToListAsync();
             var results = new List<GetBuuCucForViewDto>();
