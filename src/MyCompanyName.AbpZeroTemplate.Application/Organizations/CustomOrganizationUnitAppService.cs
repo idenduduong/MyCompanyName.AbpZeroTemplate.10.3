@@ -26,6 +26,7 @@ using MyCompanyName.AbpZeroTemplate.crmdemo.Organizations.Dto;
 using MyCompanyName.AbpZeroTemplate.Organizations.Dto;
 using MyCompanyName.AbpZeroTemplate.Authorization.Users;
 using MyCompanyName.AbpZeroTemplate.Authorization.Roles;
+using MyCompanyName.AbpZeroTemplate.Authorization;
 
 namespace MyCompanyName.AbpZeroTemplate.Organizations
 {
@@ -159,66 +160,106 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 
 		}
 
-        //[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
-        //public async Task<CustomOrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input)
-        //{
-        //	string parentIds = string.Empty;
-        //	int parentLevel = -1;
-        //	new CustomOrganizationUnit();
-        //	if (input.ParentId.HasValue)
-        //	{
-        //		_customOrganizationUnitRepository.Get(input.ParentId.Value);
-        //	}
-        //	CustomOrganizationUnit organizationUnit = new CustomOrganizationUnit(base.AbpSession.TenantId, input.DisplayName, input.ParentId, parentIds, parentLevel, input.UnitCode, input.Website, input.Phone, input.TaxCode, input.Address, input.AccountNumber, input.MarkupCharacters, input.IsShowPrimary, input.IsShowSecondary);
-        //	CustomOrganizationUnit customOrganizationUnit = organizationUnit;
-        //	customOrganizationUnit.Code = await _organizationUnitManager.GetNextChildCodeAsync(organizationUnit.ParentId);
-        //	await _customOrganizationUnitRepository.InsertAsync(organizationUnit);
-        //	await base.CurrentUnitOfWork.SaveChangesAsync();
-        //	return base.ObjectMapper.Map<CustomOrganizationUnitDto>(organizationUnit);
-        //}
+		public async Task<PagedResultDto<OrganizationUnitUserListDto>> GetAllOrganizationUnitByUserId(long Id)
+		{
+			var query = from ouUser in _userOrganizationUnitRepository.GetAll()
+						join ou in _organizationUnitRepository.GetAll() on ouUser.OrganizationUnitId equals ou.Id
+						join user in UserManager.Users on ouUser.UserId equals user.Id
+						where ouUser.UserId == Id
+						select new
+						{
+							ouUser,
+							user
+						};
 
-        //[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
-        //public async Task<CustomOrganizationUnitDto> UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
-        //{
-        //	CustomOrganizationUnit organizationUnit = await _customOrganizationUnitRepository.GetAsync(input.Id);
-        //	organizationUnit.DisplayName = input.DisplayName;
-        //	organizationUnit.UnitCode = input.UnitCode;
-        //	organizationUnit.Website = input.Website;
-        //	organizationUnit.Phone = input.Phone;
-        //	organizationUnit.Address = input.Address;
-        //	organizationUnit.TaxCode = input.TaxCode;
-        //	organizationUnit.AccountNumber = input.AccountNumber;
-        //	await _organizationUnitManager.UpdateAsync(organizationUnit);
-        //	CustomOrganizationUnitDto result = await CreateOrganizationUnitDto(organizationUnit);
-        //	EventBus.Default.Trigger(new OrganizationUnitUpdateEvent
-        //	{
-        //		OrganizationId = organizationUnit.Id,
-        //		OrganizationCode = organizationUnit.UnitCode,
-        //		OrganizationName = organizationUnit.DisplayName
-        //	});
-        //	return result;
-        //}
+			var totalCount = await query.CountAsync();
+			var items = await query.ToListAsync();
 
-        [AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
+			return new PagedResultDto<OrganizationUnitUserListDto>(
+				totalCount,
+				items.Select(item =>
+				{
+					var organizationUnitUserDto = ObjectMapper.Map<OrganizationUnitUserListDto>(item.user);
+					organizationUnitUserDto.AddedTime = item.ouUser.CreationTime;
+					return organizationUnitUserDto;
+				}).ToList());
+		}
+
+		public async Task<PagedResultDto<OrganizationUnitRoleListDto>> GetOrganizationUnitRoles(GetOrganizationUnitRolesInput input)
+		{
+			var query = from ouRole in _organizationUnitRoleRepository.GetAll()
+						join ou in _organizationUnitRepository.GetAll() on ouRole.OrganizationUnitId equals ou.Id
+						join role in _roleManager.Roles on ouRole.RoleId equals role.Id
+						where ouRole.OrganizationUnitId == input.Id
+						select new
+						{
+							ouRole,
+							role
+						};
+
+			var totalCount = await query.CountAsync();
+			var items = await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
+
+			return new PagedResultDto<OrganizationUnitRoleListDto>(
+				totalCount,
+				items.Select(item =>
+				{
+					var organizationUnitRoleDto = ObjectMapper.Map<OrganizationUnitRoleListDto>(item.role);
+					organizationUnitRoleDto.AddedTime = item.ouRole.CreationTime;
+					return organizationUnitRoleDto;
+				}).ToList());
+		}
+
+		//[AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageOrganizationTree)]
+		public async Task<CustomOrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input)
+		{
+			var organizationUnit = new OrganizationUnit(AbpSession.TenantId, input.DisplayName, input.ParentId);
+
+			await _organizationUnitManager.CreateAsync(organizationUnit);
+			await CurrentUnitOfWork.SaveChangesAsync();
+
+			return ObjectMapper.Map<CustomOrganizationUnitDto>(organizationUnit);
+		}
+
+		//[AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageOrganizationTree)]
+		public async Task<CustomOrganizationUnitDto> UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
+		{
+			var organizationUnit = await _organizationUnitRepository.GetAsync(input.Id);
+
+			organizationUnit.DisplayName = input.DisplayName;
+
+			await _organizationUnitManager.UpdateAsync(organizationUnit);
+
+			return await CreateOrganizationUnitDto(organizationUnit);
+		}
+
+
+		//[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
 		public async Task<CustomOrganizationUnitDto> MoveOrganizationUnit(MoveOrganizationUnitInput input)
 		{
 			await _organizationUnitManager.MoveAsync(input.Id, input.NewParentId);
 			return await CreateOrganizationUnitDto(await _customOrganizationUnitRepository.GetAsync(input.Id));
 		}
 
-		[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
+		//[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageOrganizationTree" })]
 		public async Task DeleteOrganizationUnit(EntityDto<long> input)
 		{
 			await _customOrganizationUnitRepository.DeleteAsync(input.Id);
 		}
 
-		[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageMembers" })]
+		//[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageMembers" })]
 		public async Task RemoveUserFromOrganizationUnit(UserToOrganizationUnitInput input)
 		{
 			await base.UserManager.RemoveFromOrganizationUnitAsync(input.UserId, input.OrganizationUnitId);
 		}
 
-		[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageMembers" })]
+		//[AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageRoles)]
+		public async Task RemoveRoleFromOrganizationUnit(RoleToOrganizationUnitInput input)
+		{
+			await _roleManager.RemoveFromOrganizationUnitAsync(input.RoleId, input.OrganizationUnitId);
+		}
+
+		//[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageMembers" })]
 		public async Task AddUsersToOrganizationUnit(UsersToOrganizationUnitInput input)
 		{
 			long[] userIds = input.UserIds;
@@ -228,7 +269,16 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 			}
 		}
 
-		[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageMembers" })]
+		//[AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageRoles)]
+		public async Task AddRolesToOrganizationUnit(RolesToOrganizationUnitInput input)
+		{
+			foreach (var roleId in input.RoleIds)
+			{
+				await _roleManager.AddToOrganizationUnitAsync(roleId, input.OrganizationUnitId, AbpSession.TenantId);
+			}
+		}
+
+		//[AbpAuthorize(new string[] { "Pages.Administration.OrganizationUnits.ManageMembers" })]
 		public async Task<PagedResultDto<NameValueDto>> FindUsers(FindOrganizationUnitUsersInput input)
 		{
 			IQueryable<long> userIdsInOrganizationUnit = from uou in _userOrganizationUnitRepository.GetAll()
@@ -240,6 +290,39 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 																					  select u).PageBy(input).ToListAsync()).Select((User u) => new NameValueDto(u.FullName + " (" + u.EmailAddress + ")", u.Id.ToString())).ToList());
 		}
 
+		//[AbpAuthorize(AppPermissions.Pages_Administration_OrganizationUnits_ManageRoles)]
+		public async Task<PagedResultDto<NameValueDto>> FindRoles(FindOrganizationUnitRolesInput input)
+		{
+			var roleIdsInOrganizationUnit = _organizationUnitRoleRepository.GetAll()
+				.Where(uou => uou.OrganizationUnitId == input.OrganizationUnitId)
+				.Select(uou => uou.RoleId);
+
+			var query = _roleManager.Roles
+				.Where(u => !roleIdsInOrganizationUnit.Contains(u.Id))
+				.WhereIf(
+					!input.Filter.IsNullOrWhiteSpace(),
+					u =>
+						u.DisplayName.Contains(input.Filter) ||
+						u.Name.Contains(input.Filter)
+				);
+
+			var roleCount = await query.CountAsync();
+			var users = await query
+				.OrderBy(u => u.DisplayName)
+				.PageBy(input)
+				.ToListAsync();
+
+			return new PagedResultDto<NameValueDto>(
+				roleCount,
+				users.Select(u =>
+					new NameValueDto(
+						u.DisplayName,
+						u.Id.ToString()
+					)
+				).ToList()
+			);
+		}
+
 		private async Task<CustomOrganizationUnitDto> CreateOrganizationUnitDto(OrganizationUnit organizationUnit)
 		{
 			CustomOrganizationUnitDto dto = base.ObjectMapper.Map<CustomOrganizationUnitDto>(organizationUnit);
@@ -248,14 +331,14 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 			return dto;
 		}
 
-        public Task<CustomOrganizationUnitDto> CreateOrganizationUnit(CreateOrganizationUnitInput input)
-        {
-            throw new NotImplementedException();
-        }
+        //Task<CustomOrganizationUnitDto> ICustomOrganizationUnitAppService.CreateOrganizationUnit(CreateOrganizationUnitInput input)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<CustomOrganizationUnitDto> UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
-        {
-            throw new NotImplementedException();
-        }
+        //Task<CustomOrganizationUnitDto> ICustomOrganizationUnitAppService.UpdateOrganizationUnit(UpdateOrganizationUnitInput input)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

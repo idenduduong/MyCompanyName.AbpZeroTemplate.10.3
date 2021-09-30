@@ -8,7 +8,7 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 {
     public interface ICustomOrganizationUnitAppService : IApplicationService
 	{
-		//Task<ListResultDto<CustomOrganizationUnitDto>> GetOrganizationUnits();
+		Task<ListResultDto<CustomOrganizationUnitDto>> GetOrganizationUnits();
 
 		Task<PagedResultDto<OrganizationUnitUserListDto>> GetOrganizationUnitUsers(GetOrganizationUnitUsersInput input);
 
@@ -22,8 +22,14 @@ namespace MyCompanyName.AbpZeroTemplate.Organizations
 
 		Task RemoveUserFromOrganizationUnit(UserToOrganizationUnitInput input);
 
+		Task RemoveRoleFromOrganizationUnit(RoleToOrganizationUnitInput input);
+
 		Task AddUsersToOrganizationUnit(UsersToOrganizationUnitInput input);
 
+		Task AddRolesToOrganizationUnit(RolesToOrganizationUnitInput input);
+
 		Task<PagedResultDto<NameValueDto>> FindUsers(FindOrganizationUnitUsersInput input);
+
+		Task<PagedResultDto<NameValueDto>> FindRoles(FindOrganizationUnitRolesInput input);
 	}
 }
