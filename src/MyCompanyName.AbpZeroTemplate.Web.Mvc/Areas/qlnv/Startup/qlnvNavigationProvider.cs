@@ -13,38 +13,38 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
         {
             var menu = context.Manager.Menus[MenuName] = new MenuDefinition(MenuName, new FixedLocalizableString("Main Menu"));
 
-            MenuItemDefinition mn_person = new MenuItemDefinition(
-                        qlnvPageNames.Common.BaseEntities,
-                        L("Persons"),
-                        url: "qlnv/Persons",
-                        icon: "flaticon-user-ok",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
-                    )
-                    .AddItem(new MenuItemDefinition(
-                            qlnvPageNames.Common.Persons,
-                            L("Persons"),
-                            url: "qlnv/Persons",
-                            icon: "flaticon-map",
-                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
-                        )
-                    )
-                    .AddItem(new MenuItemDefinition(
-                            qlnvPageNames.Common.Persons,
-                            L("RowEditingAndEditingEvents"),
-                            url: "qlnv/RowEditingAndEditingEvents",
-                            icon: "flaticon-map",
-                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
-                        )
-                    );
+            //MenuItemDefinition mn_person = new MenuItemDefinition(
+            //            qlnvPageNames.Common.BaseEntities,
+            //            L("Persons"),
+            //            url: "qlnv/Persons",
+            //            icon: "flaticon-user-ok",
+            //            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+            //        )
+            //        .AddItem(new MenuItemDefinition(
+            //                qlnvPageNames.Common.Persons,
+            //                L("Persons"),
+            //                url: "qlnv/Persons",
+            //                icon: "flaticon-map",
+            //                permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+            //            )
+            //        )
+            //        .AddItem(new MenuItemDefinition(
+            //                qlnvPageNames.Common.Persons,
+            //                L("RowEditingAndEditingEvents"),
+            //                url: "qlnv/RowEditingAndEditingEvents",
+            //                icon: "flaticon-map",
+            //                permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
+            //            )
+            //        );
             menu
-                .AddItem(new MenuItemDefinition(
-                        qlnvPageNames.Host.Dashboard,
-                        L("Dashboard"),
-                        url: "qlnv/HostDashboard",
-                        icon: "flaticon-line-graph",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
-                    )
-                )
+                //.AddItem(new MenuItemDefinition(
+                //        qlnvPageNames.Host.Dashboard,
+                //        L("Dashboard"),
+                //        url: "qlnv/HostDashboard",
+                //        icon: "flaticon-line-graph",
+                //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
+                //    )
+                //)
                 .AddItem(new MenuItemDefinition(
                         qlnvPageNames.Host.Dashboard,
                         L("TheKhachHangs"),
@@ -53,14 +53,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
                     )
                 )
-                .AddItem(new MenuItemDefinition(
-                        qlnvPageNames.Host.Dashboard,
-                        L("DM_DoiTuongs"),
-                        url: "qlnv/DM_DoiTuongs",
-                        icon: "flaticon-line-graph",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
-                    )
-                )
+                //.AddItem(new MenuItemDefinition(
+                //        qlnvPageNames.Host.Dashboard,
+                //        L("DM_DoiTuongs"),
+                //        url: "qlnv/DM_DoiTuongs",
+                //        icon: "flaticon-line-graph",
+                //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
+                //    )
+                //)
                 //.AddItem(new MenuItemDefinition(
                 //        qlnvPageNames.Host.Dashboard,
                 //        L("AppTasks"),
@@ -78,14 +78,14 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_BaseEntities)
                     )
                 )
-                .AddItem(new MenuItemDefinition(
-                        qlnvPageNames.Common.Childs,
-                        L("Childs"),
-                        url: "qlnv/Childs",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Childs)
-                    )
-                )
+                //.AddItem(new MenuItemDefinition(
+                //        qlnvPageNames.Common.Childs,
+                //        L("Childs"),
+                //        url: "qlnv/Childs",
+                //        icon: "flaticon-more",
+                //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Childs)
+                //    )
+                //)
                 //.AddItem(new MenuItemDefinition(
                 //        qlnvPageNames.Common.Products,
                 //        L("Products"),
@@ -102,30 +102,30 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                 //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Phones)
                 //    )
                 //)
-                .AddItem(new MenuItemDefinition(
-                    qlnvPageNames.Host.Tenants,
-                    L("Tenants"),
-                    url: "qlnv/Tenants",
-                    icon: "flaticon-list-3",
-                    permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Tenants)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        qlnvPageNames.Host.Editions,
-                        L("Editions"),
-                        url: "qlnv/Editions",
-                        icon: "flaticon-app",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Editions)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        qlnvPageNames.Tenant.Dashboard,
-                        L("Dashboard"),
-                        url: "qlnv/TenantDashboard",
-                        icon: "flaticon-line-graph",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Tenant_Dashboard)
-                    )
-                )
+                //.AddItem(new MenuItemDefinition(
+                //    qlnvPageNames.Host.Tenants,
+                //    L("Tenants"),
+                //    url: "qlnv/Tenants",
+                //    icon: "flaticon-list-3",
+                //    permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Tenants)
+                //    )
+                //)
+                //.AddItem(new MenuItemDefinition(
+                //        qlnvPageNames.Host.Editions,
+                //        L("Editions"),
+                //        url: "qlnv/Editions",
+                //        icon: "flaticon-app",
+                //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Editions)
+                //    )
+                //)
+                //.AddItem(new MenuItemDefinition(
+                //        qlnvPageNames.Tenant.Dashboard,
+                //        L("Dashboard"),
+                //        url: "qlnv/TenantDashboard",
+                //        icon: "flaticon-line-graph",
+                //        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Tenant_Dashboard)
+                //    )
+                //)
                 .AddItem(new MenuItemDefinition(
                         qlnvPageNames.Common.Administration,
                         L("Administration"),

@@ -38,45 +38,45 @@
     {
         <li class="nav-item">
             <a href="#SettingsGeneralTab" class="nav-link active" data-toggle="tab" role="tab">
-                @L("General")
+                <b>@L("General")</b>
             </a>
         </li>
     }
     <li class="nav-item">
         <a href="#SettingsTenantManagementTab" class="nav-link @((!Clock.SupportsMultipleTimezone) ? "active" : "")" data-toggle="tab" role="tab">
-            @L("TenantManagement")
+            <b>@L("TenantManagement")</b>
         </a>
     </li>
     <li class="nav-item">
         <a href="#SettingsUserManagementTab" data-toggle="tab" role="tab" class="nav-link">
-            @L("UserManagement")
+            <b>@L("UserManagement")</b>
         </a>
     </li>
     <li class="nav-item">
         <a href="#SecurityManagementTab" data-toggle="tab" role="tab" class="nav-link">
-            @L("Security")
+            <b>@L("Security")</b>
         </a>
     </li>
     <li class="nav-item">
         <a href="#SettingsEmailSmtpTab" data-toggle="tab" role="tab" class="nav-link">
-            @L("EmailSmtp")
+            <b>@L("EmailSmtp")</b>
         </a>
     </li>
     <li class="nav-item">
         <a href="#BillingTab" data-toggle="tab" role="tab" class="nav-link">
-            @L("Invoice")
+            <b>@L("Invoice")</b>
         </a>
     </li>
     <li class="nav-item">
         <a href="#OtherSettingsTab" data-toggle="tab" role="tab" class="nav-link">
-            @L("OtherSettings")
+            <b> @L("OtherSettings")</b>
         </a>
     </li>
     @if (Model.EnabledSocialLoginSettings.Any())
     {
         <li class="nav-item">
             <a href="#ExternalLoginSettingsTab" aria-expanded="true" class="nav-link" data-toggle="tab" role="tab">
-                @L("ExternalLoginSettings")
+                <b>@L("ExternalLoginSettings")</b>
             </a>
         </li>
     }

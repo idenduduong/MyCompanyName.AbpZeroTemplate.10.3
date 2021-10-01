@@ -58716,7 +58716,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„‰";
 }
 
 .dropdown-toggle.nav-link:before, .dropdown-toggle.btn:before {
@@ -58732,7 +58732,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„†";
     display: none;
 }
 
@@ -58767,7 +58767,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„Ž";
 }
 
 .btn-group.dropright > .btn.dropdown-toggle:after {
@@ -58782,7 +58782,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„…";
 }
 
 .btn-group.dropleft > .btn {
@@ -70744,7 +70744,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "";
+        content: "ï„Š";
         font-size: 0.75rem;
         color: #3699FF;
     }
@@ -70768,7 +70768,7 @@ code {
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
             font-smoothing: antialiased;
-            content: "";
+            content: "ï„�";
         }
 
 .accordion.accordion-toggle-arrow .card .card-header .card-title {
@@ -70789,7 +70789,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "";
+        content: "ï„‰";
         color: #3699FF;
         font-size: 0.7rem;
         -webkit-transition: all 0.15s ease;
@@ -73289,7 +73289,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "";
+        content: "ï„ˆ";
         line-height: 0;
     }
 
@@ -84501,7 +84501,7 @@ code {
                     -moz-osx-font-smoothing: grayscale;
                     -webkit-font-smoothing: antialiased;
                     font-smoothing: antialiased;
-                    content: "";
+                    content: "ï„…";
                     font-size: 0.6rem;
                 }
 
@@ -86779,7 +86779,7 @@ code {
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
             font-smoothing: antialiased;
-            content: "";
+            content: "ï„°";
         }
 
         .alert[data-notify] .close:hover:before {
@@ -86872,7 +86872,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "";
+        content: "ï„‰";
     }
 
     .bootstrap-select > .dropdown-toggle:before {
@@ -86967,7 +86967,7 @@ code {
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
             font-smoothing: antialiased;
-            content: "";
+            content: "ï„ˆ";
         }
 
         .bootstrap-select .dropdown-menu.inner > li.selected > a .check-mark:after {
@@ -87720,7 +87720,7 @@ code {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„‰";
 }
 
 .dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before {
@@ -87737,7 +87737,7 @@ code {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„Ž";
 }
 
 .dataTables_wrapper .child .dtr-details {
@@ -88356,7 +88356,7 @@ code {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
                 font-smoothing: antialiased;
-                content: "";
+                content: "ï„…";
             }
 
             .fc-unthemed .fc-toolbar .fc-button .fc-icon.fc-icon-right-single-arrow {
@@ -88371,7 +88371,7 @@ code {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
                 font-smoothing: antialiased;
-                content: "";
+                content: "ï„†";
             }
 
 .fc-unthemed .fc-axis > span {
@@ -90372,7 +90372,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "";
+        content: "ï„‰";
         font-size: 0.6rem;
         color: #7E8299;
     }
@@ -90424,7 +90424,7 @@ code {
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
             font-smoothing: antialiased;
-            content: "";
+            content: "ï„°";
             font-size: 0.6rem;
             color: #7E8299;
         }
@@ -90473,7 +90473,7 @@ code {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
                 font-smoothing: antialiased;
-                content: "";
+                content: "ï„°";
                 font-size: 0.6rem;
                 color: #7E8299;
             }
@@ -90921,7 +90921,7 @@ body.swal2-height-auto {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
                 font-smoothing: antialiased;
-                content: "";
+                content: "ï„°";
                 font-size: 0.6rem;
                 color: #B5B5C3;
             }
@@ -91496,7 +91496,7 @@ body.swal2-height-auto {
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
             font-smoothing: antialiased;
-            content: "";
+            content: "ï„°";
             font-size: 0.9rem;
         }
 
@@ -92050,7 +92050,7 @@ body.swal2-height-auto {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "";
+        content: "ï„–";
     }
 
     .example .example-toggle.example-toggled {
@@ -92063,7 +92063,7 @@ body.swal2-height-auto {
     }
 
         .example .example-toggle.example-toggled:after {
-            content: "";
+            content: "ï„•";
         }
 
 .example .card-toolbar .example-toggle {
@@ -92082,7 +92082,7 @@ body.swal2-height-auto {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„—";
 }
 
 .example .example-copy.example-copied {
@@ -92092,7 +92092,7 @@ body.swal2-height-auto {
 }
 
     .example .example-copy.example-copied:after {
-        content: "";
+        content: "ï„ˆ";
     }
 
 .example .example-preview {
@@ -93327,7 +93327,7 @@ body {
                 }
 
                     .header-menu .menu-nav > .menu-item > .menu-link > .menu-arrow:before {
-                        content: "" !important;
+                        content: "ï„‰" !important;
                     }
 
                 .header-menu .menu-nav > .menu-item.menu-item-rel {
@@ -93409,11 +93409,11 @@ body {
                             -moz-osx-font-smoothing: grayscale;
                             -webkit-font-smoothing: antialiased;
                             font-smoothing: antialiased;
-                            content: "";
+                            content: "ï„…";
                         }
 
     [direction="rtl"] .header-menu .menu-nav > .menu-item > .menu-link .menu-arrow:before {
-        content: "" !important;
+        content: "ï„†" !important;
     }
 
     .header-menu .menu-nav > .menu-item > .menu-link .menu-item-here {
@@ -93505,11 +93505,11 @@ body {
                         -moz-osx-font-smoothing: grayscale;
                         -webkit-font-smoothing: antialiased;
                         font-smoothing: antialiased;
-                        content: "";
+                        content: "ï„…";
                     }
 
     [direction="rtl"] .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item > .menu-link .menu-arrow:before {
-        content: "" !important;
+        content: "ï„†" !important;
     }
 
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item > .menu-link .menu-item-here {
@@ -93640,11 +93640,11 @@ body {
                             -moz-osx-font-smoothing: grayscale;
                             -webkit-font-smoothing: antialiased;
                             font-smoothing: antialiased;
-                            content: "";
+                            content: "ï„…";
                         }
 
     [direction="rtl"] .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item > .menu-link .menu-arrow:before {
-        content: "" !important;
+        content: "ï„†" !important;
     }
 
     .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item > .menu-link .menu-item-here {
@@ -94585,12 +94585,12 @@ body {
                     -moz-osx-font-smoothing: grayscale;
                     -webkit-font-smoothing: antialiased;
                     font-smoothing: antialiased;
-                    content: "";
+                    content: "ï„…";
                 }
 
     [direction="rtl"] .header-menu-mobile .menu-nav > .menu-item > .menu-heading .menu-arrow:before, [direction="rtl"]
     .header-menu-mobile .menu-nav > .menu-item > .menu-link .menu-arrow:before {
-        content: "" !important;
+        content: "ï„†" !important;
     }
 
     .header-menu-mobile .menu-nav > .menu-item > .menu-heading .menu-item-here,
@@ -94694,12 +94694,12 @@ body {
                     -moz-osx-font-smoothing: grayscale;
                     -webkit-font-smoothing: antialiased;
                     font-smoothing: antialiased;
-                    content: "";
+                    content: "ï„…";
                 }
 
     [direction="rtl"] .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-arrow:before, [direction="rtl"]
     .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-arrow:before {
-        content: "" !important;
+        content: "ï„†" !important;
     }
 
     .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-item-here,
@@ -96243,12 +96243,12 @@ body {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
                 font-smoothing: antialiased;
-                content: "";
+                content: "ï„…";
             }
 
 [direction="rtl"] .aside-menu .menu-nav > .menu-item > .menu-heading .menu-arrow:before, [direction="rtl"]
 .aside-menu .menu-nav > .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
 }
 
 .aside-menu .menu-nav > .menu-item > .menu-heading .menu-item-here,
@@ -96355,12 +96355,12 @@ body {
                 -moz-osx-font-smoothing: grayscale;
                 -webkit-font-smoothing: antialiased;
                 font-smoothing: antialiased;
-                content: "";
+                content: "ï„…";
             }
 
 [direction="rtl"] .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-arrow:before, [direction="rtl"]
 .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
 }
 
 .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-item-here,
@@ -96731,14 +96731,14 @@ body {
                         -moz-osx-font-smoothing: grayscale;
                         -webkit-font-smoothing: antialiased;
                         font-smoothing: antialiased;
-                        content: "";
+                        content: "ï„…";
                     }
 
     [direction="rtl"] .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-heading .menu-arrow:before, [direction="rtl"]
     .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-link .menu-arrow:before, [direction="rtl"]
     .aside-menu.aside-menu-dropdown .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-heading .menu-arrow:before, [direction="rtl"]
     .aside-menu.aside-menu-dropdown .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-link .menu-arrow:before {
-        content: "" !important;
+        content: "ï„†" !important;
     }
 
     .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-heading .menu-item-here,
@@ -97819,6 +97819,6 @@ body {
 @media (max-width: 991.98px) {
     .content {
         border-radius: 0.42rem;
-        padding: 15px;
+        /*padding: 15px;*/
     }
 }

@@ -25,13 +25,13 @@ ViewBag.CurrentPageName = qlnvPageNames.Common.AuditLogs;
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a href="#AuditLogsTab" class="nav-link active" data-toggle="tab" role="tab">
-                                @L( "OperationLogs" )
-                            </a>
+                                <b>@L("OperationLogs")</b>
+</a>
                         </li>
                         <li class="nav-item">
                             <a href="#EntityChangesTab" class="nav-link" data-toggle="tab" role="tab">
-                                @L("ChangeLogs")
-                            </a>
+                                <b>@L("ChangeLogs")</b>
+</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -122,7 +122,7 @@ ViewBag.CurrentPageName = qlnvPageNames.Common.AuditLogs;
                                 </form>
                             </div>
                             <div class="row align-items-center">
-                                <table id="AuditLogsTable" class="table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap">
+                                <table id="AuditLogsTable" class="table table-striped table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th></th>
