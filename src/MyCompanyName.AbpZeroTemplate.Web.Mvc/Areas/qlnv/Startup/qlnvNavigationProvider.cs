@@ -148,7 +148,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
                     .AddItem(new MenuItemDefinition(
                             qlnvPageNames.Common.OrganizationUnits,
                             L("OrganizationUnits"),
-                            url: "qlnv/OrganizationUnits",
+                            url: "qlnv/NewOrganizationUnits",
                             icon: "flaticon-map",
                             permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_OrganizationUnits)
                     ))
