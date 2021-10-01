@@ -1,9 +1,12 @@
 ﻿// crmdemo.OrganizationUnits.CustomOrganizationUnit
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.Organizations;
+using MyCompanyName.AbpZeroTemplate.BDHN;
+
 namespace MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits
 {
 	//[Table("AbpOrganizationUnits")]
@@ -28,11 +31,17 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits
 
 		public string AreaName { get; set; }
 
+		[MaxLength(6)]
+		public virtual string PosCode { get; set; }
+
+		[ForeignKey("PosCode")]
+		public BuuCuc BuuCucFk { get; set; }
+
 		public CustomOrganizationUnit()
 		{
 		}
 
-		public CustomOrganizationUnit(int? tenantId, string displayName, long? parentId, string parentIds, int parentLevel, string unitCode, string website, string phone, string taxCode, string address, string accountNumber, string markupCharacters, bool isShowPrimary, bool isShowSecondary)
+		public CustomOrganizationUnit(int? tenantId, string displayName, long? parentId, string parentIds, int parentLevel, string unitCode, string website, string phone, string taxCode, string address, string accountNumber, string posCode, string markupCharacters, bool isShowPrimary, bool isShowSecondary)
 			: base(tenantId, displayName, parentId)
 		{
 			UnitCode = unitCode;
@@ -41,6 +50,7 @@ namespace MyCompanyName.AbpZeroTemplate.crmdemo.OrganizationUnits
 			TaxCode = taxCode;
 			AccountNumber = accountNumber;
 			Phone = phone;
+			PosCode = posCode;
 		}
 	}
 
