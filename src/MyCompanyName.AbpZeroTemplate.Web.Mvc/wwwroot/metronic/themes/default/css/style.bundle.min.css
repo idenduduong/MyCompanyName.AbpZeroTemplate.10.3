@@ -47833,7 +47833,7 @@ button {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„‰";
 }
 .dropdown-toggle.nav-link:before,
 .dropdown-toggle.btn:before {
@@ -47849,7 +47849,7 @@ button {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„†";
   display: none;
 }
 .dropdown-toggle.nav-link.dropdown-toggle-split,
@@ -47911,7 +47911,7 @@ button {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„Ž";
 }
 .btn-group.dropright > .btn.dropdown-toggle:after {
   font-family: Ki;
@@ -47925,7 +47925,7 @@ button {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„…";
 }
 .btn-group.dropleft > .btn {
   border-top-right-radius: 0.42rem !important;
@@ -59798,7 +59798,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„Š";
   font-size: 0.75rem;
   color: #3699FF;
 }
@@ -59820,7 +59820,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„�";
 }
 .accordion.accordion-toggle-arrow .card .card-header .card-title {
   color: #3699FF;
@@ -59839,7 +59839,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„‰";
   color: #3699FF;
   font-size: 0.7rem;
   -webkit-transition: all 0.15s ease;
@@ -61863,7 +61863,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„ˆ";
   line-height: 0;
 }
 .switch input:empty ~ span {
@@ -71045,7 +71045,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„…";
   font-size: 0.6rem;
 }
 .navi .navi-item .navi-link .navi-arrow.navi-arrow-down {
@@ -72930,7 +72930,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„°";
 }
 .alert[data-notify] .close:hover:before {
   opacity: 1;
@@ -73011,7 +73011,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„‰";
 }
 .bootstrap-select > .dropdown-toggle:before {
   width: auto;
@@ -73098,7 +73098,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„ˆ";
 }
 .bootstrap-select .dropdown-menu.inner > li.selected > a .check-mark:after {
   display: none;
@@ -73782,7 +73782,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„‰";
 }
 .dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before {
   color: #3699FF;
@@ -73798,7 +73798,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„Ž";
 }
 .dataTables_wrapper .child .dtr-details {
   display: table !important;
@@ -74314,7 +74314,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„…";
 }
 .fc-unthemed .fc-toolbar .fc-button .fc-icon.fc-icon-right-single-arrow {
   font-family: Ki;
@@ -74328,7 +74328,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„†";
 }
 .fc-unthemed .fc-axis > span {
   font-size: 0.9rem;
@@ -76091,7 +76091,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„‰";
   font-size: 0.6rem;
   color: #7E8299;
 }
@@ -76139,7 +76139,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„°";
   font-size: 0.6rem;
   color: #7E8299;
 }
@@ -76184,7 +76184,7 @@ code {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„°";
   font-size: 0.6rem;
   color: #7E8299;
 }
@@ -76558,7 +76558,7 @@ body.swal2-height-auto {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„°";
   font-size: 0.6rem;
   color: #B5B5C3;
 }
@@ -77016,7 +77016,7 @@ body.swal2-height-auto {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„°";
   font-size: 0.9rem;
 }
 .toast .toast-title {
@@ -77484,7 +77484,7 @@ body.swal2-height-auto {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„–";
 }
 .example .example-toggle.example-toggled {
   background-color: #F3F6F9;
@@ -77495,7 +77495,7 @@ body.swal2-height-auto {
   border-top-right-radius: 0.42rem;
 }
 .example .example-toggle.example-toggled:after {
-  content: "";
+  content: "ï„•";
 }
 .example .card-toolbar .example-toggle {
   border-radius: 0.42rem;
@@ -77512,7 +77512,7 @@ body.swal2-height-auto {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„—";
 }
 .example .example-copy.example-copied {
   -webkit-transition: all 0.15s ease;
@@ -77520,7 +77520,7 @@ body.swal2-height-auto {
   color: #3699FF;
 }
 .example .example-copy.example-copied:after {
-  content: "";
+  content: "ï„ˆ";
 }
 .example .example-preview {
   border: 4px solid #F3F6F9;
@@ -78257,7 +78257,7 @@ body {
     display: none;
   }
   .header-menu .menu-nav > .menu-item > .menu-link > .menu-arrow:before {
-    content: "" !important;
+    content: "ï„‰" !important;
   }
   .header-menu .menu-nav > .menu-item.menu-item-rel {
     position: relative;
@@ -78326,10 +78326,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„…";
   }
   [direction="rtl"] .header-menu .menu-nav > .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
   }
   .header-menu .menu-nav > .menu-item > .menu-link .menu-item-here {
     display: none;
@@ -78406,10 +78406,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„…";
   }
   [direction="rtl"] .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
   }
   .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item > .menu-link .menu-item-here {
     display: none;
@@ -78518,10 +78518,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„…";
   }
   [direction="rtl"] .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
   }
   .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav .menu-content .menu-inner > .menu-item > .menu-link .menu-item-here {
     display: none;
@@ -78987,11 +78987,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„…";
   }
   [direction="rtl"] .header-menu-mobile .menu-nav > .menu-item > .menu-heading .menu-arrow:before,
   [direction="rtl"] .header-menu-mobile .menu-nav > .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
   }
   .header-menu-mobile .menu-nav > .menu-item > .menu-heading .menu-item-here,
   .header-menu-mobile .menu-nav > .menu-item > .menu-link .menu-item-here {
@@ -79080,11 +79080,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„…";
   }
   [direction="rtl"] .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-arrow:before,
   [direction="rtl"] .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
   }
   .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-item-here,
   .header-menu-mobile .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-item-here {
@@ -79787,11 +79787,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„…";
 }
 [direction="rtl"] .aside-menu .menu-nav > .menu-item > .menu-heading .menu-arrow:before,
 [direction="rtl"] .aside-menu .menu-nav > .menu-item > .menu-link .menu-arrow:before {
-  content: "" !important;
+  content: "ï„†" !important;
 }
 .aside-menu .menu-nav > .menu-item > .menu-heading .menu-item-here,
 .aside-menu .menu-nav > .menu-item > .menu-link .menu-item-here {
@@ -79882,11 +79882,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  content: "";
+  content: "ï„…";
 }
 [direction="rtl"] .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-arrow:before,
 [direction="rtl"] .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-arrow:before {
-  content: "" !important;
+  content: "ï„†" !important;
 }
 .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-item-here,
 .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-item-here {
@@ -80200,13 +80200,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    content: "ï„…";
   }
   [direction="rtl"] .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-heading .menu-arrow:before,
   [direction="rtl"] .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-link .menu-arrow:before,
   [direction="rtl"] .aside-menu.aside-menu-dropdown .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-heading .menu-arrow:before,
   [direction="rtl"] .aside-menu.aside-menu-dropdown .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-link .menu-arrow:before {
-    content: "" !important;
+    content: "ï„†" !important;
   }
   .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-heading .menu-item-here,
   .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav .menu-item:not([data-menu-submenu-mode=accordion]).menu-item-hover > .menu-submenu .menu-subnav > .menu-item > .menu-link .menu-item-here,

@@ -53,7 +53,7 @@
                         filter: $('#UsersTableFilter').val(),
                         permissions: _selectedPermissionNames,
                         role: $("#RoleSelectionCombo").val(),
-                        onlyLockedUsers: $("#UsersTable_OnlyLockedUsers").is(':checked')
+                        onlyLockedUsers: $("#U  sersTable_OnlyLockedUsers").is(':checked')
                     };
                 }
             },
@@ -73,7 +73,8 @@
                     autoWidth: false,
                     defaultContent: '',
                     rowAction: {
-                        text: '<i class="fa fa-cog"></i> <span class="d-none d-md-inline-block d-lg-inline-block d-xl-inline-block">' + app.localize('Actions') + '</span> <span class="caret"></span>',
+                        text: '<i class="fa fa-cog"></i> <span class="d-none d-md-inline-block d-lg-inline-block d-xl-inline-block">'
+                            + app.localize('Actions') + '</span> <span class="fa fa-angle-down"></span>',
                         items: [{
                             text: app.localize('LoginAsThisUser'),
                             visible: function (data) {
