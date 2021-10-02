@@ -174,7 +174,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                     //  datdd: set skipcount because page once only
                     input.SkipCount = 0;
                 }
-                if (input.Sorting != null)
+                if (input.Sorting != null && foreingSort)
                 {
                     switch (input.Sorting)
                     {
