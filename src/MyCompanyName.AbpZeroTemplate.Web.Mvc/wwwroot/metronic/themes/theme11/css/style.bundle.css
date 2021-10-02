@@ -71744,9 +71744,7 @@ code {
         }
 
     .checkbox > span {
-        /*datdd: change background*/
-        /*background-color: #EBEDF3;*/
-        background-color: #3699FF;
+        background-color: #EBEDF3;
         border: 1px solid transparent;
     }
 
@@ -97819,6 +97817,6 @@ body {
 @media (max-width: 991.98px) {
     .content {
         border-radius: 0.42rem;
-        /*padding: 15px;*/
+        padding: 15px;
     }
 }

@@ -13,6 +13,89 @@
     <link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/Users/Index.css" asp-append-version="true" />
 
     <style>
+        /*overide*/
+        .btn {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            border-radius: 0.2rem;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #58A3DC !important;
+            border-color: #58A3DC;
+        }
+
+        /*0=----------------*/
+        .table, thead {
+            font-family: sans-serif !important;
+            /*border-collapse: collapse !important;*/
+        }
+        .table-bordered tr {
+        }
+        /*.table-bordered td {
+            padding         : 3px 0px 3px 5px !important;*/
+            /*border-right    : 1px solid #848080 !important;
+            border-bottom   : 1px solid #848080 !important;*/
+        /*}*/
+        .dataTables_wrapper table thead {
+            background-color: #f9f9f9 !important;
+        }
+
+        table thead {
+            line-height: 21px !important;
+            font-size: 13px !important;
+            font-weight: bold;
+            text-align: center;
+            line-height: 27px !important;
+        }
+        body {
+            font-family: sans-serif !important;
+        }
+
+        /*        
+        .table-bordered th, .table-bordered td {
+            border: 1px solid #EBEDF3 !important;
+            border-right: 1px solid #EBEDF3 !important;
+            border-bottom: 1px solid #EBEDF3 !important;
+        }
+        */
+
+        /*
+        .table-bordered {
+            border-left: 1px solid #848080 !important;
+            border-top: 1px solid #848080 !important;
+        }
+        */
+        /*
+                #848080
+                #EBEDF3
+        */
+        .table-bordered th, .table-bordered td {
+            border: 1px solid #84808060 !important;
+        }
+
+        .table th, .table td {
+            padding: 0.30rem !important;
+        }
+        .dropdown-toggle.nav-link:after, .dropdown-toggle.btn:after {
+            text-align: center;
+            display: inline;
+            border: 0;
+            font-family: "LineAwesome";
+            text-decoration: inherit;
+            text-rendering: optimizeLegibility;
+            text-transform: none;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+            content: "";
+            font-size: 0.8rem;
+            line-height: 0;
+            vertical-align: middle;
+            top: -0.1em;
+            position: relative;
+        }
     </style>
 }
 
@@ -113,19 +196,19 @@
                     </div>
                 </div>
                 <div class="align-items-center">
-                    <table id="UsersTable" class="table table-striped table-separate table-head-custom dataTable no-footer dtr-inline dt-responsive nowrap">
+                    <table id="UsersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>@L("Actions")</th>
-                                <th>@L("UserName")</th>
-                                <th>@L("FirstName")</th>
-                                <th>@L("Surname")</th>
-                                <th>@L("Roles")</th>
-                                <th>@L("EmailAddress")</th>
-                                <th>@L("EmailConfirm")</th>
-                                <th>@L("Active")</th>
-                                <th>@L("CreationTime")</th>
+                                <th><b>@L("Actions")</b></th>
+                                <th><b>@L("UserName")</b></th>
+                                <th><b>@L("FirstName")</b></th>
+                                <th><b>@L("Surname")</b></b></th>
+                                <th><b>@L("Roles")</b></th>
+                                <th><b>@L("EmailAddress")</b></th>
+                                <th><b>@L("EmailConfirm")</b></th>
+                                <th><b>@L("Active")</b></th>
+                                <th><b>@L("CreationTime")</b></th>
                             </tr>
                         </thead>
                     </table>
