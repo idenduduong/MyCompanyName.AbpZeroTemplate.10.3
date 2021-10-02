@@ -58716,7 +58716,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "ï„‰";
+    content: "";
 }
 
 .dropdown-toggle.nav-link:before, .dropdown-toggle.btn:before {
@@ -58767,7 +58767,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "ï„Ž";
+    content: "-";
 }
 
 .btn-group.dropright > .btn.dropdown-toggle:after {
@@ -70789,7 +70789,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "ï„‰";
+        content: "";
         color: #3699FF;
         font-size: 0.7rem;
         -webkit-transition: all 0.15s ease;
@@ -86870,7 +86870,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "ï„‰";
+        content: "";
     }
 
     .bootstrap-select > .dropdown-toggle:before {
@@ -87718,7 +87718,7 @@ code {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "ï„‰";
+    content: "+";
 }
 
 .dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before {
@@ -87735,7 +87735,7 @@ code {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "ï„Ž";
+    content: "-";
 }
 
 .dataTables_wrapper .child .dtr-details {
@@ -90370,7 +90370,7 @@ code {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "ï„‰";
+        content: "";
         font-size: 0.6rem;
         color: #7E8299;
     }
@@ -93325,7 +93325,7 @@ body {
                 }
 
                     .header-menu .menu-nav > .menu-item > .menu-link > .menu-arrow:before {
-                        content: "ï„‰" !important;
+                        content: "" !important;
                     }
 
                 .header-menu .menu-nav > .menu-item.menu-item-rel {
