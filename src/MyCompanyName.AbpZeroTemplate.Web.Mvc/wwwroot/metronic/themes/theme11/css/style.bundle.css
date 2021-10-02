@@ -58716,7 +58716,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
-    content: "";
+    /*content: "";*/
 }
 
 .dropdown-toggle.nav-link:before, .dropdown-toggle.btn:before {
