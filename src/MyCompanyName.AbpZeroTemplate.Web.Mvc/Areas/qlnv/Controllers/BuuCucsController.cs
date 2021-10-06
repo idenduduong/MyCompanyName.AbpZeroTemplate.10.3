@@ -34,7 +34,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             return View(model);
         }
 
-        [AbpMvcAuthorize(AppPermissions.Pages_BuuCucs_Create, AppPermissions.Pages_BuuCucs_Edit)]
+        //[AbpMvcAuthorize(AppPermissions.Pages_BuuCucs_Create, AppPermissions.Pages_BuuCucs_Edit)]
         public async Task<PartialViewResult> CreateOrEditModal(Guid? id)
         {
             GetBuuCucForEditOutput getForEditOutput;
