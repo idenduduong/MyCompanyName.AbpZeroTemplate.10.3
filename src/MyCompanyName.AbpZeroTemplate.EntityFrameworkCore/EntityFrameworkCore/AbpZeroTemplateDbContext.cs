@@ -367,6 +367,8 @@ namespace MyCompanyName.AbpZeroTemplate.EntityFrameworkCore
 
         public virtual DbSet<Region> Regions { get; set; }
 
+        public virtual DbSet<Tool> Tools { get; set; }
+
         public virtual DbSet<BaseEntity> BaseEntities { get; set; }
 
         /* Define an IDbSet for each entity of the application */
