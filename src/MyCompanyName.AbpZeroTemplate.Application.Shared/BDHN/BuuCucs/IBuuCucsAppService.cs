@@ -16,7 +16,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
         Task CreateOrEdit(CreateOrEditBuuCucDto input);
 
-        //Task Delete(EntityDto input);
+        Task Delete(EntityDto<Guid> input);
 
         //Task<FileDto> GetBaseEntitiesToExcel(GetAllBaseEntitiesForExcelInput input);
 

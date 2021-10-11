@@ -394,6 +394,9 @@ namespace MyCompanyName.AbpZeroTemplate
             configuration.CreateMap<CreateOrEditBuuCucDto, BuuCuc>().ReverseMap();
             configuration.CreateMap<BuuCucDto, BuuCuc>().ReverseMap();
 
+			configuration.CreateMap<CreateOrEditToolDto, Tool>().ReverseMap();
+			configuration.CreateMap<ToolDto, Tool>().ReverseMap();
+
 			configuration.CreateMap<CreateOrEditBaseEntityDto, BaseEntity>().ReverseMap();
 			configuration.CreateMap<BaseEntityDto, BaseEntity>().ReverseMap();
 
