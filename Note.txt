@@ -400,3 +400,8 @@ begin transaction
   
   ALTER TABLE branchOffice WITH CHECK CHECK CONSTRAINT ALL
 commit transation;
+
+@if (IsGranted(AppPermissions.Pages_Tenant_PhoneBook_CreatePerson))
+{
+    <button id="CreateNewPersonButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewPerson")</button>
+}
