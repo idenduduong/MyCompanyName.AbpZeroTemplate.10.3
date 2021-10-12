@@ -35,12 +35,12 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 		public virtual string? Note { get; set; }
 
 		[MaxLength(6)]
-		public virtual string? BuuCuc { get; set; }
+		public virtual string? POSCode { get; set; }
 
-		[ForeignKey("BuuCuc")]
-		public BuuCuc BuuCucFk { get; set; }
+        [ForeignKey("POSCode")]
+        public BuuCuc BuuCucFk { get; set; }
 
-		public virtual int? TenantId { get; set; }
+        public virtual int? TenantId { get; set; }
 
 		public virtual long? OrganizationUnitId { get; set; }
 

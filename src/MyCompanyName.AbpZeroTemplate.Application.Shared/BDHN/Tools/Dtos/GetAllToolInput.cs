@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Abp.Application.Services.Dto;
-using System.ComponentModel.DataAnnotations;
 
-namespace MyCompanyName.AbpZeroTemplate.BDHN
+namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 {
-    public class CreateOrEditToolDto : FullAuditedEntityDto<Guid?>
+    public class GetAllToolInput : PagedAndSortedResultRequestDto
     {
+        public string Filter { get; set; }
+
 		public virtual string ToolName { get; set; }
 
 		public virtual ToolType Type { get; set; }
@@ -24,8 +27,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
 		public virtual string? Note { get; set; }
 
-		public virtual string? BuuCuc { get; set; }
+		public virtual string? BuuCucCode { get; set; }
 
-		public long? OrganizationUnitId { get; set; }
+		public virtual string? BuuCucName { get; set; }
+
+		public string OrganizationUnitDisplayNameFilter { get; set; }
     }
 }

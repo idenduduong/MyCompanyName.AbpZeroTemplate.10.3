@@ -71,7 +71,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 		public virtual bool? IsOffline { get; set; }
 
 		[MaxLength(6)]
-		public virtual string? UnitCode { get; set; }
+		public virtual string? UnitCode { get; set; }	
 
 		[ForeignKey("UnitCode")]
 		public Unit UnitFk { get; set; }

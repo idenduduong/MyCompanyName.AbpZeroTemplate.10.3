@@ -1,12 +1,11 @@
-﻿using Abp.Application.Services.Dto;
-using System;
-
+﻿using System;
+using Abp.Application.Services.Dto;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 {
-    public class ToolDto : FullAuditedEntityDto<Guid>
+    public class CreateOrEditToolDto : FullAuditedEntityDto<Guid?>
     {
-
 		public virtual string ToolName { get; set; }
 
 		public virtual ToolType Type { get; set; }
@@ -25,9 +24,9 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		public virtual string? Note { get; set; }
 
-		public virtual string? BuuCuc { get; set; }
+		public virtual Guid? BuuCucId { get; set; }
 
-		public virtual int? TenantId { get; set; }
+		public virtual string? BuuCucCode { get; set; }
 
 		public long? OrganizationUnitId { get; set; }
     }

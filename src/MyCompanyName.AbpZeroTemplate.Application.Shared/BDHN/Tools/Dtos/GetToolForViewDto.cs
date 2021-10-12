@@ -5,6 +5,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
     {
         public ToolDto Tool { get; set; }
 
+        public string PosName { get; set; }
 
         public string OrganizationUnitDisplayName { get; set; }
     }

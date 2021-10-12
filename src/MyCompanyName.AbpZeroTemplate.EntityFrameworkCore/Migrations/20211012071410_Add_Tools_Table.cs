@@ -21,7 +21,7 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     Condition = table.Column<int>(type: "int", nullable: true),
                     ToolStatus = table.Column<int>(type: "int", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    BuuCuc = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: true),
+                    POSCode = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: true),
                     TenantId = table.Column<int>(type: "int", nullable: true),
                     OrganizationUnitId = table.Column<long>(type: "bigint", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -42,22 +42,22 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BDHN_Tools_BDHN_BuuCucs_BuuCuc",
-                        column: x => x.BuuCuc,
+                        name: "FK_BDHN_Tools_BDHN_BuuCucs_POSCode",
+                        column: x => x.POSCode,
                         principalTable: "BDHN_BuuCucs",
                         principalColumn: "POSCode",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BDHN_Tools_BuuCuc",
-                table: "BDHN_Tools",
-                column: "BuuCuc");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BDHN_Tools_OrganizationUnitId",
                 table: "BDHN_Tools",
                 column: "OrganizationUnitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BDHN_Tools_POSCode",
+                table: "BDHN_Tools",
+                column: "POSCode");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

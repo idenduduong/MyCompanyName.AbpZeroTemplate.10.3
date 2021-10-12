@@ -69,6 +69,11 @@ namespace MyCompanyName.AbpZeroTemplate.Authorization
             bucCucs.CreateChildPermission(AppPermissions.Pages_BuuCucs_Edit, L("EditBuuCuc"));
             bucCucs.CreateChildPermission(AppPermissions.Pages_BuuCucs_Delete, L("DeleteBuuCuc"));
 
+            var tools = pages.CreateChildPermission(AppPermissions.Pages_Tools, L("Tools"));
+            tools.CreateChildPermission(AppPermissions.Pages_Tools_Create, L("CreateNewTool"));
+            tools.CreateChildPermission(AppPermissions.Pages_Tools_Edit, L("EditTool"));
+            tools.CreateChildPermission(AppPermissions.Pages_Tools_Delete, L("DeleteTool"));
+
             var childs = pages.CreateChildPermission(AppPermissions.Pages_Childs, L("Childs"));
             childs.CreateChildPermission(AppPermissions.Pages_Childs_Create, L("CreateNewChild"));
             childs.CreateChildPermission(AppPermissions.Pages_Childs_Edit, L("EditChild"));

@@ -39,8 +39,4 @@
     <ProjectReference Include="..\MyCompanyName.AbpZeroTemplate.Core.Shared\MyCompanyName.AbpZeroTemplate.Core.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BDHN\Tools\" />
-  </ItemGroup>
-
 </Project>

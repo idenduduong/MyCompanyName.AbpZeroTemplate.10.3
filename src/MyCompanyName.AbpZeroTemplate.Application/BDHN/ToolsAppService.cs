@@ -23,11 +23,13 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
     {
         private readonly IRepository<Tool, Guid> _repository;
         //private readonly IBaseEntitiesExcelExporter _baseEntitiesExcelExporter;
+        private readonly IRepository<BuuCuc, Guid> _lookup_buuCucRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
 
-        public ToolsAppService(IRepository<Tool, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
+        public ToolsAppService(IRepository<Tool, Guid> repository, IRepository<BuuCuc, Guid> lookup_buuCucRepository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
         {
             _repository = repository;
+            _lookup_buuCucRepository = lookup_buuCucRepository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
         }
 
@@ -69,26 +71,27 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             }
 
             var entities = from o in pagedAndFilteredBaseEntities
+
                            join o1 in _lookup_organizationUnitRepository.GetAll() on o.OrganizationUnitId equals o1.Id into j1
                            from s1 in j1.DefaultIfEmpty()
 
-                           //join o2 in _lookup_communeRepository.GetAll()
-                           //.WhereIf(!string.IsNullOrWhiteSpace(input.CommuneName),
-                           //         (Commune e) => EF.Functions.Like(e.CommuneName.Trim().ToLower(), "%" + input.CommuneName.Trim().ToLower() + "%"))
-                           //on o.CommuneCode equals o2.CommuneCode into j2
-                           //from s2 in (!string.IsNullOrWhiteSpace(input.CommuneName) ? j2 : j2.DefaultIfEmpty())
+                           join o2 in _lookup_buuCucRepository.GetAll()
+                           .WhereIf(!string.IsNullOrWhiteSpace(input.BuuCucName),
+                                   (BuuCuc e) => EF.Functions.Like(e.POSName.Trim().ToLower(), "%" + input.BuuCucName.Trim().ToLower() + "%"))
+                           on o.POSCode equals o2.POSCode into j2
+                           from s2 in (!string.IsNullOrWhiteSpace(input.BuuCucName) ? j2 : j2.DefaultIfEmpty())
 
-                           //join o3 in _lookup_unitRepository.GetAll()
-                           //.WhereIf(!string.IsNullOrWhiteSpace(input.UnitName),
-                           //         (Unit e) => EF.Functions.Like(e.UnitName.Trim().ToLower(), "%" + input.UnitName.Trim().ToLower() + "%"))
-                           //on o.UnitCode equals o3.UnitCode into j3
-                           //from s3 in (!string.IsNullOrWhiteSpace(input.UnitName) ? j3 : j3.DefaultIfEmpty())
+                               //join o3 in _lookup_unitRepository.GetAll()
+                               //.WhereIf(!string.IsNullOrWhiteSpace(input.UnitName),
+                               //         (Unit e) => EF.Functions.Like(e.UnitName.Trim().ToLower(), "%" + input.UnitName.Trim().ToLower() + "%"))
+                               //on o.UnitCode equals o3.UnitCode into j3
+                               //from s3 in (!string.IsNullOrWhiteSpace(input.UnitName) ? j3 : j3.DefaultIfEmpty())
 
-                           //join o4 in _lookup_provinceRepository.GetAll()
-                           //.WhereIf(!string.IsNullOrWhiteSpace(input.ProvinceName),
-                           //         (Province e) => EF.Functions.Like(e.ProvinceName.Trim().ToLower(), "%" + input.ProvinceName.Trim().ToLower() + "%"))
-                           //on o.ProvinceCode equals o4.ProvinceCode into j4
-                           //from s4 in j4
+                               //join o4 in _lookup_provinceRepository.GetAll()
+                               //.WhereIf(!string.IsNullOrWhiteSpace(input.ProvinceName),
+                               //         (Province e) => EF.Functions.Like(e.ProvinceName.Trim().ToLower(), "%" + input.ProvinceName.Trim().ToLower() + "%"))
+                               //on o.ProvinceCode equals o4.ProvinceCode into j4
+                               //from s4 in j4
                                //from s4 in (!string.IsNullOrWhiteSpace(input.ProvinceName) ? j4 : j4.DefaultIfEmpty())
 
                            select new
@@ -102,11 +105,12 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                                o.Condition,
                                o.ToolStatus,
                                o.Note,
-                               o.BuuCuc,
+                               o.POSCode,
                                o.TenantId,
                                o.OrganizationUnitId,
                                o.IsDeleted,
                                o.Id,
+                               s2.POSName,
                                OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
                            };
 
@@ -142,12 +146,13 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                             Condition = o.Condition,
                             ToolStatus = o.ToolStatus,
                             Note = o.Note,
-                            BuuCuc = o.BuuCuc,
+                            PosCode = o.POSCode,
                             TenantId = o.TenantId,
                             OrganizationUnitId = o.OrganizationUnitId,
                             IsDeleted = o.IsDeleted,
                             Id = o.Id,
                         },
+                        PosName = o.POSName,
                         OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
                     };
                     results.Add(res);
@@ -239,17 +244,17 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         {
             var entity = await _repository.FirstOrDefaultAsync(input.Id);
 
-            var output = new GetToolForEditOutput { BuuCuc = ObjectMapper.Map<CreateOrEditToolDto>(entity) };
+            var output = new GetToolForEditOutput { Tool = ObjectMapper.Map<CreateOrEditToolDto>(entity) };
 
-            if (output.BuuCuc.OrganizationUnitId != null)
+            if (output.Tool.OrganizationUnitId != null)
             {
-                var _lookupOrganizationUnit = await _lookup_organizationUnitRepository.FirstOrDefaultAsync((long)output.BuuCuc.OrganizationUnitId);
+                var _lookupOrganizationUnit = await _lookup_organizationUnitRepository.FirstOrDefaultAsync((long)output.Tool.OrganizationUnitId);
                 output.OrganizationUnitDisplayName = _lookupOrganizationUnit?.DisplayName?.ToString();
             }
-            //if (!string.IsNullOrEmpty(output.BuuCuc.ProvinceCode))
-            //{
-            //    output.ProvinceName = (await _lookup_provinceRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.ProvinceCode.Trim() == output.BuuCuc.ProvinceCode.Trim()).FirstOrDefaultAsync()).ProvinceName.Trim();
-            //}
+            if (!string.IsNullOrEmpty(output.Tool.BuuCucCode))
+            {
+                output.BuuCucName = (await _lookup_buuCucRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.POSCode.Trim() == output.Tool.BuuCucCode.Trim()).FirstOrDefaultAsync()).POSName.Trim();
+            }
             //if (!string.IsNullOrEmpty(output.BuuCuc.CommuneCode))
             //{
             //    output.CommuneName = (await _lookup_communeRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.CommuneCode.Trim() == output.BuuCuc.CommuneCode.Trim()).FirstOrDefaultAsync()).CommuneName.Trim();

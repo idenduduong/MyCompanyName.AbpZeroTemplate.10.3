@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
+using System;
+
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 {
-    public class GetAllToolInput : PagedAndSortedResultRequestDto
+    public class ToolDto : FullAuditedEntityDto<Guid>
     {
-        public string Filter { get; set; }
 
 		public virtual string ToolName { get; set; }
 
@@ -27,8 +25,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		public virtual string? Note { get; set; }
 
-		public virtual string? BuuCuc { get; set; }
+		public virtual string? PosCode { get; set; }
 
-		public string OrganizationUnitDisplayNameFilter { get; set; }
+		public virtual int? TenantId { get; set; }
+
+		public long? OrganizationUnitId { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using MyCompanyName.AbpZeroTemplate.EntityFrameworkCore;
 namespace MyCompanyName.AbpZeroTemplate.Migrations
 {
     [DbContext(typeof(AbpZeroTemplateDbContext))]
-    [Migration("20211011040637_Add_Tools_Table")]
+    [Migration("20211012071410_Add_Tools_Table")]
     partial class Add_Tools_Table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2089,10 +2089,6 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("BuuCuc")
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)");
-
                     b.Property<int?>("Condition")
                         .HasColumnType("int");
 
@@ -2128,6 +2124,10 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
                     b.Property<long?>("OrganizationUnitId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("POSCode")
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
                     b.Property<string>("Serial")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -2153,9 +2153,9 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuuCuc");
-
                     b.HasIndex("OrganizationUnitId");
+
+                    b.HasIndex("POSCode");
 
                     b.ToTable("BDHN_Tools");
                 });
@@ -5875,13 +5875,13 @@ namespace MyCompanyName.AbpZeroTemplate.Migrations
 
             modelBuilder.Entity("MyCompanyName.AbpZeroTemplate.BDHN.Tool", b =>
                 {
-                    b.HasOne("MyCompanyName.AbpZeroTemplate.BDHN.BuuCuc", "BuuCucFk")
-                        .WithMany()
-                        .HasForeignKey("BuuCuc");
-
                     b.HasOne("Abp.Organizations.OrganizationUnit", "OrganizationUnitFk")
                         .WithMany()
                         .HasForeignKey("OrganizationUnitId");
+
+                    b.HasOne("MyCompanyName.AbpZeroTemplate.BDHN.BuuCuc", "BuuCucFk")
+                        .WithMany()
+                        .HasForeignKey("POSCode");
 
                     b.Navigation("BuuCucFk");
 

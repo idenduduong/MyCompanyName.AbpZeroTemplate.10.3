@@ -36,6 +36,11 @@
         public const string Pages_BuuCucs_Edit = "Pages.BuuCucs.Edit";
         public const string Pages_BuuCucs_Delete = "Pages.BuuCucs.Delete";
 
+        public const string Pages_Tools = "Pages.Tools";
+        public const string Pages_Tools_Create = "Pages.Tools.Create";
+        public const string Pages_Tools_Edit = "Pages.Tools.Edit";
+        public const string Pages_Tools_Delete = "Pages.Tools.Delete";
+
         public const string Pages_Childs = "Pages.Childs";
         public const string Pages_Childs_Create = "Pages.Childs.Create";
         public const string Pages_Childs_Edit = "Pages.Childs.Edit";
