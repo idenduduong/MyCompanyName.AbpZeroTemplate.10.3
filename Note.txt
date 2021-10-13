@@ -380,13 +380,33 @@ FROM BDHN_BuuCucs inner join pos on BDHN_BuuCucs.PosCode = pos.PosCode where pos
 ----------------
 
 ----------------
+<script type="text/javascript">
+	abp.localization.defaultSourceName = '@LocalizationSourceName';
+</script>
 
+<!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+<script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
 ----------------
+//Normalize arguments
+if (sourceName.IsNullOrEmpty())
+{
+	sourceName = AbpZeroTemplateConsts.LocalizationSourceName;
+}
 
+if (baseLanguageName.IsNullOrEmpty())
+{
+	baseLanguageName = _languageManager.CurrentLanguage.Name;
+}
 ----------------
-
+private static ILocalizableString L(string name)
+{
+	return new LocalizableString(name, AbpZeroTemplateConsts.LocalizationSourceName);
+}
 ----------------
-
+public string GetPhoneTypeAsString()
+{
+	return LocalizationHelper.GetString(PhoneBookDemoConsts.LocalizationSourceName, "PhoneType_" + Phone.Type);
+}
 ----------------
 
 

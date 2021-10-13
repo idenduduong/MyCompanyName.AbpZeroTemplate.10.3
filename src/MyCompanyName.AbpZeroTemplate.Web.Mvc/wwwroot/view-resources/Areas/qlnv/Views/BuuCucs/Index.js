@@ -129,7 +129,7 @@
             ]
         });
 
-        function getEntities() {
+        //function getEntities() {
             dataTable.ajax.reload();
         }
 

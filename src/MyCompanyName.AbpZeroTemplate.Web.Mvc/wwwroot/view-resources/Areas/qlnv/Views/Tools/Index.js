@@ -84,7 +84,7 @@
                                 return _permissions.edit;
                             },
                             action: function (data) {
-                                _createOrEditModal.open({ id: data.record.buuCuc.id });
+                                _createOrEditModal.open({ id: data.record.tool.id });
                             }
                         }, 
 						{
@@ -93,7 +93,7 @@
                                 return _permissions.delete;
                             },
                             action: function (data) {
-                                deleteEntity(data.record.buuCuc);
+                                deleteEntity(data.record.tool);
                             }
                         }]
                     }
@@ -112,7 +112,11 @@
                 },
                 {
 					targets: 4,
-                    data: "tool.type"
+                    data: "tool.type",
+                    name: "type",
+                    render: function (type) {
+                        return abp.localization.localize('ToolType_' + type, 'vi');
+                    }
                 },
                 {
                     targets: 5,

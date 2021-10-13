@@ -231,6 +231,12 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
             var output = new GetToolForViewDto { Tool = ObjectMapper.Map<ToolDto>(entity) };
 
+            if (output.Tool.PosCode != null)
+            {
+                var _lookupBuuCuc = await _lookup_buuCucRepository.FirstOrDefaultAsync(id);
+                output.PosName = _lookupBuuCuc?.POSName?.ToString();
+            }
+
             if (output.Tool.OrganizationUnitId != null)
             {
                 var _lookupOrganizationUnit = await _lookup_organizationUnitRepository.FirstOrDefaultAsync((long)output.Tool.OrganizationUnitId);
@@ -251,9 +257,9 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                 var _lookupOrganizationUnit = await _lookup_organizationUnitRepository.FirstOrDefaultAsync((long)output.Tool.OrganizationUnitId);
                 output.OrganizationUnitDisplayName = _lookupOrganizationUnit?.DisplayName?.ToString();
             }
-            if (!string.IsNullOrEmpty(output.Tool.BuuCucCode))
+            if (!string.IsNullOrEmpty(output.Tool.PosCode))
             {
-                output.BuuCucName = (await _lookup_buuCucRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.POSCode.Trim() == output.Tool.BuuCucCode.Trim()).FirstOrDefaultAsync()).POSName.Trim();
+                output.BuuCucName = (await _lookup_buuCucRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.POSCode.Trim() == output.Tool.PosCode.Trim()).FirstOrDefaultAsync()).POSName.Trim();
             }
             //if (!string.IsNullOrEmpty(output.BuuCuc.CommuneCode))
             //{

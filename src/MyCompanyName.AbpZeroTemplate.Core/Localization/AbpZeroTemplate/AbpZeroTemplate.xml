@@ -5,6 +5,8 @@
     <text name="FiltersOrganizationUnit">OrganizationUnit Filter</text>
     <text name="FiltersTenant">Tenant Filter</text>
 
+    <text name="ToolType_6">Máy tính để bàn</text>
+
     <text name="TaskList">Task List</text>
     <text name="TaskState_Open">Open</text>
     <text name="TaskState_Completed">Completed</text>

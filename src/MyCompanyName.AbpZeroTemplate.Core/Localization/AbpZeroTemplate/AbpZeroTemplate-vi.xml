@@ -5,6 +5,8 @@
     <text name="FiltersOrganizationUnit">OrganizationUnit Filter</text>
     <text name="FiltersTenant">Tenant Filter</text>
 
+    <text name="ToolType_6">Máy tính để bàn</text>
+    
     <text name="HomePage">Trang chủ</text>
     <text name="AboutUs">Về chúng tôi</text>
     <text name="Administration">Quản trị</text>

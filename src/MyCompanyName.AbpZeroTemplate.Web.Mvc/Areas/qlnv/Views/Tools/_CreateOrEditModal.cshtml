@@ -36,17 +36,17 @@
                 <label for="DM_QuanHuyen_MaQuanHuyen">Mã bưu cục</label>
                 @if (Model.IsEditMode)
                 {
-                    <input class="form-control" id="pOSCode" value="@Model.Tool.BuuCucCode" type="text" name="buuCucCode" readonly />
+                    <input class="form-control" id="pOSCode" value="@Model.Tool.PosCode" type="text" name="posCode" readonly />
                 }
                 else
                 {
-                    <input class="form-control" id="pOSCode" value="@Model.Tool.BuuCucCode" type="text" name="buuCucCode" />
+                    <input class="form-control" id="pOSCode" value="@Model.Tool.PosCode" type="text" name="posCode" />
                 }
             </div>
 
             <div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Tên bưu cục</label>
-                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.BuuCucName" type="text" name="buuCucName" />
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="postName" />
             </div>
 
             <div class="form-group">
@@ -57,7 +57,7 @@
             <div class="form-group m-form__group">
                 <label for="DM_TinhThanhTenTinhThanh">Loại thiết bị</label>
                 <div class="input-group">
-                    <input class="form-control" id="ProvinceName" name="ProvinceName" value="@Model.Tool.Type" type="text" disabled="">
+                    <input class="form-control" id="ProvinceName" name="type" value="@Model.Tool.Type" type="text" disabled="">
                     <div class="input-group-append">
                         <button class="btn btn-primary blue" id="OpenProvinceLookupTableButton" type="button"><i class="la la-filter"></i></button>
                     </div>
@@ -65,17 +65,31 @@
                         <button class="btn btn-danger" type="button" id="ClearProvinceButton"><i class="la la-eraser"></i></button>
                     </div>
                 </div>
-                <input class="form-control" value="@Model.Tool" type="text" name="ProvinceCode" hidden="">
+                <input class="form-control" value="@Model.Tool" type="text" name="type" hidden="">
             </div>
 
             <div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Serial</label>
-                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.Tool.Serial" type="text" name="address" />
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.Tool.Serial" type="text" name="serial" />
             </div>
 
             <div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Ngày đưa vào sử dụng</label>
-                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.Tool.UsedFrom" type="text" name="address" />
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.Tool.UsedFrom" type="text" name="usedFrom" />
+            </div>
+
+            <div class="form-group m-form__group">
+                <label for="DM_TinhThanhTenTinhThanh">Cấu hình</label>
+                <div class="input-group">
+                    <input class="form-control" id="CommuneName" name="CommuneName" value="@Model.Tool.Configuration" type="text" disabled="">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearCommuneButton"><i class="la la-eraser"></i></button>
+                    </div>
+                </div>
+                <input class="form-control" value="@Model.Tool.Configuration" type="text" name="configuration" hidden="">
             </div>
 
             <div class="form-group m-form__group">
@@ -89,7 +103,7 @@
                         <button class="btn btn-danger" type="button" id="ClearCommuneButton"><i class="la la-eraser"></i></button>
                     </div>
                 </div>
-                <input class="form-control" value="@Model.Tool.Condition" type="text" name="CommuneCode" hidden="">
+                <input class="form-control" value="@Model.Tool.Condition" type="text" name="codition" hidden="">
             </div>
 
             <div class="form-group m-form__group">
@@ -103,7 +117,7 @@
                         <button class="btn btn-danger" type="button" id="ClearUnitButton"><i class="la la-eraser"></i></button>
                     </div>
                 </div>
-                <input class="form-control" value="@Model.Tool.ToolStatus" type="text" name="UnitCode" hidden="">
+                <input class="form-control" value="@Model.Tool.ToolStatus" type="text" name="toolStatus" hidden="">
             </div>
 
             <div class="form-group">
