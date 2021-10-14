@@ -115,7 +115,7 @@
                     data: "tool.type",
                     name: "type",
                     render: function (type) {
-                        return abp.localization.localize('ToolType_' + type, 'vi');
+                        return abp.localization.localize('ToolType_' + type, 'AbpZeroTemplate');
                     }
                 },
                 {
@@ -132,11 +132,19 @@
                 },
                 {
                     targets: 8,
-                    data: "tool.condition"
+                    data: "tool.condition",
+                    name: "condition",
+                    render: function (condition) {
+                        return abp.localization.localize('ToolCondition_' + condition, 'AbpZeroTemplate');
+                    }
                 },
                 {
                     targets: 9,
-                    data: "tool.toolStatus"
+                    data: "tool.toolStatus",
+                    name: "status",
+                    render: function (status) {
+                        return abp.localization.localize('ToolStatus_' + status, 'AbpZeroTemplate');
+                    }
                 },
                 {
                     targets: 10,

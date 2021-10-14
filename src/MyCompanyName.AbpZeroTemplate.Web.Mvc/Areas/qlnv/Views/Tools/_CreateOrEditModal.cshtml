@@ -32,7 +32,7 @@
 
             <input type="hidden" name="id" value="@Model.Tool.Id" />
 
-            <div class="form-group">
+            @*<div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Mã bưu cục</label>
                 @if (Model.IsEditMode)
                 {
@@ -42,11 +42,35 @@
                 {
                     <input class="form-control" id="pOSCode" value="@Model.Tool.PosCode" type="text" name="posCode" />
                 }
+                <div class="input-group-append">
+                    <button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                </div>
+            </div>*@
+
+            <div class="form-group m-form__group">
+                <label for="DM_TinhThanhTenTinhThanh">Mã bưu cục</label>
+                <div class="input-group">
+                    @if (Model.IsEditMode)
+                    {
+                        <input class="form-control" id="ProvinceName" name="posCode" value="@Model.Tool.PosCode" type="text">
+                    }
+                    else
+                    {
+                        <input class="form-control" id="ProvinceName" name="posCode" value="@Model.Tool.PosCode" type="text" disabled="">
+                    }
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenUnitLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                    </div>
+                    @*<div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearProvinceButton"><i class="la la-eraser"></i></button>
+                    </div>*@
+                </div>
+                <input class="form-control" value="@Model.Tool.PosCode" type="text" name="ProvinceCode" hidden="">
             </div>
 
             <div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Tên bưu cục</label>
-                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="postName" />
+                <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="POSName" />
             </div>
 
             <div class="form-group">
@@ -54,18 +78,35 @@
                 <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.Tool.ToolName" type="text" name="toolName" />
             </div>
 
-            <div class="form-group m-form__group">
-                <label for="DM_TinhThanhTenTinhThanh">Loại thiết bị</label>
-                <div class="input-group">
-                    <input class="form-control" id="ProvinceName" name="type" value="@Model.Tool.Type" type="text" disabled="">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary blue" id="OpenProvinceLookupTableButton" type="button"><i class="la la-filter"></i></button>
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-danger" type="button" id="ClearProvinceButton"><i class="la la-eraser"></i></button>
-                    </div>
+            @*<div class="form-group m-form__group">
+            <label for="DM_TinhThanhTenTinhThanh">Loại thiết bị</label>
+            <div class="input-group">
+                <input class="form-control" id="ProvinceName" name="type" value="@Model.Tool.Type" type="text" disabled="">
+                <div class="input-group-append">
+                    <button class="btn btn-primary blue" id="OpenProvinceLookupTableButton" type="button"><i class="la la-filter"></i></button>
                 </div>
-                <input class="form-control" value="@Model.Tool" type="text" name="type" hidden="">
+                <div class="input-group-prepend">
+                    <button class="btn btn-danger" type="button" id="ClearProvinceButton"><i class="la la-eraser"></i></button>
+                </div>
+            </div>
+            <input class="form-control" value="@Model.Tool" type="text" name="type" hidden="">
+        </div>*@
+
+            <div class="form-group m-form__group">
+                <label for="Release_ReleaseType">Loại thiết bị</label>
+                <select class="form-control m-input m-input--square" name="releaseType" id="Release_ReleaseType" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
+                    <option selected="selected" value="0">Chọn</option>
+                    <option value="1">@L("ToolType_DauDocMaVach1ChieuCoDay")</option>
+                    <option value="2">@L("ToolType_DauDocMaVach1CheiuKhongDay")</option>
+                    <option value="3">@L("ToolType_MayInLaser")</option>
+                    <option value="4">@L("ToolType_MayInNhiet")</option>
+                    <option value="5">@L("ToolType_MayInPhotocopy")</option>
+                    <option value="6">@L("ToolType_MayTinhDeBan")</option>
+                    <option value="7">@L("ToolType_MayTinhXachTay")</option>
+                    <option value="8">@L("ToolType_MoDem")</option>
+                    <option value="9">@L("ToolType_Switch")</option>
+                    <option value="100">@L("ToolType_Khac")</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -81,9 +122,9 @@
             <div class="form-group m-form__group">
                 <label for="DM_TinhThanhTenTinhThanh">Cấu hình</label>
                 <div class="input-group">
-                    <input class="form-control" id="CommuneName" name="CommuneName" value="@Model.Tool.Configuration" type="text" disabled="">
+                    <textarea class="form-control" id="CommuneName" name="CommuneName" rows="5">@Model.Tool.Configuration</textarea>
                     <div class="input-group-append">
-                        <button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                        @*<button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>*@
                     </div>
                     <div class="input-group-prepend">
                         <button class="btn btn-danger" type="button" id="ClearCommuneButton"><i class="la la-eraser"></i></button>
@@ -92,32 +133,59 @@
                 <input class="form-control" value="@Model.Tool.Configuration" type="text" name="configuration" hidden="">
             </div>
 
-            <div class="form-group m-form__group">
-                <label for="DM_TinhThanhTenTinhThanh">Tình trạng hoạt động</label>
-                <div class="input-group">
-                    <input class="form-control" id="CommuneName" name="CommuneName" value="@Model.Tool.Condition" type="text" disabled="">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-danger" type="button" id="ClearCommuneButton"><i class="la la-eraser"></i></button>
-                    </div>
+            @*<div class="form-group m-form__group">
+            <label for="DM_TinhThanhTenTinhThanh">Tình trạng hoạt động</label>
+            <div class="input-group">
+                <input class="form-control" id="CommuneName" name="CommuneName" value="@Model.Tool.Condition" type="text" disabled="">
+                <div class="input-group-append">
+                    <button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>
                 </div>
-                <input class="form-control" value="@Model.Tool.Condition" type="text" name="codition" hidden="">
+                <div class="input-group-prepend">
+                    <button class="btn btn-danger" type="button" id="ClearCommuneButton"><i class="la la-eraser"></i></button>
+                </div>
             </div>
+            <input class="form-control" value="@Model.Tool.Condition" type="text" name="codition" hidden="">
+        </div>*@
 
             <div class="form-group m-form__group">
-                <label for="DM_TinhThanhTenTinhThanh">Xác nhận đơn vị</label>
-                <div class="input-group">
-                    <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="UnitName" value="@Model.Tool.ToolStatus" type="text" disabled="">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary blue" id="OpenUnitLookupTableButton" type="button"><i class="la la-filter"></i></button>
-                    </div>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-danger" type="button" id="ClearUnitButton"><i class="la la-eraser"></i></button>
-                    </div>
+                <label for="Release_ReleaseType">Tình trạng hoạt động</label>
+                <select class="form-control m-input m-input--square" name="releaseType" id="Release_ReleaseType" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
+                    <option selected="selected" value="0">Chọn</option>
+                    <option value="1">@L("ToolCondition_TrucTrac")</option>
+                    <option value="2">@L("ToolCondition_KhongOnDinh")</option>
+                    <option value="3">@L("ToolCondition_Cham")</option>
+                    <option value="4">@L("ToolCondition_BinhThuong")</option>
+                    <option value="5">@L("ToolCondition_Tot")</option>
+                    <option value="100">@L("ToolCondition_Khac")</option>
+                </select>
+            </div>
+
+            @*<div class="form-group m-form__group">
+            <label for="DM_TinhThanhTenTinhThanh">Xác nhận đơn vị</label>
+            <div class="input-group">
+                <input class="form-control" id="DM_TinhThanhTenTinhThanh" name="UnitName" value="@Model.Tool.ToolStatus" type="text" disabled="">
+                <div class="input-group-append">
+                    <button class="btn btn-primary blue" id="OpenUnitLookupTableButton" type="button"><i class="la la-filter"></i></button>
                 </div>
-                <input class="form-control" value="@Model.Tool.ToolStatus" type="text" name="toolStatus" hidden="">
+                <div class="input-group-prepend">
+                    <button class="btn btn-danger" type="button" id="ClearUnitButton"><i class="la la-eraser"></i></button>
+                </div>
+            </div>
+            <input class="form-control" value="@Model.Tool.ToolStatus" type="text" name="toolStatus" hidden="">
+        </div>*@
+
+            <div class="form-group m-form__group">
+                <label for="Release_ReleaseType">Xác nhận đơn vị</label>
+                <select class="form-control m-input m-input--square" name="releaseType" id="Release_ReleaseType" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
+                    <option selected="selected" value="0">Chọn</option>
+                    <option value="1">@L("ToolStatus_DangSuDung")</option>
+                    <option value="2">@L("ToolStatus_DaDungSuDung")</option>
+                    <option value="3">@L("ToolStatus_YeuCauSuaChua")</option>
+                    <option value="4">@L("ToolStatus_YeuCauThayThe")</option>
+                    <option value="5">@L("ToolStatus_YeuCauDieuChuyen")</option>
+                    <option value="6">@L("ToolStatus_KhongCoNhuCauSuDung")</option>
+                    <option value="100">@L("ToolStatus_Khac")</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -130,8 +198,8 @@
 </div>
 
 @*<div class="modal-footer">
-    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">H&#x1EE7;y</button>
-    <button type="button" class="btn btn-primary save-button"><i class="fa fa-save"></i> <span>L&#x1B0;u</span></button>
-</div>*@
+        <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">H&#x1EE7;y</button>
+        <button type="button" class="btn btn-primary save-button"><i class="fa fa-save"></i> <span>L&#x1B0;u</span></button>
+    </div>*@
 
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

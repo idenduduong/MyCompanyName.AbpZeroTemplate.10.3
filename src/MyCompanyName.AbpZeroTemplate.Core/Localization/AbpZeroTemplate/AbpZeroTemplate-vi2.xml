@@ -5,32 +5,8 @@
     <text name="FiltersOrganizationUnit">OrganizationUnit Filter</text>
     <text name="FiltersTenant">Tenant Filter</text>
 
-    <text name="ToolType_DauDocMaVach1ChieuCoDay">Đầu đọc mã vạch 1 chiều có dây</text>
-    <text name="ToolType_DauDocMaVach1CheiuKhongDay">Đầu đọc mã vạch 1 chiều không dây</text>
-    <text name="ToolType_MayInLaser">Máy in laser</text>
-    <text name="ToolType_MayInNhiet">Máy in nhiệt</text>
-    <text name="ToolType_MayInPhotocopy">Máy in photocopy</text>
-    <text name="ToolType_MayTinhDeBan">Máy tính để bàn</text>
-    <text name="ToolType_MayTinhXachTay">Máy tính xách tay</text>
-    <text name="ToolType_MoDem">Modem</text>
-    <text name="ToolType_Switch">Switch</text>
-    <text name="ToolType_Khac">Khác</text>
-
-    <text name="ToolCondition_TrucTrac">Trục trặc</text>
-    <text name="ToolCondition_KhongOnDinh">Không ổn định</text>
-    <text name="ToolCondition_Cham">Chậm</text>
-    <text name="ToolCondition_BinhThuong">Bình thường</text>
-    <text name="ToolCondition_Tot">Tốt</text>
-    <text name="ToolCondition_Khac">Khác</text>
-
-    <text name="ToolStatus_DangSuDung">Đang sử dụng</text>
-    <text name="ToolStatus_DaDungSuDung">Đã dừng sử dụng</text>
-    <text name="ToolStatus_YeuCauSuaChua">Yêu cầu sửa chữa</text>
-    <text name="ToolStatus_YeuCauThayThe">Yêu cầu thay thế</text>
-    <text name="ToolStatus_YeuCauDieuChuyen">Yêu cầu điều chuyển</text>
-    <text name="ToolStatus_KhongCoNhuCauSuDung">Không có nhu cầu sử dụng</text>
-    <text name="ToolStatus_Khac">Khác</text>
-
+    <text name="ToolType_6">Máy tính để bàn</text>
+    
     <text name="HomePage">Trang chủ</text>
     <text name="AboutUs">Về chúng tôi</text>
     <text name="Administration">Quản trị</text>

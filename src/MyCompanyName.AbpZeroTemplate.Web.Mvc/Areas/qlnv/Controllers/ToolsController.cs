@@ -46,9 +46,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             var viewModel = new CreateOrEditToolViewModel()
             {
                 Tool = getForEditOutput.Tool,
-                //PosName = getForEditOutput.,
-                //CommuneName = getForEditOutput.CommuneName,
-                //UnitName = getForEditOutput.UnitName,
+                PosName = getForEditOutput.PosName,
                 OrganizationUnitDisplayName = getForEditOutput.OrganizationUnitDisplayName,
             };
 
@@ -65,5 +63,15 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             return PartialView("_ViewModal", model);
         }
 
+        public PartialViewResult UnitLookupTableModal(string? id, string displayName)
+        {
+            UnitLookupTableViewModal viewModel = new UnitLookupTableViewModal
+            {
+                Id = id?.ToString(),
+                DisplayName = displayName,
+                FilterText = string.Empty
+            };
+            return PartialView("_UnitLookupTableModal", viewModel);
+        }
     }
 }

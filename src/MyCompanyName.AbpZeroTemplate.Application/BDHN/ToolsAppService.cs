@@ -259,17 +259,8 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             }
             if (!string.IsNullOrEmpty(output.Tool.PosCode))
             {
-                output.BuuCucName = (await _lookup_buuCucRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.POSCode.Trim() == output.Tool.PosCode.Trim()).FirstOrDefaultAsync()).POSName.Trim();
+                output.PosName = (await _lookup_buuCucRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.POSCode.Trim() == output.Tool.PosCode.Trim()).FirstOrDefaultAsync()).POSName.Trim();
             }
-            //if (!string.IsNullOrEmpty(output.BuuCuc.CommuneCode))
-            //{
-            //    output.CommuneName = (await _lookup_communeRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.CommuneCode.Trim() == output.BuuCuc.CommuneCode.Trim()).FirstOrDefaultAsync()).CommuneName.Trim();
-            //}
-            //if (!string.IsNullOrEmpty(output.BuuCuc.UnitCode))
-            //{
-            //    output.UnitName = (await _lookup_unitRepository.GetAll().Where(e => !e.IsDeleted).Where(e => e.UnitCode.Trim() == output.BuuCuc.UnitCode.Trim()).FirstOrDefaultAsync()).UnitName.Trim();
-            //}
-
             return output;
         }
 

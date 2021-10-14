@@ -6,12 +6,12 @@
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(("Chi tiết công cụ/dụng cụ")))
 
 @*
-<div class="modal-header">
-    <h5 class="modal-title">
-        <span></span>
-    </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-</div>
+    <div class="modal-header">
+        <h5 class="modal-title">
+            <span></span>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    </div>
 *@
 
 <div class="modal-body">
@@ -32,10 +32,11 @@
                 <h6>Thiết bị :</h6>
                 <label> @Model.Tool.ToolName </label>
             </div>
+
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Loại thiết bị :</h6>
-                <label> @Model.Tool.Type </label>
+                <label> @L("ToolType_" + @Model.Tool.Type) </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
@@ -59,13 +60,13 @@
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Tình trạng hoạt động :</h6>
-                <label> @Model.Tool.Condition </label>
+                <label> @L("ToolCondition_" + @Model.Tool.Condition) </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Xác nhận đơn vị :</h6>
-                <label> @Model.Tool.ToolStatus </label>
+                <label> @L("ToolStatus_" + @Model.Tool.ToolStatus)  </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
@@ -92,18 +93,18 @@
             <div class="m-separator m-separator--dashed"></div>
 
             @*<div class="m-stack__item m-stack__item--center m-stack__item--middle">
-                <h6>T&#xEA;n t&#x1EC9;nh th&#xE0;nh :</h6>
-                <label> @Model.OrganizationUnitDisplayName </label>
-            </div>
-            <div class="m-separator m-separator--dashed"></div>*@
+                    <h6>T&#xEA;n t&#x1EC9;nh th&#xE0;nh :</h6>
+                    <label> @Model.OrganizationUnitDisplayName </label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>*@
         </div>
     </div>
 </div>
 
 @*
-<div class="modal-footer">
-    <button type="button" class="btn default close-button" data-dismiss="modal">Đóng</button>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn default close-button" data-dismiss="modal">Đóng</button>
+    </div>
 *@
 
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithClose.cshtml")

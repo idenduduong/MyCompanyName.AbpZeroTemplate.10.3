@@ -24,8 +24,6 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		public virtual string? Note { get; set; }
 
-		public virtual Guid? BuuCucId { get; set; }
-
 		public virtual string? PosCode { get; set; }
 
 		public long? OrganizationUnitId { get; set; }

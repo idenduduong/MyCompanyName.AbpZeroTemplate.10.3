@@ -19,8 +19,8 @@
         });
 
         var _unitLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'qlnv/BuuCucs/UnitLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/BuuCucs/_UnitLookupTableModal.js',
+            viewUrl: abp.appPath + 'qlnv/Tools/UnitLookupTableModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/Tools/_UnitLookupTableModal.js',
             modalClass: 'UnitLookupTableModal'
         });
 
