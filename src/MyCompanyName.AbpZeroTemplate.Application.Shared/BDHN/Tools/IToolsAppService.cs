@@ -17,5 +17,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         Task CreateOrEdit(CreateOrEditToolDto input);
 
         Task Delete(EntityDto<Guid> input);
+
+        Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllUnitForLookupTable(GetAllForLookupTableInput input);
     }
 }

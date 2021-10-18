@@ -24,12 +24,14 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         private readonly IRepository<Tool, Guid> _repository;
         //private readonly IBaseEntitiesExcelExporter _baseEntitiesExcelExporter;
         private readonly IRepository<BuuCuc, Guid> _lookup_buuCucRepository;
+        private readonly IRepository<Unit, Guid> _lookup_unitRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
 
-        public ToolsAppService(IRepository<Tool, Guid> repository, IRepository<BuuCuc, Guid> lookup_buuCucRepository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
+        public ToolsAppService(IRepository<Tool, Guid> repository, IRepository<BuuCuc, Guid> lookup_buuCucRepository, IRepository<Unit, Guid> lookup_unitRepository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository)
         {
             _repository = repository;
             _lookup_buuCucRepository = lookup_buuCucRepository;
+            _lookup_unitRepository = lookup_unitRepository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
         }
 
@@ -297,6 +299,35 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
         public async Task Delete(EntityDto<Guid> input)
         {
             await _repository.DeleteAsync(input.Id);
+        }
+
+        public async Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllUnitForLookupTable(GetAllForLookupTableInput input)
+        {
+            var query = _lookup_unitRepository.GetAll().WhereIf(
+                   !string.IsNullOrWhiteSpace(input.Filter),
+                  e => e.UnitName != null && e.UnitName.Contains(input.Filter)
+               );
+
+            var totalCount = await query.CountAsync();
+
+            var unitList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+            var lookupTableDtoList = new List<BuuCucUnitLookupTableDto>();
+            foreach (var unit in unitList)
+            {
+                lookupTableDtoList.Add(new BuuCucUnitLookupTableDto
+                {
+                    Id = unit.UnitCode,
+                    DisplayName = unit.UnitName
+                });
+            }
+
+            return new PagedResultDto<BuuCucUnitLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
         }
     }
 }

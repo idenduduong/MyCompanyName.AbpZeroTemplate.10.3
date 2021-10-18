@@ -1,27 +1,21 @@
 (function ($) {
     app.modals.CreateOrEditModal = function () {
 
-        var _$service = abp.services.app.buuCucs;
+        var _$service = abp.services.app.tools;
 
         var _modalManager;
         var _$dM_QuanHuyenInformationForm = null;
-
-        var _dM_TinhThanhLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'qlnv/BuuCucs/ProvinceLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/BuuCucs/_ProvinceLookupTableModal.js',
-            modalClass: 'ProvinceLookupTableModal'
-        });
-
-        var _communeLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'qlnv/BuuCucs/CommuneLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/BuuCucs/_CommuneLookupTableModal.js',
-            modalClass: 'CommuneLookupTableModal'
-        });
 
         var _unitLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'qlnv/Tools/UnitLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/Tools/_UnitLookupTableModal.js',
             modalClass: 'UnitLookupTableModal'
+        });
+
+        var _posLookupTableModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'qlnv/Tools/PosLookupTableModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/qlnv/Views/Tools/_PosLookupTableModal.js',
+            modalClass: 'PosLookupTableModal'
         });
 
         this.init = function (modalManager) {
@@ -67,6 +61,15 @@
             _unitLookupTableModal.open({ id: dM_QuanHuyen.UnitCode, displayName: dM_QuanHuyen.UnitName }, function (data) {
                 _$dM_QuanHuyenInformationForm.find('input[name=UnitName]').val(data.displayName);
                 _$dM_QuanHuyenInformationForm.find('input[name=UnitCode]').val(data.id);
+            });
+        });
+
+        $('#OpenPosLookupTableButton').click(function () {
+            var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
+            debugger;
+            _posLookupTableModal.open({ id: dM_QuanHuyen.PosCode, displayName: dM_QuanHuyen.PosName }, function (data) {
+                _$dM_QuanHuyenInformationForm.find('input[name=PosName]').val(data.displayName);
+                _$dM_QuanHuyenInformationForm.find('input[name=PosCode]').val(data.id);
             });
         });
 
