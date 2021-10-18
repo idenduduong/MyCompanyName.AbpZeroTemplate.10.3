@@ -27,11 +27,12 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
         [Area("qlnv")]
         public ActionResult Index()
         {
-            BuuCucsViewModel model = new BuuCucsViewModel
-            {
-                FilterText = string.Empty
-            };
-            return View(model);
+            //BuuCucsViewModel model = new BuuCucsViewModel
+            //{
+            //    FilterText = string.Empty
+            //};
+            //return View(model);
+            return View();
         }
 
         //[AbpMvcAuthorize(AppPermissions.Pages_BuuCucs_Create, AppPermissions.Pages_BuuCucs_Edit)]

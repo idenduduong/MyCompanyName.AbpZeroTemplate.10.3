@@ -1,6 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using MyCompanyName.AbpZeroTemplate.Authorization.Delegation
+@using Abp.Timing
+@model MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Layout.UserMenuViewModel
+@inject IUserDelegationConfiguration UserDelegationConfiguration
 @{
     <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
         <nav class="m-stack__item m-topbar__nav-wrapper"
@@ -41,7 +42,7 @@
                        aria-expanded="false"
                        tabindex="0">
                         <span class="m-topbar__username m--font-primary">
-                            <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">admin</span>
+                            <span class='tenancy-name'>.\</span><span id="HeaderCurrentUserName">@Model</span>
                         </span>
                         <span class="m-topbar__userpic">
                             <img alt="" class="header-profile-picture m--img-rounded m--marginless m--img-centered" src="/Profile/GetProfilePicture?t=637660909539731287" />

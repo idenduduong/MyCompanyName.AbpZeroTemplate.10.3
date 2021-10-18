@@ -64,6 +64,7 @@
     <Compile Remove="UsersViewComponent.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="Areas\qlnv\Views\Layout\Theme11\_Layout2.cshtml" />
     <Content Remove="Areas\qlnv\Views\Persons\Index1.cshtml" />
     <Content Remove="wwwroot\swagger\ui\index.html" />
     <Content Remove="wwwroot\view-resources\Areas\qlnv\Views\CustomizableDashboard\Widgets\SubscriptionExpiringTenants\SubscriptionExpiringTenants.css" />
