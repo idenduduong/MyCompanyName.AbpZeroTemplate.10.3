@@ -57,19 +57,19 @@
 
         $('#OpenUnitLookupTableButton').click(function () {
             var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
-
+            debugger;
             _unitLookupTableModal.open({ id: dM_QuanHuyen.UnitCode, displayName: dM_QuanHuyen.UnitName }, function (data) {
-                _$dM_QuanHuyenInformationForm.find('input[name=UnitName]').val(data.displayName);
-                _$dM_QuanHuyenInformationForm.find('input[name=UnitCode]').val(data.id);
+                _$dM_QuanHuyenInformationForm.find('input[name=unitCode]').val(data.displayName);
+                _$dM_QuanHuyenInformationForm.find('input[name=unitName]').val(data.id);
             });
         });
 
         $('#OpenPosLookupTableButton').click(function () {
             var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
             debugger;
-            _posLookupTableModal.open({ id: dM_QuanHuyen.PosCode, displayName: dM_QuanHuyen.PosName }, function (data) {
-                _$dM_QuanHuyenInformationForm.find('input[name=PosName]').val(data.displayName);
-                _$dM_QuanHuyenInformationForm.find('input[name=PosCode]').val(data.id);
+            _posLookupTableModal.open({ id: dM_QuanHuyen.posCode, displayName: dM_QuanHuyen.posName }, function (data) {
+                _$dM_QuanHuyenInformationForm.find('input[name=posName]').val(data.displayName);
+                _$dM_QuanHuyenInformationForm.find('input[name=posCode]').val(data.id);
             });
         });
 

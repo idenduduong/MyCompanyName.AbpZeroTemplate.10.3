@@ -18,6 +18,8 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
         Task Delete(EntityDto<Guid> input);
 
+        Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllPosForLookupTable(GetAllForLookupTableInput input);
+
         Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllUnitForLookupTable(GetAllForLookupTableInput input);
     }
 }

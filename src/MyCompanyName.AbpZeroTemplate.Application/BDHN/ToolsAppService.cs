@@ -301,6 +301,37 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             await _repository.DeleteAsync(input.Id);
         }
 
+        public async Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllPosForLookupTable(GetAllForLookupTableInput input)
+        {
+            var query = _lookup_buuCucRepository.GetAll()
+                .Where(e => !e.IsDeleted && e.ProvinceCode == "10")
+                .WhereIf(
+                   !string.IsNullOrWhiteSpace(input.Filter),
+                  e => e.POSName != null && e.POSName.Contains(input.Filter)
+               );
+
+            var totalCount = await query.CountAsync();
+
+            var unitList = await query
+                .PageBy(input)
+                .ToListAsync();
+
+            var lookupTableDtoList = new List<BuuCucUnitLookupTableDto>();
+            foreach (var unit in unitList)
+            {
+                lookupTableDtoList.Add(new BuuCucUnitLookupTableDto
+                {
+                    Id = unit.POSCode,
+                    DisplayName = unit.POSName
+                });
+            }
+
+            return new PagedResultDto<BuuCucUnitLookupTableDto>(
+                totalCount,
+                lookupTableDtoList
+            );
+        }
+
         public async Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllUnitForLookupTable(GetAllForLookupTableInput input)
         {
             var query = _lookup_unitRepository.GetAll().WhereIf(
