@@ -73,14 +73,14 @@
                 <div class="input-group">
                     @if (Model.IsEditMode)
                     {
-                        <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="unitName" />
+                        <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="posName" />
                     }
                     else
                     {
-                        <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="unitName" disabled="" />
+                        <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="posName" disabled="" />
                     }
                     <div class="input-group-append">
-                        <button class="btn btn-primary blue" id="OpenUnitLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                        <button class="btn btn-primary blue" id="OpenPosLookupTableButton" type="button"><i class="la la-filter"></i></button>
                     </div>
                 </div>
                 <input class="form-control" value="@Model.Tool.PosCode" type="text" name="unitCode" hidden="">
