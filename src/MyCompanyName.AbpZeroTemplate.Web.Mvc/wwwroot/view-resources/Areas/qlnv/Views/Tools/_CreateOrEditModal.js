@@ -33,7 +33,7 @@
                 }
             })
 
-            _$dM_QuanHuyenInformationForm = _modalManager.getModal().find('form[name=DM_QuanHuyenInformationsForm]');
+            _$dM_QuanHuyenInformationForm = _modalManager.getModal().find('form[name=InformationsForm]');
             _$dM_QuanHuyenInformationForm.validate();
         };
 

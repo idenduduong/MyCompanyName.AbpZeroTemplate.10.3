@@ -5,6 +5,7 @@
     <text name="FiltersOrganizationUnit">OrganizationUnit Filter</text>
     <text name="FiltersTenant">Tenant Filter</text>
 
+    <text name="ToolType_Chon">Chọn</text>
     <text name="ToolType_DauDocMaVach1ChieuCoDay">Đầu đọc mã vạch 1 chiều có dây</text>
     <text name="ToolType_DauDocMaVach1CheiuKhongDay">Đầu đọc mã vạch 1 chiều không dây</text>
     <text name="ToolType_MayInLaser">Máy in laser</text>
@@ -16,6 +17,7 @@
     <text name="ToolType_Switch">Switch</text>
     <text name="ToolType_Khac">Khác</text>
 
+    <text name="ToolCondition_Chon">Chọn</text>
     <text name="ToolCondition_TrucTrac">Trục trặc</text>
     <text name="ToolCondition_KhongOnDinh">Không ổn định</text>
     <text name="ToolCondition_Cham">Chậm</text>
@@ -23,6 +25,7 @@
     <text name="ToolCondition_Tot">Tốt</text>
     <text name="ToolCondition_Khac">Khác</text>
 
+    <text name="ToolStatus_Chon">Chọn</text>
     <text name="ToolStatus_DangSuDung">Đang sử dụng</text>
     <text name="ToolStatus_DaDungSuDung">Đã dừng sử dụng</text>
     <text name="ToolStatus_YeuCauSuaChua">Yêu cầu sửa chữa</text>

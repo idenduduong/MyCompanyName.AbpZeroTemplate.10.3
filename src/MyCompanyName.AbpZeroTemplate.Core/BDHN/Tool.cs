@@ -15,7 +15,8 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 		[MaxLength(100)]
 		public virtual string ToolName { get; set; }
 
-		public virtual ToolType Type { get; set; }
+		[Required]
+		public virtual ToolType? Type { get; set; }
 		
 		[MaxLength(100)]
 		public virtual string? Serial { get; set; }
@@ -27,8 +28,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 		[MaxLength(500)]
 		public virtual string? Configuration { get; set; }
 
+		[Required]
 		public virtual ToolCondition? Condition { get; set; }
 
+		[Required]
 		public virtual ToolStatus? ToolStatus { get; set; }
 
 		[MaxLength(500)]

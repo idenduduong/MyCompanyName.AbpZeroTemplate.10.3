@@ -27,8 +27,8 @@
 *@
 
 <div class="modal-body">
-    <div id="DM_QuanHuyenInformationsTab">
-        <form name="DM_QuanHuyenInformationsForm" role="form" novalidate class="form-validation">
+    <div id="InformationsTab">
+        <form name="InformationsForm" role="form" novalidate class="form-validation">
 
             <input type="hidden" name="id" value="@Model.Tool.Id" />
 
@@ -80,7 +80,7 @@
                         <input class="form-control" id="DM_QuanHuyen_MaQuanHuyen" value="@Model.PosName" type="text" name="posName" disabled="" />
                     }
                     <div class="input-group-append">
-                        <button class="btn btn-primary blue" id="OpenPosLookupTableButton" type="button"><i class="la la-filter"></i></button>
+                        @*<button class="btn btn-primary blue" id="OpenPosLookupTableButton" type="button"><i class="la la-filter"></i></button>*@
                     </div>
                 </div>
                 <input class="form-control" value="@Model.Tool.PosCode" type="text" name="unitCode" hidden="">
@@ -249,6 +249,9 @@
         case "Switch":
             $('#toolType').val(9);
             break;
+        case "Chon":
+            $('#toolType').val(100);
+            break;
         case "Khac":
             $('#toolType').val(100);
             break;
@@ -270,6 +273,9 @@
             break;
         case "Tot":
             $('#toolCondition').val(5);
+            break;
+        case "Chon":
+            $('#toolCondition').val(100);
             break;
         case "Khac":
             $('#toolCondition').val(100);
@@ -295,6 +301,9 @@
             break;
         case "KhongCoNhuCauSuDung":
             $('#toolStatus').val(6);
+            break;
+        case "Chon":
+            $('#toolStatus').val(100);
             break;
         case "Khac":
             $('#toolStatus').val(100);
