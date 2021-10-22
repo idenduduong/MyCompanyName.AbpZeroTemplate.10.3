@@ -9,7 +9,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		public virtual string ToolName { get; set; }
 
-		public virtual ToolType Type { get; set; }
+		public virtual ToolType? Type { get; set; }
 
 		public virtual string? Serial { get; set; }
 

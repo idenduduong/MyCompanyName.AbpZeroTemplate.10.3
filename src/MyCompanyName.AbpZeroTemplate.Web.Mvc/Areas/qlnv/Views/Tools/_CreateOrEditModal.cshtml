@@ -107,7 +107,7 @@
 
             <div class="form-group m-form__group">
                 <label for="Release_ReleaseType">Loại thiết bị</label>
-                <select class="form-control m-input m-input--square" name="toolType" id="toolType" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
+                <select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
                     <option selected="selected" value="0">Chọn</option>
                     <option value="1">@L("ToolType_DauDocMaVach1ChieuCoDay")</option>
                     <option value="2">@L("ToolType_DauDocMaVach1ChieuKhongDay")</option>
@@ -135,7 +135,7 @@
             <div class="form-group m-form__group">
                 <label for="DM_TinhThanhTenTinhThanh">Cấu hình</label>
                 <div class="input-group">
-                    <textarea class="form-control" id="CommuneName" name="CommuneName" rows="5">@Model.Tool.Configuration</textarea>
+                    <textarea class="form-control" id="configuration" name="configuration" rows="5">@Model.Tool.Configuration</textarea>
                     <div class="input-group-append">
                         @*<button class="btn btn-primary blue" id="OpenCommuneLookupTableButton" type="button"><i class="la la-filter"></i></button>*@
                     </div>
@@ -143,7 +143,7 @@
                         <button class="btn btn-danger" type="button" id="ClearCommuneButton"><i class="la la-eraser"></i></button>
                     </div>
                 </div>
-                <input class="form-control" value="@Model.Tool.Configuration" type="text" name="configuration" hidden="">
+                @*<input class="form-control" value="@Model.Tool.Configuration" type="text" name="configuration" hidden="">*@
             </div>
 
             @*<div class="form-group m-form__group">
@@ -162,7 +162,7 @@
 
             <div class="form-group m-form__group">
                 <label for="Release_ReleaseType">Tình trạng hoạt động</label>
-                <select class="form-control m-input m-input--square" name="toolCondition" id="toolCondition" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
+                <select class="form-control m-input m-input--square" name="condition" id="condition" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
                     <option selected="selected" value="0">Chọn</option>
                     <option value="1">@L("ToolCondition_TrucTrac")</option>
                     <option value="2">@L("ToolCondition_KhongOnDinh")</option>
@@ -221,6 +221,7 @@
     var toolType = "@Model.Tool.Type.ToString()";
     var toolStatus = "@Model.Tool.ToolStatus.ToString()";
     var toolCondition = "@Model.Tool.Condition.ToString()";
+
     switch (toolType) {
         case "DauDocMaVach1ChieuCoDay":
             $('#toolType').val(1);
@@ -255,8 +256,6 @@
         case "Khac":
             $('#toolType').val(100);
             break;
-        default:
-            $('#toolType').val(0);
     }
     switch (toolCondition) {
         case "TrucTrac":
@@ -280,8 +279,6 @@
         case "Khac":
             $('#toolCondition').val(100);
             break;
-        default:
-            $('#toolCondition').val(0);
     }
     switch (toolStatus) {
         case "DangSuDung":
@@ -308,7 +305,5 @@
         case "Khac":
             $('#toolStatus').val(100);
             break;
-        default:
-            $('#toolStatus').val(0);
     }
 </script>

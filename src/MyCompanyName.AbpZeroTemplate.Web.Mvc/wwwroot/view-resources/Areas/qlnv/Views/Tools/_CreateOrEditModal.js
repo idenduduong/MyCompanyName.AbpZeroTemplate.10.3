@@ -4,7 +4,7 @@
         var _$service = abp.services.app.tools;
 
         var _modalManager;
-        var _$dM_QuanHuyenInformationForm = null;
+        var _$InformationForm = null;
 
         var _unitLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'qlnv/Tools/UnitLookupTableModal',
@@ -33,69 +33,49 @@
                 }
             })
 
-            _$dM_QuanHuyenInformationForm = _modalManager.getModal().find('form[name=InformationsForm]');
-            _$dM_QuanHuyenInformationForm.validate();
+            _$InformationForm = _modalManager.getModal().find('form[name=InformationsForm]');
+            _$InformationForm.validate();
         };
 
-        $('#OpenProvinceLookupTableButton').click(function () {
-            var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
-
-            _dM_TinhThanhLookupTableModal.open({ id: dM_QuanHuyen.ProvinceCode, displayName: dM_QuanHuyen.ProvinceName }, function (data) {
-                _$dM_QuanHuyenInformationForm.find('input[name=ProvinceName]').val(data.displayName);
-                _$dM_QuanHuyenInformationForm.find('input[name=ProvinceCode]').val(data.id);
-            });
-        });
-
-        $('#OpenCommuneLookupTableButton').click(function () {
-            var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
-
-            _communeLookupTableModal.open({ id: dM_QuanHuyen.CommuneCode, displayName: dM_QuanHuyen.CommuneName }, function (data) {
-                _$dM_QuanHuyenInformationForm.find('input[name=CommuneName]').val(data.displayName);
-                _$dM_QuanHuyenInformationForm.find('input[name=CommuneCode]').val(data.id);
-            });
-        });
-
         $('#OpenUnitLookupTableButton').click(function () {
-            var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
-            debugger;
-            _unitLookupTableModal.open({ id: dM_QuanHuyen.UnitCode, displayName: dM_QuanHuyen.UnitName }, function (data) {
-                _$dM_QuanHuyenInformationForm.find('input[name=unitCode]').val(data.displayName);
-                _$dM_QuanHuyenInformationForm.find('input[name=unitName]').val(data.id);
+            var InformationForm = _$InformationForm.serializeFormToObject();
+            _unitLookupTableModal.open({ id: InformationForm.UnitCode, displayName: InformationForm.UnitName }, function (data) {
+                _$InformationForm.find('input[name=unitCode]').val(data.displayName);
+                _$InformationForm.find('input[name=unitName]').val(data.id);
             });
         });
 
         $('#OpenPosLookupTableButton').click(function () {
-            var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
-            debugger;
-            _posLookupTableModal.open({ id: dM_QuanHuyen.posCode, displayName: dM_QuanHuyen.posName }, function (data) {
-                _$dM_QuanHuyenInformationForm.find('input[name=posName]').val(data.displayName);
-                _$dM_QuanHuyenInformationForm.find('input[name=posCode]').val(data.id);
+            var InformationForm = _$InformationForm.serializeFormToObject();
+            _posLookupTableModal.open({ id: InformationForm.posCode, displayName: InformationForm.posName }, function (data) {
+                _$InformationForm.find('input[name=posName]').val(data.displayName);
+                _$InformationForm.find('input[name=posCode]').val(data.id);
             });
         });
 
         $('#ClearProvinceButton').click(function () {
-            _$dM_QuanHuyenInformationForm.find('input[name=ProvinceName]').val('');
-            _$dM_QuanHuyenInformationForm.find('input[name=ProvinceCode]').val('');
+            _$InformationForm.find('input[name=ProvinceName]').val('');
+            _$InformationForm.find('input[name=ProvinceCode]').val('');
         });
 
         $('#ClearCommuneButton').click(function () {
-            _$dM_QuanHuyenInformationForm.find('input[name=CommuneName]').val('');
-            _$dM_QuanHuyenInformationForm.find('input[name=CommuneCode]').val('');
+            _$InformationForm.find('input[name=CommuneName]').val('');
+            _$InformationForm.find('input[name=CommuneCode]').val('');
         });
 
         $('#ClearUnitButton').click(function () {
-            _$dM_QuanHuyenInformationForm.find('input[name=UnitName]').val('');
-            _$dM_QuanHuyenInformationForm.find('input[name=UnitCode]').val('');
+            _$InformationForm.find('input[name=UnitName]').val('');
+            _$InformationForm.find('input[name=UnitCode]').val('');
         });
 
         this.save = function () {
-            if (!_$dM_QuanHuyenInformationForm.valid()) {
+            if (!_$InformationForm.valid()) {
                 return;
             }
 
-            var dM_QuanHuyen = _$dM_QuanHuyenInformationForm.serializeFormToObject();
+            var InformationForm = _$InformationForm.serializeFormToObject();
             _modalManager.setBusy(true);
-            _$service.createOrEdit(dM_QuanHuyen).done(function () {
+            _$service.createOrEdit(InformationForm).done(function () {
                 abp.notify.info(app.localize('SavedSuccessfully'));
                 _modalManager.close();
                 abp.event.trigger('app.createOrEditModalSaved');
