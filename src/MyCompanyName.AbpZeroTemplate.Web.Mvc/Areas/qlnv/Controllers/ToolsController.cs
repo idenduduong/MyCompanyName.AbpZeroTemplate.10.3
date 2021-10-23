@@ -63,6 +63,8 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             return PartialView("_ViewModal", model);
         }
 
+
+
         public PartialViewResult PosLookupTableModal(string? id, string displayName)
         {
             UnitLookupTableViewModal viewModel = new UnitLookupTableViewModal

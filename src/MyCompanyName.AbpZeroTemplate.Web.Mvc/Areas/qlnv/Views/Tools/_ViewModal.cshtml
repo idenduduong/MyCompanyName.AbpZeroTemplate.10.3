@@ -1,7 +1,12 @@
 ﻿@using System.Globalization
 @using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
 @using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models
+@using MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 @model ToolViewModel
+
+@{
+    var obj_tool = @Model.Tool;
+}
 
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(("Chi tiết công cụ/dụng cụ")))
 
@@ -20,7 +25,7 @@
         <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Mã bưu cục :</h6>
-                <label> @Model.Tool.PosCode </label>
+                <label> @obj_tool.PosCode </label>
             </div>
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
@@ -30,65 +35,65 @@
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Thiết bị :</h6>
-                <label> @Model.Tool.ToolName </label>
+                <label> @obj_tool.ToolName </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Loại thiết bị :</h6>
-                <label> @L("ToolType_" + @Model.Tool.Type) </label>
+                <label> @L("ToolType_" + @obj_tool.Tool_Type) </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Serial :</h6>
-                <label> @Model.Tool.Serial </label>
+                <label> @obj_tool.Serial </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Ngày đưa vào sử dụng :</h6>
-                <label> @Model.Tool.UsedFrom </label>
+                <label> @obj_tool.UsedFrom </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Cấu hình :</h6>
-                <label> @Model.Tool.Configuration </label>
+                <label> @obj_tool.Configuration </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Tình trạng hoạt động :</h6>
-                <label> @L("ToolCondition_" + @Model.Tool.Condition) </label>
+                <label> @L("ToolCondition_" + @obj_tool.Condition) </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Xác nhận đơn vị :</h6>
-                <label> @L("ToolStatus_" + @Model.Tool.ToolStatus)  </label>
+                <label> @L("ToolStatus_" + @obj_tool.ToolStatus)  </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Ghi chú :</h6>
-                <label> @Model.Tool.Note </label>
+                <label> @obj_tool.Note </label>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Nhập ngày :</h6>
-                <label> @Model.Tool.CreationTime </label>
+                <label> @obj_tool.CreationTime </label>
             </div>
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Cập nhật bởi :</h6>
-                <label> @Model.Tool.CreatorUserId </label>
+                <label> @obj_tool.CreatorUserId </label>
             </div>
             <div class="m-separator m-separator--dashed"></div>
             <div class="m-stack__item m-stack__item--center m-stack__item--middle">
                 <h6>Cập nhật ngày :</h6>
-                <label> @Model.Tool.LastModificationTime </label>
+                <label> @obj_tool.LastModificationTime </label>
             </div>
             <div class="m-separator m-separator--dashed"></div>
 

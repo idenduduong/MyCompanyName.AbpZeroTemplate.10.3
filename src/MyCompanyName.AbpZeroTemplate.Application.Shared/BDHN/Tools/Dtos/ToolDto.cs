@@ -9,7 +9,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		public virtual string ToolName { get; set; }
 
-		public virtual ToolType? Type { get; set; }
+		
 
 		public virtual string? Serial { get; set; }
 
@@ -19,9 +19,6 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		public virtual string? Configuration { get; set; }
 
-		public virtual ToolCondition? Condition { get; set; }
-
-		public virtual ToolStatus? ToolStatus { get; set; }
 
 		public virtual string? Note { get; set; }
 
@@ -30,5 +27,14 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 		public virtual int? TenantId { get; set; }
 
 		public long? OrganizationUnitId { get; set; }
-    }
+
+		public virtual ToolType? Tool_Type1 { get; set; }
+		//public virtual ToolCondition? Condition { get; set; }
+
+		//public virtual ToolStatus? ToolStatus { get; set; }
+		public virtual int Tool_Type { get; set; }
+		public virtual int Condition { get; set; }
+
+		public virtual int ToolStatus { get; set; }
+	}
 }

@@ -33,7 +33,6 @@
             //scriptUrl: abp.appPath + 'crmdemo/view-resources/Areas/crm/Views/DM_QuanHuyens/_CreateOrEditModal.js',
             //modalClass: 'CreateOrEditDM_QuanHuyenModal'
         });
-
 		var _viewModal = new app.ModalManager({
             viewUrl: abp.appPath + 'qlnv/Tools/ViewModal',
             modalClass: 'ViewModal'
@@ -74,8 +73,9 @@
                         items: [
 						{
                             text: app.localize('View'),
-                            action: function (data) {
-                                _viewModal.open({ data: data.record });
+                                action: function (data) {
+
+                                    _viewModal.open({ data: data.record});
                             }
                         },
 						{
@@ -112,10 +112,10 @@
                 },
                 {
 					targets: 4,
-                    data: "tool.type",
+                    data: "tool.tool_Type",
                     name: "type",
-                    render: function (type) {
-                        return abp.localization.localize('ToolType_' + type, 'AbpZeroTemplate');
+                    render: function (tool_Type) {
+                        return abp.localization.localize('ToolType_' + tool_Type, 'AbpZeroTemplate');
                     }
                 },
                 {

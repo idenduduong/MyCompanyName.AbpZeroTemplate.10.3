@@ -1,6 +1,7 @@
 ﻿@using System.Globalization
 @using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models.Common.Modals
 @using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Models
+@using MyCompanyName.AbpZeroTemplate
 @model CreateOrEditToolViewModel
 
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(("Thêm / Sửa")))
@@ -105,22 +106,37 @@
                     <input class="form-control" value="@Model.Tool" type="text" name="type" hidden="">
                 </div>*@
 
-            <div class="form-group m-form__group">
-                <label for="Release_ReleaseType">Loại thiết bị</label>
-                <select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
-                    <option selected="selected" value="0">Chọn</option>
-                    <option value="1">@L("ToolType_DauDocMaVach1ChieuCoDay")</option>
-                    <option value="2">@L("ToolType_DauDocMaVach1ChieuKhongDay")</option>
-                    <option value="3">@L("ToolType_MayInLaser")</option>
-                    <option value="4">@L("ToolType_MayInNhiet")</option>
-                    <option value="5">@L("ToolType_MayInPhotocopy")</option>
-                    <option value="6">@L("ToolType_MayTinhDeBan")</option>
-                    <option value="7">@L("ToolType_MayTinhXachTay")</option>
-                    <option value="8">@L("ToolType_MoDem")</option>
-                    <option value="9">@L("ToolType_Switch")</option>
-                    <option value="100">@L("ToolType_Khac")</option>
-                </select>
-            </div>
+        <div class="form-group m-form__group">
+            <label for="Release_ReleaseType">Loại thiết bị</label>
+            @*<select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
+            <option selected="selected" value="0">Chọn</option>
+            <option value="1">@L("ToolType_DauDocMaVach1ChieuCoDay")</option>
+            <option value="2">@L("ToolType_DauDocMaVach1ChieuKhongDay")</option>
+            <option value="3">@L("ToolType_MayInLaser")</option>
+            <option value="4">@L("ToolType_MayInNhiet")</option>
+            <option value="5">@L("ToolType_MayInPhotocopy")</option>
+            <option value="6">@L("ToolType_MayTinhDeBan")</option>
+            <option value="7">@L("ToolType_MayTinhXachTay")</option>
+            <option value="8">@L("ToolType_MoDem")</option>
+            <option value="9">@L("ToolType_Switch")</option>
+            <option value="100">@L("ToolType_Khac")</option>
+        </select>*@
+        <select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
+
+            @foreach (SystemEnum.ToolType item in Enum.GetValues(typeof(SystemEnum.ToolType)))
+            {
+                if ((int)Model.Tool.Type == (int)item)
+                {
+                    <option selected value="@((int)item)">@L("ToolType_" + (int)item)</option>
+                }
+                else
+                {
+                    <option value="@((int)item)">@L("ToolType_" + (int)item)</option>
+                }
+            }
+        </select>
+                
+        </div>
 
             <div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Serial</label>
@@ -218,45 +234,46 @@
 @await Html.PartialAsync("~/Areas/qlnv/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
 
 <script>
-    var toolType = "@Model.Tool.Type.ToString()";
-    var toolStatus = "@Model.Tool.ToolStatus.ToString()";
-    var toolCondition = "@Model.Tool.Condition.ToString()";
+    var toolType        = "@Model.Tool.Type.ToString()";
+    var toolStatus      = "@Model.Tool.ToolStatus.ToString()";
+    var toolCondition   = "@Model.Tool.Condition.ToString()";
 
-    switch (toolType) {
-        case "DauDocMaVach1ChieuCoDay":
-            $('#toolType').val(1);
-            break;
-        case "DauDocMaVach1ChieuKhongDay":
-            $('#toolType').val(2);
-            break;
-        case "MayInLaser":
-            $('#toolType').val(3);
-            break;
-        case "MayInNhiet":
-            $('#toolType').val(4);
-            break;
-        case "MayInPhotocopy":
-            $('#toolType').val(5);
-            break;
-        case "MayTinhDeBan":
-            $('#toolType').val(6);
-            break;
-        case "MayTinhXachTay":
-            $('#toolType').val(7);
-            break;
-        case "MoDem":
-            $('#toolType').val(8);
-            break;
-        case "Switch":
-            $('#toolType').val(9);
-            break;
-        case "Chon":
-            $('#toolType').val(100);
-            break;
-        case "Khac":
-            $('#toolType').val(100);
-            break;
-    }
+    //switch (toolType) {
+    //    case "DauDocMaVach1ChieuCoDay":
+    //        $('#toolType').val(1);
+    //        break;
+    //    case "DauDocMaVach1ChieuKhongDay":
+    //        $('#toolType').val(2);
+    //        break;
+    //    case "MayInLaser":
+    //        $('#toolType').val(3);
+    //        break;
+    //    case "MayInNhiet":
+    //        $('#toolType').val(4);
+    //        break;
+    //    case "MayInPhotocopy":
+    //        $('#toolType').val(5);
+    //        break;
+    //    case "MayTinhDeBan":
+    //        $('#toolType').val(6);
+    //        break;
+    //    case "MayTinhXachTay":
+    //        $('#toolType').val(7);
+    //        break;
+    //    case "MoDem":
+    //        $('#toolType').val(8);
+    //        break;
+    //    case "Switch":
+    //        $('#toolType').val(9);
+    //        break;
+    //    case "Chon":
+    //        $('#toolType').val(100);
+    //        break;
+    //    case "Khac":
+    //        $('#toolType').val(100);
+    //        break;
+    //}
+
     switch (toolCondition) {
         case "TrucTrac":
             $('#toolCondition').val(1);
@@ -280,6 +297,7 @@
             $('#toolCondition').val(100);
             break;
     }
+
     switch (toolStatus) {
         case "DangSuDung":
             $('#toolStatus').val(1);

@@ -74,7 +74,8 @@
                         items: [
 						{
                             text: app.localize('View'),
-                            action: function (data) {
+                                action: function (data) {
+                                debugger
                                 _viewModal.open({ data: data.record });
                             }
                         },

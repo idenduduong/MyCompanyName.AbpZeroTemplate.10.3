@@ -140,13 +140,13 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                         Tool = new ToolDto
                         {
                             ToolName = o.ToolName,
-                            Type = o.Type,
+                            Tool_Type = (int)o.Type,
                             Serial = o.Serial,
                             UsedFrom = o.UsedFrom,
                             UsedTo = o.UsedTo,
                             Configuration = o.Configuration,
-                            Condition = o.Condition,
-                            ToolStatus = o.ToolStatus,
+                            Condition = (int)o.Condition,
+                            ToolStatus = (int)o.ToolStatus,
                             Note = o.Note,
                             PosCode = o.POSCode,
                             TenantId = o.TenantId,

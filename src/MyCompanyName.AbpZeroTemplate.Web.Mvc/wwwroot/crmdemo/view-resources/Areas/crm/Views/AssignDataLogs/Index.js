@@ -79,7 +79,7 @@
                         items: [
 						{
                                 text: app.localize('View'),
-                                action: function (data) {
+								action: function (data) {
                                     _viewAssignDataLogModal.open({ data: data.record });
                                 }
                         },

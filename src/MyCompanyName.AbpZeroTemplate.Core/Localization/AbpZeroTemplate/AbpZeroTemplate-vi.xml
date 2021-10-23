@@ -16,7 +16,7 @@
     <text name="ToolType_MoDem">Modem</text>
     <text name="ToolType_Switch">Switch</text>
     <text name="ToolType_Khac">Khác</text>
-
+    
     <text name="ToolCondition_Chon">Chọn</text>
     <text name="ToolCondition_TrucTrac">Trục trặc</text>
     <text name="ToolCondition_KhongOnDinh">Không ổn định</text>
