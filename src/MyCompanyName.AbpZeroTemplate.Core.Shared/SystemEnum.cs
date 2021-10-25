@@ -21,5 +21,28 @@ namespace MyCompanyName.AbpZeroTemplate
             Switch                      = 9,
             Khac                        = 100
         }
+
+        public enum ToolCondition : byte
+        {
+            None = 0,
+            TrucTrac = 1,
+            KhongOnDinh = 2,
+            Cham = 3,
+            BinhThuong = 4,
+            Tot = 5,
+            Khac = 100
+        }
+
+        public enum ToolStatus : byte
+        {
+            None = 0,
+            DangSuDung = 1,
+            DaDungSuDung = 2,
+            YeuCauSuaChua = 3,
+            YeuCauThayThe = 4,
+            YeuCauDieuChuyen = 5,
+            KhongCoNhuCauSuDung = 6,
+            Khac = 100
+        }
     }
 }

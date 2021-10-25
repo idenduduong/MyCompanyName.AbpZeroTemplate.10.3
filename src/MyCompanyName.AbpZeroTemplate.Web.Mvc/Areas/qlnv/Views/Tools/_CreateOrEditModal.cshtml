@@ -106,37 +106,43 @@
                     <input class="form-control" value="@Model.Tool" type="text" name="type" hidden="">
                 </div>*@
 
-        <div class="form-group m-form__group">
-            <label for="Release_ReleaseType">Loại thiết bị</label>
-            @*<select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
-            <option selected="selected" value="0">Chọn</option>
-            <option value="1">@L("ToolType_DauDocMaVach1ChieuCoDay")</option>
-            <option value="2">@L("ToolType_DauDocMaVach1ChieuKhongDay")</option>
-            <option value="3">@L("ToolType_MayInLaser")</option>
-            <option value="4">@L("ToolType_MayInNhiet")</option>
-            <option value="5">@L("ToolType_MayInPhotocopy")</option>
-            <option value="6">@L("ToolType_MayTinhDeBan")</option>
-            <option value="7">@L("ToolType_MayTinhXachTay")</option>
-            <option value="8">@L("ToolType_MoDem")</option>
-            <option value="9">@L("ToolType_Switch")</option>
-            <option value="100">@L("ToolType_Khac")</option>
-        </select>*@
-        <select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
+            <div class="form-group m-form__group">
+                <label for="Release_ReleaseType">Loại thiết bị</label>
+                @*<select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
+                        <option selected="selected" value="0">Chọn</option>
+                        <option value="1">@L("ToolType_DauDocMaVach1ChieuCoDay")</option>
+                        <option value="2">@L("ToolType_DauDocMaVach1ChieuKhongDay")</option>
+                        <option value="3">@L("ToolType_MayInLaser")</option>
+                        <option value="4">@L("ToolType_MayInNhiet")</option>
+                        <option value="5">@L("ToolType_MayInPhotocopy")</option>
+                        <option value="6">@L("ToolType_MayTinhDeBan")</option>
+                        <option value="7">@L("ToolType_MayTinhXachTay")</option>
+                        <option value="8">@L("ToolType_MoDem")</option>
+                        <option value="9">@L("ToolType_Switch")</option>
+                        <option value="100">@L("ToolType_Khac")</option>
+                    </select>*@
+            <select class="form-control m-input m-input--square" name="type" id="type" data-val="true" data-val-required="The Type field is required." aria-invalid="false">
+                @foreach (SystemEnum.ToolType item in Enum.GetValues(typeof(SystemEnum.ToolType)))
+                {
+                    try
+                    {
+                        if (Model.IsEditMode && (int)Model.Tool.Type == (int)item)
+                        {
+                            <option selected value="@((int)item)">@L("ToolType_" + (int)item)</option>
+                        }
+                        else
+                        {
+                            <option value="@((int)item)">@L("ToolType_" + (int)item)</option>
+                        }
+                    }
+                    catch (Exception ex)
+                    {
 
-            @foreach (SystemEnum.ToolType item in Enum.GetValues(typeof(SystemEnum.ToolType)))
-            {
-                if ((int)Model.Tool.Type == (int)item)
-                {
-                    <option selected value="@((int)item)">@L("ToolType_" + (int)item)</option>
+                    }
                 }
-                else
-                {
-                    <option value="@((int)item)">@L("ToolType_" + (int)item)</option>
-                }
-            }
-        </select>
-                
-        </div>
+            </select>
+
+            </div>
 
             <div class="form-group">
                 <label for="DM_QuanHuyen_MaQuanHuyen">Serial</label>
@@ -179,13 +185,31 @@
             <div class="form-group m-form__group">
                 <label for="Release_ReleaseType">Tình trạng hoạt động</label>
                 <select class="form-control m-input m-input--square" name="condition" id="condition" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
-                    <option selected="selected" value="0">Chọn</option>
-                    <option value="1">@L("ToolCondition_TrucTrac")</option>
-                    <option value="2">@L("ToolCondition_KhongOnDinh")</option>
-                    <option value="3">@L("ToolCondition_Cham")</option>
-                    <option value="4">@L("ToolCondition_BinhThuong")</option>
-                    <option value="5">@L("ToolCondition_Tot")</option>
-                    <option value="100">@L("ToolCondition_Khac")</option>
+                    @foreach (SystemEnum.ToolType item in Enum.GetValues(typeof(SystemEnum.ToolCondition)))
+                    {
+                        try
+                        {
+                            if (Model.IsEditMode && (int)Model.Tool.Condition == (int)item)
+                            {
+                                <option selected value="@((int)item)">@L("ToolCondition_" + (int)item)</option>
+                            }
+                            else
+                            {
+                                <option value="@((int)item)">@L("ToolCondition_" + (int)item)</option>
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    @*<option selected="selected" value="0">Chọn</option>
+        <option value="1">@L("ToolCondition_TrucTrac")</option>
+        <option value="2">@L("ToolCondition_KhongOnDinh")</option>
+        <option value="3">@L("ToolCondition_Cham")</option>
+        <option value="4">@L("ToolCondition_BinhThuong")</option>
+        <option value="5">@L("ToolCondition_Tot")</option>
+        <option value="100">@L("ToolCondition_Khac")</option>*@
                 </select>
             </div>
 
@@ -206,14 +230,32 @@
             <div class="form-group m-form__group">
                 <label for="Release_ReleaseType">Xác nhận đơn vị</label>
                 <select class="form-control m-input m-input--square" name="toolStatus" id="toolStatus" data-val="true" data-val-required="The ReleaseType field is required." aria-invalid="false">
-                    <option selected="selected" value="0">Chọn</option>
-                    <option value="1">@L("ToolStatus_DangSuDung")</option>
-                    <option value="2">@L("ToolStatus_DaDungSuDung")</option>
-                    <option value="3">@L("ToolStatus_YeuCauSuaChua")</option>
-                    <option value="4">@L("ToolStatus_YeuCauThayThe")</option>
-                    <option value="5">@L("ToolStatus_YeuCauDieuChuyen")</option>
-                    <option value="6">@L("ToolStatus_KhongCoNhuCauSuDung")</option>
-                    <option value="100">@L("ToolStatus_Khac")</option>
+                    @foreach (SystemEnum.ToolType item in Enum.GetValues(typeof(SystemEnum.ToolStatus)))
+                    {
+                        try
+                        {
+                            if (Model.IsEditMode && (int)Model.Tool.ToolStatus == (int)item)
+                            {
+                                <option selected value="@((int)item)">@L("ToolStatus_" + (int)item)</option>
+                            }
+                            else
+                            {
+                                <option value="@((int)item)">@L("ToolStatus_" + (int)item)</option>
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    @*<option selected="selected" value="0">Chọn</option>
+        <option value="1">@L("ToolStatus_DangSuDung")</option>
+        <option value="2">@L("ToolStatus_DaDungSuDung")</option>
+        <option value="3">@L("ToolStatus_YeuCauSuaChua")</option>
+        <option value="4">@L("ToolStatus_YeuCauThayThe")</option>
+        <option value="5">@L("ToolStatus_YeuCauDieuChuyen")</option>
+        <option value="6">@L("ToolStatus_KhongCoNhuCauSuDung")</option>
+        <option value="100">@L("ToolStatus_Khac")</option>*@
                 </select>
             </div>
 
@@ -274,54 +316,54 @@
     //        break;
     //}
 
-    switch (toolCondition) {
-        case "TrucTrac":
-            $('#toolCondition').val(1);
-            break;
-        case "KhongOnDinh":
-            $('#toolCondition').val(2);
-            break;
-        case "Cham":
-            $('#toolCondition').val(3);
-            break;
-        case "BinhThuong":
-            $('#toolCondition').val(4);
-            break;
-        case "Tot":
-            $('#toolCondition').val(5);
-            break;
-        case "Chon":
-            $('#toolCondition').val(100);
-            break;
-        case "Khac":
-            $('#toolCondition').val(100);
-            break;
-    }
+    //switch (toolCondition) {
+    //    case "TrucTrac":
+    //        $('#toolCondition').val(1);
+    //        break;
+    //    case "KhongOnDinh":
+    //        $('#toolCondition').val(2);
+    //        break;
+    //    case "Cham":
+    //        $('#toolCondition').val(3);
+    //        break;
+    //    case "BinhThuong":
+    //        $('#toolCondition').val(4);
+    //        break;
+    //    case "Tot":
+    //        $('#toolCondition').val(5);
+    //        break;
+    //    case "Chon":
+    //        $('#toolCondition').val(100);
+    //        break;
+    //    case "Khac":
+    //        $('#toolCondition').val(100);
+    //        break;
+    //}
 
-    switch (toolStatus) {
-        case "DangSuDung":
-            $('#toolStatus').val(1);
-            break;
-        case "DaDungSuDung":
-            $('#toolStatus').val(2);
-            break;
-        case "YeuCauSuaChua":
-            $('#toolStatus').val(3);
-            break;
-        case "YeuCauThayThe":
-            $('#toolStatus').val(4);
-            break;
-        case "YeuCauDieuChuyen":
-            $('#toolStatus').val(5);
-            break;
-        case "KhongCoNhuCauSuDung":
-            $('#toolStatus').val(6);
-            break;
-        case "Chon":
-            $('#toolStatus').val(100);
-            break;
-        case "Khac":
-            $('#toolStatus').val(100);
-            break;
-    }
+    //switch (toolStatus) {
+    //    case "DangSuDung":
+    //        $('#toolStatus').val(1);
+    //        break;
+    //    case "DaDungSuDung":
+    //        $('#toolStatus').val(2);
+    //        break;
+    //    case "YeuCauSuaChua":
+    //        $('#toolStatus').val(3);
+    //        break;
+    //    case "YeuCauThayThe":
+    //        $('#toolStatus').val(4);
+    //        break;
+    //    case "YeuCauDieuChuyen":
+    //        $('#toolStatus').val(5);
+    //        break;
+    //    case "KhongCoNhuCauSuDung":
+    //        $('#toolStatus').val(6);
+    //        break;
+    //    case "Chon":
+    //        $('#toolStatus').val(100);
+    //        break;
+    //    case "Khac":
+    //        $('#toolStatus').val(100);
+    //        break;
+    //}
 </script>

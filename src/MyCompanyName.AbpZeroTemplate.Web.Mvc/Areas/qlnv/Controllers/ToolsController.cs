@@ -58,6 +58,7 @@ namespace MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Controllers
             ToolViewModel model = new ToolViewModel
             {
                 Tool = data.Tool,
+                PosName = data.PosName,
                 OrganizationUnitDisplayName = data.OrganizationUnitDisplayName
             };
             return PartialView("_ViewModal", model);

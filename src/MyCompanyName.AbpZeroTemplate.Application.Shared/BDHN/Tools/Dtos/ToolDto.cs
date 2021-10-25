@@ -6,10 +6,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 {
     public class ToolDto : FullAuditedEntityDto<Guid>
     {
-
 		public virtual string ToolName { get; set; }
-
-		
 
 		public virtual string? Serial { get; set; }
 
@@ -18,7 +15,6 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 		public virtual DateTime? UsedTo { get; set; }
 
 		public virtual string? Configuration { get; set; }
-
 
 		public virtual string? Note { get; set; }
 
@@ -33,6 +29,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		//public virtual ToolStatus? ToolStatus { get; set; }
 		public virtual int Tool_Type { get; set; }
+
 		public virtual int Condition { get; set; }
 
 		public virtual int ToolStatus { get; set; }
