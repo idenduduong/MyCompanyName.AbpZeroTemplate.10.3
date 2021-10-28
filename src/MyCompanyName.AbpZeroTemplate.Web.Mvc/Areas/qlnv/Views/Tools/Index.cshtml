@@ -288,6 +288,140 @@
                                     </thead>
                                 </table>
                             </div>
+
+                            <br />
+
+                            @*datdd begin detail header*@
+                            <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+                                <li class="nav-item m-tabs__item">
+                                    <a href="#NhatKySuDungTab" id="NhatKySuDungTabLink" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                                        Nhật ký sửa chữa
+                                    </a>
+                                </li>
+                                <li class="nav-item m-tabs__item">
+                                    <a href="#LichSuChinhSuaTab" id="LichSuChinhSuaTabLink" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                                        Lịch sử điều chuyển
+                                    </a>
+                                </li>
+                            </ul>
+
+                            @*datdd begin detail table*@
+                        <div class="detailTheKhachHang">
+                            <div class="tab-content">
+                                <div id="NhatKySuDungTab" class="tab-pane active show" role="tabpanel">
+                                    <div id="NhatKySuDungThesTable_wrapper" class="dataTables_wrapper no-footer">
+                                        <div id="NhatKySuDungThesTable_processing" class="dataTables_processing card" style="display: none;">Đang xử lý...</div>
+                                        <table id="NhatKySuDungThesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column" role="grid" aria-describedby="NhatKySuDungThesTable_info" style="width: 0px;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 0px;" aria-label="Thao tác">Thao tác</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Số buổi: activate to sort column ascending">Số buổi</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Ngày thực hiện: activate to sort column ascending">Ngày thực hiện</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Nhập ngày: activate to sort column ascending">Nhập ngày</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Tên hàng hóa: activate to sort column ascending">Tên hàng hóa</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Số lượng: activate to sort column ascending">Số lượng</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Số tiền: activate to sort column ascending">Số tiền</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Hàng tặng: activate to sort column ascending">Hàng tặng</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Đơn vị: activate to sort column ascending">Đơn vị</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Mã chứng từ: activate to sort column ascending">Mã chứng từ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd">
+                                                    <td valign="top" colspan="10" class="dataTables_empty">Không tìm thấy dòng nào phù hợp</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="bottom">
+                                            <div class="info">
+                                                <div class="dataTables_info" id="NhatKySuDungThesTable_info" role="status" aria-live="polite">Đang xem 0 đến 0 trong tổng số 0 mục</div>
+                                            </div>
+                                            <div class="pagination">
+                                                <div class="dataTables_paginate paging_bootstrap_full_number" id="NhatKySuDungThesTable_paginate">
+                                                    <ul class="pagination" style="visibility: hidden;">
+                                                        <li class="prev disabled"><a href="#" title="Đầu"><i class="fa fa-angle-double-left"></i></a></li>
+                                                        <li class="prev disabled"><a href="#" title="Trước"><i class="fa fa-angle-left"></i></a></li>
+                                                        <li class="next disabled"><a href="#" title="Tiếp"><i class="fa fa-angle-right"></i></a></li>
+                                                        <li class="next disabled"><a href="#" title="Cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="length">
+                                                <div class="dataTables_length" id="NhatKySuDungThesTable_length">
+                                                    <label>
+                                                        Xem
+                                                        <select name="NhatKySuDungThesTable_length" aria-controls="NhatKySuDungThesTable" class="form-control m-input form-control-sm">
+                                                            <option value="5">5</option>
+                                                            <option value="10">10</option>
+                                                            <option value="25">25</option>
+                                                            <option value="50">50</option>
+                                                            <option value="100">100</option>
+                                                            <option value="250">250</option>
+                                                            <option value="500">500</option>
+                                                        </select>
+                                                        mục
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div id="LichSuChinhSuaTab" class="tab-pane" role="tabpanel">
+                                    <div id="LichSuChinhSuas_wrapper" class="dataTables_wrapper no-footer">
+                                        <div id="LichSuChinhSuas_processing" class="dataTables_processing card" style="display: none;">Đang xử lý...</div>
+                                        <table id="LichSuChinhSuas" class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column" role="grid" aria-describedby="LichSuChinhSuas_info" style="width: 0px;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="LichSuChinhSuas" rowspan="1" colspan="1" style="width: 0px;" aria-label="Người thao tác: activate to sort column ascending">Người thao tác</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="LichSuChinhSuas" rowspan="1" colspan="1" style="width: 0px;" aria-label="Nội dung thay đổi: activate to sort column ascending">Nội dung thay đổi</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="LichSuChinhSuas" rowspan="1" colspan="1" style="width: 0px;" aria-label="Thời gian: activate to sort column ascending">Thời gian</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd">
+                                                    <td valign="top" colspan="3" class="dataTables_empty">Không tìm thấy dòng nào phù hợp</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="bottom">
+                                            <div class="info">
+                                                <div class="dataTables_info" id="LichSuChinhSuas_info" role="status" aria-live="polite">Đang xem 0 đến 0 trong tổng số 0 mục</div>
+                                            </div>
+                                            <div class="pagination">
+                                                <div class="dataTables_paginate paging_bootstrap_full_number" id="LichSuChinhSuas_paginate">
+                                                    <ul class="pagination" style="visibility: hidden;">
+                                                        <li class="prev disabled"><a href="#" title="Đầu"><i class="fa fa-angle-double-left"></i></a></li>
+                                                        <li class="prev disabled"><a href="#" title="Trước"><i class="fa fa-angle-left"></i></a></li>
+                                                        <li class="next disabled"><a href="#" title="Tiếp"><i class="fa fa-angle-right"></i></a></li>
+                                                        <li class="next disabled"><a href="#" title="Cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="length">
+                                                <div class="dataTables_length" id="LichSuChinhSuas_length">
+                                                    <label>
+                                                        Xem
+                                                        <select name="LichSuChinhSuas_length" aria-controls="LichSuChinhSuas" class="form-control m-input form-control-sm">
+                                                            <option value="5">5</option>
+                                                            <option value="10">10</option>
+                                                            <option value="25">25</option>
+                                                            <option value="50">50</option>
+                                                            <option value="100">100</option>
+                                                            <option value="250">250</option>
+                                                            <option value="500">500</option>
+                                                        </select>
+                                                        mục
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         </div>
                     </div>
                 </div>

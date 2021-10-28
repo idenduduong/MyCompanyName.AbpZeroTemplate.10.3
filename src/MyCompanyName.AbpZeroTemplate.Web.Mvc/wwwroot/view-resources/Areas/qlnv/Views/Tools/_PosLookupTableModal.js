@@ -2,7 +2,6 @@
     app.modals.PosLookupTableModal = function () {
 
         var _modalManager;
-        debugger;
         var _service = abp.services.app.tools;
         var _$Table = $('#Table');
 
