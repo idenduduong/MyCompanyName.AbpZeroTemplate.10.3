@@ -75,10 +75,10 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                            from s1 in j1.DefaultIfEmpty()
 
                            join o2 in _lookup_toolRepository.GetAll()
-                           .WhereIf(!string.IsNullOrWhiteSpace(input.BuuCucName),
-                                   (BuuCuc e) => EF.Functions.Like(e.POSName.Trim().ToLower(), "%" + input.BuuCucName.Trim().ToLower() + "%"))
+                           .WhereIf(!string.IsNullOrWhiteSpace(input.Note),
+                                   (Tool e) => EF.Functions.Like(e.Note.Trim().ToLower(), "%" + input.Note.Trim().ToLower() + "%"))
                            on o.POSCode equals o2.POSCode into j2
-                           from s2 in (!string.IsNullOrWhiteSpace(input.BuuCucName) ? j2 : j2.DefaultIfEmpty())
+                           from s2 in (!string.IsNullOrWhiteSpace(input.Note) ? j2 : j2.DefaultIfEmpty())
 
                                //join o3 in _lookup_unitRepository.GetAll()
                                //.WhereIf(!string.IsNullOrWhiteSpace(input.UnitName),
@@ -126,13 +126,13 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             var sql = entities.ToQueryString();
 
             var dbList = await entities.ToListAsync();
-            var results = new List<GetToolForViewDto>();
+            var results = new List<GetToolRepairForViewDto>();
 
             foreach (var o in dbList)
             {
                 try
                 {
-                    var res = new GetToolForViewDto()
+                    var res = new GetToolRepairForViewDto()
                     {
                         Tool = new ToolDto
                         {
@@ -218,7 +218,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                             .PageBy(input.SkipCount, input.MaxResultCount).ToList();
             }
 
-            return new PagedResultDto<GetToolForViewDto>(
+            return new PagedResultDto<GetToolRepairForViewDto>(
                 totalCount,
                 results
             );

@@ -10,13 +10,13 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
     {
         Task<PagedResultDto<GetToolRepairForViewDto>> GetAll(GetAllToolRepairInput input);
 
-        Task<GetToolRepairForViewDto> GetForView(Guid id);
+        //Task<GetToolRepairForViewDto> GetForView(Guid id);
 
-        Task<GetToolRepairForEditOutput> GetForEdit(EntityDto<Guid> input);
+        //Task<GetToolRepairForEditOutput> GetForEdit(EntityDto<Guid> input);
 
-        Task CreateOrEdit(CreateOrEditToolRepairHistoryDto input);
+        //Task CreateOrEdit(CreateOrEditToolRepairHistoryDto input);
 
-        Task Delete(EntityDto<Guid> input);
+        //Task Delete(EntityDto<Guid> input);
 
         //Task<PagedResultDto<BuuCucUnitLookupTableDto>> GetAllPosForLookupTable(GetAllForLookupTableInput input);
 
