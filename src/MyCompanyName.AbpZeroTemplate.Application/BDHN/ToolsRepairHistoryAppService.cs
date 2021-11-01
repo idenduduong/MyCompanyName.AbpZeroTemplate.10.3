@@ -95,11 +95,11 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
                            select new
                            {
-                               o.ToolName,
-                               o.Type,
-                               o.Serial,
-                               o.UsedFrom,
-                               o.UsedTo,
+                               //o.ToolName,
+                               //o.Type,
+                               //o.Serial,
+                               //o.UsedFrom,
+                               //o.UsedTo,
                                o.Configuration,
                                o.Condition,
                                o.ToolStatus,
@@ -109,7 +109,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                                o.OrganizationUnitId,
                                o.IsDeleted,
                                o.Id,
-                               s2.POSName,
+                               //s2.POSName,
                                OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
                            };
 
@@ -134,25 +134,25 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                 {
                     var res = new GetToolRepairForViewDto()
                     {
-                        Tool = new ToolDto
-                        {
-                            ToolName = o.ToolName,
-                            Tool_Type = (int)o.Type,
-                            Serial = o.Serial,
-                            UsedFrom = o.UsedFrom,
-                            UsedTo = o.UsedTo,
-                            Configuration = o.Configuration,
-                            Condition = (int)o.Condition,
-                            ToolStatus = (int)o.ToolStatus,
-                            Note = o.Note,
-                            PosCode = o.POSCode,
-                            TenantId = o.TenantId,
-                            OrganizationUnitId = o.OrganizationUnitId,
-                            IsDeleted = o.IsDeleted,
-                            Id = o.Id,
-                        },
-                        PosName = o.POSName,
-                        OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
+                        //Tool = new ToolDto
+                        //{
+                        //    //ToolName = o.ToolName,
+                        //    //Tool_Type = (int)o.Type,
+                        //    //Serial = o.Serial,
+                        //    //UsedFrom = o.UsedFrom,
+                        //    //UsedTo = o.UsedTo,
+                        //    Configuration = o.Configuration,
+                        //    Condition = (int)o.Condition,
+                        //    ToolStatus = (int)o.ToolStatus,
+                        //    Note = o.Note,
+                        //    PosCode = o.POSCode,
+                        //    TenantId = o.TenantId,
+                        //    OrganizationUnitId = o.OrganizationUnitId,
+                        //    IsDeleted = o.IsDeleted,
+                        //    Id = o.Id,
+                        //},
+                        //PosName = o.POSName,
+                        //OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
                     };
                     results.Add(res);
                 }
