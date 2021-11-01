@@ -19,20 +19,20 @@ using System.Linq.Dynamic;
 
 namespace MyCompanyName.AbpZeroTemplate.BDHN
 {
-    public class ToolsRepairHistoryAppService : AbpZeroTemplateAppServiceBase, IToolsRepairHistory
+    public class ToolsTransferHistoryAppService : AbpZeroTemplateAppServiceBase, IToolsTransferHistory
     {
-        private readonly IRepository<ToolRepairHistory, Guid> _repository;
+        private readonly IRepository<ToolTransferHistory, Guid> _repository;
         private readonly IRepository<Tool, Guid> _lookup_toolRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
 
-        public ToolsRepairHistoryAppService(IRepository<ToolRepairHistory, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<Tool, Guid> lookup_toolRepository)
+        public ToolsTransferHistoryAppService(IRepository<ToolTransferHistory, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<Tool, Guid> lookup_toolRepository)
         {
             _repository = repository;
             _lookup_toolRepository = lookup_toolRepository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
         }
 
-        public async Task<PagedResultDto<GetToolRepairForViewDto>> GetAll(GetAllToolRepairInput input)
+        public async Task<PagedResultDto<GetToolTransferHistoryForViewDto>> GetAll(GetAllToolTransferHistoryInput input)
         {
             bool foreingSort = false;// input.Sorting != null && (input.Sorting.Contains("provinceName") || input.Sorting.Contains("communeName") || input.Sorting.Contains("unitName"));
             bool foreignSearch = false;// !string.IsNullOrEmpty(input.ProvinceName) || !string.IsNullOrEmpty(input.CommuneName) || !string.IsNullOrEmpty(input.UnitName);
@@ -95,22 +95,22 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
 
                            select new
                            {
-                               o.RepairFrom,
-                               o.RepairTo,
-                               //o.Configuration,
-                               //o.Condition,
-                               o.ToolStatus,
-                               o.Note,
-                               o.POSCode,
-                               o.TenantId,
-                               o.OrganizationUnitId,
-                               o.IsDeleted,
-                               o.Id,
-                               s2.Type,
-                               s2.Serial,
-                               s2.ToolName,
-                               s2.Configuration,
-                               s2.Condition,
+                               //o.RepairFrom,
+                               //o.RepairTo,
+                               ////o.Configuration,
+                               ////o.Condition,
+                               //o.ToolStatus,
+                               //o.Note,
+                               //o.POSCode,
+                               //o.TenantId,
+                               //o.OrganizationUnitId,
+                               //o.IsDeleted,
+                               //o.Id,
+                               //s2.Type,
+                               //s2.Serial,
+                               //s2.ToolName,
+                               //s2.Configuration,
+                               //s2.Condition,
                                OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
                            };
 
@@ -127,13 +127,13 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
             var sql = entities.ToQueryString();
 
             var dbList = await entities.ToListAsync();
-            var results = new List<GetToolRepairForViewDto>();
+            var results = new List<GetToolTransferHistoryForViewDto>();
 
             foreach (var o in dbList)
             {
                 try
                 {
-                    var res = new GetToolRepairForViewDto()
+                    var res = new GetToolTransferHistoryForViewDto()
                     {
                         ToolTransferHistory = new ToolTransferHistoryDto
                         {
@@ -147,8 +147,8 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                             //IsDeleted = o.IsDeleted,
                             //Id = o.Id,
                         },
-                        ToolName = o.ToolName,
-                        Serial = o.Serial,
+                        //ToolName = o.ToolName,
+                        //Serial = o.Serial,
                         OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
                     };
                     results.Add(res);
@@ -215,7 +215,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                             .PageBy(input.SkipCount, input.MaxResultCount).ToList();
             }
 
-            return new PagedResultDto<GetToolRepairForViewDto>(
+            return new PagedResultDto<GetToolTransferHistoryForViewDto>(
                 totalCount,
                 results
             );

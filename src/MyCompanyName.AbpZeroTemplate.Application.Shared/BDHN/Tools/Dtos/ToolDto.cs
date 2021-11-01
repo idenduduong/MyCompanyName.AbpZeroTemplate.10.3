@@ -1,7 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
 
-
 namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 {
     public class ToolDto : FullAuditedEntityDto<Guid>

@@ -1,0 +1,655 @@
+﻿@using MyCompanyName.AbpZeroTemplate.Authorization
+@using MyCompanyName.AbpZeroTemplate.Web.Areas.qlnv.Startup
+@{
+    ViewBag.CurrentPageName = "Nhật ký sửa chữa công cụ/dụng cụ";//qlnvPageNames.Common.DM_QuanHuyens;
+}
+
+@section Styles
+{
+    @*<link rel="stylesheet" abp-href="/view-resources/Areas/qlnv/Views/OrganizationUnits/Index.css" asp-append-version="true" />*@
+}
+
+@section Scripts
+{
+    @*<script abp-src="/view-resources/Areas/qlnv/Views/OrganizationUnits/Index.js" asp-append-version="true"></script>*@
+}
+
+@{
+    Layout = null;
+    //Layout = "~/Areas/qlnv/Views/Layout/_Layout2.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+<head prefix="og: http://ogp.me/ns#">
+    @await Html.PartialAsync("~/Areas/qlnv/Views/BDHN/_Header.cshtml")
+    <script type="text/javascript">
+        var abp = abp || {}; abp.appPath = '/';
+    </script>
+</head>
+<!-- END HEAD -->
+<!-- begin::Body -->
+<body class="m-page--fluid m--skin-light2
+      m-content--skin-light2
+      m-header--static
+      m-aside-left--hide
+      m-aside-left--enabled
+      m-aside-left--skin-light
+      m-aside-left--offcanvas
+      m-footer--fixed">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <!-- BEGIN: Header -->
+        <header class="m-grid__item m-header"
+                data-minimize-offset="200" data-minimize-mobile-offset="200">
+            <div class="m-header__top">
+                <div class="m-container m-container--fluid m-container--xxl m-container--full-height">
+                    <div class="m-stack m-stack--ver m-stack--desktop">
+                        <!-- BEGIN: Brand -->
+                        <div class="m-stack__item m-brand  m-brand--skin-light d-print-none">
+                            <div class="m-stack m-stack--ver m-stack--general">
+                                <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                                    <a href="/" class="m-brand__logo-wrapper">
+                                        <img id="AppLogo" src="/Common/Images/vnpost-big-removebg.png" alt="logo" width="100" height="100%" />
+                                    </a>
+                                </div>
+                                <div class="m-stack__item m-stack__item--middle m-brand__tools">
+                                    <!-- BEGIN: Left Aside Minimize Toggle -->
+                                    <!-- END -->
+                                    <!-- BEGIN: Responsive Aside Left Menu Toggler -->
+                                    <!-- END -->
+                                    <!-- begin::Responsive Header Menu Toggler-->
+                                    <a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
+                                        <span></span>
+                                    </a>
+                                    <!-- end::Responsive Header Menu Toggler-->
+                                    <!-- BEGIN: Topbar Toggler -->
+                                    <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
+                                        <i class="flaticon-more" aria-label="[Toggle]"></i>
+                                    </a>
+                                    <!-- END: Topbar Toggler -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Brand -->
+                        <div class="m-stack__item m-stack__item--fluid m-header-head d-print-none" id="m_header_nav">
+                            <!-- BEGIN: Topbar -->
+                            @await Html.PartialAsync("~/Areas/qlnv/Views/BDHN/_Topbar.cshtml")
+                            <!-- END: Topbar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-header__bottom m-aside-menu--skin-light">
+
+                <div class="m-container m-container--responsive m-container--full-height m-page__container ">
+                    <div class="m-stack m-stack--ver m-stack--desktop">
+                        <!-- begin::Horizontal Menu -->
+                        @await Html.PartialAsync("~/Areas/qlnv/Views/BDHN/_Menu.cshtml")
+                        <!-- end::Horizontal Menu -->
+                    </div>
+                </div>
+            </div>
+
+
+        </header>
+
+        <script id="linkedAccountsSubMenuTemplate" type="x-tmpl-mustache">
+            {{#items}}
+            <li class="m-nav__item">
+                <a href="" data-user-id="{{id}}" data-tenant-id="{{tenantId}}" class="recently-linked-user m-nav__link">
+                    <span class="m-nav__link-bullet m-nav__link-bullet--dot">
+                        <span></span>
+                    </span>
+                    <span class="m-nav__link-text">
+                        {{shownUserName}}
+                    </span>
+                </a>
+            </li>
+            {{/items}}
+        </script>
+
+        <script id="headerNotificationBarTemplate" type="x-tmpl-mustache">
+            <a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon{{^unreadMessageExists}}_not{{/unreadMessageExists}}">
+                <span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small {{#unreadMessageExists}}m-badge--danger{{/unreadMessageExists}}"></span>
+                <span class="m-nav__link-icon">
+                    <i class="flaticon-music-2" aria-label="Th&#xF4;ng b&#xE1;o"></i>
+                </span>
+            </a>
+            <div class="m-dropdown__wrapper">
+                <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                <div class="m-dropdown__inner">
+                    <div class="m-dropdown__header m--align-center" style="background: url(/metronic/dist/html/blue/assets/demo/blue/media/img/misc/notification_bg.jpg); background-size: cover;">
+                        <span class="m-dropdown__header-title">
+                            {{unreadCount}} Th&#xF4;ng b&#xE1;o m&#x1EDB;i
+                        </span>
+                    </div>
+                    <div class="m-dropdown__body">
+                        <div class="m-dropdown__content">
+                            <div class="row">
+                                <div class="text-left col-md-8">
+                                    {{#unreadCount}}
+                                    <a href="" id="setAllNotificationsAsReadLink">&#x110;&#x1EB7;t t&#x1EA5;t c&#x1EA3; l&#xE0; &#x111;&#xE3; &#x111;&#x1ECD;c</a>
+                                    {{/unreadCount}}
+                                </div>
+                                <div class="text-right col-md-4">
+                                    <a id="openNotificationSettingsModalLink" class="text-right" href="">C&#xE0;i &#x111;&#x1EB7;t</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="m-scrollable" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">
+                                <div class="m-list-timeline m-list-timeline--skin-light m-nav">
+                                    <div class="m-list-timeline__items {{^notifications.length}}empty{{/notifications.length}}">
+                                        {{#notifications}}
+                                        <div class="m-list-timeline__item user-notification-item {{#url}}user-notification-item-clickable{{/url}} {{#isUnread}}user-notification-item-unread{{/isUnread}}" " data-url="{{url}}">
+                                            <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
+                                            <span class="m-list-timeline__icon {{icon}}"></span>
+                                            <span class="m-list-timeline__text">
+                                                {{text}}
+                                            </span>
+                                            <span class="m-list-timeline__time">
+                                                {{timeAgo}}
+                                                {{#isUnread}}
+                                                <span>
+                                                    <a href="javascript:;" data-notification-id="{{userNotificationId}}" class="m-link set-notification-as-read">thi&#x1EBF;t l&#x1EAD;p l&#xE0; &#x111;&#xE3; &#x111;&#x1ECD;c</a>
+                                                </span>
+                                                {{/isUnread}}
+                                            </span>
+                                        </div>
+                                        {{/notifications}}
+                                        {{^notifications.length}}
+                                        <span class="notification-empty-text">
+                                            Kh&#xF4;ng c&#xF3; th&#xF4;ng b&#xE1;o.
+                                        </span>
+                                        {{/notifications.length}}
+                                    </div>
+                                    {{#notifications.length}}
+                                    <div class="m-nav__separator m-nav__separator--fit"></div>
+                                    <div class="external notifications-footer">
+                                        <div class="text-center"><a href="/crm/Notifications">Xem t&#x1EA5;t c&#x1EA3; th&#xF4;ng b&#xE1;o&#xD;&#xA;</a></div>
+                                    </div>
+                                    {{/notifications.length}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </script>
+        <!-- END: Header -->
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            <!-- BEGIN: Left Aside -->
+            <!-- END: Left Aside -->
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <div class="m-subheader">
+                    <div class="row align-items-center">
+                        <div class="mr-auto col-sm-12 col-md-6">
+                            <h3 class="m-subheader__title m-subheader__title--separator">
+                                <span>Công cụ, dụng cụ</span>
+                            </h3>
+                            <span class="m-section__sub">
+                                Quản lý danh sách công cụ, dụng cụ
+                            </span>
+                        </div>
+                        <div class="col-sm-12 col-md-6 text-right">
+                            <button id="CreateNew" class="btn btn-primary blue"><i class="la la-plus"></i> Thêm mới </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-content">
+                    <div class="m-portlet m-portlet--mobile">
+                        <div class="m-portlet__body">
+                            <div class="m-form m-form--label-align-right">
+                                <div class="row align-items-center m--margin-bottom-10">
+                                    <div class="col-xl-12">
+                                        <div class="form-group m-form__group align-items-center">
+                                            <div class="input-group">
+                                                <input type="text" id="EntitiesTableFilter" class="form-control m-input" placeholder="Tìm kiếm ..." value="">
+                                                <span class="input-group-btn">
+                                                    <button id="GetEntitiesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="AdvacedAuditFiltersArea" style="display: none" class="row m--margin-bottom-10">
+                                <div class="col-md-12">
+                                    <div class="m-separator m-separator--dashed"></div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="MaBuuCucFilterId">Mã Bưu Cục</label>
+                                        <input type="text" class="form-control" name="maBuuCucFilter" id="MaFilterId">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="TenBuuCucFilterId">Tên Bưu Cục</label>
+                                        <input type="text" class="form-control" name="tenBuuCucFilter" id="TenFilterId">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="GhiChuFilterId">Địa chỉ</label>
+                                        <input type="text" class="form-control" name="ghiChuFilter" id="address">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DM_TinhThanhTenTinhThanhFilterId">Điện thoại</label>
+                                        <input type="text" class="form-control" name="dM_TinhThanhTenTinhThanhFilter" id="tel">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="TenBuuCucFilterId">Tên đơn vị</label>
+                                        <input type="text" class="form-control" name="unitNameFilter" id="unitName">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="MaBuuCucFilterId">Tên tỉnh thành</label>
+                                        <input type="text" class="form-control" name="provinceNameFilter" id="provinceName">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="MaBuuCucFilterId">Tên phường xã</label>
+                                        <input type="text" class="form-control" name="communeNameFilter" id="communeName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-xl-12">
+                                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> Hi&#x1EC3;n th&#x1ECB; b&#x1ED9; l&#x1ECD;c n&#xE2;ng cao</span>
+                                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> &#x1EA8;n b&#x1ED9; l&#x1ECD;c n&#xE2;ng cao</span>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <table id="EntitiesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Thao tác</th>
+                                            <th>Mã bưu Cục</th>
+                                            <th>Tên bưu Cục</th>
+                                            <th>Thiết bị</th>
+                                            <th>Loại thiết bị</th>
+                                            <th>Serial</th>
+                                            <th>Ngày đưa vào sử dụng</th>
+                                            <th>Cấu hình</th>
+                                            <th>Tình trạng hoạt động</th>
+                                            <th>Xác nhận đơn vị</th>
+                                            <th>Ghi chú</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                            <br />
+
+                            @*datdd begin detail header*@
+                            <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+                                <li class="nav-item m-tabs__item">
+                                    <a href="#NhatKySuDungTab" id="NhatKySuDungTabLink" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                                        Nhật ký sửa chữa
+                                    </a>
+                                </li>
+                                <li class="nav-item m-tabs__item">
+                                    <a href="#LichSuChinhSuaTab" id="LichSuChinhSuaTabLink" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                                        Lịch sử điều chuyển
+                                    </a>
+                                </li>
+                            </ul>
+
+                            @*datdd begin detail table*@
+                            <div class="detailTheKhachHang">
+                                <div class="tab-content">
+                                    <div id="NhatKySuDungTab" class="tab-pane active show" role="tabpanel">
+                                        <div id="NhatKySuDungThesTable_wrapper" class="dataTables_wrapper no-footer">
+                                            <div id="NhatKySuDungThesTable_processing" class="dataTables_processing card" style="display: none;">Đang xử lý...</div>
+                                            <table id="NhatKySuDungThesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column" role="grid" aria-describedby="NhatKySuDungThesTable_info" style="width: 0px;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 0px;" aria-label="Thao tác">Thao tác</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Số buổi: activate to sort column ascending">Số buổi</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Ngày thực hiện: activate to sort column ascending">Ngày thực hiện</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Nhập ngày: activate to sort column ascending">Nhập ngày</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Tên hàng hóa: activate to sort column ascending">Tên hàng hóa</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Số lượng: activate to sort column ascending">Số lượng</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Số tiền: activate to sort column ascending">Số tiền</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Hàng tặng: activate to sort column ascending">Hàng tặng</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Đơn vị: activate to sort column ascending">Đơn vị</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="NhatKySuDungThesTable" rowspan="1" colspan="1" style="width: 0px;" aria-label="Mã chứng từ: activate to sort column ascending">Mã chứng từ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="odd">
+                                                        <td valign="top" colspan="10" class="dataTables_empty">Không tìm thấy dòng nào phù hợp</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="bottom">
+                                                <div class="info">
+                                                    <div class="dataTables_info" id="NhatKySuDungThesTable_info" role="status" aria-live="polite">Đang xem 0 đến 0 trong tổng số 0 mục</div>
+                                                </div>
+                                                <div class="pagination">
+                                                    <div class="dataTables_paginate paging_bootstrap_full_number" id="NhatKySuDungThesTable_paginate">
+                                                        <ul class="pagination" style="visibility: hidden;">
+                                                            <li class="prev disabled"><a href="#" title="Đầu"><i class="fa fa-angle-double-left"></i></a></li>
+                                                            <li class="prev disabled"><a href="#" title="Trước"><i class="fa fa-angle-left"></i></a></li>
+                                                            <li class="next disabled"><a href="#" title="Tiếp"><i class="fa fa-angle-right"></i></a></li>
+                                                            <li class="next disabled"><a href="#" title="Cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="length">
+                                                    <div class="dataTables_length" id="NhatKySuDungThesTable_length">
+                                                        <label>
+                                                            Xem
+                                                            <select name="NhatKySuDungThesTable_length" aria-controls="NhatKySuDungThesTable" class="form-control m-input form-control-sm">
+                                                                <option value="5">5</option>
+                                                                <option value="10">10</option>
+                                                                <option value="25">25</option>
+                                                                <option value="50">50</option>
+                                                                <option value="100">100</option>
+                                                                <option value="250">250</option>
+                                                                <option value="500">500</option>
+                                                            </select>
+                                                            mục
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <div id="LichSuChinhSuaTab" class="tab-pane" role="tabpanel">
+                                        <div id="LichSuChinhSuas_wrapper" class="dataTables_wrapper no-footer">
+                                            <div id="LichSuChinhSuas_processing" class="dataTables_processing card" style="display: none;">Đang xử lý...</div>
+                                            <table id="LichSuChinhSuas" class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column" role="grid" aria-describedby="LichSuChinhSuas_info" style="width: 0px;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting" tabindex="0" aria-controls="LichSuChinhSuas" rowspan="1" colspan="1" style="width: 0px;" aria-label="Người thao tác: activate to sort column ascending">Người thao tác</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="LichSuChinhSuas" rowspan="1" colspan="1" style="width: 0px;" aria-label="Nội dung thay đổi: activate to sort column ascending">Nội dung thay đổi</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="LichSuChinhSuas" rowspan="1" colspan="1" style="width: 0px;" aria-label="Thời gian: activate to sort column ascending">Thời gian</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="odd">
+                                                        <td valign="top" colspan="3" class="dataTables_empty">Không tìm thấy dòng nào phù hợp</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="bottom">
+                                                <div class="info">
+                                                    <div class="dataTables_info" id="LichSuChinhSuas_info" role="status" aria-live="polite">Đang xem 0 đến 0 trong tổng số 0 mục</div>
+                                                </div>
+                                                <div class="pagination">
+                                                    <div class="dataTables_paginate paging_bootstrap_full_number" id="LichSuChinhSuas_paginate">
+                                                        <ul class="pagination" style="visibility: hidden;">
+                                                            <li class="prev disabled"><a href="#" title="Đầu"><i class="fa fa-angle-double-left"></i></a></li>
+                                                            <li class="prev disabled"><a href="#" title="Trước"><i class="fa fa-angle-left"></i></a></li>
+                                                            <li class="next disabled"><a href="#" title="Tiếp"><i class="fa fa-angle-right"></i></a></li>
+                                                            <li class="next disabled"><a href="#" title="Cuối"><i class="fa fa-angle-double-right"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="length">
+                                                    <div class="dataTables_length" id="LichSuChinhSuas_length">
+                                                        <label>
+                                                            Xem
+                                                            <select name="LichSuChinhSuas_length" aria-controls="LichSuChinhSuas" class="form-control m-input form-control-sm">
+                                                                <option value="5">5</option>
+                                                                <option value="10">10</option>
+                                                                <option value="25">25</option>
+                                                                <option value="50">50</option>
+                                                                <option value="100">100</option>
+                                                                <option value="250">250</option>
+                                                                <option value="500">500</option>
+                                                            </select>
+                                                            mục
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:: Body -->
+        <!-- begin::Footer -->
+        @await Html.PartialAsync("~/Areas/qlnv/Views/BDHN/_Footer.cshtml")
+        <!-- end::Footer -->
+    </div>
+    <!-- end:: Page -->
+    <!-- begin::Chat Bar -->
+    <!-- begin::Quick Sidebar -->
+    <div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
+        <div class="m-quick-sidebar__content m--hide">
+            <a href="#" id="m_quick_sidebar_back" class="d-none">
+                <i class="la la-arrow-circle-left" aria-label="Tr&#x1EDF; l&#x1EA1;i"></i>
+            </a>
+            <a href="javascript:;" class="page-quick-sidebar-pinner">
+                <i class="icon-pin" aria-label="Pin"></i>
+            </a>
+            <span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
+                <i class="la la-close" aria-label="&#x110;&#xF3;ng"></i>
+            </span>
+            <div class="m-messenger m-messenger-friends m-messenger--skin-light">
+                <div class="row">
+                    <div class="col-md-12" style="padding-top: 30px; margin: 5px; padding-right: 25px;">
+                        <div class="m-input-icon m-input-icon--right">
+                            <input type="text" id="ChatUserSearchUserName" class="form-control input-sm" placeholder="L&#x1ECD;c / Th&#xEA;m ng&#x1B0;&#x1EDD;i d&#xF9;ng">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i id="InterTenantChatHintIcon" class="la la-info-circle" data-toggle="m-popover" data-placement="bottom" data-html="true" title="Ch&#x1EC9; vi&#x1EBF;t t&#xEA;n ng&#x1B0;&#x1EDD;i d&#xF9;ng cho c&#xF9;ng ng&#x1B0;&#x1EDD;i d&#xF9;ng thu&#xEA;, &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; &lt;strong&gt; [tenancyName] \ [userName] &lt;/ strong&gt; cho ng&#x1B0;&#x1EDD;i d&#xF9;ng c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; nh&#xE0; kh&#xE1;c &lt;br&gt; &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; v&#xED; d&#x1EE5;: &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; . \ edmin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n l&#x1B0;u tr&#x1EEF; &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; Ki&#x1EC3;m tra \ edmin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; th&#x1EED; nghi&#x1EC7;m &lt;br&gt;&#xD;&#xA;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; edmin -&gt; d&#xE0;nh cho qu&#x1EA3;n tr&#x1ECB; vi&#xEA;n c&#x1EE7;a ng&#x1B0;&#x1EDD;i thu&#xEA; nh&#xE0; c&#x1EE7;a b&#x1EA1;n"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin: 5px; padding-right: 25px;">
+                        <button id="SearchChatUserButton" type="button" class="btn btn-block btn-success d-none">Th&#xEA;m ba&#x323;n&#xD;&#xA;</button>
+                    </div>
+                </div>
+                <div class="m-list-search">
+                    <div class="m-list-search__results">
+                        <span class="m-list-search__result-category">
+                            B&#x1EA1;n b&#xE8;&#xD;&#xA;
+                        </span>
+                        <div id="friendListFriends"></div>
+                        <p id="EmptyFriendListInfo">B&#x1EA1;n kh&#xF4;ng c&#xF3; b&#x1EA1;n b&#xE8; n&#xE0;o. Vi&#x1EBF;t t&#xEA;n ng&#x1B0;&#x1EDD;i d&#xF9;ng v&#xE0;o h&#x1ED9;p nh&#x1EAD;p li&#x1EC7;u &#x1EDF; tr&#xEA;n v&#xE0; nh&#x1EA5;p v&#xE0;o n&#xFA;t &quot;Th&#xEA;m b&#x1EA1;n b&#xE8;&quot;.</p>
+                    </div>
+                </div>
+                <div class="m-list-search">
+                    <div class="m-list-search__results">
+                        <span class="m-list-search__result-category">
+                            Ng&#x1B0;&#x1EDD;i d&#xF9;ng b&#x1ECB; ch&#x1EB7;n&#xD;&#xA;
+                        </span>
+                        <div id="friendListBlockeds"></div>
+                        <p id="EmptyBlockedFriendListInfo">B&#x1EA1;n kh&#xF4;ng c&#xF3; b&#x1EA5;t k&#x1EF3; ng&#x1B0;&#x1EDD;i d&#xF9;ng b&#x1ECB; ch&#x1EB7;n n&#xE0;o. &#x110;&#x1EC3; ch&#x1EB7;n m&#x1ED9;t ng&#x1B0;&#x1EDD;i b&#x1EA1;n, h&#xE3;y ch&#x1ECD;n m&#x1ED9;t ng&#x1B0;&#x1EDD;i b&#x1EA1;n v&#xE0; ch&#x1ECD;n ch&#x1EB7;n t&#x1EEB; c&#xE1;c h&#xE0;nh &#x111;&#x1ED9;ng th&#x1EA3; xu&#x1ED1;ng.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="m-scrollable m-messenger-conversation" style="display: none;">
+                <div class="selected-chat-user">
+                    <div class="selected-chat-user-image">
+                        <img id="selectedChatUserImage" class="media-object">
+                        <span id="selectedChatUserStatus" class="contact-status2"></span>
+                    </div>
+                    <h6 id="selectedChatUserName"></h6>
+                    <div class="actions">
+                        <a class="btn btn-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                            <i class="fa fa-angle-down" aria-label="[Expand]"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li id="liBanChatUser">
+                                <a href="javascript:;">
+                                    <i class="fa fa-ban"></i>
+                                    Ch&#x1EB7;n ng&#x1B0;&#x1EDD;i d&#xF9;ng
+                                </a>
+                            </li>
+                            <li id="liUnbanChatUser">
+                                <a href="javascript:;">
+                                    <i class="fa fa-check"></i>
+                                    M&#x1EDF; kh&#xF3;a&#xD;&#xA;
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
+                    <div class="m-messenger__messages" id="UserChatMessages">
+                    </div>
+                    <div class="m-messenger__seperator"></div>
+                    <form name="chatMessageForm" id="chatMessageForm" role="form">
+                        <div id="files" class="files"></div>
+                        <div class="col-md-12" style="margin: 5px; padding-right: 25px;">
+                            <button id="UnblockUserButton" type="button" class="btn btn-block btn-success">M&#x1EDF; kh&#xF3;a&#xD;&#xA;</button>
+                        </div>
+
+                        <div class="col-md-12 chat-progress-bar">
+                            <div id="chatFileUploadProgress" class="progress">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+                        </div>
+
+                        <div class="m-messenger__form" id="ChatMessageWrapper">
+                            <div class="m-messenger__form-controls">
+                                <input id="ChatMessage" type="text" name="message" class="m-messenger__form-input" placeholder="Nh&#x1EAD;p tin nh&#x1EAF;n t&#x1EA1;i &#x111;&#xE2;y ..." required maxlength="4096" />
+                            </div>
+                            <div class="m-messenger__form-tools">
+                                <a id="chatDropdownToggle" href="" class="m-messenger__form-attachment select-media" data-toggle="dropdown" tabindex="-1" aria-expanded="false">
+                                    <i class="la la-paperclip" aria-label="[Attach]"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right bottom-up" role="menu">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="fileinput-button">
+                                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                                <span>&#x1EA2;nh</span>
+                                                <!-- The file input field used as target for the file upload widget -->
+                                                <input id="chatImageUpload" type="file" name="files">
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="fileinput-button">
+                                                <i class="fa fa-file" aria-hidden="true"></i>
+                                                <span>T&#x1EC7;p</span>
+                                                <!-- The file input field used as target for the file upload widget -->
+                                                <input id="chatFileUpload" type="file" name="files">
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" id="btnLinkShare">
+                                            <i class="fa fa-link" aria-hidden="true"></i>
+                                            <span>Link &#x111;&#x1EBF;n page hi&#x1EC7;n t&#x1EA1;i</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end::Quick Sidebar -->
+
+    <script id="UserFriendTemplate" type="x-tmpl-mustache">
+        {{#.}}
+        <a href="#" class="m-list-search__result-item" data-friend-tenant-id="{{friendTenantId}}" data-friend-user-id="{{friendUserId}}">
+            <span class="m-list-search__result-item-pic">
+                <img class="m--img-rounded" src="{{profilePicturePath}}" title="">
+            </span>
+            <span class="m-list-search__result-item-text">
+                {{shownUserName}}
+            </span>
+
+            {{#unreadMessageCount}}
+            <span class="m-badge m-badge--warning">
+                {{unreadMessageCount}}
+            </span>
+            {{/unreadMessageCount}}
+
+            {{^unreadMessageCount}}
+            <span class="m-badge m-badge--warning d-none">
+                {{unreadMessageCount}}
+            </span>
+            {{/unreadMessageCount}}
+
+            {{#isOnline}}
+            <span class="contact-status1 online"></span>
+            {{/isOnline}}
+
+            {{^isOnline}}
+            <span class="contact-status1 offline"></span>
+            {{/isOnline}}
+        </a>
+        {{/.}}
+    </script>
+
+    <script id="UserChatMessageTemplate" type="x-tmpl-mustache">
+        {{#.}}
+        <div class="m-messenger__message {{cssClass}}">
+            {{#isIn}}
+            <div class="m-messenger__message-pic">
+                <img src="{{profilePicturePath}}" alt="" class="mCS_img_loaded">
+            </div>
+            {{/isIn}}
+            <div class="m-messenger__message-body">
+                <div class="m-messenger__message-arrow"></div>
+                <div class="m-messenger__message-content">
+                    <div class="m-messenger__message-username">
+                        <span>{{shownUserName}}</span>
+                        <time class="timeago" datetime="{{creationTime}}"></time> {{{readStateCheck}}}
+                    </div>
+                    <div class="m-messenger__message-text">
+                        {{{message}}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/.}}
+    </script>
+    <!-- end::Chat Bar -->
+    <!-- begin::Scroll Top -->
+    <div class="m-scroll-top m-scroll-top--skin-top d-print-none" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+        <i class="la la-arrow-up" aria-label="[Collapse]"></i>
+    </div>
+    <!-- end::Scroll Top -->
+    <!--begin::Base Scripts -->
+    @await Html.PartialAsync("~/Areas/qlnv/Views/BDHN/_BaseScripts.cshtml")
+    <!--end::Base Scripts -->
+    <!--begin::Page Snippets -->
+
+    <script src="/view-resources/Areas/qlnv/Views/Tools/Index.js" asp-append-version="true"></script>
+
+    <script>
+        $(function () {
+
+            toastr.options = {
+                "positionClass": "toast-top-right",
+                "displayLength": 1000,
+                "inDuration": 100
+            }
+        })
+    </script>
+    <!--end::Page Snippets -->
+</body>
+<!-- end::Body -->
+</html>

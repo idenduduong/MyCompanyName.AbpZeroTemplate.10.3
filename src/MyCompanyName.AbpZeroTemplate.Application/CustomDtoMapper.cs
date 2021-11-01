@@ -397,6 +397,12 @@ namespace MyCompanyName.AbpZeroTemplate
 			configuration.CreateMap<CreateOrEditToolDto, Tool>().ReverseMap();
 			configuration.CreateMap<ToolDto, Tool>().ReverseMap();
 
+			configuration.CreateMap<CreateOrEditToolRepairHistoryDto, ToolRepairHistory>().ReverseMap();
+			configuration.CreateMap<ToolRepairHistoryDto, ToolRepairHistory>().ReverseMap();
+
+			configuration.CreateMap<CreateOrEditToolTransferHistoryDto, ToolTransferHistory>().ReverseMap();
+			configuration.CreateMap<ToolTransferHistoryDto, ToolTransferHistory>().ReverseMap();
+
 			configuration.CreateMap<CreateOrEditBaseEntityDto, BaseEntity>().ReverseMap();
 			configuration.CreateMap<BaseEntityDto, BaseEntity>().ReverseMap();
 
