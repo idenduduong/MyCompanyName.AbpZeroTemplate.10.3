@@ -7119,6 +7119,7 @@ a.text-dark:hover, a.text-dark:focus {
       font-smoothing: antialiased;
       font-size: 0;
       outline: none !important; }
+        /*datdd*/
       .modal .modal-content .modal-header .close:before {
         content: ""; }
       .modal .modal-content .modal-header .close:before {

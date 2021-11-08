@@ -18,5 +18,9 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
         public virtual string? Note { get; set; }
 
         public virtual string? POSCode { get; set; }
+
+        public virtual string? POSName { get; set; }
+
+
     }
 }

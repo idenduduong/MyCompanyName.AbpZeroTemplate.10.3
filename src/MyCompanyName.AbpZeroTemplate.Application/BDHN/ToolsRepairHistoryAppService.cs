@@ -23,12 +23,14 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
     {
         private readonly IRepository<ToolRepairHistory, Guid> _repository;
         private readonly IRepository<Tool, Guid> _lookup_toolRepository;
+        private readonly IRepository<BuuCuc, Guid> _lookup_buucucRepository;
         private readonly IRepository<OrganizationUnit, long> _lookup_organizationUnitRepository;
 
-        public ToolsRepairHistoryAppService(IRepository<ToolRepairHistory, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<Tool, Guid> lookup_toolRepository)
+        public ToolsRepairHistoryAppService(IRepository<ToolRepairHistory, Guid> repository, IRepository<OrganizationUnit, long> lookup_organizationUnitRepository, IRepository<BuuCuc, Guid> lookup_buucucRepository, IRepository<Tool, Guid> lookup_toolRepository)
         {
             _repository = repository;
             _lookup_toolRepository = lookup_toolRepository;
+            _lookup_buucucRepository = lookup_buucucRepository;
             _lookup_organizationUnitRepository = lookup_organizationUnitRepository;
         }
 
@@ -80,37 +82,40 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                            on o.ToolId equals o2.Id into j2
                            from s2 in (!string.IsNullOrWhiteSpace(input.Note) ? j2 : j2.DefaultIfEmpty())
 
-                               //join o3 in _lookup_unitRepository.GetAll()
-                               //.WhereIf(!string.IsNullOrWhiteSpace(input.UnitName),
-                               //         (Unit e) => EF.Functions.Like(e.UnitName.Trim().ToLower(), "%" + input.UnitName.Trim().ToLower() + "%"))
-                               //on o.UnitCode equals o3.UnitCode into j3
-                               //from s3 in (!string.IsNullOrWhiteSpace(input.UnitName) ? j3 : j3.DefaultIfEmpty())
+                           join o3 in _lookup_buucucRepository.GetAll()
+                           .WhereIf(!string.IsNullOrWhiteSpace(input.POSCode),
+                                    (BuuCuc e) => EF.Functions.Like(e.POSCode.Trim().ToLower(), "%" + input.POSCode.Trim().ToLower() + "%"))
+                           on o.POSCode equals o3.POSCode into j3
+                           from s3 in (!string.IsNullOrWhiteSpace(input.POSCode) ? j3 : j3.DefaultIfEmpty())
 
-                               //join o4 in _lookup_provinceRepository.GetAll()
-                               //.WhereIf(!string.IsNullOrWhiteSpace(input.ProvinceName),
-                               //         (Province e) => EF.Functions.Like(e.ProvinceName.Trim().ToLower(), "%" + input.ProvinceName.Trim().ToLower() + "%"))
-                               //on o.ProvinceCode equals o4.ProvinceCode into j4
-                               //from s4 in j4
-                               //from s4 in (!string.IsNullOrWhiteSpace(input.ProvinceName) ? j4 : j4.DefaultIfEmpty())
+                            //join o4 in _lookup_provinceRepository.GetAll()
+                            //.WhereIf(!string.IsNullOrWhiteSpace(input.ProvinceName),
+                            //         (Province e) => EF.Functions.Like(e.ProvinceName.Trim().ToLower(), "%" + input.ProvinceName.Trim().ToLower() + "%"))
+                            //on o.ProvinceCode equals o4.ProvinceCode into j4
+                            //from s4 in j4
+                            //from s4 in (!string.IsNullOrWhiteSpace(input.ProvinceName) ? j4 : j4.DefaultIfEmpty())
 
                            select new
                            {
                                o.RepairFrom,
                                o.RepairTo,
+                               s2.Configuration,
                                //o.Configuration,
+                               s2.Condition,
                                //o.Condition,
                                o.ToolStatus,
                                o.Note,
                                o.POSCode,
+                               s3.POSName,
+                               o.ToolId,
                                o.TenantId,
                                o.OrganizationUnitId,
                                o.IsDeleted,
                                o.Id,
                                s2.Type,
                                s2.Serial,
+                               s2.UsedFrom,
                                s2.ToolName,
-                               s2.Configuration,
-                               s2.Condition,
                                OrganizationUnitDisplayName = s1 == null || s1.DisplayName == null ? "" : s1.DisplayName.ToString()
                            };
 
@@ -135,20 +140,24 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN
                 {
                     var res = new GetToolRepairForViewDto()
                     {
-                        ToolTransferHistory = new ToolTransferHistoryDto
+                        ToolRepairHistory = new ToolRepairHistoryDto
                         {
-                            //RepairFrom = o.RepairFrom,
-                            //RepairTo = o.RepairTo,
-                            //Configuration = o.Configuration,
-                            //Condition = o.Condition,
-                            //ToolStatus = o.ToolStatus,
-                            //Note = o.Note,
-                            //POSCode = o.POSCode,
-                            //IsDeleted = o.IsDeleted,
-                            //Id = o.Id,
+                            RepairFrom = o.RepairFrom,
+                            RepairTo = o.RepairTo,
+                            Configuration = o.Configuration,
+                            Condition = o.Condition,
+                            ToolStatus = o.ToolStatus,
+                            Note = o.Note,
+                            POSCode = o.POSCode,
+                            POSName = o.POSName,
+                            IsDeleted = o.IsDeleted,
+                            Id = o.Id,
                         },
+                        ToolId = o.ToolId,
                         ToolName = o.ToolName,
+                        Type = (int)o.Type,
                         Serial = o.Serial,
+                        UsedFrom = o.UsedFrom,
                         OrganizationUnitDisplayName = o.OrganizationUnitDisplayName
                     };
                     results.Add(res);

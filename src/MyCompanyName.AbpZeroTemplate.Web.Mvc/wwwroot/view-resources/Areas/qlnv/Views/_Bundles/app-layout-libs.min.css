@@ -2510,8 +2510,9 @@ button.jcrop-box {
 .ki-bold-check-1:before {
   content: "\f12f";
 }
+/*datdd*/
 .ki-close:before {
-  content: "\f130";
+  /*content: "\f130";*/
 }
 .ki-more-ver:before {
   content: "\f131";

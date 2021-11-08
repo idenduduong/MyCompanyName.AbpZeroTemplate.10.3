@@ -11,6 +11,7 @@ namespace MyCompanyName.AbpZeroTemplate.BDHN.Dtos
 
 		public virtual DateTime? UsedFrom { get; set; }
 
+
 		public virtual DateTime? UsedTo { get; set; }
 
 		public virtual string? Configuration { get; set; }
