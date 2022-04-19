@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CLDR JavaScript Library v0.5.4
  * http://jquery.com/
  *

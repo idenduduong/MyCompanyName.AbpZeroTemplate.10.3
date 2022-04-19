@@ -1,9 +1,9 @@
-﻿/*!
+/*!
 * DevExtreme (dx.messages.es.js)
-* Version: 21.1.4
-* Build date: Mon Jun 21 2021
+* Version: 21.2.5
+* Build date: Mon Jan 17 2022
 *
-* Copyright (c) 2012 - 2021 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -315,6 +315,7 @@
             "dxHtmlEditor-redo": "TODO",
             "dxHtmlEditor-clear": "TODO",
             "dxHtmlEditor-insertTable": "TODO",
+            "dxHtmlEditor-insertHeaderRow": "TODO",
             "dxHtmlEditor-insertRowAbove": "TODO",
             "dxHtmlEditor-insertRowBelow": "TODO",
             "dxHtmlEditor-insertColumnLeft": "TODO",
@@ -322,6 +323,23 @@
             "dxHtmlEditor-deleteColumn": "TODO",
             "dxHtmlEditor-deleteRow": "TODO",
             "dxHtmlEditor-deleteTable": "TODO",
+            "dxHtmlEditor-cellProperties": "TODO",
+            "dxHtmlEditor-tableProperties": "TODO",
+            "dxHtmlEditor-insert": "TODO",
+            "dxHtmlEditor-delete": "TODO",
+            "dxHtmlEditor-border": "TODO",
+            "dxHtmlEditor-style": "TODO",
+            "dxHtmlEditor-width": "TODO",
+            "dxHtmlEditor-height": "TODO",
+            "dxHtmlEditor-borderColor": "TODO",
+            "dxHtmlEditor-tableBackground": "TODO",
+            "dxHtmlEditor-dimensions": "TODO",
+            "dxHtmlEditor-alignment": "TODO",
+            "dxHtmlEditor-horizontal": "TODO",
+            "dxHtmlEditor-vertical": "TODO",
+            "dxHtmlEditor-paddingVertical": "TODO",
+            "dxHtmlEditor-paddingHorizontal": "TODO",
+            "dxHtmlEditor-pixels": "TODO",
             "dxHtmlEditor-list": "TODO",
             "dxHtmlEditor-ordered": "TODO",
             "dxHtmlEditor-bullet": "TODO",
@@ -574,7 +592,14 @@
             "dxGantt-zoomIn": "TODO",
             "dxGantt-zoomOut": "TODO",
             "dxGantt-fullScreen": "TODO",
-            "dxGantt-quarter": "TODO"
+            "dxGantt-quarter": "TODO",
+            "dxGantt-sortingAscendingText": "Orden Ascendente",
+            "dxGantt-sortingDescendingText": "Orden Descendente",
+            "dxGantt-sortingClearText": "Limpiar Ordenamiento",
+            "dxGantt-showResources": "Mostrar Recursos",
+            "dxGantt-showDependencies": "Mostrar Dependencias",
+            "dxGantt-dialogStartDateValidation": "La fecha de inicio debe ser anterior {0}",
+            "dxGantt-dialogEndDateValidation": "La fecha de finalizaci\xf3n debe ser posterior {0}"
         }
     })
 }));

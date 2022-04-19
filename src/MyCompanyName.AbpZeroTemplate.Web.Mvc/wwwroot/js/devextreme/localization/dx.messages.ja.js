@@ -1,9 +1,9 @@
-﻿/*!
+/*!
 * DevExtreme (dx.messages.ja.js)
-* Version: 21.1.4
-* Build date: Mon Jun 21 2021
+* Version: 21.2.5
+* Build date: Mon Jan 17 2022
 *
-* Copyright (c) 2012 - 2021 Developer Express Inc. ALL RIGHTS RESERVED
+* Copyright (c) 2012 - 2022 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
 */
 "use strict";
@@ -320,6 +320,7 @@
             "dxHtmlEditor-redo": "\u3084\u308a\u76f4\u3059",
             "dxHtmlEditor-clear": "\u66f8\u5f0f\u306e\u30af\u30ea\u30a2",
             "dxHtmlEditor-insertTable": "\u30c6\u30fc\u30d6\u30eb\u306e\u633f\u5165",
+            "dxHtmlEditor-insertHeaderRow": "\u898b\u51fa\u3057\u884c\u306e\u633f\u5165",
             "dxHtmlEditor-insertRowAbove": "\u4e0a\u306b\u884c\u3092\u633f\u5165",
             "dxHtmlEditor-insertRowBelow": "\u4e0b\u306b\u884c\u3092\u633f\u5165",
             "dxHtmlEditor-insertColumnLeft": "\u5de6\u306b\u5217\u3092\u633f\u5165",
@@ -327,6 +328,23 @@
             "dxHtmlEditor-deleteColumn": "\u5217\u306e\u524a\u9664",
             "dxHtmlEditor-deleteRow": "\u884c\u306e\u524a\u9664",
             "dxHtmlEditor-deleteTable": "\u30c6\u30fc\u30d6\u30eb\u306e\u524a\u9664",
+            "dxHtmlEditor-cellProperties": "\u30bb\u30eb\u306e\u30d7\u30ed\u30d1\u30c6\u30a3",
+            "dxHtmlEditor-tableProperties": "\u8868\u306e\u30d7\u30ed\u30d1\u30c6\u30a3",
+            "dxHtmlEditor-insert": "\u633f\u5165",
+            "dxHtmlEditor-delete": "\u524a\u9664",
+            "dxHtmlEditor-border": "\u7f6b\u7dda",
+            "dxHtmlEditor-style": "\u30b9\u30bf\u30a4\u30eb",
+            "dxHtmlEditor-width": "\u5e45",
+            "dxHtmlEditor-height": "\u9ad8\u3055",
+            "dxHtmlEditor-borderColor": "\u8272",
+            "dxHtmlEditor-tableBackground": "\u80cc\u666f",
+            "dxHtmlEditor-dimensions": "\u5bf8\u6cd5",
+            "dxHtmlEditor-alignment": "\u914d\u7f6e",
+            "dxHtmlEditor-horizontal": "\u6c34\u5e73\u65b9\u5411",
+            "dxHtmlEditor-vertical": "\u5782\u76f4\u65b9\u5411",
+            "dxHtmlEditor-paddingVertical": "\u5782\u76f4\u65b9\u5411\u306e\u30b9\u30da\u30fc\u30b9",
+            "dxHtmlEditor-paddingHorizontal": "\u6c34\u5e73\u65b9\u5411\u306e\u30b9\u30da\u30fc\u30b9",
+            "dxHtmlEditor-pixels": "\u30d4\u30af\u30bb\u30eb",
             "dxHtmlEditor-list": "\u30ea\u30b9\u30c8",
             "dxHtmlEditor-ordered": "\u756a\u53f7\u4ed8\u304d",
             "dxHtmlEditor-bullet": "\u7b87\u6761\u66f8\u304d",
@@ -582,7 +600,14 @@
             "dxGantt-zoomIn": "\u62e1\u5927",
             "dxGantt-zoomOut": "\u7e2e\u5c0f",
             "dxGantt-fullScreen": "\u5168\u753b\u9762\u8868\u793a",
-            "dxGantt-quarter": "Q{0}"
+            "dxGantt-quarter": "Q{0}",
+            "dxGantt-sortingAscendingText": "\u6607\u9806\u306b\u4e26\u3079\u66ff\u3048",
+            "dxGantt-sortingDescendingText": "\u964d\u9806\u306b\u4e26\u3079\u66ff\u3048",
+            "dxGantt-sortingClearText": "\u4e26\u3079\u66ff\u3048\u3092\u30af\u30ea\u30a2",
+            "dxGantt-showResources": "\u30ea\u30bd\u30fc\u30b9\u3092\u8868\u793a",
+            "dxGantt-showDependencies": "\u4f9d\u5b58\u95a2\u4fc2\u3092\u8868\u793a",
+            "dxGantt-dialogStartDateValidation": "\u958b\u59cb\u65e5\u3092 {0} \u4ee5\u964d\u306b\u3059\u308b\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059",
+            "dxGantt-dialogEndDateValidation": "\u7d42\u4e86\u65e5\u306f {0} \u3088\u308a\u5f8c\u306b\u3059\u308b\u5fc5\u8981\u304c\u3042\u308a\u307e\u3059"
         }
     })
 }));
