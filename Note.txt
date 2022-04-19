@@ -7,12 +7,6 @@ chrome://net-internals/#hsts
 Delete domain security policies
 localhost
 --------------------------------------------------------
-VS 2019 KEY: BF8Y8-GN2QH-T84XB-QVY3B-RC4DF
---------------------------------------------------------
-supercharge 1.2: 
-#6pAF3t43xAPorR9bXspfP1rBqWoa5uopLZoYPwkL9GIoBDAEyDJmlBqcxKXIAwpZooZuIyMNaVrif2QOTgmNrvb/KyYnxicIWpTR+nJMPa+v+LlK4Zst85KoRxSO/S9iaWuZ0oQA
-127.0.0.1 supercharger.tools
---------------------------------------------------------
 .NET Bulk Operations - Bundle
 946;300-DUONGDUCDAT
 A3BAB50-2611CE3-F86CCB9-8F8F82A-A2DA
@@ -62,13 +56,9 @@ admin/123qwe
 
 Add-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
 
-Remove-Migration "Change_Phone_Table" -Context 'AbpZeroTemplateDbContext'
-
-Remove-Migration -Context 'AbpZeroTemplateDbContext' -f
+Remove-Migration
 
 Update-Database -Context 'AbpZeroTemplateDbContext'
-
-Update-Database -Migration 'Add_dm_vungmiens' -Context 'AbpZeroTemplateDbContext'
 
 dotnet tool install -g dotnet-ef
 
@@ -86,354 +76,20 @@ https://support.aspnetzero.com/QA/Questions/4973/Extending-Organization-Unit
 https://www.creative-tim.com/product/muse-vue-ant-design-dashboard
 
 https://www.jianshu.com/p/a6e9ace79345
----------------------------------------
-https://client.kentico.com/free-edition
-
-1. Copy and replace "CMS.LicenseProvider.dll" to "%your website root%/CMS/bin"
-	Note: you must stop all Kentico services before copy and replace "CMS.LicenseProvider.dll"
-2. Open "%your website root%/CMS/web.config" file and add following setting and save it.
-	
-	<system.web>
-		<hostingEnvironment shadowCopyBinAssemblies="false" />
-	</system.web>
-
-3. Go to CMS Administration area and in "Licenses" section add following license key with your desired domain name:
-
-C:\Windows\System32\cmd.exe - """C:\Program Files\dotnet\dotnet.exe""" run -p ""C:\inetpub\wwwroot\Kentico13\DancingGoatCore"" --no-build --urls=http://localhost:58218
-
-DOMAIN:Downloadly.ir
-PRODUCT:CX13
-EXPIRATION:00000000
-OWNER:DownloadDevTools
-SERVERS:0
-EDXhyYmQveP8DKrHVRL7+QGo/K+axcoNhvmX2KtF6OzfN6XjWRn686FFLXJ7l5N+rQVFGH3D7ksdpVjHDYUUtTOk5cyIwuvZJ6C/CFNZQrnwUnPecn64cfyMKqGsHGofQezdnSZqPnkSvztqLs0YfPb/Y1A98cSbP3/qyj2cdrGTRyRtinpfCpne94h8S75ld4RAK+Vwcwts4aef0bmh4D8cCavDZs+GTknqVW8TEmZivLEGgu9CsSSbx2kqrLFZTMH075fYOsrYmQ9RlJZmHbAobrEK0KEpy0aausQkyNbHOKMvBy8QwvktoJ03VAMFEqVS7ZQCuGCfdmb3iErn/w==
-
-127.0.0.1
-CX13-20210917-2p6Mxu
-
-localhost
-CX13-20210917-2p6Mxu
-
-DOMAIN:localhost:57118
-PRODUCT:CX13
-EXPIRATION:00000000
-OWNER:DownloadDevTools
-SERVERS:0
-EDXhyYmQveP8DKrHVRL7+QGo/K+axcoNhvmX2KtF6OzfN6XjWRn686FFLXJ7l5N+rQVFGH3D7ksdpVjHDYUUtTOk5cyIwuvZJ6C/CFNZQrnwUnPecn64cfyMKqGsHGofQezdnSZqPnkSvztqLs0YfPb/Y1A98cSbP3/qyj2cdrGTRyRtinpfCpne94h8S75ld4RAK+Vwcwts4aef0bmh4D8cCavDZs+GTknqVW8TEmZivLEGgu9CsSSbx2kqrLFZTMH075fYOsrYmQ9RlJZmHbAobrEK0KEpy0aausQkyNbHOKMvBy8QwvktoJ03VAMFEqVS7ZQCuGCfdmb3iErn/w==
-
-dotnet.exe run -p ""C:\inetpub\wwwroot\Kentico13\DancingGoatCore"" --no-build --urls=http://localhost:58218
-
-Data Source=.;Initial Catalog=Kentico;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=Abc12#$;Connect Timeout=60;Encrypt=False;
-
-----------------
-
-INSERT INTO [dbo].[BDHN_BuuCucs]
-		([Id]
-		,[POSCode]
-		,[POSName]
-		,[Address]
-		,[AddressCode]
-		,[Tel]
-		,[Fax]
-		,[IP]
-		,[DatabaseServer]
-		,[DatabaseUsername]
-		,[DatabasePassword]
-		,[POSTypeCode]
-		,[ProvinceCode]
-		,[ServiceServer]
-		,[ServicePort]
-		,[POSLevelCode]
-		,[CommuneCode]
-		,[IsOffline]
-		,[UnitCode]
-		,[IsDeleted],CreationTime)
-SELECT	NEWID() AS Id,
-		[POSCode]
-		,[POSName]
-		,[Address]
-		,[AddressCode]
-		,[Tel]
-		,[Fax]
-		,[IP]
-		,[DatabaseServer]
-		,[DatabaseUsername]
-		,[DatabasePassword]
-		,[POSTypeCode]
-		,[ProvinceCode]
-		,[ServiceServer]
-		,[ServicePort]
-		,[POSLevelCode]
-		,[CommuneCode]
-		,[IsOffline]
-		,[UnitCode]
-		,[Status]
-		,GETDATE()
-FROM [dbo].[POS]
-
-----------------
-
-INSERT INTO [dbo].[BDHN_Regions]
-		([Id]
-		,[RegionCode]
-		,[RegionName]
-		,[Description]
-		,[IsDeleted]
-		,[CreationTime])
-
-SELECT	NEWID() AS Id,
-		[RegionCode]
-		,[RegionName]
-		,[Description]
-		,0
-		,GETDATE()
-FROM [dbo].Region
-
-----------------
-
-INSERT INTO [dbo].[BDHN_Provinces]
-
-        ([ProvinceCode]
-        ,[ProvinceName]
-        ,[Description]
-        ,[RegionCode]
-        ,[ProvinceListCode]
-        ,[Id]
-        ,[CreationTime]
-        ,[IsDeleted])
-
-SELECT	[ProvinceCode]
-        ,[ProvinceName]
-        ,[Description]
-        ,[RegionCode]
-        ,[ProvinceListCode]
-		,NEWID()
-		,GETDATE()
-		,0
-FROM [dbo].Province
-
-----------------
-
-USE [AbpZeroTemplateDb103]
-GO
-
-INSERT INTO [dbo].[BDHN_Districts]
-
-           ([DistrictCode]
-           ,[DistrictName]
-           ,[Description]
-           ,[ProvinceCode]
-           ,[Id]
-           ,[CreationTime]
-           ,[IsDeleted])
-
-SELECT	[DistrictCode]
-        ,[DistrictName]
-        ,[Description]
-        ,[ProvinceCode]
-		,NEWID()
-		,GETDATE()
-		,0
-FROM [dbo].District
-
-GO
-
-----------------
-
-USE [AbpZeroTemplateDb103]
-GO
-
-INSERT INTO [dbo].[BDHN_Communes]
-
-			([CommuneCode]
-			,[CommuneName]
-			,[DistrictCode]
-			,[Id]
-			,[CreationTime]
-			,[IsDeleted])
-		
-SELECT 		
-			[CommuneCode]
-			,[CommuneName]
-			,[DistrictCode]
-			,NEWID()
-			,GETDATE()
-			,0
-
-FROM [AbpZeroTemplateDb103].[dbo].[Commune]
-
-GO
-
-
-----------------
-USE [AbpZeroTemplateDb103]
-GO
-
---ALTER TABLE [BDHN_BuuCucs] NOCHECK CONSTRAINT ALL
-
-INSERT INTO [dbo].[BDHN_BuuCucs]
-			(
-			[POSCode]
-			,[POSName]
-			,[Address]
-			,[AddressCode]
-			,[Tel]
-			,[Fax]
-			,[IP]
-			,[DatabaseServer]
-			,[DatabaseUsername]
-			,[DatabasePassword]
-			,[POSTypeCode]
-			,[ProvinceCode]
-			,[ServiceServer]
-			,[ServicePort]
-			,[POSLevelCode]
-			,[CommuneCode]
-			,[IsOffline]
-			,[UnitCode]
-
-			,[Id]
-			,[CreationTime]
-			,[IsDeleted])
-SELECT 
-			[POSCode]
-			,[POSName]
-			,[Address]
-			,[AddressCode]
-			,[Tel]
-			,[Fax]
-			,[IP]
-			,[DatabaseServer]
-			,[DatabaseUsername]
-			,[DatabasePassword]
-			,[POSTypeCode]
-			,[ProvinceCode]
-			,[ServiceServer]
-			,[ServicePort]
-			,[POSLevelCode]
-			,[CommuneCode]
-			,[IsOffline]
-			,[UnitCode]
-
-			,NEWID()
-			,GETDATE()
-			,0
-
-  FROM [AbpZeroTemplateDb103].[dbo].[POS] 
-  where [CommuneCode] in (select [CommuneCode] from commune)
-GO
-
---delete from [BDHN_BuuCucs]  where [CommuneCode] not in (select [CommuneCode] from commune)
-  
---ALTER TABLE [BDHN_BuuCucs] WITH CHECK CHECK CONSTRAINT ALL
-
-
-----------------
-
-
-SELECT TOP (1000) [UnitCode]
-      ,[UnitName]
-      ,[ParentUnitCode]
-      ,[CommuneCode]
-      ,[UnitTypeCode]
-  FROM [AbpZeroTemplateDb103].[dbo].[Unit]
-
-  update BDHN_BuuCucs set UnitCode = null
-
-
-INSERT INTO [dbo].BDHN_Units
-		(	
-			[UnitCode]
-			,[UnitName]
-			,[ParentUnitCode]
-			,[CommuneCode]
-			,[UnitTypeCode]
-			,[Id]
-			,[IsDeleted]
-			,[CreationTime]
-		)
-
-SELECT	
-		[UnitCode]
-		,[UnitName]
-		,[ParentUnitCode]
-		,[CommuneCode]
-		,[UnitTypeCode]
-		,NEWID() --AS [Id]
-		,0 --AS [IsDeleted]
-		,GETDATE() --AS [CreationTime]
-FROM [dbo].[Unit]
-
-UPDATE BDHN_BuuCucs SET BDHN_BuuCucs.UnitCode = pos.UnitCode
-FROM BDHN_BuuCucs inner join pos on BDHN_BuuCucs.PosCode = pos.PosCode where pos.unitcode in (
-	select BDHN_Units.unitcode from BDHN_Units
-)
-
-----------------
-
-----------------
-
-----------------
-
-----------------
-
-----------------
-
-----------------
-<script type="text/javascript">
-	abp.localization.defaultSourceName = '@LocalizationSourceName';
-</script>
-
-<!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-<script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
-----------------
-//Normalize arguments
-if (sourceName.IsNullOrEmpty())
-{
-	sourceName = AbpZeroTemplateConsts.LocalizationSourceName;
-}
-
-if (baseLanguageName.IsNullOrEmpty())
-{
-	baseLanguageName = _languageManager.CurrentLanguage.Name;
-}
-----------------
-private static ILocalizableString L(string name)
-{
-	return new LocalizableString(name, AbpZeroTemplateConsts.LocalizationSourceName);
-}
-----------------
-public string GetPhoneTypeAsString()
-{
-	return LocalizationHelper.GetString(PhoneBookDemoConsts.LocalizationSourceName, "PhoneType_" + Phone.Type);
-}
-----------------
-
-
-
-ALTER TABLE [BDHN_BuuCucs] WITH NOCHECK ADD CONSTRAINT [FK_BDHN_BuuCucs_Communes_CommuneCode] FOREIGN KEY ([CommuneCode]) REFERENCES [Commune] ([CommuneCode]) ON DELETE NO ACTION
-
-ALTER TABLE branchOffice NOCHECK CONSTRAINT ALL
-
-begin transaction 
-  ALTER TABLE branchOffice NOCHECK CONSTRAINT ALL
-  
-  ALTER TABLE branchOffice WITH CHECK CHECK CONSTRAINT ALL
-commit transation;
-
-@if (IsGranted(AppPermissions.Pages_Tenant_PhoneBook_CreatePerson))
-{
-    <button id="CreateNewPersonButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewPerson")</button>
-}
 
 ------------------------------------------
-blade note tired square museum clay tackle carpet maid tennis hunt avocado
+blade note tired square museum clay tackle carpet maid tennis hunt
 
 0xaBdFfaD9F79374ED742D764D8CD3E8D48e70c835
 ------------------------------------------
 notable bargain pig differ more ten blade space leopard tunnel opinion hope
 
 0x16881Ea506De3beD7ee2EfecDc301870Da20C029
+
+------------------------------------------
+stay anger merry clarify suspect duty judge merit tonight cram wire squeeze leader brisk wing require vintage trouble victory march squirrel gift fringe you
+
+terra19juxr2cea9ps2zu83g9henfvtgtg99kflakpx0
 ------------------------------------------
 near
 fantom
@@ -441,3 +97,623 @@ atom
 dot
 sol
 ------------------------------------------
+NEAR Swag Store $20 OFF
+Your code: NCDSWAG20
+
+Lịch sử chi trả
+
+11365436
+
+
+0.000000000000000023
+
+89228500000000000 
+90693400000000000
+
+0.00
+000
+000
+000
+000
+5769
+
+
+
+0.000000000000000001
+0.000000000000000001
+
+---------------------------------------------
+18 number after .
+
+Minimum Received: 40.1227 USDT
+Price Impact: 0.70%
+Price: 
+0.
+000
+000
+000
+000
+004
+805
+23 USDT / DogeZilla
+Price: 208107000000000 DogeZilla / USDT
+---------------------------------------------
+22 number after .
+
+Minimum Received: 30.7273 USDT
+Price Impact: 0.20%
+Price: 
+0.
+000
+000
+000
+000
+000
+097
+098
+8 USDT / BabyDogeZilla
+Price: 10298800000000000 BabyDogeZilla / USDT
+
+8393462348339628.353
+---------------------------------------------
+Ha Tang
+	+ Cong cu dung cu
+	
+QLCL
+	+ Cap 2
+	+ Cap 3
+
+QTSLieu
+	+ File excel
+	
+Giam sta
+Doi Soat
+---------------------------------------------
+
+{
+  "Data": "{\"Id\":\"a551203e-eedb-4d9d-8acf-37b2638370c1\",\"ItemCode\":\"EC215554430VN\",\"CustomerId\":\"86ba796c-e15e-4cec-8487-00063aa2f845\",\"CustomerCode\":\"TESTMERCHANSITE\",\"OrderCode\":\"TestMyCode115\",\"OrderStatusId\":20,\"ShippingStatusId\":0,\"PaymentStatusId\":0,\"ServiceId\":1,\"ServiceName\":\"EMS\",\"SenderFullname\":\"sample string 2\",\"SenderAddress\":\"sample string 3\",\"SenderTel\":\"sample string 1\",\"ReceiverFullname\":\"sample string 8\",\"ReceiverAddress\":\"sample string 9\",\"ReceiverTel\":\"sample string 7\",\"SenderProvinceId\":\"17\",\"SenderDistrictId\":\"1710\",\"ReceiverProvinceId\":\"17\",\"ReceiverDistrictId\":\"1710\",\"ShipperTel\":null,\"OrderAmount\":null,\"CodAmount\":0.0,\"TotalFreightExcludeVat\":0.0,\"TotalFreightIncludeVat\":0.0,\"VatFreight\":0.0,\"ShippingFreight\":0.0,\"VasFreight\":0.0,\"CodFreight\":0.0,\"FuelFreight\":null,\"RegionFreight\":null,\"TotalFreightExcludeVatEvaluation\":9360.0,\"TotalFreightIncludeVatEvaluation\":39796.0,\"VatFreightEvaluation\":936.0,\"ShippingFreightEvaluation\":8000.0,\"VasFreightEvaluation\":29500.0,\"CodFreightEvaluation\":13000.0,\"FuelFreightEvaluation\":1360.0,\"RegionFreightEvaluation\":0.0,\"PackageContent\":\"sample string 15\",\"PickupType\":1,\"IsPackageViewable\":true,\"Weight\":0.0,\"WeightConvert\":16.1,\"Width\":0.0,\"Length\":0.0,\"Height\":0.0,\"ValueAddedServiceList\":\"[{\\\"IDDichVuCongThem\\\":3,\\\"CuocDVCT\\\":13000.0},{\\\"IDDichVuCongThem\\\":1,\\\"CuocDVCT\\\":16500.0}]\",\"Opt\":null,\"AcceptancePoscode\":null,\"DestinationPoscode\":null,\"DeliveryID\":0,\"ToPOSCode\":null,\"CauseCode\":null,\"DeliveryTimes\":0,\"DeliveryNote\":null,\"CauseName\":null,\"InputTime\":null,\"IsDeliverable\":false,\"IsReturn\":false,\"SolutionName\":null,\"SolutionCode\":null,\"DeliveryTime\":null,\"BccpCreateTime\":null,\"BccpLastUpdateTime\":null,\"PaypostTracedate\":null,\"PaypostTransferDate\":null,\"PaypostStatus\":0,\"CancelTime\":null,\"CancelNotes\":null,\"CancelStatus\":null,\"CancelStatusDesc\":null,\"SendingTime\":null,\"VendorId\":3,\"CreateTime\":\"2021-08-24T13:52:11.73\",\"LastUpdateTime\":\"2021-08-24T13:52:12.067\",\"SenderWardId\":\"17238\",\"ReceiverWardId\":\"17238\",\"IsReceiverPayFreight\":true,\"DeliveryDateEvaluation\":\"2021-08-25T11:52:11.79\",\"WidthEvaluation\":1.1,\"LengthEvaluation\":1.1,\"HeightEvaluation\":1.1,\"WeightEvaluation\":16.1,\"ServiceDisplayName\":\"Chuyển phát nhanh\",\"CustomerNote\":\"sample string 18\",\"CodAmountEvaluation\":39797.0,\"OrderAmountEvaluation\":1.0,\"OriginalCodAmountEvaluation\":1.0,\"OldCustomerCode\":null,\"OldAcceptancePoscode\":null,\"OldToPOSCode\":null,\"OldReceiverTel\":null,\"BatchCode\":null,\"CodAmountNotForBatch\":null,\"SenderAddressType\":null,\"ReceiverAddressType\":1,\"AdditionalDatas\":\"{\\\"MaDichVuBccp\\\":\\\"EMS\\\",\\\"OrderCodeInBatch\\\":null,\\\"IsBatchOrder\\\":null,\\\"LstOrderDetailRequest\\\":null,\\\"IsCodAmountChung\\\":null,\\\"ReceiverVpostCode\\\":null,\\\"SenderVpostCode\\\":null,\\\"IsSyncDateFromPaypost\\\":null,\\\"OrderStatusIdWhenSyncFromPaypost\\\":null,\\\"HubCodeOfReceiver\\\":null,\\\"HubCodeOfSender\\\":null}\",\"SoLanIn\":null,\"CancelledOrderFeeType\":null,\"CancelledOrderFeeEvaluation\":null,\"CancelledOrderFee\":null,\"ReceiverPayFeeEvaluation\":null,\"ReceiverPayFee\":null}",
+  "SendDate": "12/11/2021 11:28",
+  "SignData": "SF8449f7SrhBjxslOK7t4mKGKZJZ/VSoGNLx5WHamFNSyqVg/9a17nFFU/c6l5ye9QEbayBrMzguJOiHKHQaEEzzrdOPE7xiJbQeUvWuRuwIDAIq3M+lxAV/WwXEveWWV4sXCHlDM/nsy+RvLC/ChcQQN2P6n69fLfsr4Sr0ALrkyEJfVhYQsi2/821B+zAJVybxNdnr4jsqwZ6VJR5HmpFI1/Ur2Rhq61Tpx5fB6S2P8VtW7Rj1P0WVVxUi6myCmiXQdj8DCiCdyhUGe9C3twc6gKe0YmDze7sSj6pc6rriCm5BrgrzN1NA+PcA6z0jM2RBfp0SgFpn6UQ2BXoSHw=="
+}
+
+---------------------------------------------
+
+{
+  "Data": "{\"Id\":\"00000000-0000-0000-0000-000000000000\",\"ItemCode\":null,\"CustomerId\":null,\"CustomerCode\":null,\"OrderCode\":null,\"OrderStatusId\":0,\"ShippingStatusId\":0,\"PaymentStatusId\":0,\"ServiceId\":null,\"ServiceName\":null,\"SenderFullname\":null,\"SenderAddress\":null,\"SenderTel\":null,\"ReceiverFullname\":null,\"ReceiverAddress\":null,\"ReceiverTel\":null,\"SenderProvinceId\":null,\"SenderDistrictId\":null,\"ReceiverProvinceId\":null,\"ReceiverDistrictId\":null,\"ShipperTel\":null,\"OrderAmount\":null,\"CodAmount\":0.0,\"TotalFreightExcludeVat\":0.0,\"TotalFreightIncludeVat\":0.0,\"VatFreight\":0.0,\"ShippingFreight\":0.0,\"VasFreight\":0.0,\"CodFreight\":0.0,\"FuelFreight\":null,\"RegionFreight\":null,\"TotalFreightExcludeVatEvaluation\":0.0,\"TotalFreightIncludeVatEvaluation\":0.0,\"VatFreightEvaluation\":0.0,\"ShippingFreightEvaluation\":0.0,\"VasFreightEvaluation\":0.0,\"CodFreightEvaluation\":0.0,\"FuelFreightEvaluation\":null,\"RegionFreightEvaluation\":null,\"PackageContent\":null,\"PickupType\":null,\"IsPackageViewable\":null,\"Weight\":0.0,\"WeightConvert\":0.0,\"Width\":0.0,\"Length\":0.0,\"Height\":0.0,\"ValueAddedServiceList\":null,\"Opt\":null,\"AcceptancePoscode\":null,\"DestinationPoscode\":null,\"DeliveryID\":0,\"ToPOSCode\":null,\"CauseCode\":null,\"DeliveryTimes\":0,\"DeliveryNote\":null,\"CauseName\":null,\"InputTime\":null,\"IsDeliverable\":false,\"IsReturn\":false,\"SolutionName\":null,\"SolutionCode\":null,\"DeliveryTime\":null,\"BccpCreateTime\":null,\"BccpLastUpdateTime\":null,\"PaypostTracedate\":null,\"PaypostTransferDate\":null,\"PaypostStatus\":0,\"CancelTime\":null,\"CancelNotes\":null,\"CancelStatus\":null,\"CancelStatusDesc\":null,\"SendingTime\":null,\"VendorId\":0,\"CreateTime\":\"0001-01-01T00:00:00\",\"LastUpdateTime\":null,\"SenderWardId\":null,\"ReceiverWardId\":null,\"IsReceiverPayFreight\":null,\"DeliveryDateEvaluation\":null,\"WidthEvaluation\":null,\"LengthEvaluation\":null,\"HeightEvaluation\":null,\"WeightEvaluation\":null,\"ServiceDisplayName\":null,\"CustomerNote\":null,\"CodAmountEvaluation\":null,\"OrderAmountEvaluation\":null,\"OriginalCodAmountEvaluation\":null,\"OldCustomerCode\":null,\"OldAcceptancePoscode\":null,\"OldToPOSCode\":null,\"OldReceiverTel\":null,\"BatchCode\":null,\"CodAmountNotForBatch\":null,\"SenderAddressType\":null,\"ReceiverAddressType\":null,\"AdditionalDatas\":null,\"SoLanIn\":null,\"CancelledOrderFeeType\":null,\"CancelledOrderFeeEvaluation\":null,\"CancelledOrderFee\":null,\"ReceiverPayFeeEvaluation\":null,\"ReceiverPayFee\":null}",
+  "SendDate": "2021-11-12T11:26:47",
+  "SignData": "EqADXYQc1geRWl7kXxwSQd726SAjo2vV3QrWFTUnf7+rx1MUQXc1p9zsPSiiXYnIT9uiPeFneuiOYL8lmich+Kssk25vhBILqjFxPm52sToxG7GWLefuOFAsG82HVJ5th4fFikVQhnOICi6StkM1TOaM24zVQgeCqeWtaXyVEfl03nff7I8FRZVFXYBhufFSPpiwu8ZHRkG0zzZBH/atn7V/t65aKxoMKiYYy8R7YN1S9rbe6myat4IRRVt591HnUPTKsf6ibYfEFYQPHjnMLdFqQDSVDuko4RYG3OkXSbttlut9EobpLClkiNmPYiEaMUL0aGjbTl+jCZqrwKBTFA=="
+}
+---------------------------------------------
+Headers
+connection	close
+accept-encoding	gzip, deflate
+content-length	2963
+host	webhook.site
+content-type	application/json
+user-agent	RestSharp/106.8.10.0
+accept	application/json, text/json, text/x-json, text/javascript, application/xml, text/xml
+
+Request Details  
+POST	https://webhook.site/b5faa74b-b705-4147-aef3-33e2fc37dfa0
+Host	103.196.16.9 whois
+Date	11/12/2021 11:26:48 AM (3 minutes ago)
+Size	2.9 kB
+ID	c076cde9-1010-451e-9cdc-e3cf0b81fa06
+
+---------------------------------------------
+<tr>
+	<td class="style3" colspan="2" style="color: #000000">
+		<dx:ASPxGridView ID="g1" runat="server" Visible="False">
+		</dx:ASPxGridView>
+		<dx:ASPxGridViewExporter ID="e1" runat="server" GridViewID="g1">
+		</dx:ASPxGridViewExporter>
+	</td>
+</tr>
+
+Dim f As String
+f = "Tonghop_" & loaibc.SelectedItem.ToString.Trim & "_" & drdv.SelectedItem.ToString.Trim & "_"
+e1.WriteXlsxToResponse(f)
+
+---------------------------------------------
+terra1dw3hzxwpk8p3ezzfwy2dpphdqm3emqr5rtr0cp
+
+wage weird gather approve gown rookie maid actor entire kitten wonder ramp brass depart next cloud valley paddle vote yard reason dawn space embody
+---------------------------------------------
+0383423807
+123456
+
+link api backend: https://donhang.vnpost.vn/api/api/MobileAuthentication/GetAccessToken
+link api uat	: https://donhang-uat.vnpost.vn/api/api/MobileAuthentication/GetAccessToken link môi trường test không có webhook, chỉ có api đổi trạng thái
+website frontend: donhangbeta.vnpost.vn/
+---------------------------------------------
+265353
+---------------------------------------------
+pns / dd
+hni portal
+mpit rollout
+4_han
+---------------------------------------------
+Hiện bưu cục trung tâm dịch vụ cầu giấy đang bị 10 tải không khai thác được
+
+CA157657769VN
+
+CA157657769VN
+
+13601O84000385000
+
+10.10.200.165
+
+CC108197805VN
+---------------------------------------------
+"""C:\Program Files\dotnet\dotnet.exe""" run -p ""C:\inetpub\wwwroot\Kentico13\DancingGoatCore"" --no-build --urls=http://localhost:1662
+
+kho số hiệu trên portal báo không đủ a
+
+Xây dựng lại Web side BĐHN theo các nền tảng kinh doanh online đáp ứng nhu cầu kinh doanh của BĐHN.
+---------------------------------------------
+scan QR code --> redirect to web/view
+show input type name --> submit
+show next number + pass code
+Log to system
+---------------------------------------------
+<!--
+      <input type="hidden" value="<?= //list[list.length-1]; ?>" />
+      <select>
+        <? for(var i=0; i<list.length; i++) { ?>
+          <option><?= list[i]; ?></option>
+        <? } ?>
+      </select>
+      -->
+	  
+CD370097145VN
+
+CQ490576072VN
+CO499066859VN
+CQ499786042VN
+CO499683290VN
+CO498306120VN
+CQ490469802VN
+CQ490911511VN
+
+---------------------------------------------
+
+138324_HIEUNM
+
+Abc@123456789
+
+122080_HIEPND
+
+---------------------------------------------
+
+http://buudienhanoi.com.vn/WebPortalKHL/BanUpdate/
+
+0919405081
+
+Telp3minb
+
+[ Friday, January 7, 2022 4:25 PM ] ⁨Duong Duc Dat - IT HN⁩: EZ158071374VN
+
+
+EZ158071388VN
+EZ158071391VN
+EZ158071405VN
+EZ158071414VN
+EZ158071428VN
+EZ158071431VN
+EZ158071445VN
+EZ158071459VN
+EZ158071462VN
+EZ158071476VN
+EZ158071480VN
+EZ158071493VN
+EZ158071502VN
+EZ158071516VN
+EZ158071520VN
+EZ158071533VN
+EZ158071547VN
+EZ158071555VN
+EZ158071564VN
+EZ158071578VN
+EZ158071581VN
+EZ158071595VN
+EZ158071604VN
+EZ158071618VN
+EZ158071621VN
+EZ158071635VN
+EZ158071649VN
+EZ158071652VN
+EZ158071666VN
+EZ158071670VN
+EZ158071683VN
+EZ158071697VN
+EZ158071706VN
+EZ158071710VN
+EZ158071723VN
+EZ158071737VN
+EZ158071745VN
+EZ158071754VN
+EZ158071768VN
+EZ158071771VN
+EZ158071785VN
+EZ158071799VN
+EZ158071808VN
+EZ158071811VN
+EZ158071825VN
+EZ158071839VN
+EZ158071842VN
+EZ158071856VN
+EZ158071860VN
+EZ158071873VN
+EZ158071887VN
+EZ158071895VN
+EZ158071900VN
+EZ158071913VN
+EZ158071927VN
+EZ158071935VN
+EZ158071944VN
+EZ158071958VN
+EZ158071961VN
+EZ158071975VN
+EZ158071989VN
+EZ158071992VN
+EZ158072009VN
+EZ158072012VN
+EZ158072026VN
+EZ158072030VN
+EZ158072043VN
+EZ158072057VN
+EZ158072065VN
+EZ158072074VN
+EZ158072088VN
+EZ158072091VN
+EZ158072105VN
+EZ158072114VN
+EZ158072128VN
+EZ158072131VN
+EZ158072145VN
+EZ158072159VN
+EZ158072162VN
+EZ158072176VN
+EZ158072180VN
+EZ158072193VN
+EZ158072202VN
+EZ158072216VN
+EZ158072220VN
+EZ158072233VN
+EZ158072247VN
+EZ158072255VN
+EZ158072264VN
+EZ158072278VN
+EZ158072281VN
+EZ158072295VN
+EZ158072304VN
+EZ158072318VN
+EZ158072321VN
+EZ158072335VN
+EZ158072349VN
+EZ158072352VN
+EZ158072366VN
+EZ158072370VN
+EZ158072383VN
+EZ158072397VN
+EZ158072406VN
+EZ158072410VN
+
+---------------------------------------------
+
+Hải An
+giải thích thế này cho nhanh này, bên mình có 2 mô hình
+- Mô hình khách hàng: lúc đó COPGAP là khách hàng của VNPost, VNPost chỉ biết COPGAP và đối soát cước cũng chỉ đối soát thanh toán với COPGAP
+- Mô hình đối tác: là trung gian, khách hàng vẫn ký hợp đồng sử dụng dịch vụ trực tiếp với bưu điện, nhưng họ dùng có thể là phần mềm bán hàng, lên đơn của bên COPGAP. Đối soát thanh toán cước sẽ là VNPost thực hiện với khách hàng
+
+
+bên mình có 2 mô hình
+- Mô hình khách hàng: lúc đó xxx là khách hàng của VNPost, VNPost chỉ biết xxx và đối soát cước cũng chỉ đối soát thanh toán với xxx
+- Mô hình đối tác: là trung gian, khách hàng vẫn ký hợp đồng sử dụng dịch vụ trực tiếp với bưu điện, nhưng họ dùng có thể là phần mềm bán hàng, lên đơn của bên xxx. Đối soát thanh toán cước sẽ là VNPost thực hiện với khách hàng
+---------------------------------------------
+
+He thong dang truyen sang so don hang: 22020711
+
+---------------------------------------------
+
++ asp.net webform
++ devexpress
++ tailwind --> mobile 
++ google app script
++ excel
+
++ donhang --> api + tao shopee + api 
++ blue portal
+
+---------------------------------------------
+
+BC_SL_KL_DT_NEAR
+
+EB343483706VN
+@⁨Lâm Vinatti⁩  a xem giúp em đơn này nguồn từ đâu điều về bưu cục ạ vì đây là đơn hàng dropoff
+
+---------------------------------------------
+
+DATD.BDHN@VNPOST.VN pass 123 a
+
+---------------------------------------------
+
+Feedback Type:
+Frown (Error)
+
+Error Message:
+There is not enough space on the disk.
+
+
+Stack Trace:
+
+Server stack trace: 
+   at Microsoft.Mashup.Host.ProviderShared.MashupFileHost.OnWriteException(Exception exception)
+   at Microsoft.OleDb.Serialization.OverlappingPageWriter.CheckException()
+   at Microsoft.Mashup.OleDbProvider.DataHost.BufferingMashupEvaluator.BufferingMashupEvaluation.SerializeResult(IDataReaderSource dataReaderSource, Stream stream)
+   at Microsoft.Mashup.OleDbProvider.DataHost.BufferingMashupEvaluator.BufferingMashupEvaluation.GetBufferedReaderSource(AsyncResult`1 result)
+   at Microsoft.Mashup.OleDbProvider.DataHost.BufferingMashupEvaluator.BufferingMashupEvaluation.OnEvaluationComplete(AsyncResult`1 result)
+
+Exception rethrown at [0]: 
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.Mashup.OleDbProvider.MashupCommandEvaluation.get_PageReader()
+   at Microsoft.Mashup.OleDbProvider.MashupRowset.get__Rowset()
+   at Microsoft.Mashup.OleDbProvider.MashupRowset.get_ColumnsInfo()
+   at Microsoft.OleDb.Rowset.Microsoft.OleDb.IColumnsInfo.GetColumnInfo(DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+   at Microsoft.Mashup.OleDbProvider.TracingRowset.Microsoft.OleDb.IColumnsInfo.GetColumnInfo(DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+
+Stack Trace Message:
+There is not enough space on the disk.
+
+
+Invocation Stack Trace:
+   at Microsoft.Mashup.Host.Document.ExceptionExtensions.GetCurrentInvocationStackTrace()
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo..ctor(String message, Exception exception, Nullable`1 stackTraceInfo, String messageDetail)
+   at Microsoft.Mashup.Client.UI.Windows.UIHost.RaiseErrorDialog(IWindowHandle activeWindow, FeedbackPackageInfo feedbackPackageInfo, Exception e, LocalizedString dialogTitle, LocalizedString dialogMessage, Boolean useGDICapture)
+   at Microsoft.Mashup.Client.Excel.Native.NativeUserFeedbackServices.ReportException(IWindowHandle activeWindow, IUIHost uiHost, FeedbackPackageInfo feedbackPackageInfo, Exception e, Boolean useGDICapture)
+   at Microsoft.Mashup.Client.UI.Shared.UnexpectedExceptionHandler.<>c__DisplayClass14_0.<HandleException>b__0()
+   at Microsoft.Mashup.Client.UI.Shared.UnexpectedExceptionHandler.HandleException(Exception e)
+   at Microsoft.Mashup.Client.Excel.OleDbProvider.ExcelMashupClassFactory.TraceAndReportException(String method, Exception exception)
+   at Microsoft.Mashup.OleDbProvider.TracingRowset.Microsoft.OleDb.IColumnsInfo.GetColumnInfo(DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+   at Microsoft.OleDb.PInvokeInterop.ColumnsInfoTypeInfo.GetColumnInfo(IntPtr objHandle, DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+
+
+InnerException0.Stack Trace Message:
+There is not enough space on the disk.
+
+
+InnerException0.Stack Trace:
+   at Microsoft.Mashup.Host.ProviderShared.MashupFileHost.OnWriteException(Exception exception)
+   at Microsoft.OleDb.Serialization.OverlappingPageWriter.CheckException()
+   at Microsoft.Mashup.OleDbProvider.DataHost.BufferingMashupEvaluator.BufferingMashupEvaluation.SerializeResult(IDataReaderSource dataReaderSource, Stream stream)
+   at Microsoft.Mashup.OleDbProvider.DataHost.BufferingMashupEvaluator.BufferingMashupEvaluation.GetBufferedReaderSource(AsyncResult`1 result)
+   at Microsoft.Mashup.OleDbProvider.DataHost.BufferingMashupEvaluator.BufferingMashupEvaluation.OnEvaluationComplete(AsyncResult`1 result)
+   at Microsoft.Mashup.OleDbProvider.DataHost.ExceptionResolverMashupEvaluator.MashupEvaluation.<EvaluateInner>b__15_0(AsyncResult`1 result)
+   at Microsoft.Mashup.OleDbProvider.DataHost.AsyncResultIDataReaderSourceHelper.InvokeThenOnDispose(Action`1 callback, AsyncResult`1 result, Action action)
+   at Microsoft.Mashup.OleDbProvider.DataHost.MashupEvaluator.<>c__DisplayClass4_0.<Evaluate>b__0(EvaluationResult2`1 result)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose(Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose[T](Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.LimitedDocumentEvaluatorFactory.Evaluation`1.Complete(EvaluationResult2`1 result)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose(Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose[T](Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.DocumentEvaluator.<>c__DisplayClass7_0`1.<BeginGetResult>b__0(EvaluationResult2`1 result)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose(Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose[T](Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.SoftCancellingDocumentEvaluator.<>c__DisplayClass8_0`1.<BeginGetResult>b__0(EvaluationResult2`1 result)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose(Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.Interface.EvaluationResultExtensions.InvokeThenOnDispose[T](Action`1 callback, EvaluationResult2`1 result, Action action)
+   at Microsoft.Mashup.Evaluator.LimitedDocumentEvaluatorFactory.Evaluation`1.Complete(EvaluationResult2`1 result)
+   at Microsoft.Mashup.Evaluator.RemoteDocumentEvaluator.RemoteEvaluation`1.TryComplete(EvaluationResult2`1 result)
+   at Microsoft.Mashup.Evaluator.RemoteDocumentEvaluator.DataReaderSourceRemoteEvaluation.GetResult(Boolean enableFirewall)
+   at Microsoft.Mashup.Evaluator.RemoteDocumentEvaluator.RemoteEvaluation.Evaluate(Boolean enableFirewall)
+   at Microsoft.Mashup.Evaluator.EvaluatorThreadPool.EvaluatorThread(Object state)
+   at Microsoft.Mashup.Evaluator.SafeThread2.<>c__DisplayClass9_0.<CreateAction>b__0(Object o)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart(Object obj)
+
+InnerException0.Invocation Stack Trace:
+   at Microsoft.Mashup.Host.Document.ExceptionExtensions.GetCurrentInvocationStackTrace()
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo.GetFeedbackValuesFromException(Exception e, String prefix)
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo.GetFeedbackValuesFromInnerExceptions(Exception e, Int32 depth)
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo.CreateAdditionalErrorInfo(Exception e)
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo..ctor(String message, Exception exception, Nullable`1 stackTraceInfo, String messageDetail)
+   at Microsoft.Mashup.Client.UI.Windows.UIHost.RaiseErrorDialog(IWindowHandle activeWindow, FeedbackPackageInfo feedbackPackageInfo, Exception e, LocalizedString dialogTitle, LocalizedString dialogMessage, Boolean useGDICapture)
+   at Microsoft.Mashup.Client.Excel.Native.NativeUserFeedbackServices.ReportException(IWindowHandle activeWindow, IUIHost uiHost, FeedbackPackageInfo feedbackPackageInfo, Exception e, Boolean useGDICapture)
+   at Microsoft.Mashup.Client.UI.Shared.UnexpectedExceptionHandler.<>c__DisplayClass14_0.<HandleException>b__0()
+   at Microsoft.Mashup.Client.UI.Shared.UnexpectedExceptionHandler.HandleException(Exception e)
+   at Microsoft.Mashup.Client.Excel.OleDbProvider.ExcelMashupClassFactory.TraceAndReportException(String method, Exception exception)
+   at Microsoft.Mashup.OleDbProvider.TracingRowset.Microsoft.OleDb.IColumnsInfo.GetColumnInfo(DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+   at Microsoft.OleDb.PInvokeInterop.ColumnsInfoTypeInfo.GetColumnInfo(IntPtr objHandle, DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+
+
+InnerException1.Stack Trace Message:
+There is not enough space on the disk.
+
+
+InnerException1.Stack Trace:
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.WriteCore(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.FileStream.Write(Byte[] array, Int32 offset, Int32 count)
+   at Microsoft.OleDb.Serialization.PageWriter.Write(Void* src, Int32 count)
+   at Microsoft.OleDb.Serialization.PageWriter.WriteCharStrings(String[] values, Int32 offset, Int32 count)
+   at Microsoft.OleDb.Serialization.PageWriter.WriteArray(String[] values, Int32 offset, Int32 count)
+   at Microsoft.OleDb.NullableColumn.Serialize(PageWriter writer)
+   at Microsoft.OleDb.Serialization.PageWriter.WritePage(IPage page)
+   at Microsoft.OleDb.Serialization.OverlappingPageWriter.PageSerializer()
+
+InnerException1.Invocation Stack Trace:
+   at Microsoft.Mashup.Host.Document.ExceptionExtensions.GetCurrentInvocationStackTrace()
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo.GetFeedbackValuesFromException(Exception e, String prefix)
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo.GetFeedbackValuesFromInnerExceptions(Exception e, Int32 depth)
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo.GetFeedbackValuesFromInnerExceptions(Exception e, Int32 depth)
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo.CreateAdditionalErrorInfo(Exception e)
+   at Microsoft.Mashup.Client.UI.Shared.FeedbackErrorInfo..ctor(String message, Exception exception, Nullable`1 stackTraceInfo, String messageDetail)
+   at Microsoft.Mashup.Client.UI.Windows.UIHost.RaiseErrorDialog(IWindowHandle activeWindow, FeedbackPackageInfo feedbackPackageInfo, Exception e, LocalizedString dialogTitle, LocalizedString dialogMessage, Boolean useGDICapture)
+   at Microsoft.Mashup.Client.Excel.Native.NativeUserFeedbackServices.ReportException(IWindowHandle activeWindow, IUIHost uiHost, FeedbackPackageInfo feedbackPackageInfo, Exception e, Boolean useGDICapture)
+   at Microsoft.Mashup.Client.UI.Shared.UnexpectedExceptionHandler.<>c__DisplayClass14_0.<HandleException>b__0()
+   at Microsoft.Mashup.Client.UI.Shared.UnexpectedExceptionHandler.HandleException(Exception e)
+   at Microsoft.Mashup.Client.Excel.OleDbProvider.ExcelMashupClassFactory.TraceAndReportException(String method, Exception exception)
+   at Microsoft.Mashup.OleDbProvider.TracingRowset.Microsoft.OleDb.IColumnsInfo.GetColumnInfo(DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+   at Microsoft.OleDb.PInvokeInterop.ColumnsInfoTypeInfo.GetColumnInfo(IntPtr objHandle, DBORDINAL& countColumnInfos, DBCOLUMNINFO*& nativeColumnInfos, Char*& nativeStrings)
+
+
+Supports Premium Content:
+True
+
+Formulas:
+
+
+section Section1;
+
+shared Query1 = let
+    Source = Sql.Database("10.10.200.165", "MPITS", [Query="SELECT * FROM TOTAL4", CreateNavigationProperties=false, CommandTimeout=#duration(0, 0, 5, 0)])
+in
+    Source;
+	
+https://script.google.com/macros/s/AKfycbw5kzp59FBrxVzLY6UxDZ4NE6j3_CpBYCElzpEjmk0/dev
+
+https://script.google.com/macros/s/AKfycbw5kzp59FBrxVzLY6UxDZ4NE6j3_CpBYCElzpEjmk0/dev?trungtam=TAN%20DUC&cua=1&data=TD
+
+---------------------------------------------
+
+2 tinh den
+loai bc 
+trung nhau
+cuoc chinh (trieu dong)
+khoi luong (kg)
+loai bc khac nhau
+gomdv + spdv
+
+so am ==> tai sao ?
+cac truong na ?
+
+so sanh voi crmbeta
+
+---------------------------------------------
+
++ crmbeta
++ theo gio
++ noi tinh lien tinh ma tran
+
+01 quang ninh
+02
+03 hai duong
+04 hai phong
+06 thai binh
+07 nam dinh
+08 ninh binh
+
+1. I_BC_SL_KL_DT_NEAR
+3. III_BC_SL_KL_DT_MATRIX_TOTAL
+
+
+- Mục tiêu bên Vietinbank là muốn tìm giải pháp để có thể kết nối giữa VTb và VNpost để hàng ngày VTb có thể cập nhật trạng thái giao nhận thẻ online từ VNpost thay vì nhận thủ công như hiện nay
+
+- Hiện tại là vnpost hàng ngày đang cập nhật kết quả thủ công qua file excel rồi em cập nhật vào hệ thống iuc, như vậy luôn có độ trễ
+Vietinbank mong muốn sẽ kết nối trực tiếp việc cập nhật kết quả này, khi vnpost có kết quả giao thì hệ thống bên mình sẽ lấy kết quả đó để cập nhật tự động iuc và đổi trạng thái giao tại iuc (Phần tự động đổi trạng thái giao thì em sẽ làm việc với bên cntt nếu hệ thống của vietin và vnpost kết nối được phần tự động kết quả ạ)
+
+-------------------------------------
+10_THUYBTT
+Abc@123456789
+
+Abc@123456789
+122080_HIEPND
+
+
+136085_ANLT
+Abc@123456789
+
+EZ158072410VN
+
+71001A04000753000
+
+
+09_LUANDM
+Abc@123456789
+-------------------------------------
+190
+Bdhn@123
+-------------------------------------
+KHL Hoàng Mai 2 - 128180
+TTDV Ba Đình - 119511
+TTDV Long Biên - 125656
+-------------------------------------
+Dear anh Thảo,
+Em gửi tài khoản hệ thống MyVNP tạo cho Trung tâm TMĐT Hà Nội ( ID: 09000000000, Pass: 123456).
+Anh đăng nhập theo tài khoản trên rồi thay đổi mật khẩu mặc định nhé ạ!
+-------------------------------------
+[III_BC_SL_KL_DT_MATRIX_TOTAL]
+
+e ktra giúp bc RR109280892VN
+-------------------------------------
+thieu
+3 + 15
+24->27
+-------------------------------------
+Dear anh Tâm,
+Em gửi tài khoản FTP cho TT TMDT HN: tttmdt_hn/5X6WCDrk$
+Quyền read thư mục TT TMDT HN thuộc 2 folder PNS và PortalKHL
+Trân trọng!
+-------------------------------------
+ftp
+tttmdt_hn
+5X6WCDrk$
+
+pns
+admin.tmdt
+1234
+
+bccp
+tmdt.hn
+bccp@123
+
+donhangbeta
+09000000000
+123456
+
+
+10.10.200.148
+Administrator
+hanoi*2017
+
+10.10.200.148
+sa
+456789@
+
+000009_DVKH
+123456
+
+-------------------------------------
+
+Trang donhang tính cước tập trung, donhangbeta tính cước theo billing giống portal
+
+-------------------------------------
+154580 - Bưu cục Thương mại điện tử Sơn Tây - Sô´25,   Phố Cổng Ô, Xã Viên Sơn
+
+SELECT [BuuCucGoi]
+		,[MaTheKhachHangThanThiet]
+		,MaKhachHangTCT
+		,MaLoai
+		,sum(isnull(TongCuoc,0)) [TongCuoc thực thu (gồm VAT)]
+		,sum(isnull(TongCuocTruocVAT,0)) [TongCuoc  thực thu TruocVAT]
+		,sum(isnull(TongCuocNiemYet,0)) [TongCuocNiemYet (gồm VAT)]
+  FROM [bcgd_2021].[dbo].[DL_2022]
+  where MONTH(NgayGioKyGoi)=3 and YEAR(NgayGioKyGoi)=2022 and ISNULL(MaKhachHangTCT,'')<>''
+  group by [BuuCucGoi]
+		  ,[MaTheKhachHangThanThiet]
+		  ,MaKhachHangTCT
+		  ,MaLoai
+		  
+-------------------------------------		  
+
+tttmdthni@vnpost.vn /tttmdthni
+
+-------------------------------------
+
+12900A04002736000
+123456
+
+125080_LINHTTT
+Abc@123456789
